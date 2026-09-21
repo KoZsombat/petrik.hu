@@ -1,0 +1,298 @@
+/* Divi's page-builder grid: sections, rows and columns.
+ *
+ * The React components emit the original Divi class names, so these rules are
+ * lifted verbatim from the theme (divi-dynamic-critical in the mirror) rather
+ * than reinvented — that is what keeps the ported pages pixel-accurate.
+ *
+ * Breakpoints, as Divi defines them: 981px (desktop), 980px, 767px, 479px.
+ */
+
+#page-container {
+  position: relative;
+}
+
+#main-content {
+  background-color: var(--bg);
+}
+
+.container {
+  position: relative;
+  width: 80%;
+  max-width: 1080px;
+  margin: auto;
+  text-align: left;
+}
+
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* Sections ---------------------------------------------------------------- */
+
+.et_pb_section {
+  position: relative;
+  background-color: var(--bg);
+  background-position: 50%;
+  /*
+   * The theme declares background-size twice - `100%` then `cover` - and the
+   * second one wins. Only the first was carried over, so every section with a
+   * background image stretched it to the full width instead of covering the
+   * box. Divi also puts `et_pb_with_background` on such a section, which says
+   * `cover` again; both are reproduced.
+   */
+  background-size: cover;
+}
+
+@media (min-width: 981px) {
+  .et_pb_section {
+    padding: 4% 0;
+  }
+}
+
+@media (max-width: 980px) {
+  .et_pb_section {
+    padding: 50px 0;
+  }
+}
+
+@media (min-width: 1350px) {
+  .et_pb_section {
+    padding: 54px 0;
+  }
+  .et_pb_fullwidth_section {
+    padding: 0;
+  }
+}
+
+/* A fullwidth section has no inner gutter: its modules span the viewport. */
+.et_pb_fullwidth_section {
+  padding: 0;
+}
+
+/* Rows -------------------------------------------------------------------- */
+
+.et_pb_row {
+  position: relative;
+  width: 80%;
+  max-width: 1080px;
+  margin: auto;
+
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+    width: 0;
+  }
+}
+
+@media (min-width: 981px) {
+  .et_pb_row {
+    padding: 2% 0;
+  }
+}
+
+@media (min-width: 1350px) {
+  .et_pb_row {
+    padding: 27px 0;
+  }
+}
+
+@media (max-width: 980px) {
+  .et_pb_row {
+    max-width: 1080px;
+    padding: 30px 0;
+  }
+}
+
+.et_pb_row .et_pb_column.et-last-child,
+.et_pb_row .et_pb_column:last-child {
+  margin-right: 0 !important;
+}
+
+/* Columns ----------------------------------------------------------------- */
+
+.et_pb_column {
+  float: left;
+  background-size: cover;
+  background-position: 50%;
+  position: relative;
+  z-index: 9;
+  min-height: 1px;
+}
+
+.et_pb_column.et_pb_column_empty {
+  min-height: 1px;
+}
+
+/* Gutter width 3 is the site default; individual rows opt into 4. */
+@media (min-width: 981px) {
+  .et_pb_gutters3 .et_pb_column {
+    margin-right: 5.5%;
+  }
+  .et_pb_gutters3 .et_pb_column_4_4 {
+    width: 100%;
+  }
+  .et_pb_gutters3 .et_pb_column_3_4 {
+    width: 73.625%;
+  }
+  .et_pb_gutters3 .et_pb_column_2_3 {
+    width: 64.833%;
+  }
+  .et_pb_gutters3 .et_pb_column_1_2 {
+    width: 47.25%;
+  }
+  .et_pb_gutters3 .et_pb_column_1_3 {
+    width: 29.6667%;
+  }
+  .et_pb_gutters3 .et_pb_column_1_4 {
+    width: 20.875%;
+  }
+  .et_pb_gutters3 .et_pb_column_3_5 {
+    width: 57.8%;
+  }
+  .et_pb_gutters3 .et_pb_column_2_5 {
+    width: 36.7%;
+  }
+  .et_pb_gutters3 .et_pb_column_1_5 {
+    width: 15.6%;
+  }
+  .et_pb_gutters3 .et_pb_column_1_6 {
+    width: 12.0833%;
+  }
+  .et_pb_gutters3 .et_pb_column_4_4 .et_pb_module {
+    margin-bottom: 2.75%;
+  }
+  .et_pb_gutters3 .et_pb_column_1_2 .et_pb_module {
+    margin-bottom: 5.82%;
+  }
+  .et_pb_gutters3 .et_pb_column_1_3 .et_pb_module {
+    margin-bottom: 9.27%;
+  }
+  .et_pb_gutters3 .et_pb_column_1_4 .et_pb_module {
+    margin-bottom: 13.174%;
+  }
+  .et_pb_gutters3 .et_pb_column_3_5 .et_pb_module {
+    margin-bottom: 4.845%;
+  }
+  .et_pb_gutters3 .et_pb_column_2_5 .et_pb_module {
+    margin-bottom: 7.285%;
+  }
+  .et_pb_gutters3 .et_pb_column_1_5 .et_pb_module {
+    margin-bottom: 17.628%;
+  }
+  .et_pb_gutters3 .et_pb_column_1_6 .et_pb_module {
+    margin-bottom: 22.759%;
+  }
+
+  .et_pb_gutters4 .et_pb_column,
+  .et_pb_gutters4.et_pb_row .et_pb_column {
+    margin-right: 8%;
+  }
+  .et_pb_gutters4 .et_pb_column_4_4,
+  .et_pb_gutters4.et_pb_row .et_pb_column_4_4 {
+    width: 100%;
+  }
+  .et_pb_gutters4 .et_pb_column_1_2,
+  .et_pb_gutters4.et_pb_row .et_pb_column_1_2 {
+    width: 46%;
+  }
+  .et_pb_gutters4 .et_pb_column_1_3,
+  .et_pb_gutters4.et_pb_row .et_pb_column_1_3 {
+    width: 28%;
+  }
+  .et_pb_gutters4 .et_pb_column_4_4 .et_pb_module,
+  .et_pb_gutters4.et_pb_row .et_pb_column_4_4 .et_pb_module {
+    margin-bottom: 4%;
+  }
+  .et_pb_gutters4 .et_pb_column_1_2 .et_pb_module,
+  .et_pb_gutters4.et_pb_row .et_pb_column_1_2 .et_pb_module {
+    margin-bottom: 8.696%;
+  }
+  .et_pb_gutters4 .et_pb_column_1_3 .et_pb_module,
+  .et_pb_gutters4.et_pb_row .et_pb_column_1_3 .et_pb_module {
+    margin-bottom: 14.286%;
+  }
+}
+
+/* Below 981px Divi stacks every column full width. The 30px gap sits on the
+ * column, not on the modules inside it. */
+@media (max-width: 980px) {
+  .et_pb_column {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+  .et_pb_bottom_divider .et_pb_row:nth-last-child(2) .et_pb_column:last-child,
+  .et_pb_row .et_pb_column:last-child,
+  .et_pb_row .et_pb_column.et-last-child {
+    margin-bottom: 0;
+  }
+
+  /* Stacked modules get a flat 30px gap instead of the percentage gutters.
+   * The last module in a column is still zeroed by the rule above. */
+  .et_pb_column .et_pb_module {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 980px) {
+  /* Spacer columns collapse entirely once the layout stacks. */
+  .et_pb_column.et_pb_column_empty {
+    display: none;
+  }
+}
+
+@media (max-width: 479px) {
+  .et_pb_column {
+    width: 100% !important;
+  }
+}
+
+/* Modules ----------------------------------------------------------------- */
+
+.et_pb_module {
+  position: relative;
+  vertical-align: top;
+}
+
+/* Divi drops the trailing margin on the last module of a column. Deliberately
+ * without !important: a per-page design stylesheet that sets its own
+ * margin-bottom on that module has to be able to win, as it does on /about-us/.
+ */
+.et_pb_row .et_pb_column .et_pb_module:last-child,
+.et_pb_row .et_pb_column .et_pb_module.et-last-child {
+  margin-bottom: 0;
+}
+
+/*
+ * Divi's border bases, lifted from the theme.
+ *
+ * These draw nothing - the width is zero - but they set a border *style*, and
+ * a page's generated design stylesheet then only says `border-width: 10px 0`.
+ * A border-width with no border-style paints nothing and takes no space, so
+ * without these the per-page borders are silently inert. That was the missing
+ * 10px above every staff portrait and the missing 30px on every blog card.
+ */
+.et_pb_with_border {
+  position: relative;
+  border: 0 solid #333;
+}
+
+.et_pb_with_border .et_pb_team_member_image,
+.et_pb_with_border .et_pb_image_wrap {
+  border: 0 solid #333;
+}
+
+/*
+ * Divi colours a module's text from the background it sits on. The port
+ * hard-coded `light` on every text module and never carried this rule, so a
+ * heading or a subtitle over a hero photo came out grey instead of white.
+ */
+.et_pb_bg_layout_dark {
+  color: #fff !important;
+}

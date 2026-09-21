@@ -1,0 +1,27 @@
+/* Section edge dividers: an absolutely positioned strip that carries an SVG
+ * background. The shape, height and colour are per-section and come from each
+ * page's own design stylesheet, so only the positioning lives here.
+ */
+.section_has_divider {
+  overflow: hidden;
+}
+
+.et_pb_top_inside_divider,
+.et_pb_bottom_inside_divider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.et_pb_top_inside_divider {
+  top: 0;
+  background-position: top;
+}
+
+.et_pb_bottom_inside_divider {
+  bottom: 0;
+  background-position: bottom;
+}

@@ -1,0 +1,360 @@
+/* Divi's "header style left" layout: logo on the left, nav floated right.
+ * Background and submenu colours are the site's customizer values.
+ */
+#main-header {
+  position: fixed;
+  /* Clears the fixed top bar, which is 36px tall at desktop width. */
+  top: 36px;
+  left: 0;
+  width: 100%;
+  z-index: 99999;
+  line-height: 23px;
+  font-weight: 500;
+  background-color: var(--header-bg);
+  /* The customizer removes Divi's default drop shadow. */
+  box-shadow: none;
+  transition: background-color 0.4s, color 0.4s, transform 0.4s, opacity 0.4s ease-in-out;
+}
+
+.logo_container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transition: all 0.4s ease-in-out;
+}
+
+.logo_helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  width: 0;
+}
+
+#logo {
+  width: auto;
+  max-height: 60%;
+  margin-bottom: 0;
+  display: inline-block;
+  float: none;
+  vertical-align: middle;
+  transition: all 0.4s ease-in-out;
+}
+
+#et-top-navigation {
+  float: right;
+  font-weight: 600;
+  padding-top: 33px;
+  /* Leaves room for the absolutely positioned logo. */
+  padding-left: 214px;
+  transition: all 0.4s ease-in-out;
+}
+
+/* The padding is what bridges the gap between a top-level item and its
+ * dropdown, so the non-link parents need it too. */
+#et-top-navigation nav > ul > li > a,
+#et-top-navigation nav > ul > li > .menu-parent {
+  padding-bottom: 33px;
+}
+
+/* Primary menu ------------------------------------------------------------ */
+
+#top-menu-nav,
+#top-menu {
+  line-height: 0;
+}
+
+nav#top-menu-nav,
+#top-menu {
+  float: left;
+}
+
+/*
+ * The theme puts line-height on `.nav li`, not here. Folding it into this
+ * ID-based rule raised its specificity above `.nav li li { line-height: 2em }`,
+ * so the dropdown entries stayed on a 14px line and ran together.
+ */
+.nav li {
+  position: relative;
+  line-height: 1em;
+}
+
+#top-menu li {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  padding-right: 22px;
+  word-wrap: break-word;
+}
+
+#top-menu > li:last-child {
+  padding-right: 0;
+}
+
+#top-menu a,
+#top-menu .menu-parent {
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+#top-menu-nav > ul > li > a:hover,
+#top-menu-nav > ul > li > .menu-parent:hover {
+  opacity: 0.7;
+}
+
+#top-menu li.current-menu-ancestor > a,
+#top-menu li.current-menu-item > a,
+#top-menu li.current-menu-ancestor > .menu-parent {
+  color: var(--petrik-green);
+}
+
+/* Dropdown arrow, drawn from the icon font. */
+#top-menu .menu-item-has-children > a:first-child,
+#top-menu .menu-item-has-children > .menu-parent:first-child {
+  padding-right: 20px;
+}
+
+#top-menu .menu-item-has-children > a:first-child::after,
+#top-menu .menu-item-has-children > .menu-parent:first-child::after {
+  font-family: var(--icons);
+  content: '3';
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-weight: 800;
+}
+
+/* Submenus ---------------------------------------------------------------- */
+
+/*
+ * Divi's rule for a dropdown item. The 2em is what separates the entries: at
+ * the menu's 14px that is a 28px line, and without it the items sat 14px apart
+ * with no breathing room at all.
+ */
+.nav li li {
+  position: relative;
+  line-height: 2em;
+}
+
+.nav li ul {
+  position: absolute;
+  padding: 20px 0;
+  z-index: 9999;
+  width: 240px;
+  background: var(--header-submenu-bg);
+  visibility: hidden;
+  opacity: 0;
+  border-top: 3px solid var(--petrik-green);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: all 0.2s ease-in-out;
+}
+
+#top-menu li:hover > ul,
+#top-menu li:focus-within > ul {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* The original leaves these inline-block, as #top-menu li above sets. */
+#top-menu li li {
+  padding: 0 20px;
+  margin: 0;
+}
+
+#top-menu li li a {
+  padding: 6px 20px;
+  width: 200px;
+  font-size: 14px;
+  transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--hairline);
+    opacity: 0.7;
+  }
+}
+
+/* Search toggle ----------------------------------------------------------- */
+
+#et_top_search {
+  float: right;
+  margin: 3px 0 0 22px;
+  position: relative;
+  display: block;
+  width: 18px;
+}
+
+#et_search_icon {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+#et_search_icon::before {
+  font-family: var(--icons);
+  content: '\55';
+  font-size: 17px;
+  left: 0;
+  position: absolute;
+  top: -3px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Mobile menu ------------------------------------------------------------- */
+
+#et_mobile_nav_menu {
+  float: right;
+  display: none;
+}
+
+.mobile_nav .select_page {
+  display: none;
+}
+
+.mobile_menu_bar {
+  position: relative;
+  display: block;
+  line-height: 0;
+  padding: 0 0 24px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.mobile_menu_bar::before {
+  font-family: var(--icons);
+  content: 'a';
+  font-size: 32px;
+  color: var(--petrik-green);
+  position: relative;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.et_mobile_menu {
+  position: absolute;
+  left: 0;
+  padding: 5%;
+  background: #fff;
+  width: 100%;
+  z-index: 9999;
+  border-top: 3px solid var(--petrik-green);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.et_mobile_menu[hidden] {
+  display: none;
+}
+
+.et_mobile_menu li {
+  display: block;
+  padding: 0;
+}
+
+.et_mobile_menu li a,
+.et_mobile_menu li .menu-parent {
+  border-bottom: 1px solid var(--hairline);
+  color: #666;
+  padding: 10px 5%;
+  display: block;
+  font-size: 14px;
+  width: auto;
+
+  &:hover {
+    background-color: var(--hairline);
+    opacity: 0.7;
+  }
+}
+
+.et_mobile_menu .menu-item-has-children > a,
+.et_mobile_menu .menu-item-has-children > .menu-parent {
+  font-weight: 700;
+  background-color: var(--hairline);
+}
+
+/* Divi shows every submenu expanded inside the mobile menu. */
+.et_mobile_menu li ul {
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: static;
+  display: block !important;
+  width: auto;
+  padding-left: 10px;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.et_mobile_menu li li {
+  padding-left: 5%;
+}
+
+.et_mobile_menu .menu-item-has-children > a::after,
+.et_mobile_menu .menu-item-has-children > .menu-parent::after {
+  content: none;
+}
+
+@media (max-width: 980px) {
+  #main-header {
+    transition: none;
+  }
+
+  #et-top-navigation {
+    padding-left: 0;
+    margin-right: 0;
+    transition: none;
+  }
+
+  #top-menu-nav {
+    display: none;
+  }
+
+  #et_mobile_nav_menu {
+    display: block;
+  }
+
+  #et_top_search {
+    margin: 0 35px 0 0;
+    float: left;
+  }
+
+  .logo_container,
+  #logo {
+    transition: none;
+  }
+}
+
+/*
+ * The compact header.
+ *
+ * Divi shrank the header on scroll from JavaScript: it put `et-fixed-header`
+ * on #main-header and let CSS do the rest. src/lib/useFixedHeader.ts supplies
+ * the class; these are the theme's own rules for it, and the 0.4s transition
+ * on #et-top-navigation is what makes it glide rather than jump.
+ */
+.et_header_style_left .et-fixed-header #et-top-navigation {
+  padding-top: 20px;
+}
+
+.et_header_style_left .et-fixed-header #et-top-navigation nav > ul > li > a {
+  padding-bottom: 20px;
+}
+
+.et-fixed-header#main-header,
+.et-fixed-header#main-header .nav li ul,
+.et-fixed-header .et-search-form {
+  background-color: rgb(255 255 255 / 93%);
+}
+
+.et-fixed-header#main-header {
+  box-shadow: none !important;
+}
+
+.et-fixed-header #top-menu li.current-menu-ancestor > a,
+.et-fixed-header #top-menu li.current-menu-item > a {
+  color: var(--petrik-green) !important;
+}

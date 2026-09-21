@@ -1,0 +1,87 @@
+.et_pb_blurb_content {
+  max-width: 550px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+.et_pb_blurb.et_pb_text_align_left .et_pb_blurb_content .et_pb_blurb_container {
+  text-align: left;
+}
+.et_pb_blurb.et_pb_text_align_right .et_pb_blurb_content .et_pb_blurb_container {
+  text-align: right;
+}
+.et_pb_blurb.et_pb_text_align_center .et_pb_blurb_content .et_pb_blurb_container {
+  text-align: center;
+}
+.et_pb_blurb.et_pb_text_align_justified .et_pb_blurb_content .et_pb_blurb_container {
+  text-align: justify;
+}
+
+.et_pb_blurb_content p:last-of-type {
+  padding-bottom: 0;
+}
+
+.et_pb_blurb .et_pb_module_header,
+.et_pb_blurb .et_pb_module_header a {
+  text-decoration: none;
+}
+
+.et_pb_blurb .et_pb_image_wrap {
+  display: block;
+  margin: auto;
+}
+
+/* Icon or image beside the text. */
+.et_pb_blurb_position_left .et_pb_blurb_content,
+.et_pb_blurb_position_right .et_pb_blurb_content {
+  display: table;
+}
+
+.et_pb_blurb_position_left .et_pb_main_blurb_image,
+.et_pb_blurb_position_right .et_pb_main_blurb_image {
+  width: 32px;
+  display: table-cell;
+  line-height: 0;
+}
+
+.et_pb_blurb_position_left .et_pb_main_blurb_image img,
+.et_pb_blurb_position_right .et_pb_main_blurb_image img {
+  width: inherit;
+}
+
+.et_pb_blurb_position_left .et-pb-icon,
+.et_pb_blurb_position_right .et-pb-icon {
+  font-size: 32px;
+}
+
+.et_pb_blurb_position_left .et_pb_blurb_container,
+.et_pb_blurb_position_right .et_pb_blurb_container {
+  display: table-cell;
+  vertical-align: top;
+  padding-left: 15px;
+}
+
+.et_pb_blurb_position_top .et_pb_main_blurb_image {
+  margin-bottom: 30px;
+  display: block;
+  line-height: 0;
+}
+
+.et-pb-icon {
+  font-family: var(--icons);
+  speak: none;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  text-shadow: 0 0;
+  direction: ltr;
+  display: inline-block;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+}

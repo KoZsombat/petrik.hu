@@ -1,0 +1,175 @@
+/*
+ * What Divi's slider script did at runtime, and the generated HeroSlider.css
+ * therefore cannot contain.
+ *
+ * Three separate gaps:
+ *
+ * 1. The theme styles the controls as `.et-pb-controllers a` and
+ *    `.et-pb-arrow-*` anchors with `href="#"`. This port renders them as
+ *    <button>, the same accessibility deviation the docs accordion makes, so
+ *    the theme's declarations have to be transplanted onto the button and the
+ *    button's own chrome removed. Those declarations are the theme's own,
+ *    copied unchanged - only the selector differs.
+ * 2. collect-css.ts asks the browser which rules match the element as it
+ *    stands, so no `:hover` rule is ever reported. The arrows live at
+ *    `opacity: 0` and only the hover rules reveal them, which is why they
+ *    never appeared.
+ * 3. The change from one slide to the next was a jQuery `.animate()`, so there
+ *    was no rule to collect at all. It is rebuilt below from what the script
+ *    actually does.
+ */
+
+/* Controls ---------------------------------------------------------------- */
+
+/* Only the chrome a <button> brings of its own. */
+.et-pb-controllers button,
+.et-pb-slider-arrows button {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/*
+ * `.et-pb-controllers a` and `:last-child`, from the theme. The `font: inherit`
+ * is the port's: the row's height comes from the line box of the digit the
+ * anchor held, and a button would bring its own smaller font instead.
+ */
+.et-pb-controllers button {
+  display: inline-block;
+  background-color: hsla(0, 0%, 100%, 0.5);
+  text-indent: -9999px;
+  border-radius: 7px;
+  width: 7px;
+  height: 7px;
+  margin-right: 10px;
+  padding: 0;
+  opacity: 0.5;
+  font: inherit;
+}
+
+.et-pb-controllers button:last-child {
+  margin-right: 0;
+}
+
+/*
+ * The arrows are sized by their icon glyph alone, so nothing here may touch
+ * `font` or `color`: the theme sizes them with `font-size: 48px` on their own
+ * class, and a `font: inherit` in this file comes later in the cascade and
+ * shrinks the glyph to the body size. The line-height has to be the inherited
+ * one the anchor had - any value set here makes the box taller than the glyph's
+ * line box.
+ */
+.et-pb-slider-arrows button {
+  background: none;
+  padding: 0;
+  line-height: inherit;
+}
+
+/* The theme's reveal-on-hover, copied unchanged. */
+.et_pb_slider:hover .et-pb-arrow-prev {
+  left: 22px;
+  opacity: 1;
+}
+
+.et_pb_slider:hover .et-pb-arrow-next {
+  right: 22px;
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .et_pb_slider:hover .et-pb-arrow-prev {
+    left: 0;
+    opacity: 1;
+  }
+
+  .et_pb_slider:hover .et-pb-arrow-next {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+/*
+ * Added, not copied: the original controls were anchors that a keyboard user
+ * could not reach in any useful way, so hiding them at opacity 0 cost nothing.
+ * These are buttons, and a focused control that cannot be seen is a trap the
+ * port would be introducing. Focus reveals the arrows exactly as hover does.
+ */
+.et_pb_slider:focus-within .et-pb-arrow-prev {
+  left: 22px;
+  opacity: 1;
+}
+
+.et_pb_slider:focus-within .et-pb-arrow-next {
+  right: 22px;
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .et_pb_slider:focus-within .et-pb-arrow-prev {
+    left: 0;
+    opacity: 1;
+  }
+
+  .et_pb_slider:focus-within .et-pb-arrow-next {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+/* The cross-fade ---------------------------------------------------------- */
+
+/*
+ * Divi's script, on every move: raise the outgoing slide to `z-index: 2`, give
+ * it `et_slide_transition`, and animate it to `opacity: 0`; at the same time
+ * show the incoming slide at `opacity: 0` underneath and animate it to 1; hide
+ * the outgoing one when the animation ends. The component sets the display and
+ * the z-index inline exactly as the script did, and these two keyframes are the
+ * `.animate({opacity})` pair.
+ *
+ * 700ms is `fade_speed` from `et_pb_slider_init`, not the plugin's own 500ms
+ * default. jQuery's default easing is `swing`, which is
+ * `0.5 - cos(p * PI) / 2` - a sine ease-in-out, whose cubic-bezier form is the
+ * one below.
+ */
+@keyframes etSlideFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes etSlideFadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.et_pb_slider .et_pb_slide.et_slide_entering {
+  animation: etSlideFadeIn 700ms cubic-bezier(0.37, 0, 0.63, 1) both;
+}
+
+.et_pb_slider .et_pb_slide.et_slide_transition {
+  animation: etSlideFadeOut 700ms cubic-bezier(0.37, 0, 0.63, 1) both;
+}
+
+/*
+ * Autoplay already stands still for a visitor who asked for reduced motion, so
+ * the cross-fade a click still triggers should not run either.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .et_pb_slider .et_pb_slide.et_slide_entering,
+  .et_pb_slider .et_pb_slide.et_slide_transition {
+    animation: none;
+  }
+
+  .et_pb_slider .et_pb_slide.et_slide_transition {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,150 @@
+/*
+ * The handful of rules the React docs pages need on top of betterdocs.css.
+ *
+ * betterdocs.css is generated from the rules the original browser matched, so
+ * it covers everything the plugin styled. What is left is the two places the
+ * port replaces plugin JavaScript with markup of its own - the collapse button
+ * and the search results - plus the note on the password-protected documents.
+ */
+
+/*
+ * The collapse control. The original was a bare <svg> that only its script
+ * could reach; this is a button wrapping that same icon, so it needs the
+ * plugin's arrow positioning transplanted onto the wrapper and the button's
+ * own chrome removed.
+ */
+.betterdocs-category-collapse-button {
+  appearance: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-left: 10px;
+  color: inherit;
+
+  & .betterdocs-category-collapse {
+    transition: transform 0.2s ease;
+  }
+
+  &[aria-expanded='false'] .betterdocs-category-collapse {
+    transform: rotate(-90deg);
+  }
+}
+
+/*
+ * The card grid on /dokumentumtar/, which the original laid out with the
+ * Masonry script.
+ *
+ * The plugin already sizes the cards for a JS-free grid - betterdocs.css
+ * carries `flex: 1 0 calc(100%/var(--column) - var(--gap,15)*1px)` - so all
+ * that is missing is the flex container around them. With --column: 4 from
+ * the markup that works out to the mirror's 338.75px card at 1440px, gaps
+ * included.
+ *
+ * What is not reproduced is Masonry's packing: it dropped each card into the
+ * shortest column, so a short card could sit beside a tall one. Here the rows
+ * are rows, which keeps the cards in the order they are written at the cost of
+ * some ragged whitespace. See AGENT.md section 4.2.
+ */
+.betterdocs-category-grid-inner-wrapper.masonry {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 15px;
+  /* Cards keep their own height rather than stretching to the row's. */
+  align-items: flex-start;
+}
+
+/* Measured: the mirror is four columns at 1050px and one at 1024px. */
+@media only screen and (max-width: 1024px) {
+  .betterdocs-category-grid-inner-wrapper.masonry > .betterdocs-single-category-wrapper {
+    flex-basis: 100%;
+  }
+}
+
+/* The search results list, which the plugin built from its ajax response. */
+.betterdocs-live-search {
+  position: relative;
+}
+
+.betterdocs-search-clear {
+  appearance: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.betterdocs-search-result {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #eaecf0;
+  border-radius: 5px;
+  box-shadow: 0 4px 16px rgb(16 24 40 / 12%);
+  text-align: left;
+
+  & li {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #f2f4f7;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  & a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+
+    &:hover {
+      background: #f9fafb;
+    }
+  }
+}
+
+.betterdocs-search-title {
+  display: block;
+  color: #344054;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.betterdocs-search-category {
+  display: block;
+  color: #667085;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.betterdocs-search-empty {
+  padding: 10px 20px;
+  color: #667085;
+  font-size: 15px;
+}
+
+/* The stand-in body on the two password-protected documents. */
+.docs-protected-note {
+  padding: 30px;
+  color: #667085;
+
+  & p {
+    margin: 0;
+  }
+}

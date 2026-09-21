@@ -1,0 +1,62 @@
+.et_pb_testimonial {
+  position: relative;
+  padding: 30px;
+  background-color: #f5f5f5;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.et_pb_testimonial_portrait {
+  width: 90px;
+  height: 90px;
+  float: left;
+  border-radius: 90px;
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+}
+
+.et_pb_testimonial_description {
+  margin-left: 120px;
+}
+
+.et_pb_testimonial_author {
+  display: block;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.et_pb_testimonial_content p:last-of-type {
+  padding-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .et_pb_testimonial_portrait {
+    float: none;
+    margin: 0 auto 20px;
+  }
+  .et_pb_testimonial_description {
+    margin-left: 0;
+  }
+}
+
+/*
+ * Divi's quote mark. The glyph is the `|` character in the ETmodules icon
+ * font, sitting on the module's top edge with the panel's own background
+ * punched out behind it. Without this rule the box had no quote mark at all.
+ */
+.et_pb_testimonial::before {
+  font-family: var(--icons);
+  content: '|';
+  font-size: 32px;
+  left: 50%;
+  position: absolute;
+  top: -16px;
+  background: #f5f5f5;
+  margin-left: -16px;
+  border-radius: 31px;
+  z-index: 2;
+}
+
+.et_pb_testimonial.et_pb_testimonial_no_bg::before {
+  background: inherit;
+}

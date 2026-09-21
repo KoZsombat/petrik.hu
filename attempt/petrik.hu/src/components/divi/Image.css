@@ -1,0 +1,35 @@
+/*
+ * Divi's own rules. `line-height: 0` is the important one and it is easy to
+ * miss: the image is an inline box, so without it the line it sits on keeps
+ * room for a descender and the module ends up about 7px taller than the image.
+ * The port used to fake that away with `display: block` on the <img>, which
+ * worked but is not what the original does.
+ */
+.et_pb_image {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  line-height: 0;
+}
+
+.et_pb_image .et_pb_image_wrap {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+}
+
+/*
+ * The mirror gives the image no width rule at all beyond `max-width: 100%`, so
+ * its width and height attributes stand. The port used to say `width: auto`,
+ * which overrides them - and because most of these images are lazy-loaded and
+ * far down the page, an unloaded one then collapsed to nothing instead of
+ * reserving its box.
+ */
+.et_pb_image img {
+  position: relative;
+  max-width: 100%;
+}
+
+.et_pb_image a {
+  display: block;
+}

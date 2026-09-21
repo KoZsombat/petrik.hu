@@ -1,0 +1,37 @@
+.et_pb_text {
+  word-wrap: break-word;
+}
+
+.et_pb_text_align_left {
+  text-align: left;
+}
+
+.et_pb_text_align_center {
+  text-align: center;
+}
+
+.et_pb_text_align_right {
+  text-align: right;
+}
+
+.et_pb_text_align_justified {
+  text-align: justify;
+}
+
+.et_pb_text ul,
+.et_pb_text ol {
+  padding: 0 0 23px 1em;
+  line-height: 26px;
+}
+
+.et_pb_text ul {
+  list-style-type: disc;
+}
+
+.et_pb_text ol {
+  list-style-type: decimal;
+}
+
+.et_pb_text li {
+  margin-left: 1em;
+}

@@ -1,0 +1,58 @@
+.et_pb_pricing_table_wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.et_pb_pricing_table {
+  flex: 1 1 0;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  text-align: center;
+}
+
+.et_pb_pricing_table + .et_pb_pricing_table {
+  border-left: 0;
+}
+
+.et_pb_pricing_heading {
+  background-color: rgba(0, 0, 0, 0.06);
+  padding: 20px;
+}
+
+.et_pb_pricing_title {
+  font-weight: 500;
+  padding-bottom: 0;
+}
+
+.et_pb_pricing_content_top {
+  padding: 40px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.et_pb_sum {
+  font-size: 44px;
+  line-height: 1em;
+  color: var(--petrik-green);
+}
+
+.et_pb_pricing_content {
+  padding: 20px 20px 30px;
+}
+
+.et_pb_pricing_content ul.et_pb_pricing li {
+  margin-left: 20px;
+  padding: 0 0 0 5px;
+  position: relative;
+  word-wrap: break-word;
+  list-style: disc;
+}
+
+@media (max-width: 767px) {
+  .et_pb_pricing_table_wrap {
+    display: block;
+  }
+  .et_pb_pricing_table + .et_pb_pricing_table {
+    border-left: 1px solid #ddd;
+    border-top: 0;
+  }
+}

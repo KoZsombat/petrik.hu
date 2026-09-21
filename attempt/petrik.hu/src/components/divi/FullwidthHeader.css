@@ -1,0 +1,56 @@
+.et_pb_fullwidth_header {
+  position: relative;
+  padding: 100px 0;
+}
+
+.et_pb_fullwidth_header_container {
+  width: 80%;
+  max-width: 1080px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.et_pb_fullwidth_header.et_pb_text_align_center {
+  text-align: center;
+}
+
+.et_pb_fullwidth_header .et_pb_module_header {
+  padding-bottom: 10px;
+}
+
+.et_pb_header_content_wrapper p:last-of-type {
+  padding-bottom: 0;
+}
+
+/*
+ * The content block, from the theme. Both halves matter: without the width the
+ * heading does not wrap where the original wrapped it, and without the margin
+ * and padding the module is 60px short. Together they were 106.8px on the home
+ * page's closing header.
+ */
+.et_pb_fullwidth_header .header-content {
+  padding: 10px;
+  text-align: center;
+}
+
+.et_pb_fullwidth_header .et_pb_fullwidth_header_container.center .header-content {
+  margin: 20px auto;
+  width: 80%;
+  max-width: 800px;
+}
+
+.et_pb_fullwidth_header .header-content a.et_pb_button {
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.et_pb_fullwidth_header .header-content a.et_pb_button + a.et_pb_button {
+  margin-left: 10px;
+}
+
+.et_pb_fullwidth_header_overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}

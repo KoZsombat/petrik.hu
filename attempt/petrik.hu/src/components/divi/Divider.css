@@ -1,0 +1,18 @@
+.et_pb_divider {
+  position: relative;
+  margin: 0 auto;
+}
+
+.et_pb_divider::before {
+  content: '';
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.et_pb_space {
+  height: 23px;
+}

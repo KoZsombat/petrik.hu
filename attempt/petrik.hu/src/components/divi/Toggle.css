@@ -1,0 +1,81 @@
+.et_pb_toggle {
+  border: 1px solid #d9d9d9;
+}
+
+.et_pb_toggle_close {
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.et_pb_toggle_open {
+  padding: 20px;
+  background-color: #fff;
+  z-index: 1;
+}
+
+.et_pb_toggle_title,
+.et_pb_toggle_content {
+  word-wrap: break-word;
+}
+
+.et_pb_toggle .et_pb_toggle_title {
+  cursor: pointer;
+  position: relative;
+  padding: 0 50px 0 0;
+}
+
+/* The title is a real button so it is reachable by keyboard; it has to be
+ * unstyled to keep the heading's own typography. */
+.et_pb_toggle_title button {
+  all: unset;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+}
+
+.et_pb_toggle_close .et_pb_toggle_title {
+  color: #666;
+}
+
+.et_pb_toggle_open .et_pb_toggle_title {
+  color: var(--text-heading);
+}
+
+/* The +/- marker, drawn from the icon font. */
+.et_pb_toggle_title::before {
+  font-family: var(--icons);
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  direction: ltr;
+  content: '\E050';
+  position: absolute;
+  right: 0;
+  font-size: 16px;
+  color: #ccc;
+  top: 50%;
+  margin-top: -0.5em;
+}
+
+.et_pb_toggle_open .et_pb_toggle_title::before {
+  content: '\E04F';
+}
+
+.et_pb_toggle_content {
+  padding-top: 20px;
+  position: relative;
+}
+
+.et_pb_toggle_content[hidden] {
+  display: none;
+}
+
+.et_pb_toggle_content p:last-of-type {
+  padding-bottom: 0;
+}

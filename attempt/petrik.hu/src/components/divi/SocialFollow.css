@@ -1,0 +1,68 @@
+/* Divi's social follow row: square icon buttons drawn from the icon font. */
+.et_pb_social_media_follow {
+  padding: 0;
+}
+
+.et_pb_social_media_follow li {
+  display: inline-block;
+  margin: 0 8px 8px 0;
+  list-style-type: none;
+}
+
+.et_pb_social_media_follow li a.icon {
+  display: block;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 3px;
+  background-color: var(--petrik-green);
+  text-align: center;
+}
+
+.et_pb_social_media_follow li a.icon::before {
+  font-family: var(--icons);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  color: #fff;
+  display: block;
+}
+
+/* Divi keeps the label in the markup but never shows it. */
+.et_pb_social_media_follow_network_name {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.et_pb_social_media_follow li a.icon:hover {
+  opacity: 0.8;
+}
+
+.et_pb_social_media_follow.et_pb_text_align_center {
+  text-align: center;
+}
+.et_pb_social_media_follow.et_pb_text_align_right {
+  text-align: right;
+}
+
+/* Glyphs, matching the network slugs Divi emits. */
+.et-social-facebook a.icon::before {
+  content: '\e093';
+}
+.et-social-instagram a.icon::before {
+  content: '\e09a';
+}
+.et-social-youtube a.icon::before {
+  content: '\e0a3';
+}
+.et-social-rss a.icon::before {
+  content: '\e09e';
+}

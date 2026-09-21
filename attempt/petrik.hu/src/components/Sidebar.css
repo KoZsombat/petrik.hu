@@ -1,0 +1,60 @@
+#sidebar {
+  float: right;
+  width: 20.875%;
+}
+
+#sidebar .et_pb_widget {
+  float: none;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+/*
+ * No rule for .widgettitle. It is a plain <h4>, and the theme's own h4 - 21px
+ * with 10px of padding, already in index.css - is what sizes it. The 18px and
+ * 20px that used to be here were invented, and made every widget heading 4px
+ * too tall.
+ */
+
+#sidebar ul li {
+  margin-bottom: 0.5em;
+}
+
+/* Divi's search field, styled as the theme does. */
+.widget_search .searchform {
+  position: relative;
+}
+
+.widget_search input#s,
+.widget_search input#searchsubmit {
+  padding: 0.7em;
+  height: 40px !important;
+  margin: 0;
+  font-size: 14px;
+  line-height: normal !important;
+  border: 1px solid #ddd;
+  color: #666;
+}
+
+.widget_search input#s {
+  width: 100%;
+  border-radius: 3px;
+}
+
+.widget_search input#searchsubmit {
+  background-color: #ddd;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+@media (max-width: 980px) {
+  #sidebar {
+    float: none;
+    width: 100%;
+    padding-top: 40px;
+  }
+}

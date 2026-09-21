@@ -1,0 +1,47 @@
+/* WordPress calendar widget, styled by Divi. */
+#wp-calendar {
+  empty-cells: show;
+  margin: 10px auto 0;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#wp-calendar caption {
+  text-decoration: none;
+  font: bold 13px Arial, sans-serif;
+}
+
+#wp-calendar th {
+  font-style: normal;
+  text-transform: capitalize;
+  padding: 3px 5px;
+  font-weight: 700;
+  background: none;
+  border: 0;
+}
+
+#wp-calendar td {
+  padding: 3px 5px;
+  color: var(--text-muted);
+  border: 0;
+}
+
+#wp-calendar td#today {
+  font-weight: 700;
+}
+
+#wp-calendar a {
+  display: block;
+  text-decoration: none;
+  font-weight: 700;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.wp-calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9pt;
+}

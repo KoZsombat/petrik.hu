@@ -1,0 +1,119 @@
+/* Divi's blog grid. The column widths below match the gutter-3 layout the site
+ * uses; the number of columns is chosen in useColumnCount, because it decides
+ * how the posts are dealt out, not merely how they look.
+ */
+.et_pb_blog_grid {
+  position: relative;
+}
+
+.et_pb_blog_grid .column {
+  float: left;
+}
+
+.et_pb_blog_grid::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+@media (min-width: 981px) {
+  .et_pb_gutters3 .et_pb_column_4_4 .et_pb_blog_grid .column.size-1of3 {
+    width: 29.667%;
+    margin-right: 5.5%;
+  }
+  .et_pb_gutters3 .et_pb_column_4_4 .et_pb_blog_grid .column.size-1of3:nth-child(3n) {
+    margin-right: 0;
+  }
+  .et_pb_gutters3 .et_pb_column_4_4 .et_pb_blog_grid .column.size-1of3 .et_pb_post {
+    margin-bottom: 18.539%;
+  }
+  /*
+   * The percentage above spaces the rows of a multi-row grid; the last post in
+   * a column gets a flat 30px instead, and every post here is the only one in
+   * its column. Missing this rule made each card 29px taller than the mirror's
+   * and pushed everything below it down the page.
+   */
+  .et_pb_gutters3 .et_pb_column .et_pb_blog_grid .column.size-1of1 .et_pb_post:last-child,
+  .et_pb_gutters3 .et_pb_column .et_pb_blog_grid .column.size-1of2 .et_pb_post:last-child,
+  .et_pb_gutters3 .et_pb_column .et_pb_blog_grid .column.size-1of3 .et_pb_post:last-child {
+    margin-bottom: 30px;
+  }
+  .et_pb_gutters3 .et_pb_column_1_2 .et_pb_blog_grid .column.size-1of1 {
+    width: 100%;
+    margin-right: 0;
+  }
+  .et_pb_gutters3 .et_pb_column_1_2 .et_pb_blog_grid .column.size-1of1 .et_pb_post {
+    margin-bottom: 11.64%;
+  }
+}
+
+@media (max-width: 980px) {
+  .et_pb_column .et_pb_blog_grid .column.size-1of2 {
+    margin: 0 5.5% 7.5% 0;
+    width: 47.25%;
+    clear: none;
+    float: left;
+  }
+  .et_pb_column .et_pb_blog_grid .column.size-1of2:nth-child(2n) {
+    margin-right: 0;
+  }
+  .et_pb_column .et_pb_blog_grid .column.size-1of2 .et_pb_post {
+    margin-bottom: 16.21%;
+  }
+  .et_pb_column .et_pb_blog_grid .column.size-1of1,
+  .et_pb_column .et_pb_blog_grid .column.size-1of2 {
+    margin-bottom: 0;
+  }
+  .et_pb_column .et_pb_blog_grid .column.size-1of1 .et_pb_post:last-child,
+  .et_pb_column .et_pb_blog_grid .column.size-1of2 .et_pb_post:last-child {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .et_pb_column .et_pb_blog_grid .column.size-1of1 {
+    width: 100%;
+    margin-right: 0;
+  }
+  .et_pb_column .et_pb_blog_grid .column.size-1of1 .et_pb_post {
+    margin-right: 0;
+    margin-bottom: 9.5%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 479px) {
+  .et_pb_column .et_pb_blog_grid .column.size-1of1 .et_pb_post {
+    margin-bottom: 11.5%;
+  }
+}
+
+/* Divi's feed pagination. The older pages were not captured, so the control is
+ * present but inert, and says so rather than linking nowhere.
+ *
+ * Scoped to the blog module: the theme's own archives use the same .pagination
+ * class with no padding at all, and an unscoped rule here made every one of
+ * them 40px too tall.
+ */
+.et_pb_blog_grid > .pagination {
+  padding: 20px 0;
+}
+
+.pagination .alignleft {
+  float: left;
+}
+
+.pagination .alignright {
+  float: right;
+}
+
+.pagination::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.pagination-unavailable {
+  color: var(--text-muted);
+  font-style: italic;
+}

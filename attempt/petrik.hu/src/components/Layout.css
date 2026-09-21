@@ -1,0 +1,46 @@
+/* The header and top bar are fixed, so the page body has to start below them.
+ *
+ * Divi computed this in JavaScript and wrote it onto the first section as an
+ * inline padding-top, together with a -1px margin on the page container. The
+ * same offset applied once to the container puts every page's content on the
+ * identical pixel row (36px top bar + 80px header - 1px), without needing a
+ * per-page value.
+ */
+#page-container {
+  padding-top: 115px;
+}
+
+@media (max-width: 980px) {
+  /* The top bar stops being fixed here and scrolls away with the page, but the
+   * header keeps its 36px offset - the same as the original. Divi's script
+   * landed on one pixel less than at desktop width; matching it keeps the two
+   * renders aligned. */
+  #page-container {
+    padding-top: 114px;
+  }
+}
+
+/*
+ * The document library is the exception. Divi's script wrote that offset onto
+ * the first section of a page it had built, and BetterDocs replaced the whole
+ * content area, so on those pages the mirror has none of it - measuring one
+ * puts its content exactly 115px higher. The offset is removed again here
+ * rather than moved, because every other page still depends on it.
+ */
+#page-container:has(.betterdocs-wrapper) {
+  padding-top: 0;
+}
+
+/*
+ * The other exception is a page whose first module is a fullwidth slider.
+ * There Divi's script left #page-container alone - the photograph runs up
+ * behind the transparent fixed header, so the section starts at the very top -
+ * and padded the slide's own content instead. The mirror records the decision
+ * as data-fix-page-container="on" on the slide, so that is what this keys off;
+ * the -1px is the margin the mirror carries inline on every page, which the
+ * 115px above already has folded into it.
+ */
+#page-container:has(.et_pb_slide[data-fix-page-container='on']) {
+  padding-top: 0;
+  margin-top: -1px;
+}

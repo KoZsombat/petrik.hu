@@ -1,0 +1,60 @@
+/* Ported from Divi's theme stylesheet; glyphs come from the ETmodules font. */
+.et-social-icons {
+  float: right;
+}
+
+.et-social-icons li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.et-social-icon a {
+  display: inline-block;
+  font-size: 24px;
+  position: relative;
+  text-align: center;
+  color: #666;
+  text-decoration: none;
+  transition: color 300ms ease 0s;
+
+  &:hover {
+    color: var(--petrik-green);
+    opacity: 0.7;
+    transition: all 0.4s ease-in-out;
+  }
+}
+
+/* The visible mark is the icon-font glyph; the text is for screen readers. */
+.et-social-icon span {
+  display: none;
+}
+
+.et-social-icon a::before {
+  font-family: var(--icons);
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 0 0;
+  direction: ltr;
+}
+
+.et-social-facebook a.icon::before {
+  content: '\e093';
+}
+
+.et-social-instagram a.icon::before {
+  content: '\e09a';
+}
+
+@media (max-width: 980px) {
+  .et-social-icons {
+    float: none;
+    text-align: center;
+    margin: 0 0 5px;
+  }
+}

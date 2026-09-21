@@ -1,0 +1,71 @@
+/* Divi's button. The green fill, white text and bold weight come from the
+ * site's customizer settings rather than Divi's defaults.
+ */
+.et_pb_button {
+  position: relative;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 0.3em 1em;
+  line-height: 1.7em !important;
+  background-color: var(--petrik-green);
+  color: #fff;
+  border: 5px solid transparent;
+  border-radius: 0;
+  text-transform: none;
+  text-decoration: none;
+  transition-duration: 0.2s;
+  transition-property: all !important;
+
+  &:hover {
+    background-color: var(--petrik-green);
+    border-color: rgba(148, 205, 107, 0);
+    padding: 0.3em 2em 0.3em 0.7em;
+  }
+}
+
+/*
+ * The glyph that slides in from the right on hover.
+ *
+ * The theme writes this for `::after` and `::before` together, and both halves
+ * matter. A page's design stylesheet gives `::before` a `content` of its own
+ * (`attr(data-icon)`), so with only `::after` here the `::before` arrow stayed
+ * in the line: it took 12px of width, its negative margin pulled 15.6px back,
+ * and every button on the home page came out 3.6px narrow and 1px tall. Being
+ * absolutely positioned is what keeps it out of the flow.
+ */
+.et_pb_button::after,
+.et_pb_button::before {
+  font-family: var(--icons);
+  font-size: 28.8px;
+  line-height: 1em;
+  content: var(--et-button-icon, '\35');
+  opacity: 0;
+  position: absolute;
+  margin-left: -1em;
+  transition: all 0.2s;
+  text-transform: none;
+  font-variant: none;
+  font-style: normal;
+  font-weight: 400;
+  text-shadow: none;
+}
+
+.et_pb_button:hover::after {
+  opacity: 1;
+  margin-left: 0;
+}
+
+.et_pb_button_module_wrapper > a {
+  display: inline-block;
+}
+
+.et_pb_button_module_wrapper.et_pb_button_alignment_left {
+  text-align: left;
+}
+.et_pb_button_module_wrapper.et_pb_button_alignment_center {
+  text-align: center;
+}
+.et_pb_button_module_wrapper.et_pb_button_alignment_right {
+  text-align: right;
+}

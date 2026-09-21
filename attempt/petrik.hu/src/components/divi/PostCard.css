@@ -1,0 +1,165 @@
+/* Cards in a blog grid, as Divi styles them. */
+.et_pb_post {
+  margin-bottom: 60px;
+  word-wrap: break-word;
+}
+
+.et_pb_blog_grid .et_pb_post {
+  border: 1px solid #d8d8d8;
+  padding: 19px;
+  background-color: #fff;
+}
+
+.et_pb_blog_grid h2 {
+  font-size: 18px;
+}
+
+.et_pb_post .entry-title {
+  padding-bottom: 10px;
+}
+
+.et_pb_post .entry-title a {
+  color: var(--text-heading);
+  text-decoration: none;
+}
+
+/* The featured image bleeds to the card's edges. */
+.et_pb_image_container {
+  margin: -20px -20px 29px;
+}
+
+.et_pb_post .entry-featured-image-url {
+  display: block;
+  position: relative;
+  margin-bottom: 30px;
+  /*
+   * Divi's base border. It draws nothing on its own - the width is zero - but
+   * it sets a style, and a page's design stylesheet then only has to say
+   * `border-width: 15px 0`. Without it those per-page rules are inert, because
+   * a border-width with no border-style paints nothing and takes no space:
+   * that was the missing 30px on every card of a bordered blog module.
+   */
+  border: 0 solid #333;
+}
+
+.et_pb_has_overlay.et_pb_post .et_pb_image_container a,
+.et_pb_has_overlay.et_pb_post .et_pb_image_container > span {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+/* The image stays inline, as in the original: the line box around it is what
+ * gives the thumbnail its breathing room inside the card. */
+.et_pb_post .et_pb_image_container img {
+  width: 100%;
+}
+
+.et_pb_post .post-meta {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.et_pb_bg_layout_light .et_pb_post .post-meta,
+.et_pb_bg_layout_light .et_pb_post .post-meta a {
+  color: #666;
+}
+
+.et_pb_post .post-meta a,
+.et_pb_post .more-link {
+  text-decoration: none;
+}
+
+.et_pb_module.et_pb_has_overlay {
+  position: relative;
+}
+
+/* The white wash that fades in over a card's image on hover. */
+.et_overlay {
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: hsla(0, 0%, 100%, 0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  border: none;
+}
+
+.et_pb_has_overlay:not(.et_pb_image):hover .et_overlay {
+  z-index: 3;
+  opacity: 1;
+}
+
+.et_overlay::before {
+  font-family: var(--icons);
+  content: '\54';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  color: var(--petrik-green);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+}
+
+/* Posts outside this port: no link, and a note saying why. */
+.et_pb_post.post-unavailable {
+  opacity: 0.75;
+}
+
+.et_pb_post.post-unavailable .entry-title {
+  color: var(--text);
+}
+
+/*
+ * The note sits in the box the theme gave .more-link - same element, same font
+ * size - so only what marks it as a note is set here. Nothing that feeds into
+ * the line box may be touched: the theme's line-height is 2.3em, so even a
+ * font-size of 13px here shortens the card by 2.3px. A <p> with a margin of
+ * its own made it 1.6px too tall to begin with.
+ */
+.post-unavailable-note {
+  padding-bottom: 0;
+  font-style: italic;
+  color: var(--text-muted);
+  cursor: default;
+}
+
+@media (max-width: 479px) {
+  .et_pb_blog_grid h2 {
+    font-size: 16px;
+    padding-bottom: 0;
+  }
+  .et_pb_post .post-meta {
+    display: block !important;
+    padding: 0;
+    color: #666;
+    font-size: 14px;
+  }
+}
+
+/*
+ * Divi's own rule for card thumbnails.
+ *
+ * The image is an inline box, and `bottom` makes it fill the line box to the
+ * bottom rather than sit on the text baseline. That is worth 30px of card
+ * height in the original; without it every card came out 21.6px short, on all
+ * thirteen pages with a blog module.
+ *
+ * It only works once the image is genuinely inline. An earlier attempt failed
+ * because Image.css was still forcing `display: block` on it - a block box is
+ * not in a line box at all, so the alignment had nothing to act on and the
+ * card got shorter instead of taller.
+ */
+.et_pb_image_container img,
+.et_pb_post a img {
+  vertical-align: bottom;
+  max-width: 100%;
+}

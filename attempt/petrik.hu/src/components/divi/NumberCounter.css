@@ -1,0 +1,37 @@
+/*
+ * Divi's number counter, with the theme's own declarations.
+ *
+ * An earlier version of this file guessed at the sizing and got two things
+ * wrong that together cost 44px a module: `.percent` is a fixed 72px box, not
+ * a box sized by its line, and the paragraph's `line-height` is a flat 72px
+ * that the page's design stylesheet does not override even though it does
+ * override the font-size (to 48px). Written as `1em` it followed the smaller
+ * font down to 48px.
+ */
+.et_pb_number_counter .percent {
+  height: 72px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Only where the module has a title under the number, as Divi scopes it. */
+.et_pb_number_counter.et_pb_with_title .percent {
+  margin-bottom: 20px;
+}
+
+.et_pb_number_counter .percent p {
+  position: relative;
+  font-size: 72px;
+  line-height: 72px;
+  font-weight: 500;
+  padding: 0 !important;
+  color: var(--petrik-green);
+}
+
+/*
+ * The title is a plain heading: the theme's h1-h6 rule gives it its
+ * line-height and its 10px of padding, and nothing here may take that away.
+ */
+.et_pb_number_counter.et_pb_text_align_center {
+  text-align: center;
+}

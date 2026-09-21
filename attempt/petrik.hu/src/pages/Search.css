@@ -1,0 +1,44 @@
+/*
+ * Search results share the classic page's two-column frame.
+ *
+ * Scoped to the page: these are an approximation of Divi's own two-column
+ * rules, and /kereses/ has no counterpart in the mirror to measure against.
+ * The archives carry the theme's real rules (ArchiveView.css), so leaving
+ * these unscoped would let a guess override a measurement.
+ */
+.page-kereses #content-area {
+  padding: 58px 0 0;
+}
+
+.page-kereses #left-area {
+  float: left;
+  width: 73.625%;
+  padding-bottom: 58px;
+}
+
+.page-kereses .search-count {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.page-kereses .search-results li {
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.page-kereses .search-results li:last-child {
+  border-bottom: 0;
+}
+
+.page-kereses .search-results .entry-title {
+  font-size: 22px;
+  padding-bottom: 8px;
+}
+
+@media (max-width: 980px) {
+  .page-kereses #left-area {
+    float: none;
+    width: 100%;
+  }
+}
