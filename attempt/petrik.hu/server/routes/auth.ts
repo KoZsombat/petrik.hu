@@ -32,16 +32,16 @@ router.post('/login', async (req, res) => {
     return
   }
 
-  // Every account always has one of the three Petrik roles (Users.tsx only
-  // offers those), so PNW_Roles::has_manager_role() is always true here -
-  // kept as an explicit step to document the parallel.
+  // PNW_Roles::has_manager_role() has no counterpart: there are no roles
+  // (AGENT.md 6.16). An account with an empty permission list can still log
+  // in and is shown the "no permission" screen, exactly as the plugin's own
+  // render_unauthorized() branch does.
   req.session.userId = user.id
   res.json({
     user: {
       id: user.id,
       displayName: user.displayName,
-      role: user.role,
-      allowedCategoryIds: user.allowedCategoryIds,
+      permissions: user.permissions,
     },
   })
 })

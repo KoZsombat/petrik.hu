@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
 import { posts as staticPosts } from '../../data/posts.ts'
 import type { Post } from '../../../shared/pnw/types.ts'
+import { useTerms } from '../terms.ts'
 import { PostsContext, toSummary } from './postsContext.ts'
 import type { MergedPostSummary, PostsContextValue } from './postsContext.ts'
 
@@ -14,6 +15,7 @@ import type { MergedPostSummary, PostsContextValue } from './postsContext.ts'
 export function PostsProvider({ children }: { children: ReactNode }) {
   const [livePosts, setLivePosts] = useState<Post[]>([])
   const [loading, setLoading] = useState(true)
+  const terms = useTerms()
 
   useEffect(() => {
     let cancelled = false
@@ -37,9 +39,9 @@ export function PostsProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo<PostsContextValue>(() => {
     const merged: Record<string, MergedPostSummary> = { ...staticPosts }
-    for (const post of livePosts) merged[post.slug] = toSummary(post)
+    for (const post of livePosts) merged[post.slug] = toSummary(post, terms)
     return { posts: merged, liveSlugs: livePosts.map((post) => post.slug), loading }
-  }, [livePosts, loading])
+  }, [livePosts, loading, terms])
 
   return <PostsContext.Provider value={value}>{children}</PostsContext.Provider>
 }

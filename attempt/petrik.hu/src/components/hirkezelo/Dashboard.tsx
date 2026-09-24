@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import * as api from '../../lib/hirkezelo/api.ts'
 import type { ApiUser, AuthorDashboard, ReviewerDashboard } from '../../lib/hirkezelo/api.ts'
 import { useUsers } from '../../lib/hirkezelo/useUsers.ts'
-import { canSubmit } from '../../../shared/pnw/roles.ts'
+import { canSubmit } from '../../../shared/pnw/permissions.ts'
 import { statusCssClass, statusLabel } from '../../../shared/pnw/statuses.ts'
 import PostsTable from './PostsTable.tsx'
 
@@ -33,7 +33,7 @@ export default function Dashboard({ user }: { user: ApiUser }) {
 
       {!data ? (
         <div className="pnw-empty-inline">Betöltés…</div>
-      ) : data.role === 'author' ? (
+      ) : data.view === 'author' ? (
         <AuthorView data={data} user={user} authors={authors} />
       ) : (
         <ReviewerView data={data} user={user} authors={authors} />
@@ -71,9 +71,14 @@ function AuthorView({
       <div className="pnw-table-card">
         <div className="pnw-card-heading">
           <h4>Saját híreim</h4>
-          <Link className="pnw-button" to="/hirkezelo/?pnw_view=new">
-            + Új hír
-          </Link>
+          {/* Without pnw_submit_news this account cannot write news at all -
+              an account may hold only, say, "Fiókok kezelése" now that there
+              are no roles (AGENT.md 6.16). */}
+          {canSubmit(user) && (
+            <Link className="pnw-button" to="/hirkezelo/?pnw_view=new">
+              + Új hír
+            </Link>
+          )}
         </div>
         <PostsTable posts={data.posts} reviewer={false} user={user} authors={authors} />
       </div>
@@ -99,7 +104,7 @@ function ReviewerView({
         <StatCard count={data.publishedTodayCount} label="Ma publikálva" status="publish" />
       </div>
 
-      {canSubmit(user.role) && (
+      {canSubmit(user) && (
         <div className="pnw-table-card">
           <div className="pnw-card-heading">
             <div>

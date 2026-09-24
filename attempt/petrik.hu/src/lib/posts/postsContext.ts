@@ -1,8 +1,9 @@
 import { createContext, useContext } from 'react'
 import { posts as staticPosts } from '../../data/posts.ts'
 import type { PostSummary } from '../../data/posts.ts'
-import { categories } from '../../../shared/pnw/categories.ts'
-import type { Post } from '../../../shared/pnw/types.ts'
+import { termMap } from '../terms.ts'
+import { formatPostDate } from '../postDate.ts'
+import type { Post, Term } from '../../../shared/pnw/types.ts'
 
 /**
  * The static, generated `posts` map (src/data/posts.ts) merged with whatever
@@ -30,16 +31,24 @@ export type PostsContextValue = {
   loading: boolean
 }
 
-const CATEGORY_NAME = new Map(categories.map((category) => [category.id, category.name]))
+/**
+ * `terms` is the live category/tag list (src/lib/terms.ts) - categories are
+ * editable rows now (AGENT.md 6.16), so a live post's category names are
+ * resolved from it rather than from a build-time list. A category created
+ * inside the Hírkezelő has no mirrored archive page, hence no `to` - the card
+ * prints it as plain text instead of linking into a 404.
+ */
+export function toSummary(post: Post, terms: Term[]): MergedPostSummary {
+  const byId = termMap(terms)
 
-export function toSummary(post: Post): MergedPostSummary {
   return {
     slug: post.slug,
     title: post.title,
     excerpt: post.excerpt,
-    categories: post.categoryIds.map((id) => ({ label: CATEGORY_NAME.get(id) ?? id, to: id })),
+    categories: post.categoryIds.map((id) => ({ label: byId.get(id)?.name ?? id, to: byId.get(id)?.route ?? '' })),
     image: post.featuredImage ? { src: post.featuredImage, alt: post.title } : undefined,
-    date: new Date(post.date).toLocaleDateString('hu-HU', { year: 'numeric', month: 'short', day: 'numeric' }),
+    // The same format the mirrored cards next to it print (src/lib/postDate.ts).
+    date: formatPostDate(post.date),
     available: true,
     href: `/hirek/${post.slug}/`,
   }

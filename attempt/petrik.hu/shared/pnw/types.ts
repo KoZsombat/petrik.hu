@@ -43,34 +43,38 @@ export const STATUS = {
 
 export type PostStatus = (typeof STATUS)[keyof typeof STATUS]
 
-export const ROLE = {
-  MK_LEADER: 'petrik_mk_leader',
-  DEPUTY: 'petrik_deputy_director',
-  DIRECTOR: 'petrik_director',
+/**
+ * Accounts carry a plain set of these and nothing else - there are **no
+ * roles** anywhere in this re-implementation (user decision, see AGENT.md
+ * 6.16). The real plugin bundles the same `pnw_*` capabilities into three
+ * WordPress roles; here every account is given its permissions one by one on
+ * the Fiókok screen, so any mix is possible.
+ */
+export const CAPABILITY = {
+  /** Write your own news: draft, edit your own draft/revision, submit for review. */
+  SUBMIT_NEWS: 'pnw_submit_news',
+  /** Review the queue: edit a pending post, approve, schedule, send back. */
+  REVIEW_NEWS: 'pnw_review_news',
+  /** Edit, archive and restore already-published news. */
+  MANAGE_PUBLISHED: 'pnw_manage_published_news',
+  /** See the statistics screen and the full audit log. */
+  VIEW_AUDIT_LOG: 'pnw_view_audit_log',
+  /** Create/edit/delete Hírkezelő accounts (no equivalent in the real plugin). */
+  MANAGE_USERS: 'pnw_manage_users',
+  /**
+   * Create new categories and tags from inside the editor. Using existing
+   * ones needs no permission at all - every account may pick any category
+   * or tag (see AGENT.md 6.16).
+   */
+  MANAGE_TERMS: 'pnw_manage_terms',
 } as const
 
-export type Role = (typeof ROLE)[keyof typeof ROLE]
-
-export type Capability =
-  | 'pnw_submit_news'
-  | 'pnw_review_news'
-  | 'pnw_view_audit_log'
-  | 'pnw_manage_workflow'
-  | 'pnw_manage_published_news'
-  /**
-   * Not in the real plugin - WordPress user management (wp-admin) is where
-   * that plugin assigns its roles, and this repo doesn't have a wp-admin
-   * equivalent. Added by user request so accounts can be managed from
-   * inside the Hírkezelő itself. See AGENT.md 6.15.
-   */
-  | 'pnw_manage_users'
+export type Capability = (typeof CAPABILITY)[keyof typeof CAPABILITY]
 
 export type SessionUser = {
   id: string
   displayName: string
-  role: Role
-  /** Empty/undefined means every category is allowed - matches PNW_Access::allowed_category_ids(). */
-  allowedCategoryIds?: string[]
+  permissions: Capability[]
 }
 
 /** A user account as the account-management screen (Users.tsx) sees it - never a password/hash. */
@@ -78,8 +82,27 @@ export type Account = {
   id: string
   username: string
   displayName: string
-  role: Role
-  allowedCategoryIds?: string[]
+  permissions: Capability[]
+}
+
+export type TermKind = 'category' | 'tag'
+
+/**
+ * A category or a tag. Both live in the same `terms` table (server/data/
+ * terms-repo.ts) and both can be created from the editor by anyone holding
+ * `pnw_manage_terms`.
+ */
+export type Term = {
+  id: string
+  kind: TermKind
+  name: string
+  /**
+   * The mirrored category archive this term is the same thing as
+   * ("/kategoria/hirek/"), for the seeded categories only - it is what makes
+   * a post's category a real link in the single-post template. Terms created
+   * inside the Hírkezelő have no mirrored archive page, so no route.
+   */
+  route?: string
 }
 
 export type Post = {
@@ -90,6 +113,7 @@ export type Post = {
   content: RichTextDocument
   excerpt: string
   categoryIds: string[]
+  tagIds: string[]
   /** Public URL path under /uploads/, or undefined. */
   featuredImage?: string
   authorId: string

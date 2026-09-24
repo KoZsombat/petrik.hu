@@ -2,11 +2,15 @@
  * Hírkezelő accounts, in SQLite (see AGENT.md 6.15) - replaces the earlier
  * hardcoded seed-users.ts now that accounts are managed from inside the app
  * (Users.tsx) rather than by editing source and restarting the server.
+ *
+ * An account carries a plain list of capabilities and **no role** (AGENT.md
+ * 6.16); db.ts migrates the old `role` column into one of these lists.
  */
 import { randomUUID } from 'node:crypto'
 import bcrypt from 'bcryptjs'
-import { ROLE } from '../../shared/pnw/types.ts'
-import type { Role } from '../../shared/pnw/types.ts'
+import { CAPABILITY } from '../../shared/pnw/types.ts'
+import type { Capability } from '../../shared/pnw/types.ts'
+import { isCapability } from '../../shared/pnw/permissions.ts'
 import { db } from './db.ts'
 
 export type UserRecord = {
@@ -14,8 +18,7 @@ export type UserRecord = {
   username: string
   displayName: string
   passwordHash: string
-  role: Role
-  allowedCategoryIds?: string[]
+  permissions: Capability[]
 }
 
 type Row = {
@@ -23,8 +26,17 @@ type Row = {
   username: string
   display_name: string
   password_hash: string
-  role: string
-  allowed_category_ids: string | null
+  permissions: string
+}
+
+function parsePermissions(raw: string): Capability[] {
+  try {
+    const parsed: unknown = JSON.parse(raw)
+    if (!Array.isArray(parsed)) return []
+    return parsed.filter(isCapability)
+  } catch {
+    return []
+  }
 }
 
 function fromRow(row: Row): UserRecord {
@@ -33,8 +45,7 @@ function fromRow(row: Row): UserRecord {
     username: row.username,
     displayName: row.display_name,
     passwordHash: row.password_hash,
-    role: row.role as Role,
-    allowedCategoryIds: row.allowed_category_ids ? JSON.parse(row.allowed_category_ids) : undefined,
+    permissions: parsePermissions(row.permissions),
   }
 }
 
@@ -44,25 +55,23 @@ function toRow(user: UserRecord): Row {
     username: user.username,
     display_name: user.displayName,
     password_hash: user.passwordHash,
-    role: user.role,
-    allowed_category_ids:
-      user.allowedCategoryIds && user.allowedCategoryIds.length > 0
-        ? JSON.stringify(user.allowedCategoryIds)
-        : null,
+    permissions: JSON.stringify(user.permissions),
   }
 }
 
-const selectAll = db.prepare('SELECT * FROM users ORDER BY display_name COLLATE NOCASE')
-const selectById = db.prepare('SELECT * FROM users WHERE id = ?')
-const selectByUsername = db.prepare('SELECT * FROM users WHERE lower(username) = lower(?)')
+const COLUMNS = 'id, username, display_name, password_hash, permissions'
+
+const selectAll = db.prepare(`SELECT ${COLUMNS} FROM users ORDER BY display_name COLLATE NOCASE`)
+const selectById = db.prepare(`SELECT ${COLUMNS} FROM users WHERE id = ?`)
+const selectByUsername = db.prepare(`SELECT ${COLUMNS} FROM users WHERE lower(username) = lower(?)`)
 const countAll = db.prepare('SELECT COUNT(*) AS n FROM users')
 const insertStatement = db.prepare(`
-  INSERT INTO users (id, username, display_name, password_hash, role, allowed_category_ids)
-  VALUES (@id, @username, @display_name, @password_hash, @role, @allowed_category_ids)
+  INSERT INTO users (id, username, display_name, password_hash, permissions)
+  VALUES (@id, @username, @display_name, @password_hash, @permissions)
 `)
 const updateStatement = db.prepare(`
   UPDATE users SET username = @username, display_name = @display_name, password_hash = @password_hash,
-    role = @role, allowed_category_ids = @allowed_category_ids
+    permissions = @permissions
   WHERE id = @id
 `)
 const deleteStatement = db.prepare('DELETE FROM users WHERE id = ?')
@@ -101,22 +110,40 @@ export function removeUser(id: string): void {
  * The three original demo accounts (see 6.15), seeded once into an empty
  * table - so a fresh database still boots with working logins, but after
  * that these are ordinary rows, editable/removable from the Users.tsx
- * screen exactly like any account created there.
+ * screen exactly like any account created there. Their permission sets are
+ * what the deleted roles used to grant them (AGENT.md 6.16).
  */
 export function seedInitialUsers(): void {
   const { n } = countAll.get() as { n: number }
   if (n > 0) return
 
-  const seed: { username: string; displayName: string; role: Role; password: string; allowedCategoryIds?: string[] }[] = [
+  const reviewerPermissions: Capability[] = [
+    CAPABILITY.REVIEW_NEWS,
+    CAPABILITY.MANAGE_PUBLISHED,
+    CAPABILITY.VIEW_AUDIT_LOG,
+    CAPABILITY.MANAGE_TERMS,
+    CAPABILITY.MANAGE_USERS,
+  ]
+
+  const seed: { username: string; displayName: string; password: string; permissions: Capability[] }[] = [
     {
       username: 'mk.vezeto',
       displayName: 'Kovács Anna',
-      role: ROLE.MK_LEADER,
       password: 'PetrikMK2026!',
-      allowedCategoryIds: ['/kategoria/hirek/', '/kategoria/oktatas/'],
+      permissions: [CAPABILITY.SUBMIT_NEWS],
     },
-    { username: 'helyettes', displayName: 'Nagy Péter', role: ROLE.DEPUTY, password: 'PetrikHelyettes2026!' },
-    { username: 'igazgato', displayName: 'Szabó Éva', role: ROLE.DIRECTOR, password: 'PetrikIgazgato2026!' },
+    {
+      username: 'helyettes',
+      displayName: 'Nagy Péter',
+      password: 'PetrikHelyettes2026!',
+      permissions: reviewerPermissions,
+    },
+    {
+      username: 'igazgato',
+      displayName: 'Szabó Éva',
+      password: 'PetrikIgazgato2026!',
+      permissions: reviewerPermissions,
+    },
   ]
 
   for (const user of seed) {
@@ -124,8 +151,7 @@ export function seedInitialUsers(): void {
       id: randomUUID(),
       username: user.username,
       displayName: user.displayName,
-      role: user.role,
-      allowedCategoryIds: user.allowedCategoryIds,
+      permissions: user.permissions,
       passwordHash: bcrypt.hashSync(user.password, 10),
     })
   }

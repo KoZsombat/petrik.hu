@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { STATUS } from '../../shared/pnw/types.ts'
+import { CAPABILITY, STATUS } from '../../shared/pnw/types.ts'
 import { allPosts } from '../data/posts-repo.ts'
 import { allAudit } from '../lib/audit.ts'
 import { requireCapability } from '../middleware/auth.ts'
@@ -7,7 +7,7 @@ import { requireCapability } from '../middleware/auth.ts'
 const router = Router()
 
 /** Ported from PNW_Statistics::render()'s data half - the markup is the frontend's job. */
-router.get('/', requireCapability('pnw_view_audit_log'), (_req, res) => {
+router.get('/', requireCapability(CAPABILITY.VIEW_AUDIT_LOG), (_req, res) => {
   const all = allPosts()
   const live = all.filter((p) => p.status === STATUS.PUBLISH)
   const scheduled = all.filter((p) => p.status === STATUS.FUTURE)

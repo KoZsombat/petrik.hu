@@ -78,11 +78,18 @@ export default function PostCard({ item, feedIndex, position }: Props) {
     metaParts.push(
       <Fragment key="categories">
         {post.categories.map((category, index) => (
-          <Fragment key={category.to}>
+          <Fragment key={category.label}>
             {index > 0 && ', '}
-            <Link to={category.to} rel="tag">
-              {category.label}
-            </Link>
+            {/* A live post may carry a category created inside the Hírkezelő,
+                which has no mirrored archive page to link to - see
+                AGENT.md 6.16. Mirrored posts always have one. */}
+            {category.to ? (
+              <Link to={category.to} rel="tag">
+                {category.label}
+              </Link>
+            ) : (
+              category.label
+            )}
           </Fragment>
         ))}
       </Fragment>,

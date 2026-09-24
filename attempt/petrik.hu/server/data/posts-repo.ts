@@ -9,6 +9,7 @@ type Row = {
   content: string
   excerpt: string
   category_ids: string
+  tag_ids: string
   featured_image: string | null
   author_id: string
   status: string
@@ -32,6 +33,7 @@ function fromRow(row: Row): Post {
     content: JSON.parse(row.content),
     excerpt: row.excerpt,
     categoryIds: JSON.parse(row.category_ids),
+    tagIds: JSON.parse(row.tag_ids),
     featuredImage: row.featured_image ?? undefined,
     authorId: row.author_id,
     status: row.status as Post['status'],
@@ -56,6 +58,7 @@ function toRow(post: Post): Row {
     content: JSON.stringify(post.content),
     excerpt: post.excerpt,
     category_ids: JSON.stringify(post.categoryIds),
+    tag_ids: JSON.stringify(post.tagIds),
     featured_image: post.featuredImage ?? null,
     author_id: post.authorId,
     status: post.status,
@@ -73,7 +76,7 @@ function toRow(post: Post): Row {
 }
 
 const COLUMNS =
-  'id, slug, title, content, excerpt, category_ids, featured_image, author_id, status, review_note, last_reviewer_id, last_reviewed_at, scheduled_for, scheduled_by_id, archived_at, archived_by_id, created_at, modified_at, date'
+  'id, slug, title, content, excerpt, category_ids, tag_ids, featured_image, author_id, status, review_note, last_reviewer_id, last_reviewed_at, scheduled_for, scheduled_by_id, archived_at, archived_by_id, created_at, modified_at, date'
 
 const selectAll = db.prepare(`SELECT ${COLUMNS} FROM posts`)
 const selectById = db.prepare(`SELECT ${COLUMNS} FROM posts WHERE id = ?`)
@@ -84,14 +87,14 @@ const deleteById = db.prepare('DELETE FROM posts WHERE id = ?')
 
 const insertStatement = db.prepare(`
   INSERT INTO posts (${COLUMNS})
-  VALUES (@id, @slug, @title, @content, @excerpt, @category_ids, @featured_image, @author_id, @status,
+  VALUES (@id, @slug, @title, @content, @excerpt, @category_ids, @tag_ids, @featured_image, @author_id, @status,
     @review_note, @last_reviewer_id, @last_reviewed_at, @scheduled_for, @scheduled_by_id,
     @archived_at, @archived_by_id, @created_at, @modified_at, @date)
 `)
 
 const updateStatement = db.prepare(`
   UPDATE posts SET
-    title = @title, content = @content, excerpt = @excerpt, category_ids = @category_ids,
+    title = @title, content = @content, excerpt = @excerpt, category_ids = @category_ids, tag_ids = @tag_ids,
     featured_image = @featured_image, status = @status, review_note = @review_note,
     last_reviewer_id = @last_reviewer_id, last_reviewed_at = @last_reviewed_at,
     scheduled_for = @scheduled_for, scheduled_by_id = @scheduled_by_id,

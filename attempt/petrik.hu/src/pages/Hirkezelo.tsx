@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom'
 import { useSession } from '../lib/hirkezelo/useSession.ts'
-import { canManagePublished, canManageUsers, canReview, canSubmit, canViewAuditLog } from '../../shared/pnw/roles.ts'
+import { canManagePublished, canManageUsers, canSubmit, canViewAuditLog } from '../../shared/pnw/permissions.ts'
 import LoginCard from '../components/hirkezelo/LoginCard.tsx'
 import Unauthorized from '../components/hirkezelo/Unauthorized.tsx'
 import Shell from '../components/hirkezelo/Shell.tsx'
@@ -47,7 +47,9 @@ export default function Hirkezelo() {
     )
   }
 
-  if (!canSubmit(user.role) && !canReview(user.role)) {
+  // Any single permission is enough to get in - which screens are reachable
+  // is then decided one by one below (AGENT.md 6.16).
+  if (user.permissions.length === 0) {
     return (
       <div className="pnw-app">
         <Unauthorized onLogout={logout} />
@@ -58,7 +60,7 @@ export default function Hirkezelo() {
   let content
   switch (view) {
     case 'new':
-      content = <Editor key="new" user={user} />
+      content = canSubmit(user) ? <Editor key="new" user={user} /> : <Unauthorized onLogout={logout} />
       break
     case 'edit':
       content = postId ? <Editor key={postId} user={user} postId={postId} /> : <Dashboard user={user} />
@@ -67,27 +69,27 @@ export default function Hirkezelo() {
       content = postId ? <Review key={postId} user={user} postId={postId} /> : <Dashboard user={user} />
       break
     case 'published':
-      content = canManagePublished(user.role) ? <Published /> : <Unauthorized onLogout={logout} />
+      content = canManagePublished(user) ? <Published /> : <Unauthorized onLogout={logout} />
       break
     case 'published_edit':
       content =
-        postId && canManagePublished(user.role) ? (
+        postId && canManagePublished(user) ? (
           <Editor key={postId} user={user} postId={postId} published />
         ) : (
           <Dashboard user={user} />
         )
       break
     case 'archive':
-      content = canManagePublished(user.role) ? <Archive /> : <Unauthorized onLogout={logout} />
+      content = canManagePublished(user) ? <Archive /> : <Unauthorized onLogout={logout} />
       break
     case 'stats':
-      content = canViewAuditLog(user.role) ? <Statistics /> : <Unauthorized onLogout={logout} />
+      content = canViewAuditLog(user) ? <Statistics /> : <Unauthorized onLogout={logout} />
       break
     case 'audit':
-      content = canViewAuditLog(user.role) ? <Audit /> : <Unauthorized onLogout={logout} />
+      content = canViewAuditLog(user) ? <Audit /> : <Unauthorized onLogout={logout} />
       break
     case 'users':
-      content = canManageUsers(user.role) ? <Users currentUserId={user.id} /> : <Unauthorized onLogout={logout} />
+      content = canManageUsers(user) ? <Users currentUserId={user.id} /> : <Unauthorized onLogout={logout} />
       break
     default:
       content = <Dashboard user={user} />

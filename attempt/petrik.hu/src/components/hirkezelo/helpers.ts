@@ -1,9 +1,15 @@
-import { categories } from '../../../shared/pnw/categories.ts'
+import type { Post, Term } from '../../../shared/pnw/types.ts'
+import { termNames } from '../../lib/terms.ts'
 
-export function categoryNames(ids: string[]): string {
-  if (ids.length === 0) return 'Nincs kategória'
-  const map = new Map(categories.map((category) => [category.id, category.name]))
-  return ids.map((id) => map.get(id) ?? id).join(', ')
+/**
+ * One line of taxonomy under a list row's title. Tags are appended after the
+ * categories because the mirror's own post template never shows them (see
+ * AGENT.md 6.16) - inside the Hírkezelő they still have to be visible.
+ */
+export function termLine(terms: Term[], post: Post): string {
+  const categoryPart = post.categoryIds.length === 0 ? 'Nincs kategória' : termNames(terms, post.categoryIds).join(', ')
+  const tags = termNames(terms, post.tagIds)
+  return tags.length === 0 ? categoryPart : `${categoryPart} · Címkék: ${tags.join(', ')}`
 }
 
 export function formatDateTime(iso: string | undefined): string {

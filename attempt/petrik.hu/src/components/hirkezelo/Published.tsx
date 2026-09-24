@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import * as api from '../../lib/hirkezelo/api.ts'
 import type { Post } from '../../../shared/pnw/types.ts'
 import { useUsers } from '../../lib/hirkezelo/useUsers.ts'
-import { categoryNames } from './helpers.ts'
+import { useTerms } from '../../lib/terms.ts'
+import { termLine } from './helpers.ts'
 
 /** Ported from PNW_Frontend_Published_Trait::render_published_news(). */
 export default function Published() {
@@ -153,12 +154,14 @@ function PublishedRows({
   testMode: boolean
   onArchive: () => void
 }) {
+  const terms = useTerms()
+
   return (
     <>
       <tr className="pnw-published-main-row">
         <td data-label="Hír">
           <strong className="pnw-published-title">{post.title || '(Névtelen hír)'}</strong>
-          <small className="pnw-published-meta">{categoryNames(post.categoryIds)}</small>
+          <small className="pnw-published-meta">{termLine(terms, post)}</small>
         </td>
         <td data-label="Szerző">{authorName}</td>
         <td data-label="Publikálva">

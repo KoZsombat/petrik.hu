@@ -7,7 +7,7 @@
  * 620px) are the plugin's own, not invented for this port.
  */
 
-.pnw-app{--pnw-bg:#f5f7fa;--pnw-card:#fff;--pnw-text:#172033;--pnw-muted:#667085;--pnw-border:#e4e7ec;--pnw-primary:#173b6c;--pnw-primary-dark:#102c52;--pnw-success:#147a4b;--pnw-danger:#b42318;--pnw-radius:16px;color:var(--pnw-text);background:var(--pnw-bg);border:1px solid var(--pnw-border);border-radius:20px;overflow:hidden;margin:24px 0;box-shadow:0 18px 55px rgba(16,24,40,.08)}
+.pnw-app{--pnw-bg:#f5f7fa;--pnw-card:#fff;--pnw-text:#172033;--pnw-muted:#667085;--pnw-border:#e4e7ec;--pnw-primary:#173b6c;--pnw-primary-dark:#102c52;--pnw-success:#147a4b;--pnw-danger:#b42318;--pnw-radius:16px;color:var(--pnw-text);background:var(--pnw-bg);border:1px solid var(--pnw-border);border-radius:20px;overflow:hidden;box-shadow:0 18px 55px rgba(16,24,40,.08);width:75%;margin:24px auto}
 .pnw-app *,.pnw-app *::before,.pnw-app *::after{box-sizing:border-box}.pnw-app h2,.pnw-app h3,.pnw-app h4,.pnw-app p{margin-top:0}.pnw-app a{text-decoration:none}.pnw-topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 28px 18px;background:var(--pnw-card)}.pnw-topbar h2{margin:2px 0 0;font-size:28px}.pnw-kicker{color:var(--pnw-primary);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:12px}.pnw-user{display:flex;flex-direction:column;align-items:flex-end;line-height:1.25}.pnw-user span{color:var(--pnw-muted);font-size:13px}
 .pnw-nav{display:flex;gap:4px;align-items:center;padding:0 20px 14px;background:var(--pnw-card);border-bottom:1px solid var(--pnw-border);overflow-x:auto}.pnw-nav a{color:var(--pnw-text);font-weight:700;padding:9px 12px;border-radius:9px;white-space:nowrap;cursor:pointer;border:0;background:none;font:inherit}.pnw-nav a:hover{background:#eef3f9;color:var(--pnw-primary)}.pnw-nav .pnw-nav-spacer{margin-left:auto;color:var(--pnw-muted)}.pnw-section{padding:28px}.pnw-section-heading,.pnw-card-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.pnw-section-heading h3{font-size:24px;margin:3px 0}.pnw-section-heading p,.pnw-card-heading p{color:var(--pnw-muted);margin:4px 0 0}
 .pnw-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.pnw-stat{position:relative;display:flex;flex-direction:column;gap:4px;padding:18px;background:var(--pnw-card);border:1px solid var(--pnw-border);border-radius:var(--pnw-radius)}.pnw-stat strong{font-size:30px;line-height:1}.pnw-stat>span:last-child{color:var(--pnw-muted);font-size:13px}.pnw-status-dot{position:absolute;right:16px;top:16px;width:10px;height:10px;border-radius:999px;background:#98a2b3}.pnw-status-pending{background:#f79009}.pnw-status-pnw_revision{background:#d92d20}.pnw-status-publish{background:#12b76a}.pnw-status-future{background:#2e90fa}
@@ -35,3 +35,29 @@ body.pnw-modal-open{overflow:hidden}.pnw-preview-modal{position:fixed;inset:0;z-
 
 /* pnw-statistics.css */
 .pnw-statistics-cards{margin-bottom:22px}.pnw-statistics-card{min-height:132px}.pnw-statistics-card strong{font-size:28px}.pnw-statistics-card>span{font-weight:800;color:#344054}.pnw-statistics-card small{display:block;margin-top:6px;color:#667085;line-height:1.4}.pnw-statistics-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.pnw-stat-panel{background:#fff;border:1px solid var(--pnw-border);border-radius:var(--pnw-radius);padding:20px}.pnw-stat-panel-wide{grid-column:1/-1}.pnw-stat-list{display:grid;gap:8px}.pnw-stat-list>div{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 12px;border-radius:10px;background:#f8fafc}.pnw-stat-list span{min-width:0;overflow:hidden;text-overflow:ellipsis}.pnw-stat-list strong{display:inline-grid;place-items:center;min-width:34px;height:30px;padding:0 8px;border-radius:999px;background:#e9f1fb;color:#173b6c}.pnw-mini-chart{display:grid;grid-template-columns:repeat(6,minmax(70px,1fr));align-items:end;gap:14px;min-height:235px;padding:10px 4px 0}.pnw-mini-chart-item{display:grid;grid-template-rows:24px 150px auto;gap:7px;text-align:center;min-width:0}.pnw-mini-chart-item>strong{font-size:14px}.pnw-mini-chart-track{position:relative;display:flex;align-items:flex-end;justify-content:center;height:150px;border-radius:10px;background:#f3f6fa;overflow:hidden}.pnw-mini-chart-track span{display:block;width:52%;min-height:7px;border-radius:8px 8px 3px 3px;background:#173b6c}.pnw-mini-chart-item small{color:#667085;font-size:11px;line-height:1.3}@media(max-width:760px){.pnw-statistics-grid{grid-template-columns:1fr}.pnw-stat-panel-wide{grid-column:auto}.pnw-mini-chart{gap:7px;overflow-x:auto;padding-bottom:8px}.pnw-mini-chart-item{min-width:74px}.pnw-stat-panel{padding:15px}.pnw-statistics-card{min-height:110px}}
+
+/* Own addition, not from the plugin: permissions replaced roles on the
+   accounts screen, and categories/tags became creatable from the editor
+   (AGENT.md 6.16). Everything else on those screens reuses the plugin's own
+   .pnw-field/.pnw-category-grid rules. */
+.pnw-permission-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.pnw-permission-grid label{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1px solid var(--pnw-border);border-radius:10px;background:#fafafa;cursor:pointer}
+.pnw-permission-grid label>span{display:flex;flex-direction:column;gap:3px}
+.pnw-permission-grid label strong{font-weight:800;line-height:1.3}
+.pnw-permission-grid label small{color:var(--pnw-muted);font-size:12px;line-height:1.4}
+.pnw-permission-chips{display:flex;flex-wrap:wrap;gap:6px}
+.pnw-permission-chip{display:inline-block;padding:4px 10px;border-radius:999px;background:#eef3f9;color:#173b6c;font-size:12px;font-weight:700}
+.pnw-term-add{display:flex;gap:10px;margin-top:10px}
+.pnw-term-add input[type=text]{flex:1;min-width:0;border:1px solid #d0d5dd;border-radius:10px;padding:10px 12px;color:var(--pnw-text);background:#fff;font:inherit}
+.pnw-term-add .pnw-button{white-space:nowrap}
+.pnw-term-error{display:block;margin-top:7px;color:var(--pnw-danger);font-weight:700}
+.pnw-readonly-tags{color:var(--pnw-muted)}
+.pnw-preview-tags{padding:10px 22px;background:#f8fafc;border-bottom:1px solid var(--pnw-border);font-size:13px;color:#475467}
+@media(max-width:900px){.pnw-permission-grid{grid-template-columns:1fr}}
+@media(max-width:620px){.pnw-term-add{flex-direction:column}.pnw-term-add .pnw-button{width:100%}.pnw-preview-tags{padding:10px 16px}}
+
+/* Felhasználói kérés (AGENT.md 6.17): a Hírkezelő minden képernyője - a
+   bejelentkezés is - a viewport 75%-a, középre igazítva. Telefonon a 75%
+   használhatatlanul keskeny lenne, ezért a plugin saját 620px-es töréspontja
+   alatt majdnem teljes szélességre nyílik. */
+@media(max-width:620px){.pnw-app{width:92%}}

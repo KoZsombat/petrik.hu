@@ -14,6 +14,7 @@ import { DIST_DIR, PORT, SCHEDULE_CHECK_INTERVAL_MS, SESSION_SECRET, UPLOADS_DIR
 import { attachUser } from './middleware/auth.ts'
 import { allPosts, updatePost } from './data/posts-repo.ts'
 import { seedInitialUsers } from './data/users-repo.ts'
+import { seedInitialTerms } from './data/terms-repo.ts'
 import { logAudit } from './lib/audit.ts'
 import { notifyScheduledPublished } from './lib/notifications.ts'
 import authRoutes from './routes/auth.ts'
@@ -22,8 +23,10 @@ import publicRoutes from './routes/public.ts'
 import auditRoutes from './routes/audit.ts'
 import statisticsRoutes from './routes/statistics.ts'
 import usersRoutes from './routes/users.ts'
+import termsRoutes from './routes/terms.ts'
 
 seedInitialUsers()
+seedInitialTerms()
 
 const app = express()
 
@@ -52,6 +55,7 @@ app.use('/api/public', publicRoutes)
 app.use('/api/audit', auditRoutes)
 app.use('/api/statistics', statisticsRoutes)
 app.use('/api/users', usersRoutes)
+app.use('/api/terms', termsRoutes)
 
 // The rest of the site is a static pixel-port that needs no server at all;
 // this only serves it too so `node server/index.ts` is a complete way to run

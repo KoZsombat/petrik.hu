@@ -51,6 +51,23 @@ munka **nem** CSS-only volt vakon: a mentés ezen a gépen elérhető
 geometriai táblázat **nem lett újramérve** ez után — ha valaki a mobil
 nézetet auditálja, ezt vegye figyelembe.
 
+**2026-09-24: 75%-os Hírkezelő + élő hírek a Hírek oldalon** (részletek: 6.17
+és 6.18) — a `/hirkezelo/` minden képernyője (a bejelentkezés is) a viewport
+75%-a, középre igazítva; és a Hírkezelőből publikált hír mostantól megjelenik
+a kategória-archívumok (pl. a főmenü "Hírek" pontja, `/kategoria/hirek/`)
+listájának élén is, nem csak az oldalsáv widgetjében és a Kezdőlap
+hírfolyamaiban. Futó backend ellen, fejetlen Chrome-mal ellenőrizve.
+
+**2026-09-24: a Hírkezelőben nincsenek szerepkörök** (részletek: 6.16) — a
+fiókok fiókonként kapcsolható **jogosultságokat** kapnak (hír beküldése,
+jóváhagyás, kint lévő hírek, napló, kategóriák/címkék létrehozása, fiókok
+kezelése), és **minden fiók használhat minden kategóriát és címkét** — újat
+csak `pnw_manage_terms` joggal lehet létrehozni. A kategóriák/címkék ezzel
+szerkeszthető `terms` táblába kerültek, a poszt kapott `tagIds`-t, a régi
+adatbázis pedig induláskor migrálódik. **Figyelem:** ez a kör futó backend
+nélkül készült (a `better-sqlite3` ezen a gépen nem fordul), így `curl`- és
+böngésző-ellenőrzés nem történt — lásd 6.16 végét.
+
 **2026-09-24: `/hirkezelo/` valódi funkció lett** (részletek: 6.15) — a
 Petrik News Workflow WordPress plugin újraimplementációja, saját Express
 backenddel (`server/`). **Ez az egyetlen rész a repóban, ami nem a mentés
@@ -93,6 +110,8 @@ A mentés WordPress + **Divi 4.27** téma + **BetterDocs** plugin.
   A többi 252 a listákban placeholder kártyaként jelenik meg, link nélkül.
 - **Az archívumok benne vannak** a scope-ban, **valódi lapozó route-okkal**
   (`/kategoria/hirek/page/2/`), a mentés oldalméretével.
+- **A Hírkezelő jogosultság-alapú, nem szerepkör-alapú**, és minden fiók
+  minden kategóriát/címkét használhat (újat létrehozni külön jog) — lásd 6.16.
 - **A `/hirkezelo/` mostantól valódi funkció** — nem a mentés portja, hanem a
   Petrik News Workflow WordPress plugin újraimplementációja, saját Express
   backenddel (`server/`), felhasználói kérésre. Nincs menüpont rá, ahogy az
@@ -182,8 +201,12 @@ src/
 server/             a /hirkezelo/ Express backendje — NEM a mentés portja,
                     lásd 6.15. `node --experimental-strip-types server/index.ts`
                     indítja, ugyanúgy, mint a scripts/*.ts-eket.
-shared/pnw/         típusok/szerepkörök/állapotok/kategórialista, amit a
-                    src/ (Vite) ÉS a server/ (Node) is importál — lásd 6.15.
+shared/pnw/         típusok/jogosultságok/állapotok/kategória-seed, amit a
+                    src/ (Vite) ÉS a server/ (Node) is importál — lásd 6.15
+                    és 6.16. Szerepkör nincs: `permissions.ts` (a törölt
+                    `roles.ts` helyén) fiókonkénti capability-készlettel
+                    dolgozik, a kategóriák pedig a `terms` táblában élnek
+                    (`seed-terms.ts` csak az üres adatbázis feltöltése).
 ```
 
 ### Generálás
@@ -253,6 +276,19 @@ Mindhez két szerver kell:
 npm run dev                                    # :5173
 cd <MIRROR_ROOT> && python -m http.server 8899 # :8899
 ```
+
+**Ha a Chrome nem indul** (`spawn UNKNOWN`), az nem a szkript hibája: a
+teljes `chromium-1243/chrome-win64/chrome.exe`-t egyes (sandboxolt)
+környezetek nem engedik indítani, a mellette lévő **headless shell** viszont
+fut. Ilyenkor:
+
+```bash
+export CHROME_PATH="$LOCALAPPDATA/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-win64/chrome-headless-shell.exe"
+```
+
+Mind a hét böngészőt hajtó szkript ezt a környezeti változót olvassa. Egyszeri
+DOM-dumphoz szkript nélkül is jó:
+`"$CHROME_PATH" --headless --no-sandbox --virtual-time-budget=8000 --dump-dom <url>`.
 
 **Ne futtass két ellenőrzést egyszerre** — közös böngészőt hajtanak, és az
 eredmények **hibátlan futással, de hamis számokkal** keverednek össze (pl. a
@@ -652,7 +688,8 @@ sorként írja ki, tehát ez **döntés**, nem átcsúszás.
 
     - **Az autentikáció ide tartozik, nem WordPresshez.** Egy kis Express +
       `express-session` + bcrypt-hashelt seed-felhasználós auth váltja a
-      `wp_signon`/WP cookie-kat. 3 demó fiók (szerepkörönként egy),
+      `wp_signon`/WP cookie-kat. 3 demó fiók (6.16 óta nem szerepkörrel,
+      hanem jogosultság-készlettel),
       jelszavuk sosem kerül a kliens-bundle-be — a szerver oldalon dől el
       minden, tehát ez, egy kliens-oldali mockkal ellentétben, nem
       trükközhető meg egyszerűen a böngészőből.
@@ -693,11 +730,15 @@ sorként írja ki, tehát ez **döntés**, nem átcsúszás.
     nem tartalmazta a `allowedCategoryIds`-t, ezért a szerkesztő
     bejelentkezés után frissítésig minden kategóriát mutatott a korlátozott
     MK-vezetőnek is (a szerver oldali validáció helyesen elutasította a nem
-    engedélyezett kategóriát, csak a felület mutatott rosszat).
+    engedélyezett kategóriát, csak a felület mutatott rosszat). **Ez a mező
+    6.16 óta nem létezik** — minden fiók minden kategóriát használhat —,
+    a tanulság viszont áll: ami a felületen látszik, azt a session-válasznak
+    is hordoznia kell, különben a UI és a szerver mást gondol.
 
     **Fájlok:** `server/` (Express backend, `node --experimental-strip-types
     server/index.ts`-sel indítható, lásd 2. szakasz), `shared/pnw/` (mindkét
-    oldal által importált típusok/szerepkörök/állapotok/kategórialista),
+    oldal által importált típusok/jogosultságok/állapotok/kategória-seed;
+    a szerepkörök 6.16 óta nincsenek),
     `src/pages/Hirkezelo.tsx` + `src/components/hirkezelo/`. Új npm
     függőségek (felhasználói jóváhagyással): `express`, `express-session`,
     `multer`, `bcryptjs`.
@@ -851,9 +892,10 @@ sorként írja ki, tehát ez **döntés**, nem átcsúszás.
     — kifejezetten a felhasználó kérésére került be, hogy a fiókkezelés a
     Hírkezelőn belülről is elérhető legyen.
 
-    - **Kinek jár:** explicit felhasználói döntés alapján **mind az
-      igazgatóhelyettes, mind az igazgató** kap `pnw_manage_users`-t (nem
-      csak az igazgató) — `ROLE_CAPABILITIES` (`shared/pnw/roles.ts`).
+    - **Kinek jár:** akkoriban explicit felhasználói döntés alapján **mind az
+      igazgatóhelyettes, mind az igazgató** kapta a `pnw_manage_users`-t.
+      **6.16 óta ez fiókonként állítható** a Fiókok képernyőn — a migráció a
+      két régi vezetői szerepkörnek pontosan ezt a jogot adta tovább.
     - **Tárolás:** `seed-users.ts` megszűnt, helyette valódi `users` tábla az
       SQLite-ban (`server/data/db.ts`) és `server/data/users-repo.ts` (CRUD +
       `seedInitialUsers()`, ami csak akkor tölt be 3 alap fiókot, ha a tábla
@@ -867,24 +909,169 @@ sorként írja ki, tehát ez **döntés**, nem átcsúszás.
     - **Végpontok** (`server/routes/users.ts`, mind `requireCapability
       ('pnw_manage_users')` mögött, a meglévő `GET /` kivételével, ami
       bármelyik bejelentkezett fióknak lekérhető — ez adja a
-      szerző-név/szerepkör feloldást a poszt-listákhoz és naplóhoz):
+      szerző-név feloldást a poszt-listákhoz és naplóhoz):
       `POST /`, `PUT /:id`, `DELETE /:id`. Két védőkorlát: **saját fiók nem
       törölhető** (`cannot_delete_self`) és **az utolsó fiókkezelésre jogosult
       fiók nem törölhető** (`last_manager` — mindig marad legalább egy, aki
       fiókokat tud kezelni).
     - **Felület:** új `src/components/hirkezelo/Users.tsx` — táblázat +
-      létrehozás/szerkesztés űrlap, munkaközösség-vezető szerepkörnél
-      feltételesen megjelenő kategória-checkboxokkal (`allowedCategoryIds`,
-      üresen hagyva = minden kategória). A `Shell.tsx` navigációjában
-      "Fiókok" link jelenik meg, ha `canManageUsers(user.role)`.
+      létrehozás/szerkesztés űrlap. A szerepkör-választó és a hozzá kötött
+      kategória-checkboxok 6.16 óta **jogosultság-checkboxok**; a `Shell.tsx`
+      navigációjában "Fiókok" link jelenik meg, ha `canManageUsers(user)`.
     - **Ellenőrizve `curl`-lel** friss (üres) adatbázis ellen: fiók
-      létrehozása → azzal bejelentkezés → szerepkör/kategória módosítás →
+      létrehozása → azzal bejelentkezés → jogosultság módosítása →
       törlés, illetve a negatív esetek — gyenge jelszó, foglalt
       felhasználónév, nem-vezető próbálkozása (`forbidden`), saját fiók
       törlése (`cannot_delete_self`), utolsó fiókkezelő törlése
       (`last_manager`) — mind a várt hibakóddal tért vissza. Böngészős
       Playwright-ellenőrzés ehhez a körhöz nem történt (nem állt rendelkezésre
       böngésző-automatizálási eszköz ebben a menetben).
+
+16. **Nincsenek szerepkörök — fiókonkénti jogosultságok; a kategóriákat és
+    címkéket mindenki használhatja.** Felhasználói kérés
+    (2026-09-24): *"a hírkezelő usereknél ne legyenek szerepkörök, csak
+    jogosultságok (pl. hír létrehozása, felhasználók kezelése stb.), és
+    mindenki használhasson bármilyen kategóriát vagy címkét, sőt újakat is
+    létrehozhasson, ha van rá joga."* Ez a valódi plugin `PNW_Roles`
+    osztályától **szándékos eltérés** — ott három WordPress-szerepkör
+    csomagolja ugyanezeket a `pnw_*` capabilityket.
+
+    - **`shared/pnw/roles.ts` törölve**, helyette `shared/pnw/permissions.ts`.
+      Nincs `Role`/`ROLE`/`ALL_ROLES`/`roleLabel`/`ROLE_CAPABILITIES`. A
+      `Capability` unió a `types.ts`-ben `CAPABILITY` const lett, és minden
+      segédfüggvény **a fiókot** kapja, nem egy szerepkör-stringet:
+      `canSubmit(user)`, `canReview(user)`, `canManagePublished(user)`,
+      `canViewAuditLog(user)`, `canManageUsers(user)`, `canManageTerms(user)`.
+      A `SessionUser`/`Account` `role` mezője helyén `permissions: Capability[]`
+      áll. A `pnw_manage_workflow` capability **kikerült**: a valódi plugin
+      szerepkör-táblájából származott, de sosem őrzött semmit ebben a portban
+      — szerepkörök nélkül egy soha nem ellenőrzött jog csak félrevezetne.
+    - **Új capability: `pnw_manage_terms`** ("Kategóriák és címkék
+      létrehozása"). Ez az **egyetlen** taxonómia-jog: *használni* bármelyik
+      kategóriát/címkét bármelyik fiók tudja, jog nélkül is.
+    - **A fejléc szerepkör-címkéje** (`roleLabel`) helyén a `permissionSummary`
+      sorolja fel a fiók jogait (`Shell.tsx`).
+    - **Belépési feltétel:** korábban "MK-vezető vagy vezető" kellett a
+      felülethez; most **bármelyik egy jogosultság** elég (`Hirkezelo.tsx`),
+      és üres jogosultság-listával a fiók be tud jelentkezni, de az
+      `Unauthorized` képernyőt kapja. Az egyes nézetek külön-külön a saját
+      capabilityjüket kérik, ahogy eddig is.
+    - **Az áttekintő két ága** (`render_dashboard()` szerzői/vezetői ága) már
+      nem a `petrik_mk_leader` szerepkört nézi, hanem a `pnw_review_news`
+      jogot; a válaszmező neve ezért `role` helyett `view`
+      (`server/routes/posts.ts`, `api.ts`, `Dashboard.tsx`).
+
+    **Kategóriák és címkék (`terms` tábla).**
+
+    - **`shared/pnw/categories.ts` törölve**, helyette `shared/pnw/seed-terms.ts`
+      (`SEED_CATEGORIES`, ugyanaz a 37 kategória a `src/data/archives.ts`-ből)
+      + `server/data/terms-repo.ts` + `terms` tábla. A seedelt kategória **id-je
+      változatlanul az archívum-útvonala** (`/kategoria/hirek/`), tehát a
+      meglévő posztok `category_ids`-e érvényes marad.
+    - **A `Term` `route` mezője** csak a seedelt kategóriákon van kitöltve: a
+      Hírkezelőben létrehozott kategóriának **nincs mentett archívum-oldala**,
+      ezért a poszt-sablonban linkelés helyett sima szövegként jelenik meg
+      (`PostTemplatePreview.tsx`, `divi/PostCard.tsx`) — nem küldünk senkit
+      404-re.
+    - **`Post.tagIds`** új mező (`tag_ids` oszlop). A mentésben **sehol nincs
+      címke-markup** (a `post-meta` `rel="category tag"` linkjei kategóriák),
+      ezért a címkék a publikus sablonba **nem** kerültek bele — kitalált
+      markupot nem teszünk a portolt sablonba. A Hírkezelőn belül viszont
+      látszanak: lista-sorok (`termLine`), előnézet-modal és a "Részletek"
+      nézet fejléce. Ha a felhasználó publikus "Címkék:" sort kér, az egy
+      tudatos új döntés lesz, nem elfelejtett feladat.
+    - **Végpontok** (`server/routes/terms.ts`): `GET /api/terms` **bejelentkezés
+      nélkül** (a statikus oldal is ebből oldja fel egy élő hír kategóriáit,
+      ahogy a `/api/public/posts`-ot is hívja), `POST /api/terms` a
+      `pnw_manage_terms` mögött (`invalid_term_name`, `term_exists` hibakódok).
+    - **Kliens oldali forrás:** `src/lib/terms.ts` — modul-szintű pillanatkép +
+      `useSyncExternalStore`, hogy a szerkesztőben létrehozott új kategória
+      azonnal megjelenjen minden nyitott listában. **Backend nélkül is
+      működik:** a kezdő pillanatkép a `SEED_CATEGORIES`, tehát a statikus
+      oldal a szerver futása nélkül is valódi kategórianeveket ír ki.
+    - **`PostFields.tsx`** két `TermPicker`-t renderel (kategória kötelező,
+      címke opcionális), mindkettőben **minden** term látszik — a
+      `PNW_Access::allowed_category_ids()` portja (`access.ts`) és az
+      `allowedCategoryIds` mező **törölve** —, és `pnw_manage_terms` esetén
+      egy "+ Létrehozás" sor is, ami a létrehozott termet rögtön be is
+      pipálja.
+
+    **Adatbázis-migráció** (`server/data/db.ts`, minden induláskor lefut,
+    idempotens): `posts.tag_ids` hozzáadása (`DEFAULT '[]'`), `users.permissions`
+    hozzáadása, a régi `users.role` értékek szétbontása capability-listára
+    (`petrik_mk_leader` → `pnw_submit_news`; a két vezetői szerepkör →
+    jóváhagyás + kint lévő hírek + napló + termek + fiókok), végül a `role` és
+    az `allowed_category_ids` oszlop eldobása. Meglévő adatbázis tehát
+    jogosultság-vesztés nélkül áll át.
+
+    **Ellenőrzés ebben a körben:** `npx tsc -b --force`, `npx eslint .` és
+    `npm run build` zöld; a `server/` TS-je külön, `--ignoreConfig`-os
+    `tsc`-vel átnézve (csak a nem telepített express/better-sqlite3 típusok
+    hiányából eredő zaj maradt). A migrációt **`node:sqlite`-tal futtatott
+    próbával** ellenőriztem egy régi sémájú adatbázison (kétszer lefuttatva:
+    a szerepkörök helyesen bomlottak capabilityvé, a régi oszlopok eltűntek,
+    a `tag_ids` feltöltődött). **Amit itt nem lehetett ellenőrizni:** a
+    `better-sqlite3` ezen a gépen nem fordul le (nincs Visual Studio,
+    forrásból buildelne), ezért `npm run server`-t **nem** tudtam indítani.
+    A **Fiókok képernyő és a beküldés→jóváhagyás lánc átnézése továbbra is
+    hátravan** — a következő körben a `:4000`-en már futott egy backend
+    (nyilván konténerből), és az ellene végzett ellenőrzések rendben voltak,
+    de ezt a két folyamatot senki nem kattintotta végig.
+
+17. **A Hírkezelő 75% széles, középre igazítva — a bejelentkezés is.**
+    Felhasználói kérés: *"minden bejelentkezett + a bejelentkező oldal legyen
+    75% széles, középre igazítva."* A `.pnw-app` (`src/pages/Hirkezelo.css`)
+    korábbi, teljes szélességű `margin:24px 0`-ja helyett `width:75%;
+    margin:24px auto`. Ez a plugin saját CSS-ének **szándékos módosítása** —
+    minden más `.pnw-*` szabály változatlanul a plugin sajátja.
+
+    - **Miért a `.pnw-app`-on:** a `/hirkezelo/` minden képernyője (a
+      `LoginCard`, az `Unauthorized` és az összes bejelentkezett nézet) ebben
+      az egy elemben ül (`src/pages/Hirkezelo.tsx`), tehát egy szabály
+      mindegyikre érvényes.
+    - **A login-kártya** saját `max-width:540px`-e megmaradt: a *lap* 75%
+      széles és középen van, a benne lévő űrlap a plugin eredeti méretén. Ha
+      a kártyát magát is 75%-ra kell húzni, az a `.pnw-login-card`
+      `max-width`-je.
+    - **620px alatt 92%** (`@media` a fájl végén): telefonon a 75% ~290px-es
+      tartalmat adna. Ez az egyetlen hely, ahol nem szó szerint 75% —
+      tudatos döntés, nem kihagyás.
+    - A bejelentkező kártya szövege már nem szerepkörökről beszél
+      (`LoginCard.tsx`), ahogy 6.16 óta sehol máshol sem.
+
+18. **Az élő hírek megjelennek a kategória-archívumokon (a "Hírek" oldalon).**
+    Felhasználói hibajelzés: az újonnan publikált hír látszott az oldalsáv
+    "Legutóbbi bejegyzések" listájában és a Kezdőlap két hírfolyamában, de a
+    **Hírek oldalon** (`/kategoria/hirek/`, a főmenü "Hírek" pontja) nem. Oka:
+    az `ArchiveView` a statikus `src/data/archives.ts` `slugs` listájából és a
+    generált `posts` térképből renderelt — élő hír sosem került bele.
+
+    - **A javítás:** az `ArchiveView` `usePosts()`-ot használ, és a
+      **kategória**-archívum lista elé fűzi azokat az élő híreket, amelyeknek
+      van ilyen `to`-jú kategóriájuk (`categories[].to === archive.route`),
+      legfrissebb elöl.
+    - **Csak az első oldalon** (a `/page/2/`-re végződő útvonalakon nem): a
+      mentés lapozása és sorrendje transzkripció, nem újraszámolás (lásd
+      `archives.ts` fejlécét) — ezért az élő hír a lista **elé** kerül, nem
+      lapozódik bele.
+    - **Dátum- és szerző-archívum kimarad:** egy élő hírnek nincs mentett
+      szerzője, a dátum-archívuma pedig lehet, hogy nem is létezik a
+      mentésben. Ha kell, az külön döntés.
+    - **`ArchiveCard`** mostantól `MergedPostSummary`-t kap, és `post.href ??
+      /${slug}/`-t linkel — ugyanaz a szabály, amit a `PostCard`/`RecentPosts`
+      már követett (6.15): egy élő hír `/hirek/<slug>/` alatt él.
+    - **Egységes dátumformátum:** a mentés kártyái "2025. márc 27." alakot
+      írnak (az Intl pontot tesz a hónaprövidítés után, a téma nem). Ez a
+      `PostTemplatePreview`-ben már meg volt oldva; mostantól
+      `src/lib/postDate.ts`-ben lakik, és a `toSummary()` is ezt használja —
+      különben az élő kártya "2026. szept. 24."-et írt volna a mellette lévő
+      mentett kártyák "2026. szept 24."-e mellé.
+    - **Ellenőrizve** egy ténylegesen futó backend ellen (a `:4000`-en ebben a
+      körben már volt szerver), fejetlen Chrome-mal DOM-ot dumpolva: az élő
+      hír a `/kategoria/hirek/` és a `/kategoria/vizsga/` (a másik
+      kategóriája) **első** kártyája, 13 kártyával (1 élő + a mentés 12-je),
+      míg a `/kategoria/hirek/page/2/` és a `/kategoria/oktatas/`
+      változatlanul 12 kártya, élő hír nélkül.
 
 ---
 

@@ -5,7 +5,7 @@ import { ApiError } from '../../lib/hirkezelo/api.ts'
 import type { ApiUser } from '../../lib/hirkezelo/api.ts'
 import { STATUS } from '../../../shared/pnw/types.ts'
 import type { AuditEntry, Post, RichTextDocument } from '../../../shared/pnw/types.ts'
-import { canReview, canSubmit } from '../../../shared/pnw/roles.ts'
+import { canManageTerms, canReview, canSubmit } from '../../../shared/pnw/permissions.ts'
 import { canEditWorkflowPost } from '../../../shared/pnw/access.ts'
 import { statusLabel } from '../../../shared/pnw/statuses.ts'
 import { useUsers } from '../../lib/hirkezelo/useUsers.ts'
@@ -26,6 +26,7 @@ export default function Review({ user, postId }: { user: ApiUser; postId: string
   const [content, setContent] = useState<RichTextDocument>([])
   const [excerpt, setExcerpt] = useState('')
   const [categoryIds, setCategoryIds] = useState<string[]>([])
+  const [tagIds, setTagIds] = useState<string[]>([])
   const [previewOpen, setPreviewOpen] = useState(false)
   const [reviewNote, setReviewNote] = useState('')
   const [rejectNote, setRejectNote] = useState('')
@@ -43,6 +44,7 @@ export default function Review({ user, postId }: { user: ApiUser; postId: string
       setContent(postResult.post.content)
       setExcerpt(postResult.post.excerpt)
       setCategoryIds(postResult.post.categoryIds)
+      setTagIds(postResult.post.tagIds)
       setAudit(auditResult.entries)
       setLoading(false)
     })
@@ -61,7 +63,7 @@ export default function Review({ user, postId }: { user: ApiUser; postId: string
 
   const author = authors.get(post.authorId)
 
-  if (!canReview(user.role)) {
+  if (!canReview(user)) {
     // The author checking their own submitted/decided post.
     return (
       <section className="pnw-section">
@@ -70,7 +72,7 @@ export default function Review({ user, postId }: { user: ApiUser; postId: string
             <div className="pnw-kicker">Részletek</div>
             <h3>{post.title}</h3>
           </div>
-          {post.status === STATUS.REVISION && canSubmit(user.role) && canEditWorkflowPost(post, user) && (
+          {post.status === STATUS.REVISION && canSubmit(user) && canEditWorkflowPost(post, user) && (
             <Link className="pnw-button" to={`/hirkezelo/?pnw_view=edit&post_id=${post.id}`}>
               Hír módosítása
             </Link>
@@ -106,7 +108,7 @@ export default function Review({ user, postId }: { user: ApiUser; postId: string
   async function saveReviewerEdits(): Promise<void> {
     setBusy(true)
     try {
-      const result = await api.reviewerSave(postId, { title, content, excerpt, categoryIds })
+      const result = await api.reviewerSave(postId, { title, content, excerpt, categoryIds, tagIds })
       navigate(`/hirkezelo/?pnw_notice=${result.notice}&pnw_view=review&post_id=${postId}`)
     } finally {
       setBusy(false)
@@ -161,6 +163,9 @@ export default function Review({ user, postId }: { user: ApiUser; postId: string
           onExcerptChange={setExcerpt}
           categoryIds={categoryIds}
           onCategoryIdsChange={setCategoryIds}
+          tagIds={tagIds}
+          onTagIdsChange={setTagIds}
+          canCreateTerms={canManageTerms(user)}
           currentImage={post.featuredImage}
           onImageChange={() => {
             /* the reviewer edits text/categories only, the plugin's own reviewer_save has no image field */
@@ -189,6 +194,7 @@ export default function Review({ user, postId }: { user: ApiUser; postId: string
         title={title}
         content={content}
         categoryIds={categoryIds}
+        tagIds={tagIds}
         image={post.featuredImage}
       />
 

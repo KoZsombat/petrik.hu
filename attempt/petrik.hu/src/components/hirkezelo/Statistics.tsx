@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react'
 import * as api from '../../lib/hirkezelo/api.ts'
 import type { Statistics as StatisticsData } from '../../lib/hirkezelo/api.ts'
 import { useUsers } from '../../lib/hirkezelo/useUsers.ts'
-import { categories } from '../../../shared/pnw/categories.ts'
+import { termMap, useTerms } from '../../lib/terms.ts'
 
-const CATEGORY_NAME = new Map(categories.map((category) => [category.id, category.name]))
 const MONTH_LABEL = new Intl.DateTimeFormat('hu-HU', { year: 'numeric', month: 'short' })
 
 function formatDuration(seconds: number): string {
@@ -23,6 +22,7 @@ function monthLabel(key: string): string {
 export default function Statistics() {
   const [data, setData] = useState<StatisticsData | null>(null)
   const authors = useUsers()
+  const categoryNames = termMap(useTerms())
 
   useEffect(() => {
     api.statistics().then(setData)
@@ -121,7 +121,7 @@ export default function Statistics() {
             <div className="pnw-stat-list">
               {data.topCategories.map((row) => (
                 <div key={row.key}>
-                  <span>{CATEGORY_NAME.get(row.key) ?? row.key}</span>
+                  <span>{categoryNames.get(row.key)?.name ?? row.key}</span>
                   <strong>{row.count}</strong>
                 </div>
               ))}

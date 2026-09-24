@@ -4,24 +4,24 @@
  * production, the same Express process that serves the built site - so a
  * relative /api/... path is always correct.
  */
-import type { AuditEntry, Post, Role } from '../../../shared/pnw/types.ts'
+import type { AuditEntry, Capability, Post, Term, TermKind } from '../../../shared/pnw/types.ts'
+import { rememberTerm } from '../terms.ts'
 
 export type ApiUser = {
   id: string
   /** Present on GET /users (the account-management listing), absent on the session's own user. */
   username?: string
   displayName: string
-  role: Role
-  allowedCategoryIds?: string[]
+  /** The account's whole authority - there are no roles (AGENT.md 6.16). */
+  permissions: Capability[]
 }
 
 export type AccountInput = {
   username: string
   displayName: string
-  role: Role
+  permissions: Capability[]
   /** Blank/omitted on an edit keeps the existing password. */
   password?: string
-  allowedCategoryIds?: string[]
 }
 
 export class ApiError extends Error {
@@ -81,16 +81,32 @@ export function deleteAccount(id: string): Promise<{ ok: true }> {
   return request(`/users/${id}`, { method: 'DELETE' })
 }
 
+// --- categories and tags ---------------------------------------------------
+
+/**
+ * Creating a term needs `pnw_manage_terms`; using one needs nothing at all
+ * (AGENT.md 6.16). The new term is folded straight into the shared snapshot
+ * (src/lib/terms.ts) so every open checkbox list sees it without a refetch.
+ */
+export async function createTerm(kind: TermKind, name: string): Promise<Term> {
+  const { term } = await request<{ term: Term }>('/terms', {
+    method: 'POST',
+    body: JSON.stringify({ kind, name }),
+  })
+  rememberTerm(term)
+  return term
+}
+
 // --- dashboard -----------------------------------------------------------
 
 export type AuthorDashboard = {
-  role: 'author'
+  view: 'author'
   counts: Record<string, number>
   posts: Post[]
 }
 
 export type ReviewerDashboard = {
-  role: 'reviewer'
+  view: 'reviewer'
   pendingCount: number
   returnedCount: number
   scheduledCount: number
@@ -127,7 +143,7 @@ export function updatePost(id: string, form: FormData): Promise<SaveResponse> {
 
 export function reviewerSave(
   id: string,
-  data: { title: string; content: unknown; excerpt: string; categoryIds: string[] },
+  data: { title: string; content: unknown; excerpt: string; categoryIds: string[]; tagIds: string[] },
 ): Promise<{ notice: string }> {
   return request(`/posts/${id}/reviewer`, { method: 'PUT', body: JSON.stringify(data) })
 }

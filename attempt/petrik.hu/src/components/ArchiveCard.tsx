@@ -1,8 +1,8 @@
 import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import type { PostSummary } from '../data/posts.ts'
+import type { MergedPostSummary } from '../lib/posts/postsContext.ts'
 
-type Props = { post: PostSummary }
+type Props = { post: MergedPostSummary }
 
 /**
  * One post in a category, date or author archive.
@@ -17,7 +17,10 @@ type Props = { post: PostSummary }
  * that the original never had.
  */
 export default function ArchiveCard({ post }: Props) {
-  const href = `/${post.slug}/`
+  // A mirrored post lives at `/<slug>/`; one published through /hirkezelo/
+  // lives at `/hirek/<slug>/` and carries that in `href` - the same rule
+  // PostCard and RecentPosts already follow (AGENT.md 6.15).
+  const href = post.href ?? `/${post.slug}/`
   const image = post.archiveImage ?? post.image
   const excerpt = post.archiveExcerpt ?? post.excerpt
 

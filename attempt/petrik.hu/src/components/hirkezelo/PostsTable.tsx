@@ -4,7 +4,8 @@ import type { Post } from '../../../shared/pnw/types.ts'
 import { statusCssClass, statusLabel } from '../../../shared/pnw/statuses.ts'
 import { canEditWorkflowPost } from '../../../shared/pnw/access.ts'
 import type { ApiUser } from '../../lib/hirkezelo/api.ts'
-import { categoryNames, formatDateTime } from './helpers.ts'
+import { useTerms } from '../../lib/terms.ts'
+import { termLine, formatDateTime } from './helpers.ts'
 
 type Props = {
   posts: Post[]
@@ -15,6 +16,8 @@ type Props = {
 
 /** Ported from PNW_Frontend_Dashboard_Trait::render_posts_table(). */
 export default function PostsTable({ posts, reviewer, user, authors }: Props) {
+  const terms = useTerms()
+
   if (posts.length === 0) {
     return <div className="pnw-empty-inline">Nincs megjeleníthető hír.</div>
   }
@@ -36,7 +39,7 @@ export default function PostsTable({ posts, reviewer, user, authors }: Props) {
             <tr key={post.id}>
               <td>
                 <strong>{post.title || '(Névtelen hír)'}</strong>
-                <small>{categoryNames(post.categoryIds)}</small>
+                <small>{termLine(terms, post)}</small>
               </td>
               <td>{authors.get(post.authorId)?.displayName ?? '—'}</td>
               <td>

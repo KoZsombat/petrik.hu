@@ -2,16 +2,17 @@ import { randomUUID } from 'node:crypto'
 import { extname } from 'node:path'
 import { Router } from 'express'
 import multer from 'multer'
-import { STATUS } from '../../shared/pnw/types.ts'
+import { CAPABILITY, STATUS } from '../../shared/pnw/types.ts'
 import type { Post } from '../../shared/pnw/types.ts'
-import { allowedCategoryIds, canEditWorkflowPost, canViewWorkflowPost } from '../../shared/pnw/access.ts'
+import { canEditWorkflowPost, canViewWorkflowPost } from '../../shared/pnw/access.ts'
+import { canReview } from '../../shared/pnw/permissions.ts'
 import { allPosts, existingSlugs, findPost, insertPost, removePost, updatePost } from '../data/posts-repo.ts'
-import { categories } from '../../shared/pnw/categories.ts'
+import { termIdsOfKind } from '../data/terms-repo.ts'
 import { uniqueSlug } from '../../shared/pnw/slug.ts'
 import { requireCapability, requireLogin } from '../middleware/auth.ts'
 import { logAudit, recentAudit } from '../lib/audit.ts'
 import { notifyApproved, notifyRejected, notifyScheduled, notifySubmitted } from '../lib/notifications.ts'
-import { hasRealText, parseRichText, sanitizeCategoryIds } from '../lib/validation.ts'
+import { hasRealText, parseIdList, parseRichText, sanitizeTermIds } from '../lib/validation.ts'
 import { blockText } from '../../shared/pnw/richtext.ts'
 import { TEST_MODE, UPLOADS_DIR, UPLOADS_URL_PREFIX } from '../config.ts'
 
@@ -21,8 +22,6 @@ const upload = multer({
   dest: UPLOADS_DIR,
   limits: { fileSize: 8 * 1024 * 1024 },
 })
-
-const ALL_CATEGORY_IDS = categories.map((category) => category.id)
 
 function now(): string {
   return new Date().toISOString()
@@ -42,15 +41,18 @@ async function handleFeaturedImage(file: Express.Multer.File | undefined): Promi
 
 router.use(requireLogin)
 
-/** Mirrors render_dashboard()'s two branches. */
+/**
+ * Mirrors render_dashboard()'s two branches - which branch you get is now a
+ * question about one capability, not about a role (AGENT.md 6.16).
+ */
 router.get('/dashboard', (req, res) => {
   const user = req.pnwUser!
   const all = allPosts()
   const mine = all.filter((post) => post.authorId === user.id)
 
-  if (user.role === 'petrik_mk_leader') {
+  if (!canReview(user)) {
     res.json({
-      role: 'author',
+      view: 'author',
       counts: {
         [STATUS.DRAFT]: mine.filter((p) => p.status === STATUS.DRAFT).length,
         [STATUS.PENDING]: mine.filter((p) => p.status === STATUS.PENDING).length,
@@ -83,7 +85,7 @@ router.get('/dashboard', (req, res) => {
   ).length
 
   res.json({
-    role: 'reviewer',
+    view: 'reviewer',
     pendingCount: pending.length,
     returnedCount: all.filter((p) => p.status === STATUS.REVISION).length,
     scheduledCount: scheduled.length,
@@ -96,13 +98,13 @@ router.get('/dashboard', (req, res) => {
 })
 
 /** Mirrors render_published_news(). */
-router.get('/published', requireCapability('pnw_manage_published_news'), (req, res) => {
+router.get('/published', requireCapability(CAPABILITY.MANAGE_PUBLISHED), (req, res) => {
   const { list, total, totalPages } = paginate(allPosts().filter((p) => p.status === STATUS.PUBLISH), req)
   res.json({ posts: list, total, totalPages, testMode: TEST_MODE })
 })
 
 /** Mirrors render_archived_news(). */
-router.get('/archived', requireCapability('pnw_manage_published_news'), (req, res) => {
+router.get('/archived', requireCapability(CAPABILITY.MANAGE_PUBLISHED), (req, res) => {
   const { list, total, totalPages } = paginate(allPosts().filter((p) => p.status === STATUS.ARCHIVED), req)
   res.json({ posts: list, total, totalPages })
 })
@@ -117,13 +119,13 @@ router.get('/:id', (req, res) => {
 })
 
 /** Mirrors PNW_Actions::save_news() for a brand-new draft. */
-router.post('/', requireCapability('pnw_submit_news'), upload.single('featuredImage'), async (req, res) => {
+router.post('/', requireCapability(CAPABILITY.SUBMIT_NEWS), upload.single('featuredImage'), async (req, res) => {
   const result = await saveAuthoredPost(req, null)
   respondToSave(res, result)
 })
 
 /** Mirrors save_news() for an existing draft/revision. */
-router.put('/:id', requireCapability('pnw_submit_news'), upload.single('featuredImage'), async (req, res) => {
+router.put('/:id', requireCapability(CAPABILITY.SUBMIT_NEWS), upload.single('featuredImage'), async (req, res) => {
   const existing = findPost(req.params.id)
   if (!existing || !canEditWorkflowPost(existing, req.pnwUser!)) {
     res.status(403).json({ error: 'forbidden' })
@@ -134,7 +136,7 @@ router.put('/:id', requireCapability('pnw_submit_news'), upload.single('featured
 })
 
 /** Mirrors reviewer_save() - a reviewer editing a still-pending post. */
-router.put('/:id/reviewer', requireCapability('pnw_review_news'), (req, res) => {
+router.put('/:id/reviewer', requireCapability(CAPABILITY.REVIEW_NEWS), (req, res) => {
   const existing = findPost(req.params.id)
   if (!existing || existing.status !== STATUS.PENDING) {
     res.status(400).json({ error: 'not_pending' })
@@ -144,7 +146,8 @@ router.put('/:id/reviewer', requireCapability('pnw_review_news'), (req, res) => 
   const title = typeof req.body?.title === 'string' ? req.body.title.trim() : ''
   const content = parseRichText(JSON.stringify(req.body?.content ?? []))
   const excerpt = typeof req.body?.excerpt === 'string' ? req.body.excerpt : ''
-  const categoryIds = sanitizeCategoryIds(req.body?.categoryIds, ALL_CATEGORY_IDS)
+  const categoryIds = sanitizeTermIds(req.body?.categoryIds, termIdsOfKind('category'))
+  const tagIds = sanitizeTermIds(req.body?.tagIds, termIdsOfKind('tag'))
 
   if (!title || !content || !hasRealText(content) || categoryIds.length === 0) {
     res.status(422).json({ error: 'missing_fields' })
@@ -157,6 +160,7 @@ router.put('/:id/reviewer', requireCapability('pnw_review_news'), (req, res) => 
     content,
     excerpt,
     categoryIds,
+    tagIds,
     modifiedAt: now(),
   }))
 
@@ -165,7 +169,7 @@ router.put('/:id/reviewer', requireCapability('pnw_review_news'), (req, res) => 
 })
 
 /** Mirrors review_news() - approve/reject/schedule a pending post. */
-router.post('/:id/decision', requireCapability('pnw_review_news'), (req, res) => {
+router.post('/:id/decision', requireCapability(CAPABILITY.REVIEW_NEWS), (req, res) => {
   const existing = findPost(req.params.id)
   if (!existing || existing.status !== STATUS.PENDING) {
     res.status(400).json({ error: 'not_pending' })
@@ -257,7 +261,7 @@ router.post('/:id/decision', requireCapability('pnw_review_news'), (req, res) =>
 })
 
 /** Mirrors delete_news() - trash your own draft/revision. */
-router.delete('/:id', requireCapability('pnw_submit_news'), (req, res) => {
+router.delete('/:id', requireCapability(CAPABILITY.SUBMIT_NEWS), (req, res) => {
   const existing = findPost(req.params.id)
   if (!existing || !canEditWorkflowPost(existing, req.pnwUser!)) {
     res.status(403).json({ error: 'forbidden' })
@@ -272,7 +276,7 @@ router.delete('/:id', requireCapability('pnw_submit_news'), (req, res) => {
 /** Mirrors update_published_news(). */
 router.put(
   '/:id/published',
-  requireCapability('pnw_manage_published_news'),
+  requireCapability(CAPABILITY.MANAGE_PUBLISHED),
   upload.single('featuredImage'),
   async (req, res) => {
     if (TEST_MODE) {
@@ -290,7 +294,7 @@ router.put(
 )
 
 /** Mirrors PNW_Actions' archive_published_news equivalent. */
-router.post('/:id/archive', requireCapability('pnw_manage_published_news'), (req, res) => {
+router.post('/:id/archive', requireCapability(CAPABILITY.MANAGE_PUBLISHED), (req, res) => {
   if (TEST_MODE) {
     res.status(403).json({ error: 'production_only' })
     return
@@ -313,7 +317,7 @@ router.post('/:id/archive', requireCapability('pnw_manage_published_news'), (req
   res.json({ notice: 'published_archived' })
 })
 
-router.post('/:id/restore', requireCapability('pnw_manage_published_news'), (req, res) => {
+router.post('/:id/restore', requireCapability(CAPABILITY.MANAGE_PUBLISHED), (req, res) => {
   const existing = findPost(req.params.id)
   if (!existing || existing.status !== STATUS.ARCHIVED) {
     res.status(404).json({ error: 'not_found' })
@@ -390,16 +394,11 @@ async function saveAuthoredPost(
     return { ok: false, notice: 'missing_fields' }
   }
 
-  const allowed = allowedCategoryIds(user, ALL_CATEGORY_IDS)
-  let rawCategoryIds: unknown = req.body?.categoryIds
-  if (typeof rawCategoryIds === 'string') {
-    try {
-      rawCategoryIds = JSON.parse(rawCategoryIds)
-    } catch {
-      rawCategoryIds = []
-    }
-  }
-  const categoryIds = sanitizeCategoryIds(rawCategoryIds, allowed)
+  // No allow-list any more: every account may use every category and tag
+  // (AGENT.md 6.16), so the only check is that the ids really exist - read
+  // fresh, since a term created moments ago in the same editor must count.
+  const categoryIds = sanitizeTermIds(parseIdList(req.body?.categoryIds), termIdsOfKind('category'))
+  const tagIds = sanitizeTermIds(parseIdList(req.body?.tagIds), termIdsOfKind('tag'))
   if (categoryIds.length === 0) {
     return { ok: false, notice: 'category_required' }
   }
@@ -416,6 +415,7 @@ async function saveAuthoredPost(
       content,
       excerpt,
       categoryIds,
+      tagIds,
       status: newStatus,
       modifiedAt: now(),
       featuredImage: featuredImage ?? post.featuredImage,
@@ -430,6 +430,7 @@ async function saveAuthoredPost(
       content,
       excerpt,
       categoryIds,
+      tagIds,
       featuredImage,
       authorId: user.id,
       status: newStatus,

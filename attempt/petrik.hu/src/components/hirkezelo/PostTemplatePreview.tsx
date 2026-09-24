@@ -2,12 +2,11 @@ import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import type { RichTextDocument } from '../../../shared/pnw/types.ts'
 import { isBlank } from '../../../shared/pnw/richtext.ts'
-import { categories } from '../../../shared/pnw/categories.ts'
+import { termMap, useTerms } from '../../lib/terms.ts'
+import { formatPostDate } from '../../lib/postDate.ts'
 import { useBodyClass } from '../../lib/useBodyClass.ts'
 import RichText from './RichText.tsx'
 import Sidebar from '../Sidebar.tsx'
-
-const CATEGORY_NAME = new Map(categories.map((category) => [category.id, category.name]))
 
 /**
  * The real theme puts the two-column float layout and the post title/meta
@@ -17,14 +16,6 @@ const CATEGORY_NAME = new Map(categories.map((category) => [category.id, categor
  * the frame renders as an unstyled single column.
  */
 const PREVIEW_BODY_CLASSES = ['single', 'et_right_sidebar']
-
-function formatPostDate(iso: string): string {
-  // Matches the mirror's own "2026. szept 15." style (Intl gives an extra
-  // period after the month abbreviation that the theme's own dates don't have).
-  return new Intl.DateTimeFormat('hu-HU', { year: 'numeric', month: 'short', day: 'numeric' })
-    .format(new Date(iso))
-    .replace(/\.(\s+\d)/, '$1')
-}
 
 type Props = {
   title: string
@@ -45,9 +36,14 @@ type Props = {
 export default function PostTemplatePreview({ title, content, categoryIds, image, date }: Props) {
   useBodyClass(PREVIEW_BODY_CLASSES)
 
-  const categoryLinks = categoryIds
-    .map((id) => ({ id, name: CATEGORY_NAME.get(id) }))
-    .filter((category): category is { id: string; name: string } => !!category.name)
+  // Only a category seeded from the mirror has an archive page to link to
+  // (Term.route); one created inside the Hírkezelő has none, so it prints as
+  // plain text rather than as a link into a 404 (AGENT.md 6.16).
+  const terms = useTerms()
+  const byId = termMap(terms)
+  const postCategories = categoryIds
+    .map((id) => byId.get(id))
+    .filter((term): term is NonNullable<typeof term> => !!term)
 
   return (
     <div id="main-content">
@@ -59,13 +55,17 @@ export default function PostTemplatePreview({ title, content, categoryIds, image
                 <h1 className="entry-title">{title || 'Hír címe'}</h1>
                 <p className="post-meta">
                   <span className="published">{formatPostDate(date ?? new Date().toISOString())}</span>
-                  {categoryLinks.length > 0 && ' | '}
-                  {categoryLinks.map((category, at) => (
+                  {postCategories.length > 0 && ' | '}
+                  {postCategories.map((category, at) => (
                     <Fragment key={category.id}>
                       {at > 0 && ', '}
-                      <Link to={category.id} rel="category tag">
-                        {category.name}
-                      </Link>
+                      {category.route ? (
+                        <Link to={category.route} rel="category tag">
+                          {category.name}
+                        </Link>
+                      ) : (
+                        <span className="pnw-unlinked-category">{category.name}</span>
+                      )}
                     </Fragment>
                   ))}
                 </p>

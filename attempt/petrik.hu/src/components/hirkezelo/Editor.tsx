@@ -6,14 +6,11 @@ import type { ApiUser } from '../../lib/hirkezelo/api.ts'
 import { STATUS } from '../../../shared/pnw/types.ts'
 import type { Post, RichTextDocument } from '../../../shared/pnw/types.ts'
 import { emptyDocument } from '../../../shared/pnw/richtext.ts'
-import { allowedCategoryIds } from '../../../shared/pnw/access.ts'
-import { categories } from '../../../shared/pnw/categories.ts'
+import { canManageTerms } from '../../../shared/pnw/permissions.ts'
 import PostFields from './PostFields.tsx'
 import PreviewModal from './PreviewModal.tsx'
 
 type Props = { user: ApiUser; postId?: string; published?: boolean }
-
-const ALL_CATEGORY_IDS = categories.map((category) => category.id)
 
 /** Ported from PNW_Frontend_Editor_Trait::render_editor() / render_published_editor(). */
 export default function Editor({ user, postId, published }: Props) {
@@ -24,6 +21,7 @@ export default function Editor({ user, postId, published }: Props) {
   const [content, setContent] = useState<RichTextDocument>(emptyDocument())
   const [excerpt, setExcerpt] = useState('')
   const [categoryIds, setCategoryIds] = useState<string[]>([])
+  const [tagIds, setTagIds] = useState<string[]>([])
   const [image, setImage] = useState<File | null>(null)
   const [modalImageUrl, setModalImageUrl] = useState<string | undefined>(undefined)
   const [busy, setBusy] = useState(false)
@@ -41,6 +39,7 @@ export default function Editor({ user, postId, published }: Props) {
         setContent(post.content)
         setExcerpt(post.excerpt)
         setCategoryIds(post.categoryIds)
+        setTagIds(post.tagIds)
       })
       .finally(() => {
         if (!cancelled) setLoading(false)
@@ -65,11 +64,6 @@ export default function Editor({ user, postId, published }: Props) {
   }, [image])
 
   const isRevision = post?.status === STATUS.REVISION
-  // The author-only category restriction only applies to their own
-  // draft/pending submissions - editing an already-published post (like the
-  // reviewer's own editor) sees every category, matching render_common_fields()'s
-  // $all_categories=true for both those cases.
-  const allowed = published ? undefined : allowedCategoryIds(user, ALL_CATEGORY_IDS)
 
   if (loading) {
     return (
@@ -95,6 +89,7 @@ export default function Editor({ user, postId, published }: Props) {
       form.set('content', JSON.stringify(content))
       form.set('excerpt', excerpt)
       form.set('categoryIds', JSON.stringify(categoryIds))
+      form.set('tagIds', JSON.stringify(tagIds))
       form.set('command', command)
       if (image) form.set('featuredImage', image)
 
@@ -119,6 +114,7 @@ export default function Editor({ user, postId, published }: Props) {
       form.set('content', JSON.stringify(content))
       form.set('excerpt', excerpt)
       form.set('categoryIds', JSON.stringify(categoryIds))
+      form.set('tagIds', JSON.stringify(tagIds))
       if (image) form.set('featuredImage', image)
 
       const result = await api.updatePublished(postId, form)
@@ -190,7 +186,9 @@ export default function Editor({ user, postId, published }: Props) {
           onExcerptChange={setExcerpt}
           categoryIds={categoryIds}
           onCategoryIdsChange={setCategoryIds}
-          allowedCategoryIds={allowed}
+          tagIds={tagIds}
+          onTagIdsChange={setTagIds}
+          canCreateTerms={canManageTerms(user)}
           currentImage={post?.featuredImage}
           onImageChange={setImage}
         />
@@ -229,6 +227,7 @@ export default function Editor({ user, postId, published }: Props) {
         title={title}
         content={content}
         categoryIds={categoryIds}
+        tagIds={tagIds}
         image={modalImageUrl ?? post?.featuredImage}
       />
 

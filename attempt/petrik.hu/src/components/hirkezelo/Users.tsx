@@ -3,29 +3,27 @@ import type { FormEvent } from 'react'
 import * as api from '../../lib/hirkezelo/api.ts'
 import { ApiError } from '../../lib/hirkezelo/api.ts'
 import type { AccountInput, ApiUser } from '../../lib/hirkezelo/api.ts'
-import { ROLE } from '../../../shared/pnw/types.ts'
-import type { Role } from '../../../shared/pnw/types.ts'
-import { ALL_ROLES, roleLabel } from '../../../shared/pnw/roles.ts'
-import { categories } from '../../../shared/pnw/categories.ts'
+import type { Capability } from '../../../shared/pnw/types.ts'
+import { ALL_CAPABILITIES, CAPABILITY_DESCRIPTION, CAPABILITY_LABEL } from '../../../shared/pnw/permissions.ts'
 
 const ERROR_MESSAGES: Record<string, string> = {
   missing_fields: 'A felhasználónév és a név kötelező.',
-  invalid_role: 'Érvénytelen szerepkör.',
   password_too_short: 'A jelszó legalább 8 karakter legyen.',
   username_taken: 'Ez a felhasználónév már foglalt.',
   cannot_delete_self: 'A saját fiókodat nem törölheted.',
-  last_manager: 'Ez az utolsó fiók, ami fiókokat kezelhet - előbb tégy jogot valaki másnak.',
+  last_manager: 'Ez az egyetlen fiók, ami fiókokat kezelhet - előbb adj valaki másnak "Fiókok kezelése" jogot.',
   not_found: 'A fiók már nem létezik.',
 }
 
 function emptyForm(): AccountInput {
-  return { username: '', displayName: '', role: ROLE.MK_LEADER, password: '', allowedCategoryIds: [] }
+  return { username: '', displayName: '', password: '', permissions: [] }
 }
 
 /**
  * Account management - no equivalent in the real plugin (wp-admin's own user
- * screen does this there). Added by user request; both deputy and director
- * get here (pnw_manage_users, shared/pnw/roles.ts). See AGENT.md 6.15.
+ * screen does this there). An account is a login plus a **set of
+ * permissions**; there are no roles to pick from (AGENT.md 6.16), so this
+ * form is where every capability is granted one by one.
  */
 export default function Users({ currentUserId }: { currentUserId: string }) {
   const [users, setUsers] = useState<ApiUser[] | null>(null)
@@ -59,9 +57,8 @@ export default function Users({ currentUserId }: { currentUserId: string }) {
     setForm({
       username: user.username ?? '',
       displayName: user.displayName,
-      role: user.role,
       password: '',
-      allowedCategoryIds: user.allowedCategoryIds ?? [],
+      permissions: user.permissions,
     })
     setEditingId(user.id)
     setCreating(false)
@@ -79,14 +76,10 @@ export default function Users({ currentUserId }: { currentUserId: string }) {
     setBusy(true)
     setError(null)
     try {
-      const input: AccountInput = {
-        ...form,
-        allowedCategoryIds: form.role === ROLE.MK_LEADER ? form.allowedCategoryIds : undefined,
-      }
       if (editingId) {
-        await api.updateAccount(editingId, input)
+        await api.updateAccount(editingId, form)
       } else {
-        await api.createAccount(input)
+        await api.createAccount(form)
       }
       await reload()
       cancelForm()
@@ -109,11 +102,12 @@ export default function Users({ currentUserId }: { currentUserId: string }) {
     }
   }
 
-  function toggleCategory(id: string, checked: boolean): void {
-    const current = form.allowedCategoryIds ?? []
+  function togglePermission(capability: Capability, checked: boolean): void {
     setForm({
       ...form,
-      allowedCategoryIds: checked ? [...current, id] : current.filter((existing) => existing !== id),
+      permissions: checked
+        ? [...form.permissions, capability]
+        : form.permissions.filter((existing) => existing !== capability),
     })
   }
 
@@ -125,7 +119,7 @@ export default function Users({ currentUserId }: { currentUserId: string }) {
         <div>
           <div className="pnw-kicker">Fiókok</div>
           <h3>Hírkezelő felhasználók</h3>
-          <p>Munkaközösség-vezetői, igazgatóhelyettesi és igazgatói fiókok létrehozása, módosítása, törlése.</p>
+          <p>Fiókok létrehozása, módosítása, törlése - és jogosultságonként az, hogy ki mit tehet.</p>
         </div>
         {!formOpen && (
           <button type="button" className="pnw-button" onClick={startCreate}>
@@ -179,41 +173,28 @@ export default function Users({ currentUserId }: { currentUserId: string }) {
             <small>Legalább 8 karakter.</small>
           </div>
 
-          <div className="pnw-field">
-            <label htmlFor="pnw-account-role">
-              Szerepkör <span>*</span>
-            </label>
-            <select
-              id="pnw-account-role"
-              value={form.role}
-              onChange={(event) => setForm({ ...form, role: event.target.value as Role })}
-            >
-              {ALL_ROLES.map((role) => (
-                <option key={role} value={role}>
-                  {roleLabel(role)}
-                </option>
+          <fieldset className="pnw-field pnw-category-field">
+            <legend>Jogosultságok</legend>
+            <small>
+              Jogosultság nélkül a fiók be tud jelentkezni, de egyetlen felületet sem ér el. Kategóriát és címkét
+              minden fiók használhat - külön jog csak újak létrehozásához kell.
+            </small>
+            <div className="pnw-permission-grid">
+              {ALL_CAPABILITIES.map((capability) => (
+                <label key={capability}>
+                  <input
+                    type="checkbox"
+                    checked={form.permissions.includes(capability)}
+                    onChange={(event) => togglePermission(capability, event.target.checked)}
+                  />
+                  <span>
+                    <strong>{CAPABILITY_LABEL[capability]}</strong>
+                    <small>{CAPABILITY_DESCRIPTION[capability]}</small>
+                  </span>
+                </label>
               ))}
-            </select>
-          </div>
-
-          {form.role === ROLE.MK_LEADER && (
-            <fieldset className="pnw-field pnw-category-field">
-              <legend>Engedélyezett hírkategóriák</legend>
-              <small>Ha egyet sem jelölsz be, minden kategória engedélyezett lesz.</small>
-              <div className="pnw-category-grid">
-                {categories.map((category) => (
-                  <label key={category.id}>
-                    <input
-                      type="checkbox"
-                      checked={(form.allowedCategoryIds ?? []).includes(category.id)}
-                      onChange={(event) => toggleCategory(category.id, event.target.checked)}
-                    />
-                    <span>{category.name}</span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
-          )}
+            </div>
+          </fieldset>
 
           <div className="pnw-form-actions">
             <button type="button" className="pnw-button pnw-button-secondary" onClick={cancelForm}>
@@ -236,8 +217,7 @@ export default function Users({ currentUserId }: { currentUserId: string }) {
                 <tr>
                   <th>Név</th>
                   <th>Felhasználónév</th>
-                  <th>Szerepkör</th>
-                  <th>Kategóriák</th>
+                  <th>Jogosultságok</th>
                   <th />
                 </tr>
               </thead>
@@ -249,13 +229,20 @@ export default function Users({ currentUserId }: { currentUserId: string }) {
                       {user.id === currentUserId && <small>(te)</small>}
                     </td>
                     <td>{user.username}</td>
-                    <td>{roleLabel(user.role)}</td>
                     <td>
-                      {user.role === ROLE.MK_LEADER
-                        ? (user.allowedCategoryIds?.length ?? 0) > 0
-                          ? user.allowedCategoryIds!.length
-                          : 'minden'
-                        : '—'}
+                      {user.permissions.length === 0 ? (
+                        <small>Nincs jogosultság</small>
+                      ) : (
+                        <div className="pnw-permission-chips">
+                          {ALL_CAPABILITIES.filter((capability) => user.permissions.includes(capability)).map(
+                            (capability) => (
+                              <span key={capability} className="pnw-permission-chip">
+                                {CAPABILITY_LABEL[capability]}
+                              </span>
+                            ),
+                          )}
+                        </div>
+                      )}
                     </td>
                     <td className="pnw-actions">
                       <button type="button" className="pnw-button pnw-button-small" onClick={() => startEdit(user)}>

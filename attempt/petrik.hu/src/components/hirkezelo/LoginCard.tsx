@@ -39,14 +39,16 @@ export default function LoginCard({ onLogin }: { onLogin: (login: string, passwo
     <section className="pnw-login-card">
       <div className="pnw-kicker">Petrik</div>
       <h2>Hírkezelő</h2>
-      <p>A felületet munkaközösség-vezetők, igazgatóhelyettesek és az igazgató használhatják.</p>
+      {/* Szerepkörök helyett jogosultságok (AGENT.md 6.16) - a felületet az
+          használhatja, akinek a fiókján be van kapcsolva legalább egy jog. */}
+      <p>A felületet azok használhatják, akiknek a fiókján van hírkezelési jogosultság.</p>
 
       <div className="pnw-login-hint">
         Ez egy demó bejelentkezés (nincs igazi WordPress mögötte) - próbáld ki bármelyikkel:
         <br />
-        <code>mk.vezeto</code> / <code>PetrikMK2026!</code> (munkaközösség-vezető) ·{' '}
-        <code>helyettes</code> / <code>PetrikHelyettes2026!</code> (igazgatóhelyettes) ·{' '}
-        <code>igazgato</code> / <code>PetrikIgazgato2026!</code> (igazgató)
+        <code>mk.vezeto</code> / <code>PetrikMK2026!</code> (hírbeküldés) ·{' '}
+        <code>helyettes</code> / <code>PetrikHelyettes2026!</code> (jóváhagyás, fiókok) ·{' '}
+        <code>igazgato</code> / <code>PetrikIgazgato2026!</code> (jóváhagyás, fiókok)
       </div>
 
       {error && <div className="pnw-notice pnw-notice-error pnw-login-error">{error}</div>}
