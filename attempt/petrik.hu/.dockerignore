@@ -1,0 +1,15 @@
+node_modules
+dist
+dist-ssr
+*.local
+
+# Runtime state, not source - see server/config.ts. Mounted as volumes by
+# docker-compose.yml instead, so it persists across image rebuilds.
+server/data/db
+server/uploads
+
+.git
+.vscode
+.idea
+*.log
+.env

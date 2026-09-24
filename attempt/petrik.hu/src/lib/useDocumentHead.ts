@@ -14,6 +14,14 @@ const SEARCH_TITLE = 'Keresés | petrik.hu'
 const NOT_FOUND_TITLE = 'Az oldal nem található | petrik.hu'
 
 /**
+ * /hirkezelo/ is not a mirrored page either - it never existed in the
+ * snapshot - but unlike search/404 it is a real tool with real (if only
+ * seeded-demo) accounts behind it, so it gets `noindex, nofollow` rather
+ * than no robots meta at all. See AGENT.md 6.15.
+ */
+const HIRKEZELO_TITLE = 'Hírkezelő | petrik.hu'
+
+/**
  * Sets or removes one <meta> in <head>, keyed by its name.
  *
  * Removing matters as much as setting: 25 of the mirror's routes carry a
@@ -72,6 +80,21 @@ export function useDocumentHead(): void {
       setCanonical(head.canonical ? window.location.origin + pathname : undefined)
       return
     }
+
+    if (pathname === '/hirkezelo/') {
+      document.title = HIRKEZELO_TITLE
+      setMeta('description', undefined)
+      setMeta('robots', 'noindex, nofollow')
+      setCanonical(undefined)
+      return
+    }
+
+    // A live post published through /hirkezelo/ - real content, but its
+    // title/etc. is dynamic data this static map can't know in advance.
+    // src/pages/PublishedPost.tsx sets document.title itself once it loads;
+    // this only has to not fight that by falling through to NOT_FOUND_TITLE
+    // below on every render before the fetch resolves.
+    if (pathname.startsWith('/hirek/')) return
 
     document.title = pathname === '/kereses/' ? SEARCH_TITLE : NOT_FOUND_TITLE
     setMeta('description', undefined)

@@ -42,6 +42,7 @@ export default function HomePage() {
                       columns={3}
                       align="left"
                       className="et_pb_with_border"
+                      includeLive
                       items={[
                       { slug: "szeptember-21-ei-nyilt-nap-a-petrikben", date: "2026 szept 11" },
                       { slug: "nyolcadikos-felveteli-elokeszito-foglalkozasok-a-2026-2027-tanevben", date: "2026 szept 08" },
@@ -60,6 +61,7 @@ export default function HomePage() {
                       columns={3}
                       align="left"
                       className="et_pb_with_border"
+                      includeLive
                       items={[
                       { slug: "kutatok-ejszakaja-a-petrikben", date: "2026 szept 15" },
                       { slug: "kodok-szuperhosok-es-urutazas-jon-az-idei-kodolas-hete-a-petrikben", date: "2026 szept 09" },

@@ -173,3 +173,23 @@
     opacity: 0;
   }
 }
+
+/* Mobile deviation --------------------------------------------------------
+ *
+ * Intentional deviation from the mirror (user request, see 6.14 in
+ * AGENT.md): below 980px #main-header is `sticky` and back in normal
+ * document flow (Header.css) instead of floating transparently over this
+ * slide, so the slide no longer needs to pad itself clear of it - and
+ * doing both at once would leave a double gap above the photo. `headerOffset`
+ * still writes its 116px inline for the desktop layout, so undoing it here
+ * needs `!important` to win against that inline style.
+ */
+@media (max-width: 980px) {
+  .et_pb_slide {
+    padding-top: 0 !important;
+  }
+
+  .et-pb-slider-arrows button {
+    margin-top: -24px !important;
+  }
+}

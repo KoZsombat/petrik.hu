@@ -1,6 +1,6 @@
 import { Fragment, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { posts } from '../../data/posts.ts'
+import { usePosts } from '../../lib/posts/postsContext.ts'
 import './PostCard.css'
 
 /**
@@ -28,8 +28,11 @@ type Props = {
  * reader can tell a page that is missing from one that was never captured.
  */
 export default function PostCard({ item, feedIndex, position }: Props) {
+  const { posts } = usePosts()
   const post = posts[item.slug]
-  const href = `/${post.slug}/`
+  // A live post (see AGENT.md 6.15) links to /hirek/<slug>/, not the mirrored
+  // top-level pattern - PostsContext carries that as an explicit `href`.
+  const href = post.href ?? `/${post.slug}/`
 
   const classes = [
     'et_pb_post',

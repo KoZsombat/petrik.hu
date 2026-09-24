@@ -4,6 +4,17 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    /**
+     * The only part of this static site with a backend: /hirkezelo/ talks to
+     * the Express server in server/ (`npm run server`, :4000). Proxying here
+     * keeps the browser on Vite's own origin, so no CORS setup is needed.
+     */
+    proxy: {
+      '/api': 'http://localhost:4000',
+      '/uploads': 'http://localhost:4000',
+    },
+  },
   build: {
     rollupOptions: {
       output: {

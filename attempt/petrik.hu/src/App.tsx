@@ -17,6 +17,8 @@ import Ebed from './pages/Ebed.tsx'
 import Egeszsegugy from './pages/Egeszsegugy.tsx'
 import Elerhetoseg from './pages/Elerhetoseg.tsx'
 import ErettsegiVizsga from './pages/ErettsegiVizsga.tsx'
+import Hirkezelo from './pages/Hirkezelo.tsx'
+import PublishedPost from './pages/PublishedPost.tsx'
 import HomePage from './pages/HomePage.tsx'
 import InMemoriam from './pages/InMemoriam.tsx'
 import InformatikaAgazat from './pages/InformatikaAgazat.tsx'
@@ -72,6 +74,14 @@ export default function App() {
         <Route path="/vegyipar_agazat/" element={<VegyiparAgazat />} />
         <Route path="/adatkezelesi-tajekoztato/" element={<AdatkezelesiTajekoztato />} />
         <Route path="/kereses/" element={<Search />} />
+
+        {/* Not a mirror page - a real, working re-implementation of the
+            Petrik News Workflow plugin, backed by server/. See AGENT.md 6.15. */}
+        <Route path="/hirkezelo/" element={<Hirkezelo />} />
+        {/* A post actually published through /hirkezelo/ - live data, not one
+            of the 129 mirrored pages. See AGENT.md 6.15 for why /hirek/ and
+            not a bare top-level slug. */}
+        <Route path="/hirek/:slug/" element={<PublishedPost />} />
 
         {/* The document library. The docs pages themselves are generated and
             wired up in src/routes/docsRoutes.tsx. */}

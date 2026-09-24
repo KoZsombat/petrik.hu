@@ -1,87 +1,63 @@
-# petrik.hu — port állapot és hátralévő feladatok
+# petrik.hu — port állapot és tudnivalók
 
 Ez a dokumentum egy folyamatban lévő munkát ír le: a `petrik.hu` WordPress-oldal
 statikus mentésének átültetését React + TypeScript + Vite projektbe.
 
-**Írta:** a Fázis 3–5 munkát végző ügynök, a következő ügynöknek.
-**Állapot ideje:** 2026-09-19. `npm run build`, `npm run lint` és
-`check-routes.ts` zöld, `check-text.ts` **129/129 oldalon karakterre azonos**,
-`check-titles.ts` **129/129 route-on a mentés saját címét** adja.
+**Ez az egyetlen átadás a következő ügynöknek.** Amit ide nem írsz le, az a
+következő kör számára nem létezik — vagy rosszabb, "megjavítja" azt, ami
+szándékos eltérés (6. szakasz).
 
-> **Hol tartunk egy mondatban:** a **Fázis 3, 4 és 5 kész**, és a mentés minden
-> nem-poszt oldala portolva van — **129 oldal**, plusz a `/kereses/`, aminek
-> nincs megfelelője a mentésben (a WP `?s=` keresését váltja ki), így 130 route.
-> A pixelmunka nagy része is megvan; ami maradt, az a főoldali `Gallery` és
-> néhány kis eltérés — lásd 8.2.
+**2026-09-24-i tisztítás:** ez a fájl 1393 sorról erre a méretre rövidült. A
+történeti "hogyan jöttem rá" elbeszélések (mérési számok, próbálkozás-sorrend)
+kikerültek; ami megmaradt, az minden döntés, szabály, szándékos eltérés és
+tanulság, ami még **most is** befolyásolja, mit szabad és mit nem szabad
+csinálni. Ha egy részlet innen hiányzik, az `git log`/`git blame` még mindig
+megvan — ezt a fájlt működési kézikönyvnek szánjuk, nem naplónak.
 
----
+## Frissítsd ezt a fájlt minden változtatás után
 
-## Ezt a fájlt minden változtatás után frissíteni kell
+Amit egy kör után frissíts:
+- ha egy 8.2-es tétel elkészült vagy kiderült, hogy a premisszája téves volt,
+- egy **rövid** (3-8 soros) bejegyzés a 4. szakaszban minden **nem nyilvánvaló**
+  hibáról: mi volt az ok, és mi a **tanulság** — ne a teljes nyomozást írd le,
+  csak amit a következő ügynöknek tudnia kell,
+- a 6. szakasz, ha új *szándékos* eltérés keletkezett,
+- a 7. szakasz, ha új csapdába futottál bele.
 
-**Ez nem opcionális, és nem a munka végén esedékes.** Ez a dokumentum az
-egyetlen átadás a következő ügynöknek: ha egy javítás nincs benne leírva, a
-következő kör újra megtalálja ugyanazt a hibát, vagy — rosszabb — „megjavítja"
-azt, ami szándékos eltérés.
-
-Amit minden kör után frissíts:
-
-- a **fenti státuszsor** (dátum + a zöld ellenőrzések),
-- a **„Mi van még hátra"** lista, ha valami elkészült vagy kiderült róla, hogy
-  a premisszája téves volt,
-- egy **új `4.x` alszakasz** minden megtalált hibáról: mi a tünet, mi volt az
-  *ok*, és **hogyan derült ki** — az utolsó a legértékesebb,
-- a **6. szakasz**, ha új *szándékos* eltérés keletkezett,
-- a **7. szakasz**, ha új csapdába futottál bele.
-
-Ha egy javítás közben kiderül, hogy az itt leírt szám vagy állítás **téves**,
-azt javítsd ki, ne írj mellé egy másodikat. Ebben a körben például a 4. pont azt
-állította, hogy hiányoznak az Open Graph tagek — a mentésben **egy sincs**,
-tehát nem hiányoznak, lásd 4.23.
+Ha kiderül, hogy egy itt leírt állítás **téves**, javítsd ki a helyén — ne írj
+mellé egy másodikat (lásd 4.23, ahol ez korábban megtörtént).
 
 ---
 
-## Mi van még hátra — röviden, a felhasználónak
+## Aktuális állapot
 
-A port **működik és kész**: mind a 129 mentett oldal renderelődik, mindegyik a
-saját címével, metaadataival és a valódi favicont mutatva, a szövegük
-**karakterre azonos** a mentéssel, és a **kezdőlap minden szekciója 0,0px**-re
-egyezik. Ami maradt, három tétel:
+A port **működik és kész**: mind a 129 mentett route renderelődik, saját
+címmel, metaadattal és favicon-nal, a szövegük **karakterre azonos** a
+mentéssel (`check-text.ts`, utoljára ellenőrizve 2026-09-19), és a kezdőlap
+minden szekciója **0,0px**-re egyezik. `npm run build`, `npm run lint`,
+`check-routes.ts` és `check-titles.ts` ugyanekkor zöld volt.
 
-1. **A 252 blogposzt nincs portolva** (a felhasználó szerint nem érdekes). A
-   kártyáik látszanak, de nem kattinthatók, és jelzik, hogy nincsenek a
-   mentésben. Egy poszt (`/kutatok-ejszakaja-a-petrikben/`) mintaként be van
-   kötve, tehát a sablon kész — ha kellenek, a `walk.ts` `post` ága végigfut
-   rajtuk.
+**Hátralévő 3 tétel** (részletek: 8. szakasz):
+1. A 252 (nem mintaként bekötött) blogposzt nincs portolva — placeholder
+   kártyák, felhasználói döntés.
+2. A 128 nem-kezdőlap oldal pixelellenőrzése nincs végigmérve szekciónként
+   (a kezdőlap, a klasszikus oldal, a docs és az archívumok igen).
+3. `public/media` 271 MB — nincs eldöntve, bemegy-e a gitbe.
 
-2. **A többi 128 oldal pixelellenőrzése.** A kezdőlap és a klasszikus oldal
-   végig van mérve, a docs és az archívumok korábban; a maradékot még senki nem
-   nézte végig szekcióról szekcióra. A módszer a 8.2-ben van leírva, és ebben a
-   körben **öt hibát fogott ki a kezdőlapon egymás után** — tehát érdemes.
+**2026-09-24: mobil fejléc-munka** (részletek: 4.24, 6.14) — a fejléc mobilon
+`position: sticky`, szándékos eltérés a mentéstől (felhasználói kérés). Ez a
+munka **nem** CSS-only volt vakon: a mentés ezen a gépen elérhető
+(`MIRROR_ROOT`, lásd lent), és Playwright-tal ellenőrizve lett, de a 8.2-es
+geometriai táblázat **nem lett újramérve** ez után — ha valaki a mobil
+nézetet auditálja, ezt vegye figyelembe.
 
-3. **A `public/media` 271 MB.** Erről kell egy döntés: bemegy a gitbe, vagy
-   `.gitignore`-ba kerül és a `copy-assets.ts` állítja elő. Eddig a „másoljuk be
-   mindet" opciót választottad, de a repóba még nincs commitolva semmi.
-
-**Ami lekerült a listáról, és miért:**
-
-- *A főoldali galéria* (volt 1. pont, −132,7px) **kész**, 0,0px — lásd 4.21.
-- *A három apró pixel-eltérés* (volt 2. pont) **kész**, és útközben még öt
-  másik is előkerült ugyanott — lásd 4.21 és 4.22.
-- *A fejléc metaadatai* (volt 4. pont) **kész**, de a pont premisszája részben
-  téves volt: a mentésben **egyetlen** Open Graph vagy Twitter tag sincs, és
-  leírás is csak a kezdőlapon van. Ami tényleg ott van, az át lett véve — lásd
-  4.23.
-
-**Amit tudatosan nem csinálunk meg**, és ne „javítsd meg" egyeztetés nélkül: az
-`Örökös Ökoiskola` logó a kezdőlapról. A mentésben a helye ott van (két üres
-oszlop, `et_pb_image_8` és `_9`), a CSS-ük és az animációs adatuk is megvan, de
-**sem a markupjuk, sem a képfájljuk nincs a mentésben** — a crawler nem hozta
-el őket. A port pontosan azt mutatja, amit a mentés: két üres oszlopot. Ha a
-felhasználó előkeríti a képfájlt, két `Image` modul kell a 14. és 15. oszlopba.
-
-Nem hiba, csak tudni érdemes: a `/hirkezelo/` szándékosan kimaradt, a JS-bundle
-1,0 MB nyersen (≈228 KB gzip), és a mentéshez képest több helyen **szándékosan
-eltérünk**, mert a mentés maga törött — ezek a 6. szakaszban vannak felsorolva.
+**2026-09-24: `/hirkezelo/` valódi funkció lett** (részletek: 6.15) — a
+Petrik News Workflow WordPress plugin újraimplementációja, saját Express
+backenddel (`server/`). **Ez az egyetlen rész a repóban, ami nem a mentés
+portja**, és az egyetlen, aminek futó Node-folyamat kell (`npm run server`)
+— minden más route továbbra is tisztán statikus. Playwright-tal
+végigvitt teljes workflow-val ellenőrizve (beküldés → jóváhagyás/
+visszaküldés → javítás → újraküldés, mindhárom demó szerepkörrel).
 
 ---
 
@@ -89,13 +65,13 @@ eltérünk**, mert a mentés maga törött — ezek a 6. szakaszban vannak felso
 
 ### A mentés helye
 
-```
-C:\Users\kovac\Downloads\scrape\mirror\petrik.hu\petrik.hu
-```
-
-**Nem** a repo gyökerében van, hanem egy szinttel feljebb. Egyetlen helyen van
-leírva: `scripts/mirror.ts` → `MIRROR_ROOT`. Ha a mentés elmozdul, csak ezt kell
-átírni.
+A `scripts/mirror.ts` `MIRROR_ROOT` konstansa a forrás: jelenleg
+`<repo>/../../mirror/petrik.hu/petrik.hu`, egy szinttel a repo gyökere fölött.
+**Ez gépfüggő** — ezen a gépen (macOS, `zsombor`) ez ténylegesen
+`/Users/zsombor/Documents/school/petrik.hu/mirror/petrik.hu/petrik.hu`, és
+létezik is (ellenőrizve 2026-09-24). Ne írj be ide konkrét elérési utat
+szó szerint máshova: mindig a konstansból indulj ki, és ha a mentés hiányzik,
+ellenőrizd a konstanst, mielőtt feltételeznéd, hogy nincs mentés.
 
 A mentés WordPress + **Divi 4.27** téma + **BetterDocs** plugin.
 
@@ -103,7 +79,7 @@ A mentés WordPress + **Divi 4.27** téma + **BetterDocs** plugin.
 |---|---|---|
 | Oldal (`body.page`) | 25 (home-mal) | **kész** |
 | Klasszikus WP-oldal (nincs Divi-fa) | 1 (`adatkezelesi-tajekoztato`) | **kész** |
-| Bejelentkezési űrlap (`hirkezelo`) | 1 | **kimarad** (felhasználói döntés) |
+| Bejelentkezési űrlap (`hirkezelo`) | 1 | **lecserélve** — valódi, Express-backendes újraimplementáció, lásd 6.15 |
 | Docs oldal (`docs/*`) | 27 | **kész** |
 | `dokumentumtar` | 1 | **kész** |
 | Doc-kategória (`dokumentum-kategoria/*`) | 10 | **kész** |
@@ -117,14 +93,18 @@ A mentés WordPress + **Divi 4.27** téma + **BetterDocs** plugin.
   A többi 252 a listákban placeholder kártyaként jelenik meg, link nélkül.
 - **Az archívumok benne vannak** a scope-ban, **valódi lapozó route-okkal**
   (`/kategoria/hirek/page/2/`), a mentés oldalméretével.
-- **A `/hirkezelo/` kimarad** — nincs route, a menüben placeholder marad.
+- **A `/hirkezelo/` mostantól valódi funkció** — nem a mentés portja, hanem a
+  Petrik News Workflow WordPress plugin újraimplementációja, saját Express
+  backenddel (`server/`), felhasználói kérésre. Nincs menüpont rá, ahogy az
+  eredeti pluginnak sincs — csak közvetlen URL-lel érhető el. Lásd 6.15.
 - **A 2 jelszóvédett docs oldal megkapja a keretet**, a tartalom helyén jelzéssel.
 - **A `/dokumentum-kategoria/` 10 oldala benne van** a scope-ban.
 - **A `/dokumentumtar/` rácsa sorrendhű** (nem pakolás-hű), lásd 6.5.
 - **A docs kereső működő React-szűrő** a 27 dokumentum címére.
 - **A PDF-ek a `public/`-ba kerülnek**, az eredeti `wp-content/uploads/...`
   útvonalat megtartva.
-- **A cél a lehető legpixelpontosabb** egyezés az eredetivel.
+- **A cél a lehető legpixelpontosabb** egyezés az eredetivel — kivéve, ahol a
+  felhasználó kifejezetten mást kért (6. szakasz).
 - **Oldalanként külön `.tsx` fájl**; ami több helyen kell, megosztott komponens.
 - Új npm dependency **csak a felhasználó jóváhagyásával**. Eddig egy van:
   `node-html-parser` (devDependency, csak a `scripts/` használja).
@@ -133,15 +113,15 @@ A mentés WordPress + **Divi 4.27** téma + **BetterDocs** plugin.
 
 - WordPress-szemét nem kerül át: jQuery, `wp-embed`, `wp-emoji`, `admin-ajax`,
   inline WP script blokkok, Divi/plugin JS. Helyettük React-megoldás.
-  **Pontosítás (felhasználói döntés):** ez a *kódra* vonatkozik, nem a
-  *helyfoglalásra*. Két plugin-widget markupja átkerül — inertként, `href`
-  nélkül —, mert eldobva valódi elrendezés-eltolást okoztak. Lásd 6.9.
+  **Pontosítás:** ez a *kódra* vonatkozik, nem a *helyfoglalásra* — két
+  plugin-widget markupja átkerül inertként, `href` nélkül, mert eldobva
+  valódi elrendezés-eltolást okoztak. Lásd 6.9.
 - **Nincs `dangerouslySetInnerHTML`.** A tartalom strukturált adatból vagy
-  közvetlen JSX-ből renderelődik. Ez jelenleg **sehol nincs megszegve**.
+  közvetlen JSX-ből renderelődik.
 - A CSS-t nem egy blokkban másoljuk: csak a szükséges szabályokat, a projekt
   styling-megoldásához illesztve (komponens melletti sima `.css` fájl).
 - A törött linkekre nem generálunk route-ot; placeholder kerül a helyükre.
-- **Ne találj ki CSS-szabályt.** Erre most már eszköz is van, lásd 3.3.
+- **Ne találj ki CSS-szabályt.** Eszköz van rá, lásd 3.3.
 
 ---
 
@@ -166,18 +146,19 @@ scripts/            fejlesztői eszközök, sosem kerülnek a bundle-be
   walk.ts           a bejáró: négy oldalforma → TSX
   generate.ts       mind az 53 oldal újragenerálása (ezt hívd)
   page-css.ts       az oldal Divi design-stíluslapjának kinyerése + scope-olása
-  docs.ts           a BetterDocs index → src/data/docs.ts            [ÚJ]
-  archives.ts       a 64 archívum → src/data/archives.ts             [ÚJ]
-  collect-css.ts    stíluslap építése a ténylegesen illeszkedő szabályokból [ÚJ]
+  docs.ts           a BetterDocs index → src/data/docs.ts
+  archives.ts       a 64 archívum → src/data/archives.ts
+  collect-css.ts    stíluslap építése a ténylegesen illeszkedő szabályokból
   posts.ts          poszt-összefoglalók gyűjtése → src/data/posts.ts
   fonts.ts          Google-fontok kinyerése → public/fonts + src/styles/fonts.css
   copy-assets.ts    képek/PDF-ek másolása → public/media
   measure.ts        geometria-összehasonlítás CDP-n át
-  matched-css.ts    egy elemre ténylegesen illeszkedő szabályok        [ÚJ]
-  css-rules.ts      szabályok kiszedése egy stíluslapból szelektor szerint [ÚJ]
+  matched-css.ts    egy elemre ténylegesen illeszkedő szabályok
+  css-rules.ts      szabályok kiszedése egy stíluslapból szelektor szerint
   check-text.ts     renderelt szöveg összehasonlítása
-  check-routes.ts   route-tábla és oldalkomponensek egyezése           [ÚJ]
-  layout-report.ts  oldalankénti legnagyobb eltérés a mentéshez        [ÚJ]
+  check-head.ts     cím/leírás/robots/canonical összehasonlítása
+  check-routes.ts   route-tábla és oldalkomponensek egyezése
+  layout-report.ts  oldalankénti legnagyobb eltérés a mentéshez (lásd 8.2 korlátja)
   shot.ts           screenshot pontos viewport-szélességen
 
 src/
@@ -197,6 +178,12 @@ src/
   routes/           docsRoutes.tsx — a 27 docs route
   styles/           divi-layout.css (rács), sidebar-layout.css (kétoszlopos
                     keret, generált), fonts.css (generált)
+
+server/             a /hirkezelo/ Express backendje — NEM a mentés portja,
+                    lásd 6.15. `node --experimental-strip-types server/index.ts`
+                    indítja, ugyanúgy, mint a scripts/*.ts-eket.
+shared/pnw/         típusok/szerepkörök/állapotok/kategórialista, amit a
+                    src/ (Vite) ÉS a server/ (Node) is importál — lásd 6.15.
 ```
 
 ### Generálás
@@ -209,8 +196,7 @@ Ez újraírja mind az 53 oldal `.tsx` és `.css` fájlját a mentésből. **A
 `src/pages/` alatti fájlokat ne szerkeszd kézzel** — a következő generálás
 felülírja őket. Ha egy oldal rosszul néz ki, a `scripts/walk.ts`-t javítsd.
 
-Komponensnevekkel szűkíthető, ha egy modul változott és nem akarod, hogy 53
-fájl átírása eltemesse azt az egyet, ami mozdult:
+Komponensnevekkel szűkíthető:
 
 ```bash
 node --experimental-strip-types scripts/generate.ts HomePage
@@ -243,23 +229,19 @@ node --experimental-strip-types scripts/collect-css.ts share    # → SharedCoun
 node --experimental-strip-types scripts/collect-css.ts slider   # → HeroSlider.css
 ```
 
-Mindegyik preset megmondja, **mely oldalakat járja be, mit tart meg, és hová ír**;
-a `scripts/collect-css.ts` tetején vannak. A `gallery` preset ki van kommentezve,
-lásd 8.2.
-
-Mindhárom **ellenőrzi magát** és nem nulla kilépési kóddal áll meg, ha a mentés
-ellentmond a feltevéseinek (pl. két archívum más dátumot ír ugyanarra a posztra).
-Ha ez bejön, **a terv rossz** — ne írd felül az egyiket, hanem szólj.
+Mindegyik preset megmondja, mely oldalakat járja be, mit tart meg, és hová ír
+(`scripts/collect-css.ts` teteje). A `gallery` preset ki van kommentezve,
+lásd 8.2. Mindhárom **ellenőrzi magát**, és nem nulla kilépési kóddal áll meg,
+ha a mentés ellentmond a feltevéseinek — ha ez bejön, **a terv rossz**, ne
+írd felül, hanem szólj.
 
 Egy oldal önmagában:
 ```bash
 node --experimental-strip-types scripts/walk.ts <mirror-könyvtár> [--report]
-node --experimental-strip-types scripts/walk.ts home --report
 ```
-A `--report` kiírja az oldal fajtáját, a szekciók számát, a használt
-komponenseket, a **tudatosan eldobott** részeket, és az ismeretlen modulokat
-`UNHANDLED`-ként — **sosem hagyja ki némán**. Jelenleg egyetlen oldalon sincs
-`UNHANDLED`.
+A `--report` kiírja az oldal fajtáját, a komponenseket, a **tudatosan
+eldobott** részeket, és `UNHANDLED`-ként az ismeretlen modulokat — sosem hagy
+ki semmit némán. Jelenleg egyetlen oldalon sincs `UNHANDLED`.
 
 ---
 
@@ -272,30 +254,26 @@ npm run dev                                    # :5173
 cd <MIRROR_ROOT> && python -m http.server 8899 # :8899
 ```
 
+**Ne futtass két ellenőrzést egyszerre** — közös böngészőt hajtanak, és az
+eredmények **hibátlan futással, de hamis számokkal** keverednek össze (pl. a
+`home` 7908 karakter, ha 1443-at kapsz, egy másik oldal töltődött be helyette;
+állítsd le mindkettőt, indíts egyet). Portok: measure 9333, check-text 9388,
+shot 9366, collect-css 9355, matched-css 9377, layout-report 9344.
+
 ### 3.1 Szöveghűség
 
 ```bash
 node --experimental-strip-types scripts/check-text.ts [oldal ...]
-node --experimental-strip-types scripts/check-text.ts --only=docs
+node --experimental-strip-types scripts/check-text.ts --only=<builder|classic|docs|post|archive|taxonomy>
 ```
 
-Blokkonként hasonlítja a renderelt szöveget a mentéshez. **Jelenleg 129/129
-oldal karakterre azonos.** Ez a legerősebb védőháló.
+Blokkonként hasonlítja a renderelt szöveget a mentéshez — **a legerősebb
+védőháló**. Teljes futás ~7 perc. Az archívumok URL-je egybeesik a mentés
+könyvtáraival, leképezés nélkül ellenőrizhetők.
 
-A `--only=<kind>` szűkít (`builder`, `classic`, `docs`, `post`, `archive`, `taxonomy`) —
-teljes futás 129 oldalon ~7 perc. Az archívumok nincsenek a `PAGES`-ben (mind a
-64-et egy komponens rendereli), de az URL-jeik egybeesnek a mentés könyvtáraival,
-ezért leképezés nélkül ellenőrizhetők.
-
-Szándékosan kizárt elemek (mindkét oldalon), a `check-text.ts` `IGNORED`
-listája szerint: ikonfont-glyph-ek, az `.et_overlay`, a „bővebben" link vs. a
-placeholder-jelzés, a lapozó, a kereső spinnere, az olvasásiidő-ikon, és a két
-jelszóvédett dokumentum (a mentés a WP bejelentkező űrlapját mutatja, a port egy
-jelzést — egyik sem maga a dokumentum).
-
-A BetterDocs reakció-lábléc és a poszt megosztás-sávja **már nincs kizárva**:
-azóta inertként renderelődnek (lásd 6.9), tehát összehasonlíthatók, és
-egyeznek is.
+Szándékosan kizárt (mindkét oldalon, `check-text.ts` `IGNORED` listája):
+ikonfont-glyphek, `.et_overlay`, "bővebben" link vs. placeholder-jelzés,
+lapozó, kereső spinner, olvasásiidő-ikon, a 2 jelszóvédett dokumentum.
 
 ### 3.1b A dokumentum fejléce
 
@@ -303,10 +281,9 @@ egyeznek is.
 node --experimental-strip-types scripts/check-head.ts
 ```
 
-Mind a 129 route címét, leírását, robots metáját és a canonical **meglétét**
-veti össze a mentésével. **Böngészőt hajt** (mindezt effect állítja be, a
-kiszolgált HTML-ben még nincs benne), tehát a 3.1-es szabály áll rá is: **ne
-fusson más ellenőrzéssel egyszerre.**
+Cím, leírás, robots meta, canonical **meglétét** veti össze. Böngészőt hajt
+(effect állítja be, nincs benne a kiszolgált HTML-ben) — **ne fusson más
+ellenőrzéssel egyszerre.**
 
 ### 3.2 Geometria
 
@@ -314,871 +291,689 @@ fusson más ellenőrzéssel egyszerre.**
 node --experimental-strip-types scripts/measure.ts "<css-szelektor>" <urlA> <urlB> [szélesség]
 ```
 
-Elemenként összeveti a pozíciót és a méretet. **Ha a két oldalon nem ugyanannyi
-elem van, nem diffel, hanem szól.**
+Elemenként összeveti a pozíciót és a méretet. Ha a két oldalon nem ugyanannyi
+elem van, **nem diffel, hanem szól**.
 
-### 3.3 „Honnan jön ez a szabály?" — ÚJ, ezt használd CSS-hez
+### 3.3 "Honnan jön ez a szabály?" — ezt használd CSS-hez
 
 ```bash
 node --experimental-strip-types scripts/matched-css.ts <url> "<szelektor>" [szélesség]
 ```
 
-Megkérdezi a böngészőt (`CSS.getMatchedStylesForNode`), hogy egy elemre
-**ténylegesen** mely szabályok illeszkednek, kaszkád-sorrendben, a legyengébbtől.
+Megkérdezi a böngészőt (`CSS.getMatchedStylesForNode`), mely szabályok
+illeszkednek **ténylegesen** egy elemre, kaszkád-sorrendben. Csak
+`matchedCSSRules`-t ír ki — a `::before`/`::after` a `pseudoElements` ágban
+van, ezt a szkript (2026-09-24-ig) nem nézi, kézzel kell hozzáférni a CDP
+válaszból, ha pszeudoelem-szabály kell.
 
-**Korlátja, és ez a `collect-css.ts`-re is áll:** csak az elem *aktuális*
-állapotára illeszkedő szabályokat adja vissza, tehát `:hover`, `:focus` és
-társaik **sosem** kerülnek bele. Ha egy interaktív viselkedés hiányzik a
-portból, ez az első hely, ahol keresd — lásd 4.18(d).
-
-**A második korlát ennél is fontosabb:** amit a Divi/plugin JS-e `.animate()`-tel
-vagy inline stílussal csinált, ahhoz **egyáltalán nincs szabály**, amit be
-lehetne gyűjteni. Ilyenkor a mentés HTML-je sem segít, mert az a *nyugalmi*
-állapotot rögzíti. A forrás ilyenkor maga a script:
-`wp-content/themes/Divi/js/scripts.min.js@ver=4.27.8`. Olvasható formába hozva:
-
-```bash
-python -c "import re,sys; s=open(sys.argv[1],encoding='utf8',errors='ignore').read(); i=s.find(sys.argv[2]); print(re.sub(r'(,|;|\{|\})', lambda m: m.group(0)+chr(10), s[i:i+1500]))" <script> <keresett-token>
-```
-
-Így került elő a csúszka `fade_speed: 700`-a és a keresztúsztatás pontos
-sorrendje (4.18(e)).
-Ez a helyes válasz az AGENT.md „ne találj ki CSS-szabályt" szabályára: a plugin
-minified lapjai 180 KB-osak és **nyolc alternatív elrendezést** tartalmaznak,
-amiknek a szelektorai hihetőnek látszanak, de sosem illeszkednek erre a markupra.
-Grep-pel ezt nem lehet eldönteni.
+**Két korlátja** (ugyanez `collect-css.ts`-re is áll):
+1. Csak az elem *aktuális* állapotára illeszkedő szabályokat adja vissza —
+   `:hover`, `:focus` **sosem** kerül bele (lásd 4.18d).
+2. Amit a Divi/plugin JS-e `.animate()`-tel vagy inline stílussal csinált,
+   ahhoz **nincs szabály**, amit be lehetne gyűjteni — a mentés HTML-je is
+   csak a nyugalmi állapotot rögzíti. A forrás ilyenkor maga a script
+   (`wp-content/themes/Divi/js/scripts.min.js@ver=4.27.8`), olvasható
+   formában:
+   ```bash
+   python -c "import re,sys; s=open(sys.argv[1],encoding='utf8',errors='ignore').read(); i=s.find(sys.argv[2]); print(re.sub(r'(,|;|\{|\})', lambda m: m.group(0)+chr(10), s[i:i+1500]))" <script> <keresett-token>
+   ```
+   Grep-pel ez nem eldönthető: a plugin minified lapjai 180 KB-osak, nyolc
+   hihető, de sosem illeszkedő alternatív elrendezéssel.
 
 ```bash
 node --experimental-strip-types scripts/css-rules.ts <css-fájl> <token> [token ...]
 ```
-Egy konkrét stíluslapból szedi ki a tokenre illeszkedő szabályokat, a `@media`
-kontextust megtartva. Akkor jó, ha már tudod, melyik lapot nézed.
+Egy konkrét stíluslapból szedi ki a tokenre illeszkedő szabályokat, `@media`
+kontextussal — akkor jó, ha már tudod, melyik lapot nézed.
 
 ---
 
-## 4. Amit ebben a körben találtam és javítottam — **olvasd el**
+## 4. Amit korábbi körökben találtunk — tanulságok, tömörítve
 
-Ezek nem kozmetikai javítások: mindegyik **csendes tartalom- vagy
-stílusvesztés** volt, és több oldalt érintett.
+Ezek nem kozmetikai javítások voltak: mindegyik csendes tartalom- vagy
+stílusvesztést okozott. A teljes nyomozás a git történetben van; itt csak az
+ok és a tanulság.
 
-### 4.1 `blockJsx` eldobta a szöveget az inline elemek között
+**4.1** — `blockJsx` csak az **elem**-gyerekeket térképezte, a köztük lévő
+szövegcsomókat nem: egy `<div><strong>X</strong> szöveg…</div>`-ből csak a
+`<strong>` maradt meg. Javítva: a div csak akkor lapul ki, ha tényleg csak
+blokk-gyerekei vannak.
 
-A `<div>`-ág csak az **elem**-gyerekeket térképezte, a köztük lévő szövegcsomókat
-nem. Egy Outlookból bemásolt bekezdésből (`<div><strong>X</strong> hosszú szöveg…</div>`)
-**csak a `<strong>` maradt meg**, a mondat többi része eltűnt. A
-`docs/petrik-alapitvany` oldalon ~1400 karakter hiányzott.
+**4.2** — A bejáró `<div>`-ekből `<p>`-t csinált; a Divi `<p>`-nek alsó margója
+van, ez 112px-szel tolta el az oldalt 8 wrappernél. Most `<div>` marad, az
+inline `text-align` megőrizve.
 
-Javítva: a div csak akkor lapul ki, ha tényleg blokk-gyerekei vannak; különben
-bekezdésként renderelődik.
+**4.3** — A `page-css.ts` a `.page-<slug>` scope-ot a külső ősök **elé** tette
+(`.page-home body …` sosem illeszkedik), ez némán ölt meg 83 Divi-szabályt
+(kezdőlapi gombok, docs kép-szélesség). Javítva: `OUTER` lista (`html`,
+`body`, `.et-db`, `.et_divi_theme`, `#page-container`, `#et-main-area`) — a
+scope ezek **után** kerül be.
 
-### 4.2 A `<div>`-ekből `<p>` lett, és a `<p>` margója eltolta az oldalt
+**4.4** — `rewriteUrl(url, depth)` fix mélységet feltételez, ezért törött egy
+docs-alkönyvtár testvér-linkjén. Új `resolveUrl(url, fromDir)` valódi
+útvonal-feloldással; a régi a meglévő (helyes) hívóknak megmaradt.
 
-A bemásolt tartalom `<div>`-jeit a bejáró `<p>`-vé alakította. A Divi `<p>`-nek
-alsó margót ad → nyolc ilyen wrapper **112px-szel** tolta el az oldalt. Most
-`<div>` marad, a `text-align` inline stílusa megőrizve.
+**4.5** — A JSX eldob egy whitespace-futamot, ha az sortörést tartalmaz — a
+mentés `<a>A</a><br />\n<a>B</a>`-jában ez valódi szóköz. `extract.ts` most
+`{' '}`-ot bocsát ki, ahol a mentésben elemek között whitespace van (ugyanezt
+teszi kézzel a `Header.tsx`, lásd 7.5).
 
-### 4.3 A scope-olás megölt 83 Divi-szabályt
+**4.6** — `copy-assets.ts` asset-regexe csak `src`/`href`-et illesztett, egy
+Gutenberg fájl-blokk `<object data="…pdf">`-ját nem másolta. `data` hozzáadva.
 
-A `page-css.ts` minden szelektor elé betette a `.page-<slug>` osztályt. A Divi
-viszont a dokumentum gyökerétől ír szelektort:
-
-```
-body #page-container .et_pb_section .et_pb_button_0   → 54 szabály
-.et-db #et-boc .et-l .et_pb_image_0                   → 29 szabály
-```
-
-`.page-home body …` egy `<body>`-t keres **az oldalon belül** — ilyen nincs, a
-szabály **sosem illeszkedett**. A főoldal gombjainak színe, kerete és ikonja
-emiatt hónapok óta halott volt, a docs képek `width: 10%`-a szintén.
-
-Javítva: a scope a **külső ősök után** kerül be (`OUTER` lista a `page-css.ts`-ben:
-`html`, `body`, `.et-db`, `.et_divi_theme`, `#page-container`, `#et-main-area`),
-és az `index.html` `<body>`-ja megkapta a mentés `et-db et_divi_theme` osztályait.
-
-> **Figyelem:** ez az AGENT.md korábbi §4 pixel-táblázatát **érvénytelenítette**.
-> A számokat újra kell mérni, mert most olyan szabályok is élnek, amik addig nem.
-
-### 4.4 `rewriteUrl` rossz mélységben
-
-A `rewriteUrl(url, depth)` fix számú `../`-t vág le. Ez a legfelső szintű
-oldalakra jó, de egy `docs/` alatti oldal testvér-linkje csak **egy** `../`-t
-hordoz, miközben az oldal két szinttel lejjebb van — így a `docs/` prefix elveszett
-(`/dualis-kepzes-tajekoztato/` a `/docs/dualis-kepzes-tajekoztato/` helyett).
-
-Javítva: új `resolveUrl(url, fromDir)` az `extract.ts`-ben, ami valódi
-útvonal-feloldást végez. **Az új scriptek ezt használják**, a `rewriteUrl` a
-meglévő hívóknak változatlan maradt (így a 24 zöld oldal nem mozdult).
-
-### 4.5 A JSX elnyelte a whitespace-t az elemek között
-
-A mentésben `<a>A</a><br />\n<a>B</a>` — a sortörés valódi szóköz. A JSX minden
-olyan whitespace-futamot eldob, ami sortörést tartalmaz. Javítva: az `extract.ts`
-`{' '}`-ot bocsát ki oda, ahol a mentésben két elem között whitespace-csomó van.
-(Ugyanaz a fogás, amit a `Header.tsx` használ — lásd 7.5.)
-
-### 4.6 `copy-assets.ts` nem látta az `<object data="…pdf">`-et
-
-Az `ASSET_RE` csak `src|href`-et illesztett, így a Gutenberg fájl-blokk PDF-je
-sosem másolódott át. Javítva: `data` is benne van.
-
-### 4.7 A body-osztályok valódi elrendezést vezérelnek
-
-A téma nem dísznek tette ki a `<body>`-ra a `single-post`, `archive`,
-`et_right_sidebar`, `et_pb_pagebuilder_layout` osztályokat — **szabályokat köt
-rájuk**. Például:
-
-```css
-.et_pb_pagebuilder_layout.single-post:not(.et-tb-has-body) #main-content .et_pb_row {
-  width: 100%;
-}
-```
-
-Enélkül a poszt Divi-sora a generikus 80%-ot kapja, és **159px-szel keskenyebb**
-lesz. Egy SPA-nak egy `<body>`-ja van, ezért a `src/lib/useBodyClass.ts` teszi
-fel és le őket route-váltáskor. A `walk.ts` a **mentés tényleges body-osztályait**
-adja ki a poszthoz (a `bodyClasses()` helper), kiszűrve a site-szintűeket
-(`et-db`, `et_divi_theme` — ezek az `index.html`-ben vannak) és a crawler
-gépéről beragadt `linux`/`windows`/`chrome` tokeneket.
-
+**4.7** — A body-osztályok (`single-post`, `archive`, `et_right_sidebar`,
+`et_pb_pagebuilder_layout`, …) **valódi elrendezési szabályokat** kötnek meg,
+nem díszek — pl. e nélkül egy poszt Divi-sora 159px-szel keskenyebb. A
+`useBodyClass.ts` teszi fel/le őket route-váltáskor, a mentés tényleges
+osztályaiból (`walk.ts` `bodyClasses()`, site-szintűek nélkül).
 **Ha egy elrendezési szabály nem érvényesül, ezt nézd meg először.**
 
-### 4.8 A kétoszlopos keret közös — és egyszer már elvesztettem
+**4.8** — A kétoszlopos keret (`#left-area`/`#sidebar`) **4 oldalcsalád**
+között közös (klasszikus oldal, poszt, kereső, mind a 64 archívum). Globális
+`src/styles/sidebar-layout.css`-ben van (`collect-css.ts frame` generálja) —
+egyszeri per-oldal scope-olása a másik három családot törte el.
+**Ami a témából jön és több oldalcsalád használja, ne kerüljön egyetlen
+komponens stíluslapjába sem.**
 
-A `#left-area` / `#sidebar` / a köztük lévő hajszálvonal a téma szabályai, és
-**négy oldalcsalád osztozik rajtuk**: a klasszikus WP-oldal, az egyetlen poszt,
-a kereső és mind a 64 archívum. Amikor a `Search.css` globális `#left-area`
-szabályát az archívumok kedvéért `.page-kereses` alá scope-oltam, a klasszikus
-oldal és a poszt **elvesztette a kétoszlopos elrendezést** (1080px, `float: none`) —
-a szövegellenőrzés ezt nem fogta meg, mert a szöveg ugyanaz maradt.
+**4.9** — A Divi `et_pb_with_border` osztálya csak szélességet ad; a
+**téma** (nem Divi) adja hozzá a `border-style`-t alapszabályként. E nélkül a
+szélesség nem fest és nem foglal helyet — két külön hibának tűnt (tanári
+portrék, blog-kártyák), egy okra vezetett vissza. `divi-layout.css`/
+`PostCard.css`; a `walk.ts` `borderProp()` helpere a `Text`, `TeamMember`,
+`Row`, `Column` modulokra is átviszi az osztályt.
 
-Ezért a keret most a `src/styles/sidebar-layout.css`-ben van, globálisan
-importálva a `main.tsx`-ből, és a `collect-css.ts frame` presetje generálja.
-**Tanulság:** ami a témából jön és több oldalcsalád használja, az nem tartozik
-egyetlen komponens stíluslapjába sem.
+**4.10** — Három kitalált (nem mért) kép-szabály mind rossz volt: a helyes
+megoldás az alapvonal-résre `.et_pb_image { line-height: 0 }`, **nem**
+`img { display: block }` (töri a `vertical-align`-t) és nem
+`img { width: auto }` (elveszi a lusta képek helyfoglaló `width`/`height`
+attribútumát). Egy `display: block` szándékosan megmaradt egy konkrét törött
+képnél — kommentezve a CSS-ben.
 
-### 4.9 A hiányzó `border-style` — két rejtély egy okra
+**4.11** — Egy Divi szekció/dia háttérképe a generált CSS-ben
+(`background-image: url(...)`) vagy inline `style`-ban él, **sosem**
+`<img src>`-ben — ezért sosem másolódott. A `copy-assets.ts` most a generált
+CSS-eket és az inline `style`-okat is átvizsgálja `/media/...` hivatkozásért.
+**Ha egy kép hiányzik, nézd meg, mi hivatkozza, mielőtt a mentést hibáztatod.**
 
-A Divi minden modulra, aminek keretet állítottak be, kitesz egy
-`et_pb_with_border` osztályt, és a **téma** adja hozzá a keret *stílusát*:
+**4.12** — Három külön hiba adta össze a rossz hero-szövegszínt: a stílusos
+`<span style="color:...">`-eket kibontottuk (most `styleProp()` megőrzi,
+stílus nélkülit továbbra is kibont); a `Text` komponens bedrótozva világos
+háttérmódot adott a `bgLayout` prop helyett; hiányzott a téma
+`.et_pb_bg_layout_dark { color: #fff !important }` alapszabálya.
 
-```css
-.et_pb_with_border                              { border: 0 solid #333 }
-.et_pb_with_border .et_pb_team_member_image     { border: 0 solid #333 }
-.et_pb_with_border .et_pb_image_wrap            { border: 0 solid #333 }
-.et_pb_post .entry-featured-image-url           { border: 0 solid #333 }
-```
+**4.13** — A CSS az **utolsó** deklarációt érvényesíti: a téma
+`background-size: 100%; background-size: cover`-t ír, csak az első fele
+került át, ezért minden háttérkép nyúlt kitöltés helyett. Az
+`et_pb_with_background` osztály is kellett ugyanezért.
 
-Ezek önmagukban **semmit nem rajzolnak** (a szélesség 0), viszont az oldal saját
-design-stíluslapja már csak a szélességet írja elő (`border-width: 10px 0`).
-`border-style` nélkül a `border-width` **nem fest és nem is foglal helyet** —
-a szabály csendben hatástalan.
+**4.14** — Egy oldal saját számozott Divi-osztálya (`.et_pb_section_0`,
+`.et_pb_text_3`) oldalanként mást jelent — egy **közös** komponens-stíluslapba
+(pl. `HeroSlider.css`) írt, scope nélküli szabály minden más oldal első
+szekciójára ráragad. A `collect-css.ts` ezeket automatikusan kizárja
+(`PER_PAGE_RE`); oldalspecifikus szabály csak a `page-css.ts` scope-olásában
+élhet, sosem közös fájlban.
 
-Ez volt:
-- az AGENT.md §4.1(a) **10px-e** a tanári portrék fölött, és
-- az AGENT.md §4.1(b) **21,6px-e** minden blog-kártyán (2×15px keret).
+**4.15** — 19 site-szintű body-osztály (`et_header_style_left`,
+`et_fixed_nav`, `et_pb_gutters3`, `et_transparent_nav`, …) hiányzott az
+`index.html`-ből — nem díszek, a téma egész szabályrétegeit kapcsolják. A
+halmaz = az összes mentett oldal body-osztályainak metszete, a
+crawler-gépről beragadt tokenek (`linux`/`windows`/`chrome`) nélkül.
 
-Mindkettő **megoldva**: a négy alapszabály a `divi-layout.css`-ben és a
-`PostCard.css`-ben van, a `walk.ts` pedig a `borderProp()` helperrel továbbviszi
-az `et_pb_with_border` osztályt a `Text`, `TeamMember`, `Row` és `Column`
-modulokra is (eddig csak a `Section` és a `PostFeed` kapta meg).
+**4.16** — A fejléc görgetéskori zsugorodása (`et-fixed-header` osztály +
+átméretezés) Divi saját JS-e volt; portolva `useFixedHeader()` hookként. A
+küszöb **60px, a mentésen mérve, nem becsülve** (59-nél még nem vált).
 
-**Tanulság:** ha egy generált oldal-CSS szabálya nem érvényesül, nézd meg, van-e
-hozzá téma-szintű alapszabály, amit a port nem vitt át.
+**4.17** — Visszatérő minta (lásd 4.18c, 6.12 is): ha a téma `a`-szelektorra
+köt paddinget/pszeudo-tartalmat, egy nem-link szülőt is `<a>`-ként kell
+renderelni (`href` nélkül — inert, nem link), különben egy `<span>` némán
+elveszti a stílust. Másik tanulság ugyaninnen: egy általános `.nav li
+{ line-height }` szabályt ne olvassz bele egy ID-scope-olt szelektorba — az
+specificitásban felülütheti a téma saját, specifikusabb `.nav li li`
+szabályát.
 
-### 4.10 Kitalált kép-szabályok helyett a valódiak
+**4.18** — A kezdőlapi csúszka **öt** külön hibát rejtett egy bug-report
+mögött — jó ellenőrzőlista bármely Divi JS-vezérelt modulhoz:
+  - **(a)** a dia `padding-top`-ja és a `#page-container` saját eltolása egy
+    mechanizmus két fele (lásd 6.1) — az egyiket elrontva a kép "túl
+    nagynak" tűnik ahelyett, hogy rossz helyen lenne.
+  - **(b)** Divi-dia láthatóságát sose a `hidden` attribútummal vezéreld — a
+    téma `display:none` + `:first-child{display:list-item}` párosa erősebb
+    nála. Inline `display`-t állíts, ahogy Divi scriptje is tette.
+  - **(c)** ha a téma egy vezérlőt `<a>`-ként stílusoz, a port pedig
+    akadálymentességi okból `<button>`-t renderel, a gombra át kell ültetni a
+    téma deklarációit — ugyanaz a minta, mint 4.17.
+  - **(d)** a `matched-css.ts`/`collect-css.ts` csak az elem *aktuális*
+    állapotára illeszkedő szabályt adja vissza — `:hover`/`:focus` sosem
+    jelenik meg így.
+  - **(e)** amit jQuery `.animate()` csinált, ahhoz **nincs** gyűjthető
+    CSS-szabály — a minified téma-JS-ből kell kézzel kiolvasni (3.3-as
+    recept). Be nem becsülendő, kész konstansok: **700ms** áttűnés (nem a
+    plugin 500ms-es alapértéke), `cubic-bezier(0.37, 0, 0.63, 1)` a jQuery
+    `swing` easing-jére, és `setTimeout`-per-lépés (nem `setInterval`) az
+    automata léptetésre.
 
-Három szabály volt kitalálva az `Image.css`-ben, és mindegyik rontott:
+**4.19** — Ne feltételezd, hogy a legkisebb ikonfont-részhalmaz minden oldalt
+lefed — 35 oldal (342-ből) az `all` részhalmazt kéri, nem a `base`-t. Az
+`all` került be, egyszer, globálisan. Mellékesen: a mentés saját
+`@font-face`-e abszolút URL-re mutat, offline sosem tölt be — a **mentés**
+mutat nyers fallback-glyphet ott, ahol a **port** a valódi ikont. Ez várt
+(6.3), ne ehhez igazítsd a portot.
 
-| Kitalált | A mentés valójában | Mit okozott |
-|---|---|---|
-| `.et_pb_image img { display: block }` | a kép **inline** | elrejtette az alapvonal-rést, de megakadályozta a `vertical-align` működését |
-| `.et_pb_image img { width: auto }` | nincs ilyen; csak `max-width: 100%` | felülírta a `width`/`height` attribútumot, így a **lusta betöltésű képek 0×0-ra estek össze** |
-| — | `.et_pb_image { line-height: 0 }` | ez a valódi megoldás az alapvonal-résre |
+**4.20** — A WordPress kérésenként egész dokumentumot szolgált ki (saját
+`<title>`, saját favicon); egy SPA-nak egy `index.html`-je van. Megoldás:
+per-route tábla (`scripts/head.ts` → `src/data/head.ts` →
+`useDocumentHead()`, ugyanaz a minta, mint `useBodyClass`), és mind a 4
+favicon-méret átmásolása (az egyik `content=`-ben volt, nem `href=`-ben,
+ezért névvel kellett bekerülnie a `copy-assets.ts`-be). **A címeket átírjuk,
+nem előállítjuk** — több oldal valódi címe nem vezethető le a saját
+tartalmából (minden dátum-archívum egyszerűen "Archívum"). A mentés
+ugyanabban a dokumentumban kevert idézőjelet használ (`name='robots'`
+egyszeres, `rel="canonical"` dupla) — bármilyen attribútum-olvasó regex
+mindkettőt kezelje.
 
-A `display: block` egy helyen **megmaradt**, szándékosan: a `.et_pb_image img`-nél
-a mentésben több feltöltés hiányzik, és egy törött inline kép `width: auto`-val
-semmivé zsugorodik, míg blokként megtartja az attribútumai szerinti dobozt.
-Ez kommentben is le van írva a fájlban.
+**4.21** — A kezdőlapi galéria, két hiba, egyik sem CSS-gyűjtési kérdés: **(a)**
+Divi rács-elemei alapból `display: none`, csak a téma saját (lapozó) scriptje
+teszi `display: block`-ká az aktuális oldal elemeit — a portnak nincs
+lapozója, tehát mindig mutassa őket; **(b)** a `collect-css.ts` per-oldal
+szűrője túl tágan illeszkedett, és kidobott egy valódi strukturális
+szélesség-szabályt, mert számozott per-oldal osztálynak nézte. Megoldás:
+`STRUCTURAL_RE` allowlist a Divi valódi strukturális osztályaira
+(`.et_pb_column_1_6`, `.et_pb_row_6col`, …).
 
-### 4.11 A hero-háttérképek sosem másolódtak át
+**4.22** — Öt további kezdőlapi pixelhiba, szekciónkénti méréssel találva
+(mindegyik csak az előző javítása **után** vált láthatóvá — szekciónként
+mérj, ne az oldal-összesítőt): hiányzó `:last-child` margó a blog-kártyákon;
+`loading="lazy"`-t szó szerint a mentésből kell átvenni, nem mindig
+hozzáadni; egy gomb-nyíl szabály a rossz pszeudoelemre duplázva; 293 stílusos
+`<p>`/`<h*>`/`<blockquote>`/`<div>`, amikre a `styleProp()` csak `<span>`-en
+futott; két kitalált `NumberCounter.css` szabály (a valódi megoldás fix
+`height`/`line-height` a témából, nem `1em`); hiányzó `.header-content`
+szélesség-szabály a záró teljes szélességű fejlécen; és a `Sidebar.css`
+újra feltalált egy betűméretet, ami valójában egy sima témázott `<h4>`.
 
-A `copy-assets.ts` a HTML `src`/`href`/`data` attribútumait olvasta. Egy Divi
-szekció háttérképe viszont **soha nem `<img>`**: az oldal design-stíluslapjában
-él, `background-image: url(...)` alakban. Így **18 oldal hero-képe hiányzott**,
-csendben — a szekció helyén csak a fölé tett `linear-gradient` látszott.
+**4.23** — Egy korábbi verzió szerint hiányoztak az OG/Twitter tagek — téves:
+a mentés **egyiket sem** hordozza, egyetlen oldalán sem, tehát nincs mit
+pótolni. Amit tényleg hordoz (cím mindenhol, leírás csak a kezdőlapon, robots
+a legtöbb oldalon, canonical 269-en), azt a `scripts/head.ts`/`check-head.ts`
+másolja át. A canonical href-ek relatív útra vannak írva a mentésben, tehát
+csak a **ténye** marad meg — az érték `location.origin + pathname`-ből épül
+fel futásidőben.
 
-Javítva: a `copy-assets.ts` most végigolvassa a projekt **generált CSS-fájljait**
-is (`assetsInStyles()`), és a `/media/...` hivatkozásokat is átmásolja. 17 kép
-került be (8,4 MB); a 18. a mentésben sincs meg.
-
-**Ugyanez a hiba másodszor:** a főoldali csúszka fotói a mentés HTML-jében
-**inline `style="background-image: url(...)"`**-ben vannak, nem `src`-ben —
-azokat sem másolta. Az `INLINE_URL_RE` ezt is lefedi. **Ha egy kép hiányzik,
-mindig azzal kezdd, hogy megnézed, honnan hivatkozzák.**
-
-**Tanulság:** ha egy kép hiányzik, nézd meg, nem CSS-ből hivatkozzák-e.
-
-### 4.12 Három hiba, ami miatt a hero szövege rossz színű volt
-
-Egymástól függetlenek, de ugyanazon az oldalon látszottak:
-
-1. **A stílusos `<span>`-eket kibontottuk.** Az `inlineJsx` `case 'span'`-je a
-   tartalmat adta vissza, az inline `style`-t eldobva. A szerkesztő viszont
-   így színezett: `<h1><span style="color: #72c3b6;">…</span></h1>`. **140 ilyen
-   span** van a mentésben (szín, vastagság, méret). Most a `styleProp()` helper
-   JSX style-objektummá alakítja; a stílus nélküli spanokat továbbra is kibontja.
-2. **A `Text` komponens bedrótozva `et_pb_bg_layout_light`-ot adott.** A Divi
-   ebből színezi a szöveget, és a hero-fotókon `dark` a helyes — a mentésben 59
-   ilyen text modul van. Most `bgLayout` prop, amit a `walk.ts` tölt ki.
-3. **Hiányzott a `.et_pb_bg_layout_dark { color: #fff !important }` szabály.**
-   A 2. pont enélkül nem ért volna semmit. A `divi-layout.css`-ben van.
-
-### 4.13 `background-size: cover` — egy kétszer deklarált tulajdonság fele
-
-A téma így írja:
-
-```css
-.et_pb_section { background-size: 100%; background-size: cover; }
-```
-
-A második nyer. A portba **csak az első** került át, ezért minden háttérképes
-szekció széltében nyújtotta a képet ahelyett, hogy kitöltötte volna. Ráadásul a
-Divi az ilyen szekcióra kiteszi az `et_pb_with_background` osztályt (ami szintén
-`cover`-t mond), amit a `Section` komponens nem adott ki. Mindkettő javítva —
-a komponens új `withBackground` propja a `walk.ts`-ből jön.
-
-### 4.14 Amit én rontottam el: per-oldal szabály közös stíluslapban
-
-A `HeroSlider.css`-t a `collect-css.ts slider` presettel generáltam a mentésből,
-és bekerült egy **scope nélküli** `.et_pb_section_0 { min-height: 600px }` — ez a
-főoldal saját design-szabálya, de így **minden oldal első szekciójára** ráragadt,
-és 600px magasra fújta őket.
-
-A `collect-css.ts` most **általánosan kizárja** az ilyen szabályokat
-(`PER_PAGE_RE`): a Divi számozott modulosztályai (`.et_pb_section_0`,
-`.et_pb_text_3`) oldalanként mást jelentenek, ezért a `page-css.ts` dolga őket
-kezelni — az scope-olja is. Közös komponens-stíluslapba egy sem való.
-
-### 4.15 A site-szintű body-osztályok hiányoztak
-
-A 4.7 a *per-oldal* body-osztályokról szólt. Kiderült, hogy a **site-szintűek**
-is hiányoztak: a mentés mind a 345 oldalán ugyanaz a 19 osztály ül a `<body>`-n,
-nálunk viszont csak kettő volt (`et-db`, `et_divi_theme`).
-
-Ezek nem díszek. Az `et_header_style_left` és az `et_fixed_nav` hajtja a fejléc
-elrendezését, az `et_pb_gutters3` a rácsot, az `et_transparent_nav` a fejléc
-alatti helykihagyást. Nélkülük a téma szabályainak egy rétege néma maradt.
-
-Mind a 19 bekerült az `index.html`-be, kommenttel. Meghatározásuk: az összes
-mentés-oldal body-osztályainak metszete, a crawler gépéről beragadt
-`linux`/`windows`/`chrome` tokenek nélkül.
-
-### 4.16 A fejléc nem zsugorodott görgetéskor
-
-A Divi görgetéskor `et-fixed-header` osztályt tesz a `#main-header`-re, és onnan
-**minden méretezés CSS**. Ez JS volt, tehát a port szabályai szerint React-
-megoldás kell hozzá: `src/lib/useFixedHeader.ts`.
-
-A küszöb **mérve, nem becsülve**: a mentésen a class `scrollY = 60`-nál jelenik
-meg és 59-nél még nem. A fejléc így **80px → 54px**, ahogy az eredetin.
-
-Ami ehhez kellett:
-- a 4.15 szerinti body-osztályok (a szabályok `.et_header_style_left`-re épülnek);
-- a téma `.et-fixed-header` szabályai a `Header.css`-ben;
-- és a 4.17 — enélkül a lenyíló menüpontok nem zsugorodtak volna.
-
-### 4.17 `<span>` az `<a>` helyett — harmadszor
-
-A nem kattintható lenyíló menüszülőket (`Oktatás`, `Vizsga`, …) `<span>`-ként
-rendereltük. A mentés `<a href="#">`-et ír. A téma viszont **`a`-szelektorokra**
-köti a menü paddingjét és a lenyíló nyilát, így ez az 5 elem 47px magas maradt,
-miközben a fejléc többi része 34-re húzódott össze.
-
-Most `href` nélküli `<a>` — nem link, nem fókuszálható, de `<a>`. Ugyanaz a
-megoldás, mint a 6.11-ben az elérhetetlen posztok képénél. **Ez a minta
-harmadszor jött elő: ha a téma `a`-ra épít, `<span>`-t tenni oda mindig törik.**
-
-Ugyanitt derült ki egy **specifikusság-hiba is**: a mi `#top-menu li`
-szabályunkba bele volt olvasztva a téma `.nav li { line-height: 1em }`-je. Az
-ID miatt ez erősebb lett, mint a `.nav li li { line-height: 2em }`, ezért a
-lenyíló menü sorai összeértek (26px helyett 40px kellett volna). A `line-height`
-visszakerült a saját `.nav li` szabályába.
+**4.24** — Mobil fejléc-geometria: `#et-top-navigation` `padding-top`-ja
+980px alatt `24px`, nem `33px`, és `#et_search_icon::before` `top`-ja ott
+`7px`, nem `-3px` — mindkettő valódi mentés-szabály, `matched-css.ts`-sel
+találva a mentés `#main-header`/`#et_search_icon` elemén 375px-en (a
+`MIRROR_ROOT` ezen a gépen elérhető, lásd 1.). A `#main-header`
+`position: absolute` mobil felülírását, amit ugyanez a vizsgálat talált,
+egy későbbi felhasználói kérés **lecserélte** sticky fejlécre — lásd 6.14.
 
 ---
 
-### 4.18 A főoldali csúszka — négy külön hiba egy modulban
+## 5. Hogyan épül fel a bejáró (`walk.ts`)
 
-A felhasználó négy tünetet jelzett a kezdőlapon: túl nagy a hero-kép, a
-lapozópöttyök helyén fehér téglalap van, hoverre nem jönnek elő a nyilak, és
-mindig ugyanaz a kép látszik. Négy **külön** ok volt, és egyik sem a csúszka
-logikája.
-
-**(a) A kép azért volt „túl nagy": nem volt túl nagy, csak 116px-cel lejjebb.**
-A `Layout.css` minden oldalon a `#page-container`-re teszi a fix fejléc
-115px-es helyét. A mentésen a Divi scriptje **a kezdőlapon nem ezt csinálja**:
-ott az első modul egy fullwidth csúszka, a fotó **felfut a áttetsző fejléc
-mögé**, és a 116px a *dia saját* `padding-top`-ja lesz (`data-fix-page-container="on"`,
-a mentés HTML-jében **benne van** inline). Mivel a háttér `background-attachment:
-fixed`, a doboz eltolása más kivágást ad ugyanabból a képből — ezért *tűnt*
-nagyobbnak.
-
-Megoldás: a `walk.ts` átveszi a mentésből a mért inline `padding-top`-ot
-(`headerOffset` prop), a `HeroSlider` kiírja a diára az attribútummal együtt, a
-`Layout.css` pedig `:has(.et_pb_slide[data-fix-page-container='on'])`-nal
-nullázza a konténer eltolását. Mérve: `#page-container`, `.et_pb_section_0`,
-`.et_pb_slide`, `.et_parallax_bg` és `.et_pb_container` **mind 0,0px**.
-
-A `bemutatkozas` és az `about-us` ugyanezt az attribútumot a *szekción* hordozza
-(136px = 20px saját + 116px). Ott a tartalom pozíciója így is pontos
-(−1+136 = 115+20 = 135), csak a szekciódoboz teteje kezdődik máshol; a szekció
-háttere fehér, kerete 0px, tehát **nem látszik**. Szándékosan nem nyúltam hozzá.
-
-**(b) Mindig ugyanaz a kép: `hidden` attribútummal nem lehet Divi-diát váltani.**
-A téma `.et_pb_slider .et_pb_slide { display: none }` + `:first-child { display:
-list-item }` párost használ, ami mindkettő erősebb a `[hidden]` UA-szabálynál.
-Bármit tesz a React az osztályokba, a 0. dia marad látható — örökre. A Divi
-scriptje is **inline `display`-t** írt, most a komponens is azt teszi.
-
-**(c) A pöttyök helyén fehér téglalap: `<a>` helyett `<button>`.** A téma a
-`.et-pb-controllers a`-ra köti a 7×7px-et, a lekerekítést és a `text-indent`-et;
-a port gombot renderel (akadálymentességi eltérés, mint a docs akkordeonnál),
-így a gomb natív kinézete maradt. Új `HeroSliderRuntime.css` ülteti át a téma
-saját deklarációit a gombra. **Ez a 4.17 mintájának a fordítottja**, és most már
-négyszer jött elő: *ha a téma `a`-ra épít, a tageltérést mindig meg kell fizetni
-— vagy `<a>`-val, vagy a szabály átültetésével.*
-
-**(d) Hoverre nincs nyíl: a `collect-css.ts` nem tud `:hover`-t gyűjteni.**
-A `CSS.getMatchedStylesForNode` azt adja vissza, ami az elem **aktuális**
-állapotára illeszkedik, tehát `:hover`-es szabály sosem kerül bele. A nyilak
-`opacity: 0`-n állnak, és kizárólag a `.et_pb_slider:hover .et-pb-arrow-*`
-hozza elő őket — ez négy szabály, szó szerint átmásolva a
-`wp-content/cache/wpfc-minified/e79cb9st/bnakn.css`-ből. **Ezt nézd meg minden
-begyűjtött stíluslapnál: ami csak hoverre/fókuszra él, hiányozni fog.**
-
-**(e) Hiányzott a váltás animációja.** Ez már a fentiek javítása *után* jött
-elő, és külön ok: a Divi a diaváltást jQuery `.animate()`-tel csinálta, tehát
-**nem létezik hozzá szabály, amit a `collect-css.ts` begyűjthetne** — nem is
-hover-probléma, egyszerűen nincs CSS.
-
-Amit a script csinál (`Divi/js/scripts.min.js`, `et_pb_simple_slider`): minden
-dia `z-index: 1`, a **kimenő** dia `z-index: 2`-re megy, megkapja az
-`et-pb-moved-slide` + `et_slide_transition` osztályt és `opacity: 1 → 0`-ra
-animál; a **bejövő** dia `opacity: 0`-val jelenik meg *alatta* és `0 → 1`-re
-animál; a kimenő csak az animáció végén kap `display: none`-t. Tehát
-**keresztúsztatás, nem csere** — ezért lett a kiúszó dia (`leaving`) React-state
-és nem valami, amit a CSS ki tudna következtetni.
-
-Két szám, amit ne találj ki újra:
-
-- **700ms**, nem 500. A plugin alapértéke 500, de az `et_pb_slider_init` minden
-  `.et_pb_slide`-os csúszkára `fade_speed: 700`-at ad át.
-- A jQuery alapértelmezett easingje a `swing`, ami `0.5 - cos(p·π)/2`, azaz
-  **szinuszos ease-in-out** — CSS-ben `cubic-bezier(0.37, 0, 0.63, 1)`.
-
-Ugyanitt az automata léptetés `setInterval`-ról **`setTimeout`-ra** váltott,
-`active`-ra kulcsolva: a Divi minden mozgás *után* fegyverezte újra az időzítőt
-(`j()`), tehát egy kézi kattintás is eltolja a következő automatikus váltást.
-Az első festésen **nincs** animáció (az eredetin sem): a bejövő dia csak akkor
-kapja meg az `et_slide_entering`-et, ha van mit kiúsztatni. Mérve 7,9s-nél:
-kimenő `opacity 0,316 / z 2`, bejövő `opacity 0,684 / z 1`.
-
-A stíluslap neve emiatt **`HeroSliderRuntime.css`** (volt: `…Controls.css`) —
-az a gyűjtőhelye mindannak, amit a Divi scriptje futásidőben csinált.
-
-Két további buktató ugyanitt, mindkettő mérve:
-
-- A gomb-reset **nem tartalmazhat `font`-ot vagy `color`-t**: a nyilakat a téma
-  `font-size: 48px`-cel méretezi a saját osztályukon, egy későbbi `font: inherit`
-  ezt lecsapja (a nyíl 48px-ről 14px-re esett). A pöttyök viszont **kell**, hogy
-  örököljék — a `.et-pb-controllers` dobozmagassága a szöveg sorboxából jön.
-- A nyilak függőleges középre állítását a Divi scriptje a 116px-es eltoláshoz
-  igazítja (`margin-top: 34px` a téma `-24px`-e helyett). A komponens ugyanezt
-  számolja: `calc(-24px + <offset> / 2)`. Mérve `y = 333` mindkét oldalon.
-
-### 4.19 Rossz ikonfont-részhalmaz — 35 oldalon hiányoztak glifek
-
-A `copy-assets.ts` a Divi ikonfont **`base`** részhalmazát másolta (6 KB), azzal
-az indoklással, hogy „az oldal csak ezt tölti be". Ez a mentésre nézve **nem
-igaz**: 307 oldal tölti a `base`-t, **35 az `all`-t** (köztük a kezdőlap), 3 a
-`social`-t. A portnak egyetlen `@font-face`-e van az egész bundle-re, tehát a
-szuperhalmazt kell vinnie. A `base`-zel a csúszka nyilai egyszerűen **nem
-léteztek** a fontban.
-
-Most `all` (92 KB, egyszer, cache-elve). Ellenőrizve: a `base`-ből korábban
-működő ikonok (idézőjel, közösségi ikonok, menü-chevron, kereső) változatlanok.
-
-**Mellékfelismerés, és ez fontos a mérésekhez:** a mentésben az ETmodules
-`@font-face` **abszolút** URL-re mutat (`//petrik.hu/...`), tehát offline
-**sosem tölt be** — a mentés a nyers `4` és `5` karaktert rajzolja ki a nyilak
-helyére. A port a valódi glifet mutatja, ezért ott a nyíl doboza 48px széles a
-mentés 24px-e helyett. Ez **nem regresszió**, ugyanaz a döntés, mint a 4.2-ben
-a docs kategória-ikonjánál: az élő oldal viselkedését portoljuk, nem a mentés
-hibáját. Amikor a mentés ikonjai furcsán mérődnek, **először a font betöltését
-nézd meg** (`[...document.fonts].map(f => f.family + f.status)`).
-
----
-
-### 4.20 Minden oldal egy címet és semmilyen faviconú tabot kapott
-
-Két külön hiány, ugyanaz az ok: a WordPress **egész dokumentumot** szolgált ki
-kérésenként, tehát minden oldal a saját `<title>`-jével és a site ikonjával
-érkezett. Egy SPA-nak **egy** `index.html`-je van, és abban a Vite sablon
-`petrik.hu` címe meg a `favicon.svg` placeholderje állt.
-
-**A címek.** Új generátor kiszedi mind a 129 mentett oldal `<title>`-jét egy
-route→cím táblába, és egy hook állítja be őket route-váltáskor — ugyanaz a
-minta, mint a `useBodyClass`-nál. (A fájlok neve azóta `scripts/head.ts`,
-`src/data/head.ts` és `src/lib/useDocumentHead.ts`, mert a 4.23-ban a többi
-fejléc-metaadat is beléjük került.) A hívás a `Layout`-ban van, mert az `App.tsx` minden
-route-ja alatta ül; a generált oldalkomponensekbe nem is lehetne beletenni.
-
-**A címeket átírjuk, nem előállítjuk.** A WordPress a poszt címéből, a taxonómia
-címkéjéből és a Yoast sablonjából rakta össze őket, és **több oldal a saját
-címét sehol nem hordozza a törzsében**: mind a 8 dátum-archívum egyszerűen
-„Archívum", a docs listák pedig a kategóriát nevezik meg, nem a dokumentumot.
-A „ | petrik.hu" utótagot sem vágjuk le: az is része annak, amit az eredeti a
-tabra írt (a főoldal az egyetlen kivétel, ott a cím maga a site neve).
-
-Két route-nak nincs mentett oldala, tehát nincs honnan másolni: a `/kereses/`
-(a WP `?s=` keresését váltja ki) és a 404. Ezek szövege a porté, a
-`useDocumentTitle.ts`-ben, kommenttel jelölve.
-
-**A favicon.** A mentés négy méretet hivatkozik
-(`cropped-logo-nagy-{32,180,192,270}.png`). Ebből három átjött korábban, mert
-`href`-ben szerepelnek; a **270×270-es `msapplication-TileImage` viszont
-`content=` attribútumban van**, amit semmilyen markupot pásztázó szabály nem
-talál meg — ezért mind a négy bekerült a `copy-assets.ts` `LAYOUT_ASSETS`-ébe,
-ahol a logó is van. Az `index.html` most a mentés sorrendjében hivatkozza őket,
-a `public/favicon.svg` (Vite-sablon) törölve. Ugyanitt a `<html lang>` `en`-ről
-`hu`-ra javítva — a mentésben is `hu`.
-
-**Ellenőrzés:** új `scripts/check-head.ts`. Nem olvashatja a kiszolgált
-HTML-t, mert a címet egy effect állítja be, ezért ugyanúgy böngészőt hajt, mint
-a `check-text.ts` — és ugyanúgy **nem futhat vele egyszerre** (közös port).
-
-**Mellékesen megszűnt egy duplikáció:** a „mely route-oknak van mentett oldala"
-felsorolás eddig a `check-text.ts`-ben élt, most a `scripts/pages.ts`
-`MIRRORED`-je, és a `check-text`, a `head` és a `check-head` is ebből
-dolgozik. Két külön lista előbb-utóbb elcsúszott volna.
-
----
-
-### 4.21 A főoldali galéria — két ok, egyik sem a CSS
-
-A `Gallery` volt a legrégebbi nyitott tétel (−132,7px), és kétszer kudarcot
-vallott a begyűjtése. Mindkét ok a begyűjtésen *kívül* volt:
-
-**(a) A modul minden eleme `display: none`.** A téma így írja:
-`.et_pb_gallery_grid .et_pb_gallery_item { display: none }`, és a Divi scriptje
-tette vissza `display: block`-kal azokra, amik az aktuális lapon vannak
-(lapozás). A korábbi próbálkozás ezért kapott **0 magasságú galériát** a valódi
-szabályokkal — a markup nem tartalmazta az inline `display`-t. Most a komponens
-írja ki, ahogy a script tette; a porton nincs lapozás, tehát minden elem az
-első lapon van.
-
-**(b) A szélességi szabályt a `collect-css.ts` saját szűrője dobta ki.** A modul
-egyetlen szélesség-szabálya **az oszlopra van scope-olva**, amiben áll:
-`.et_pb_gutters3 .et_pb_column_1_6 .et_pb_grid_item { width: 100%; margin-bottom: 45.517% }`.
-A `PER_PAGE_RE` viszont `.et_pb_column_1`-ként olvasta és per-oldal szabálynak
-hitte. Új `STRUCTURAL_RE` veszi ki a szelektorból a Divi **szerkezeti**
-osztályait (`.et_pb_column_1_6`, `.et_pb_row_6col`), mielőtt a teszt lefut.
-
-**Ezt a kettőt nem lehetett volna kitalálni**, csak megkérdezni a böngészőt,
-hogy mi illeszkedik a mentés elemére — `matched-css.ts`, 3.3.
-
-Eredmény: a galéria és a ProSuli logó **130×93px, 0,0px eltéréssel**.
-
-### 4.22 A kezdőlap — öt hiba egymás után, szekcióról szekcióra
-
-Miután a galéria megvolt, a `measure.ts ".et_pb_section"` még mindig négy
-szekcióban mutatott eltérést. Mind az öt ok más volt, és **egyik sem látszott
-addig, amíg az előtte lévőt ki nem javítottuk** — ezért érdemes szekciónként
-haladni, nem az összesítőt nézni.
-
-1. **A blog-kártyák +1,6px-e (a régi 2. pont) és egy +29px.** A téma utolsó
-   kártyára külön szabályt ad:
-   `.et_pb_gutters3 .et_pb_column .et_pb_blog_grid .column.size-1of3 .et_pb_post:last-child { margin-bottom: 30px }`,
-   és minden kártya az egyetlen a saját oszlopában. Enélkül a százalékos
-   `18.539%` maradt érvényben, kártyánként 29px pluszban.
-   A maradék **1,6px** pedig a port saját jelzése volt: a „nem érhető el"
-   szöveg `<p>`-ben állt, saját margóval, a helyettesített `.more-link` 32,2px-es
-   sorboxa helyett. Most `<a class="more-link post-unavailable-note">`, href
-   nélkül — ugyanaz a hívás, mint a 6.11-ben. **A sorboxba beleszóló semmilyen
-   tulajdonságot nem szabad ráírni**: a téma sormagassága `2.3em`, tehát már egy
-   13px-es `font-size` is 2,3px-szel rövidíti a kártyát. Ezért lett a szöveg
-   rövid is (14px-en a hosszabb mondat második sorba törik, az 32px kártyánként);
-   a teljes mondat az `<article title="…">`-ben van, ami nem kerül layoutba.
-
-2. **Egy kép 5px magas volt 198 helyett.** A mentés nem minden képet
-   lazy-tölt, és a különbség nem kozmetikai: `width`/`height` nélküli képnek
-   nincs mivel helyet foglalnia, tehát `loading="lazy"`-vel pár pixel magasan ül,
-   amíg be nem görgetik. A `kornyezetvedelem-agazat.jpg`-n a mentésben **nincs**
-   `loading` attribútum, a komponensünk viszont mindig kiírta. Most a `walk.ts`
-   hozza át az attribútumot, és az `Image`, a `TeamMember` és a `Gallery` is
-   propból kapja.
-
-3. **A gombok −3,6px szélesek és +1px magasak voltak.** A téma a nyilat
-   `::after`-re **és** `::before`-ra együtt írja
-   (`position: absolute`), a `Button.css` viszont csak `::after`-t hozta át. Egy
-   oldal design-stíluslapja ad a `::before`-nak saját `content`-et
-   (`attr(data-icon)`), így az a nyíl **a sorban maradt**: 12px szélességet vitt,
-   a −15,6px margója visszahúzott belőle, és a gomb 3,6px-szel keskenyebb lett.
-
-4. **Minden szekció-alcím rossz méretben és nem nagybetűvel jelent meg.** A
-   szerkesztő nem csak a `<span>`-eket stilizálta, hanem **egész bekezdéseket**:
-   a mentésben **293 `<p style="…">`** van. Az `extract.ts` csak a spanokra
-   hívta a `styleProp`-ot. Most a `p`/`h*`/`blockquote`/`div` ág is. (Stílusos
-   `ul`/`ol` a mentésben nincs, ellenőriztem.)
-
-5. **A számlálók 44px-szel alacsonyabbak voltak.** A `NumberCounter.css` két
-   dolgot talált ki: a `.percent` a témában **fix `height: 72px`**, nem a
-   sorából számolódik, a `.percent p` sormagassága pedig **sima `72px`**, amit a
-   design-stíluslap nem ír felül, pedig a `font-size`-ot 48px-re igen. `1em`-ként
-   írva követte a kisebb betűt 48px-re. Ráadásul a `.title`-re rakott
-   `margin-top: 10px; padding-bottom: 0` elvette a téma h1–h6 szabályának 10px-ét.
-
-6. **A záró fullwidth fejléc 106,8px-szel volt rövidebb.** Két téma-szabály
-   hiányzott: `.header-content { padding: 10px }` és
-   `.center .header-content { margin: 20px auto; width: 80%; max-width: 800px }`.
-   A szélesség nélkül a `<h1>` nem ott tört, ahol az eredetiben.
-
-**A kezdőlap most szekciónként 0,0px** (egy 0,2px-es kerekítéssel).
-
-Ugyanebben a körben a **klasszikus oldal 20px-e** (a régi 2. pont harmadik
-tétele) is megvan: a `.main_title { margin-bottom: 20px }` téma-szabály nem
-volt sehol. A `frame` preset `keep`-jébe bekerült **`.main_title`** — a ponttal
-együtt, mert nélküle a token a téma `h1.et_pb_contact_main_title` szabályára is
-illeszkedik, és egy **globális h1 betűméretet** tenne a közös stíluslapba —, a
-preset pedig meglátogatja a klasszikus oldalt is.
-
-És egy hetedik, ugyanitt: az **oldalsáv widget-címe 4px-szel volt magasabb**. A
-`Sidebar.css` `18px`-et és `20px` paddinget írt rá; a téma h4-e 21px, 10px
-paddinggel — a `.widgettitle` sima `<h4>`, nincs is rá szüksége saját szabályra.
-
-### 4.23 A fejléc metaadatai — és egy téves premissza
-
-A korábbi „hátralévő munka" lista azt állította, hogy hiányoznak az Open Graph
-és Twitter tagek. **A mentésben egy sincs belőlük** — 345 oldalon 0 és 0 —,
-tehát nem hiányoznak, és beírni őket *kitalálás* lenne. Amit a mentés tényleg
-hordoz, és ami most át van véve:
-
-| Mit | Hány oldalon |
-|---|---|
-| `<title>` | mind a 345 |
-| `<meta name="description">` | **1** (a kezdőlap) |
-| `<meta name='robots'>` | mind a 345 (csak a `/hirkezelo/` értéke más, az nincs portolva) |
-| `<link rel="canonical">` | 269 |
-| Open Graph, Twitter | **0** |
-
-**Az idézőjel itt nem formaság.** A Yoast `name='robots'`-ot ír **egyszeres**
-idézőjellel, a téma `rel="canonical"`-t duplával — ugyanabban a dokumentumban.
-A generátor első változata csak duplát ismert, és 129 helyett **25** oldalon
-találta meg a robots metát. Nem a kód nézte meg magát: a `check-head.ts` fogta
-meg, mert az a **renderelt oldalt** olvassa, nem a generátor elképzelését arról,
-amit beolvasott. Minden mintának mindkét idézőjelet kezelnie kell.
-
-A `scripts/titles.ts` ezért `scripts/head.ts` lett, a kimenete
-`src/data/head.ts` (`heads`), a hook `useDocumentHead`, az ellenőrző pedig
-`check-head.ts` — a cím mellett a leírást, a robotst és a canonical **meglétét**
-is összeveti.
-
-**A canonical az egyetlen, amit nem lehet átírni.** A crawler mind a 269 hrefjét
-relatív útra írta át (`""`, `"index.html"`, `"../bemutatkozas/"`), tehát az
-eredeti abszolút URL sehol nincs meg. Ami biztos, az az, hogy *mire* mutatott: a
-WordPress ön-canonicalt ad ki, az oldal saját URL-jét. Ezért az adatban csak a
-**ténye** szerepel, a hook pedig `window.location.origin + pathname`-ből rakja
-össze — így ott is igaz marad, ahol a portot kiszolgálják, és nem talál ki
-domaint.
-
-A `setMeta` **törölni is tud**: 25 route-on van robots meta, a többin nincs, és
-egy előző route-ról ottfelejtett tag ugyanolyan hiba lenne, mint egy hiányzó.
-
----
-
-## 5. Hogyan épül fel a bejáró most (`walk.ts`)
-
-**A diszpécser a `PageEntry.kind`-ból dolgozik, nem DOM-szimatból.** Ez fontos:
-**26 docs oldal is tartalmaz `.et_builder_inner_content`-et** (a `#et-boc`-on
-belül), tehát a régi szimat a sima builder-ágra vitte volna őket, és a plugin
-teljes körítése eltűnt volna.
-
-Négy ág:
+**A diszpécser a `PageEntry.kind`-ból dolgozik, nem DOM-szimatból** — 26 docs
+oldal is tartalmaz `.et_builder_inner_content`-et, a szimat ezeket a sima
+builder-ágra vitte volna, elveszítve a plugin körítését.
 
 | `kind` | Mi ez | Kimenet |
 |---|---|---|
 | `builder` | Divi-fa | `#main-content > article > .entry-content > …` |
 | `classic` | WP-szerkesztős próza | `#left-area` + `<Sidebar />` |
-| `docs` | BetterDocs dokumentum | `<DocsLayout slug=…>` + a belső Divi-fa |
+| `docs` | BetterDocs dokumentum | `<DocsLayout slug=…>` + belső Divi-fa |
 | `post` | egyetlen blogposzt | `#left-area > article` + `<PostHeader />` + `<Sidebar />` |
 
-A `--kind=` nélküli kézi futtatásnál a `sniff()` tartalékol, és abban a
-**`.betterdocs-single-wrapper` próbája megelőzi** a Divi-ét.
+A `--kind=` nélküli kézi futtatásnál a `sniff()` tartalékol, és a
+`.betterdocs-single-wrapper` próbája megelőzi a Divi-ét.
 
 Kapcsolók: `--report`, `--scope=<class>`, `--kind=<kind>`, `--up=<n>` (hány
-szinttel lejjebb van a komponens a `src/pages`-hez képest — az importok `../`-jai).
+szinttel lejjebb van a komponens a `src/pages`-hez képest).
 
-Az `emitSection` **változatlanul újrahasználható** minden ágon; ellenőriztem,
-mind a 27 docs oldalon és a poszton 0 UNHANDLED (csak `Text`, `Image`, `Divider`).
-
-### A `DROPPED` halmaz
-
-A `walk.ts`-ben egy nevesített lista tartja, mit hagyunk ki szándékosan. Jelenleg
-**egyetlen tétel van benne**: az `et_duplicate_social_icons` (a fejléc social
-ikonjainak rejtett másolata, ami JS nélkül semmit nem csinál és helyet sem
-foglal). A `--report` kiírja `dropped:` sorként, így a „sosem hagyja ki némán"
-szabály **döntéssel** teljesül, nem átcsúszással.
-
-A `shared-counts-wrap` és a `betterdocs-entry-footer` **korábban itt volt, már
-nincs** — azóta inertként renderelődnek (6.9).
+A `DROPPED` halmaz (`walk.ts`) tartja, mit hagyunk ki szándékosan — jelenleg
+egyetlen tétel: `et_duplicate_social_icons` (a fejléc social ikonjainak
+rejtett, JS nélkül semmit sem csináló másolata). A `--report` `dropped:`
+sorként írja ki, tehát ez **döntés**, nem átcsúszás.
 
 ---
 
-## 6. Amit szándékosan nem egyezőre csináltam
+## 6. Amit szándékosan nem egyezőre csináltunk
 
-Ezeket **ne** „javítsd" anélkül, hogy a felhasználóval egyeztetnél.
+**Ezeket ne "javítsd" anélkül, hogy a felhasználóval egyeztetnél.**
 
-1. **`section_0` doboza.** A fejléc alatti helykihagyást a `#page-container`
-   paddingjére tettem (`115px` desktopon, `114px` ≤980px-en), nem az első
-   szekció paddingjébe. A **tartalom pozíciója 0.0px-re egyezik**; csak a
-   szekció saját doboza tér el.
-   **Kivétel:** a docs oldalakon a mentésnek *nincs* ilyen eltolása (a BetterDocs
-   lecserélte a teljes tartalmi területet), ezért a `Layout.css`
-   `#page-container:has(.betterdocs-wrapper)` szabálya visszaveszi. Enélkül
-   minden docs oldal 115px-szel lejjebb kezdődne.
+1. **`section_0` doboza.** A fejléc alatti helykihagyás a `#page-container`
+   paddingjén van (`115px` desktopon, mobil verzió 6.14 óta más — lásd ott),
+   nem az első szekció paddingjében. A tartalom pozíciója 0,0px-re egyezik,
+   csak a szekció saját doboza tér el.
+   **Kivétel:** a docs oldalakon a mentésnek nincs ilyen eltolása (a
+   BetterDocs lecserélte a tartalmi területet) — `#page-container:has(.betterdocs-wrapper)`
+   veszi vissza.
 
-2. **Elérhetetlen posztok.** A kártya „bővebben" linkje helyett jelzés áll.
+2. **Elérhetetlen posztok.** A kártya "bővebben" linkje helyett jelzés áll.
 
-3. **Ikonfont.** A mentés `@font-face`-e abszolút URL-re mutat
-   (`//petrik.hu/...`), tehát offline **hibára fut**, és a mentés a nyers
-   karaktereket rajzolja az ikonok helyére (a csúszka nyilainál `4` és `5`).
-   Nálunk a font be van töltve → **a mi renderünk a helyes**. Ne igazítsd a
-   mentéshez. Ezért a nyíl doboza nálunk 48px széles a mentés 24px-e helyett.
-   A `copy-assets.ts` az **`all`** részhalmazt viszi, mert a portnak egyetlen
-   `@font-face`-e van 342 oldalra — lásd 4.19.
+3. **Ikonfont.** A mentés `@font-face`-e abszolút URL-re mutat, offline
+   hibára fut, és nyers karaktereket rajzol az ikonok helyére. Nálunk a font
+   betöltve → **a mi renderünk a helyes**, ne a mentéshez igazíts. A
+   `copy-assets.ts` az `all` részhalmazt viszi (lásd 4.19).
 
-4. **A BetterDocs kategória-ikon** ugyanez az eset: a crawler
-   `betterdocs-cat-icon.svg@v=4.9.2` néven mentette, amit a statikus szerver rossz
-   MIME-mel ad ki, ezért a **mentésben törött kép** — és az alt-szövege
-   **193,7px**-et foglal a 32px-es ikon helyett. Mi `/media/betterdocs-cat-icon.svg`
-   néven másoljuk, így helyesen jelenik meg. Emiatt a `/dokumentumtar/` kártyáinak
-   címe máshol tördelődik, mint a mentésben — **ez várt, és a mi oldalunk a jó.**
+4. **A BetterDocs kategória-ikon.** A mentésben törött kép (rossz MIME a
+   crawler statikus szerverén), az alt-szöveg 193,7px-et foglal a 32px-es
+   ikon helyett. Mi `/media/betterdocs-cat-icon.svg`-ként helyesen adjuk ki
+   — a `/dokumentumtar/` kártyacímei emiatt máshol törnek, mint a mentésben;
+   **ez várt, a mi oldalunk a jó.**
 
-5. **`/dokumentumtar/` rács.** Az eredetin a Masonry JS pakolta a kártyákat a
-   legrövidebb oszlopba. Nálunk flex-sorok: **az oszlopszélesség és az első sor
-   pozíciója pixelre egyezik** (338,75px, 15px köz, 1024px alatt 1 oszlop), de a
-   kártyák sorrendhűen balról jobbra állnak, nem tömören pakolva. Felhasználói
-   döntés.
+5. **`/dokumentumtar/` rács.** Az eredetin Masonry JS pakolt a legrövidebb
+   oszlopba; nálunk flex-sorok, sorrendhűen, nem pakolás-hűen (felhasználói
+   döntés). Oszlopszélesség és első sor pozíciója pixelre egyezik.
 
-6. **Akkordeon `<button>`.** A mentésben a nyíl csupasz `<svg>`, amit csak a
-   plugin JS-e ért el. Nálunk `<button aria-expanded>` — akadálymentességi
-   javítás. A **nyitott állapot** viszont hűen reprodukált: a stíluslap minden
-   kategóriát becsuk, és a plugin JS **csak az aktuális dokumentum kategóriáját**
-   nyitja ki inline `display:block`-kal. Ezt állapotként utánozzuk.
-   *(Megjegyzés: a korábbi tervem azt feltételezte, hogy alapból minden nyitva
-   van — ez téves volt, a böngésző cáfolta.)*
+6. **Akkordeon `<button>`.** A mentésben csupasz `<svg>` nyíl (csak a plugin
+   JS-e érte el); nálunk `<button aria-expanded>` — akadálymentességi
+   javítás. A nyitott állapot hűen reprodukált: csak az aktuális dokumentum
+   kategóriája nyílik ki, állapotként utánozva.
 
 7. **A Gutenberg PDF-beágyazás rejtve marad.** A `wp-block-file` `<object>`-je
-   `hidden` attribútummal jön, és a Gutenberg Interactivity API nyitná ki, ha a
-   böngésző tud PDF-et előnézni. Azt a scriptet nem portoljuk; a mentésben is
-   0×0-n renderelődik (lemértem). A fájl a két link alatt így is elérhető.
+   `hidden`-nel jön; a Gutenberg Interactivity API-t (ami kinyitná) nem
+   portoljuk — a mentésben is 0×0-n renderelődik. A fájl a két link alatt
+   elérhető.
 
 8. **A Divi `et_duplicate_social_icons` blokkja** nincs átvéve.
 
-9. **A WP-widgetek most inertként renderelődnek, nem hiányoznak.** Ez
-   **megváltozott** a korábbi döntéshez képest (felhasználói döntés): a
-   BetterDocs reakció-lábléc (~213px minden docs oldalon) és a poszt
-   megosztás-sávja (~41px) markupja és mérete átkerül, de `href` nélküli
-   `<a>`-kból áll — nem link, nem fókuszálható, nem csinál semmit. Az indok:
-   eldobva valódi függőleges eltolást okoztak, és „egy widget, ami láthatóan
-   nem csinál semmit" közelebb van az eredetihez, mint egy lyuk a helyén.
-   Komponensek: `DocsReactions.tsx`, `SharedCounts.tsx`.
+9. **A WP-widgetek inertként renderelődnek, nem hiányoznak.** A BetterDocs
+   reakció-lábléc (~213px minden docs oldalon) és a poszt megosztás-sávja
+   (~41px) markupja és mérete átkerül, `href` nélküli `<a>`-kból állva — nem
+   csinálnak semmit, de a helyfoglalásuk valódi. Komponensek:
+   `DocsReactions.tsx`, `SharedCounts.tsx`.
 
-10. **Az archív kártya nem kap „nem érhető el" sort.** A blog-modul kártyáján
-   van egy „bővebben" link, aminek a helyére a jelzés kerül; az archív kártyán
-   nincs ilyen link — a cím egyszerűen nem kattintható —, tehát nincs mit
-   helyettesíteni. Egy külön sor mind a 252 elérhetetlen kártyát ~30px-szel
-   lejjebb tolná, ezért az állapot az `<article>` `post-unavailable` osztályán
-   és `title` attribútumán szerepel, ami nem kerül layoutba.
+10. **Az archív kártya nem kap "nem érhető el" sort** — az archív kártyán
+    nincs "bővebben" link, amit helyettesíteni kellene, tehát az állapot csak
+    az `<article>` osztályán/`title`-jén szerepel, layoutba nem kerül.
 
-11. **Az elérhetetlen posztok képe `<a>`-ban marad, `href` nélkül.** Nem link és
-    nem fókuszálható, de `<a>` — és ez számít, mert a téma
-    `.et_pb_post a img { vertical-align: bottom }` szabálya erre illeszkedik.
-    `<span>`-nel a kép visszaesne az alapvonalra, és minden ilyen kártya alá
-    ~7px kerülne. (Ez a `PostCard`-ban is javítva lett.)
+11. **Az elérhetetlen posztok képe `<a>`-ban marad, `href` nélkül** — a téma
+    `.et_pb_post a img { vertical-align: bottom }` szabálya erre illeszkedik;
+    `<span>`-nel a kép visszaesne az alapvonalra (~7px minden ilyen kártya
+    alatt).
 
-12. **A csúszka vezérlői `<button>`-ok.** A mentésben `<a href="#">`, amit
-    csak a Divi JS-e kezelt. Ugyanaz az akadálymentességi eltérés, mint a 6.6-os
-    akkordeonnál, és ugyanaz az ára: a téma `a`-ra kötött deklarációit át kell
-    ültetni a gombra (`HeroSliderRuntime.css`). Ugyanott van egy **hozzáadott**
-    szabály is, jelölve: a `:focus-within` ugyanúgy előhozza a nyilakat, mint a
-    `:hover` — egy fókuszálható, de láthatatlan vezérlő olyan csapda lenne, amit
-    a port hozna be, nem az eredeti.
+12. **A csúszka vezérlői `<button>`-ok**, a mentésben `<a href="#">` — ugyanaz
+    az akadálymentességi eltérés és ára, mint a 6. pontnál (téma
+    deklarációinak átültetése, `HeroSliderRuntime.css`). Itt egy **hozzáadott**
+    szabály is van: `:focus-within` ugyanúgy előhozza a nyilakat, mint
+    `:hover` — egy fókuszálható, de láthatatlan vezérlő csapda lenne, amit a
+    port hozna be, nem az eredeti.
 
-13. **A body per-oldal osztályait a `useBodyClass` rakja ki.** A WordPress
-    minden oldalnak adott egy `archive` / `single` / `et_right_sidebar`-féle
-    body-osztályt, és a téma **valódi elrendezési döntéseket** köt hozzájuk
-    (oldalsáv helye, tartalomoszlop szélessége, listacímek mérete). Egy SPA-nak
-    egy `<body>`-ja van, ezért ezek route-váltáskor kerülnek fel és le. A
-    minden oldalon közös osztályok (`et-db`, `et_divi_theme`) az `index.html`-ben
-    vannak.
+13. **A body per-oldal osztályait a `useBodyClass` rakja ki** route-váltáskor
+    (lásd 4.7/4.15) — egy SPA-nak egy `<body>`-ja van.
+
+14. **A fejléc mobilon (≤980px) is sticky — a mentés nem ezt csinálja.**
+    Felhasználói döntés, a 4.24-ben feltárt mentés-viselkedés
+    (`.et_fixed_nav #main-header { position: absolute }` ≤980px-en, együtt
+    görgetve a `#top-header`-rel) helyett.
+
+    Megvalósítás: `#top-header` ≤980px-en `position: static` (`TopBar.css`),
+    `#main-header` `position: sticky; top: 0` (`Header.css`) — normál
+    dokumentumfolyásban, egymás után. A natív `sticky` ingyen adja a
+    "követi, majd rááll" mozgást: amíg a top bar látszik, a fejléc vele
+    görgeti; amint elgörgetett, a fejléc `top: 0`-n megáll. Nincs hozzá JS.
+
+    Ez begyűrűzött két helyre, mert korábban **mindkét sáv** ki volt véve a
+    folyásból minden szélességen:
+    - `Layout.css` `#page-container` mobil `padding-top`-ja **0**-ra ment
+      (a sávok most maguk foglalnak flow-helyet, a régi padding duplázta
+      volna az eltolást).
+    - A kezdőlap csúszkája (`HeroSlider`) azt feltételezi, hogy a fejléc
+      flow-n kívüli, transzparens elem, ami *fölötte* lebeg (innen a dia
+      inline `padding-top: 116px`-e, `headerOffset` prop). Sticky, flow-beli
+      fejléccel ez mobilon már dupla üres sávot adna. A
+      `HeroSliderRuntime.css` egy `@media (max-width: 980px)` blokkja
+      `!important`-tal nullázza az inline értéket (és a nyilak
+      `margin-top`-ját vissza `-24px`-re) — `!important` kell, mert az érték
+      inline style, ami különben mindig verné a média-lekérdezést.
+
+    **Tudatosan elfogadott mellékhatás:** a kezdőlap csúszkájának "a fotó a
+    fejléc mögé fut" hatása mobilon megszűnt (a fejléc most valódi helyet
+    foglal fölötte). Desktopon (>980px) változatlan.
+
+15. **`/hirkezelo/` valódi, működő újraimplementáció — nem a mentés portja.**
+    A felhasználó a `https://github.com/merenyimiklos/petrik-news-workflow`
+    repót kérte "beimportálni" ide. Az kiderült, hogy egy teljes WordPress
+    plugin (PHP osztályok, WP szerepkörök/jogosultságok, MySQL audit-napló
+    tábla, `wp_mail`) — csak élő WordPress + adatbázis alatt fut, nincs
+    statikus kimenete, amit át lehetne másolni. Mivel ez a repó statikus
+    Vite/React SPA, eddig backend nélkül, a `/hirkezelo/` korábban tudatos
+    scope-kizárás volt pontosan emiatt (lásd feljebb, régen). Amikor
+    elmondtam, hogy a plugin szó szerint nem importálható, a felhasználó egy
+    **valódi, saját Express backenddel rendelkező újraimplementációt** kért
+    ("csináld meg úgy, hogy ugyanazt csinálja és ugyanúgy nézzen ki").
+
+    A plugin minden releváns PHP fájlját (`class-pnw-roles.php`,
+    `class-pnw-statuses.php`, `class-pnw-access.php`, `class-pnw-actions.php`,
+    `class-pnw-statistics.php`, `class-pnw-frontend-login.php`, mind a négy
+    `trait-pnw-frontend-*.php`) és CSS-ét (`assets/css/pnw*.css`) elolvasva a
+    port a szerepköröket, az állapotgépet, a jogosultsági szabályokat, a
+    validációt, az értesítés-szövegeket és a designt (a plugin saját CSS-e,
+    szinte szó szerint átvéve) hűen újraépíti — de máshogy működik alatta:
+
+    - **Az autentikáció ide tartozik, nem WordPresshez.** Egy kis Express +
+      `express-session` + bcrypt-hashelt seed-felhasználós auth váltja a
+      `wp_signon`/WP cookie-kat. 3 demó fiók (szerepkörönként egy),
+      jelszavuk sosem kerül a kliens-bundle-be — a szerver oldalon dől el
+      minden, tehát ez, egy kliens-oldali mockkal ellentétben, nem
+      trükközhető meg egyszerűen a böngészőből.
+    - **A tárolás egy JSON fájl a lemezen** (`server/data/db/posts.json`,
+      `audit.json`), nem `wp_posts`/egyedi MySQL tábla. A pilot méretéhez
+      elég (néhány munkatárs, pár tucat hír); valódi korlát, nincs
+      konkurens-írás elleni zárolás egy egyszerű, folyamaton belüli sornál
+      többen.
+    - **A "jóváhagyás" sosem ér el a valódi petrik.hu hírfolyamhoz.**
+      `PNW_TEST_MODE` itt is hard-coded `true` — ugyanaz, mint a plugin
+      valódi, jelenlegi pilot állapota (lásd a plugin saját READMEjét). A
+      jóváhagyás csak a `pnw_test_ok` belső állapotot éri el, és sosem írja a
+      `src/data/posts.ts`-t/a valódi archívum-adatot.
+    - **Nincs valódi e-mail.** A `PNW_Notifications` három levele no-op
+      (szerveroldali console-logolás a láthatóságért). A felület semmilyen
+      viselkedése nem függ attól, hogy a levél ténylegesen megérkezik-e.
+    - **A gazdag szöveg egy kis strukturált modell, nem TinyMCE.** A repó
+      szabálya szerint sehol sincs `dangerouslySetInnerHTML`, tehát a plugin
+      nyers HTML-jét nem lehet egy az egyben visszaadni. A `RichTextEditor`
+      blokkok tömbje (`{type, align, runs: [{text, bold, italic}]}`), sosem
+      nyers HTML, mindenhol valódi JSX-en át renderelődik (szerkesztő,
+      előnézet, ellenőrzés, publikált nézet). Az eszköztár gombjai (cím,
+      félkövér, dőlt, felsorolás, számozott lista, idézet, igazítás,
+      vissza/előre, formázás törlése) a plugin `wp_editor()`-jának
+      megfelelő gombkészletét adják.
+    - **Az időzített automata publikálás** egy `setInterval` az Express
+      processben (60mp-enként néz `future` állapotú, lejárt idejű hírt),
+      nem WP-Cron.
+
+    **Ellenőrzés módja:** Playwright-tal végigvitt teljes workflow mindhárom
+    demó fiókkal (MK-vezető létrehoz+beküld → helyettes jóváhagy/visszaküld →
+    MK-vezető javít és újraküld), plusz `curl`-lel ellenőrzött admin-post
+    végpontok (jóváhagyás, visszaküldés, újraküldés, jogosultsági határok).
+    Eközben előkerült és javítva lett két valódi hiba: a statisztika havi
+    grafikonja helyi időzóna miatt egy hónappal visszacsúszott (helyi
+    `Date` + `toISOString()` keverése — mindenhol UTC-ben kell számolni,
+    ahogy a `date` mezők is UTC ISO stringek), és a bejelentkezés válasza
+    nem tartalmazta a `allowedCategoryIds`-t, ezért a szerkesztő
+    bejelentkezés után frissítésig minden kategóriát mutatott a korlátozott
+    MK-vezetőnek is (a szerver oldali validáció helyesen elutasította a nem
+    engedélyezett kategóriát, csak a felület mutatott rosszat).
+
+    **Fájlok:** `server/` (Express backend, `node --experimental-strip-types
+    server/index.ts`-sel indítható, lásd 2. szakasz), `shared/pnw/` (mindkét
+    oldal által importált típusok/szerepkörök/állapotok/kategórialista),
+    `src/pages/Hirkezelo.tsx` + `src/components/hirkezelo/`. Új npm
+    függőségek (felhasználói jóváhagyással): `express`, `express-session`,
+    `multer`, `bcryptjs`.
+
+    **Utólagos kiegészítés (ugyanaznap):** a felhasználó kérésére az
+    "Előnézet" gomb (`PreviewModal`) a saját, kitalált kártya-dizájn helyett
+    mostantól a **valódi single-post sablont** mutatja —
+    `PostTemplatePreview.tsx` szó szerint a `kutatok-ejszakaja-a-petrikben`
+    mintaposzt (`src/pages/KutatokEjszakaja.tsx`) markupját/osztályait adja
+    vissza (`#main-content`/`.container`/`#left-area`/`.et_post_meta_wrapper`/
+    `.entry-content`/`.et_pb_text` + a valódi `<Sidebar />`), a
+    `sidebar-layout.css`/`divi-layout.css`/`index.css` már betöltött,
+    mentésből származó szabályaival — **nincs hozzá kitalált CSS**. A
+    kétoszlopos flexbox/float elrendezés és a cím/post-meta méretezés a
+    `single`/`et_right_sidebar` body-osztályok mögött van (lásd 4.15), ezért
+    a `PostTemplatePreview` a `useBodyClass`-t hívja — **csak amíg a modal
+    ténylegesen nyitva van** (a `PreviewModal` feltételesen rendereli), mert
+    a komponens maga mindig a DOM-ban van (a nyitást/zárást CSS-osztály
+    végzi), és a body-osztályok különben véglegesen rajta maradnának a
+    `/hirkezelo/` oldalon. A kivonat (excerpt) emiatt **eltűnt az
+    előnézetből** — a valódi single-post sablon sosem mutatja, csak a
+    lista-/archívum-kártyák.
+
+    Ugyanezért a `ReadOnlyDetails.tsx` ("Részletek" nézet — a szerző saját
+    beküldött hírén, illetve a `review`-nézet nem-`pending` állapotú ága) is
+    ugyanezt a `PostTemplatePreview`-t hívja a saját kártya-CSS-e (korábbi
+    `.pnw-content-preview`/`.pnw-featured-preview`) helyett — ott a
+    `useBodyClass` biztonságos, mert a komponens csak akkor van a DOM-ban,
+    amikor a nézet ténylegesen látszik (React feltételes render, nem
+    CSS-rejtés), tehát nem kell a `PreviewModal`-nál használt `open &&`
+    védelem. A `.pnw-content-preview`/`.pnw-featured-preview` szabályok a
+    plugin saját, változatlanul átvett CSS-ében megmaradtak, csak innentől
+    nem használja őket semmi — nem szedtem ki, mert azok a plugin eredeti
+    forrásának hű másolatai, nem a port kitalálmányai.
+
+    **Utólagos kiegészítés (más nap): a jóváhagyás mostantól valóban publikál.**
+    Felhasználói kérésre a korábbi "TEST_MODE mindig `true`" döntés
+    megfordult: `server/config.ts`-ben **`TEST_MODE = false`** — a jóváhagyás
+    a `publish` állapotot éri el (nem `pnw_test_ok`-ot), a hír valódi oldalt
+    kap, és megjelenik a Hírkezelőn kívül is. A backend logikát (`review_news`,
+    `update_published_news`, archiválás) **nem kellett átírni** — az mindvégig
+    a `TEST_MODE` konstanson elágazott, csak korábban az mindig `true` volt.
+    Visszaállításhoz elég a konstanst visszaírni.
+
+    - **Tárolás: JSON fájl → SQLite.** Felhasználói kérésre (`better-sqlite3`,
+      új függőség). `server/data/db.ts` nyitja/hozza létre a sémát
+      (`posts`, `audit_log` táblák, `server/data/db/hirkezelo.db`, ugyanaz a
+      gitignore-olt könyvtár, mint korábban). `server/data/store.ts` és
+      `collections.ts` törölve, helyettük `posts-repo.ts`/`audit-repo.ts` —
+      szinkron függvények (a `better-sqlite3` szinkron), a hívó oldalak
+      (`routes/posts.ts`, `lib/audit.ts`, `routes/statistics.ts`,
+      `index.ts` időzített seprés) `await`-jei ennek megfelelően leestek.
+      A `Post` (`shared/pnw/types.ts`) kapott egy `slug` mezőt — létrehozáskor
+      generálva a címből (`shared/pnw/slug.ts` `uniqueSlug()`, ékezet-lebontás
+      + kisbetűsítés + `-2`/`-3` ütközéskezelés), utána **változatlan** marad,
+      még ha a cím szerkesztve is lesz.
+    - **Valódi publikus végpont és oldal.** `server/routes/public.ts`, `/api/public`
+      alatt, **`requireLogin` nélkül** — `GET /posts` (lista, `status=publish`,
+      legújabb elöl) és `GET /posts/:slug`. Új `src/pages/PublishedPost.tsx`
+      (kézzel írt, **nem** a 129 generált oldal egyike) a `/hirek/:slug/`
+      route-on (`App.tsx`) — lekéri a posztot és a már meglévő
+      `PostTemplatePreview`-n át rendereli, ugyanazzal a Header/Footer/
+      Sidebar kerettel, mint bármelyik más hír. **Miért `/hirek/` és nem
+      csupasz felső szintű `/:slug/`:** a React Router valójában a
+      specifikusabb (statikus) route-ot részesítené előnyben egy `/:slug/`
+      catch-all-lal szemben deklarálási sorrendtől függetlenül, tehát ez nem
+      törne el semmit a 129 mentett route közül — de nulla biztonsági
+      tartalékot ad egy elgépelt slugra, és a `/hirek/` prefix egyértelművé
+      teszi "ez mentett vagy élő oldal" kérdését az URL-ből magából.
+      `useDocumentHead.ts` egy no-op ágat kapott `/hirek/`-re (a
+      `PublishedPost` maga állítja be a `document.title`-t, hiszen dinamikus
+      adat, amit a statikus `heads` térkép nem ismerhet előre).
+    - **Élő hírek a "Legutóbbi bejegyzések" widgetben és a Kezdőlapon.** Új
+      `src/lib/posts/postsContext.ts` + `PostsProvider.tsx` (két külön fájlban
+      — a `react-refresh/only-export-components` szabály miatt, ami nem
+      engedi, hogy egy komponens-fájl más exportot is hordozzon). A
+      `PostsProvider` a `Layout.tsx`-ben ül (minden route alatt, de route-váltáskor
+      **nem** remountol, tehát egyszeri lekérés oldalbetöltésenként), és a
+      statikus, generált `posts` térképet (`src/data/posts.ts`, **változatlan**)
+      összefésüli az `/api/public/posts` válaszával. `RecentPosts.tsx`,
+      `PostCard.tsx`, `PostFeed.tsx` a statikus importot lecserélték egy
+      `usePosts()` hívásra. Egy élő hír linkje `/hirek/<slug>/`, nem a mentett
+      minta `/${slug}/`-je — ezt a `MergedPostSummary` típus `href` mezője
+      hordozza, amit `PostCard`/`RecentPosts` `post.href ?? \`/${slug}/\``
+      alakban olvas.
+    - **A Kezdőlap két hírfolyama** ("Kiemelt híreink", "Legfrissebb híreink")
+      **generált JSX-ben** vannak (`HomePage.tsx`, `scripts/generate.ts`
+      írja felül) — ott hiába a `PostsProvider`, kézzel nem lehet hozzáadni
+      az élő hírek megjelenítését, mert a következő generálás némán
+      visszaírná. A helyes hely a **generátor**: `PostFeed.tsx` kapott egy
+      `includeLive?: boolean` propot (alapból kikapcsolva — a legtöbb
+      `PostFeed` egy konkrét, lezárt témáról szól, nem "bármi, ami új"), és
+      `scripts/walk.ts` blog-modul ága (~330. sor) a `dir === ''` (a home
+      oldal CLI-argumentuma) esetén teszi ki. Lásd 4.18a mintáját ugyanerre a
+      fájlra (fejléc-eltolás kezdőlap-specifikus ága) — ez nem az első
+      oldal-specifikus különeset ebben a fájlban. Csak a Kezdőlap lett
+      újragenerálva (`node scripts/generate.ts HomePage`), nem mind az 53.
+      **Ellenőrzés:** `check-text.ts home` zöld **üres** (backend nélküli)
+      adatbázis mellett — ekkor a `liveSlugs` üres, tehát az `includeLive`
+      semmit sem told be, és a kezdőlap szövege karakterre egyezik a
+      mentéssel, bizonyítva, hogy a változás tétlen, amíg nincs élő hír.
+    - **A "TESZT MÓD"/"TESZTÜZEM" szövegek eltűntek** a felületről
+      (`Shell.tsx`, `LoginCard.tsx`), a jóváhagyás gombja/leírása
+      (`Review.tsx`) és a jóváhagyás-értesítés (`Notice.tsx`) a plugin
+      production-módbeli szövegére váltott. A `published`-szerkesztő
+      (`Editor.tsx`) korábban mindig csak olvasható nézetet + bannert
+      mutatott (mert `TEST_MODE` mindig blokkolta) — most valódi,
+      szerkeszthető űrlap `PostFields`-szel (minden kategória, mint a
+      vezetői szerkesztésnél), "Módosítások mentése" és "Archiválás" gombbal.
+    - **Nem változott:** az elutasítás (`pnw_revision` állapot, a szerző
+      újraszerkesztheti és újraküldheti, a vezetői megjegyzés megjelenik) —
+      ez a mechanizmus a `TEST_MODE`-tól függetlenül mindig ez volt.
+
+    **Utólagos kiegészítés (ugyanaz nap): `docker compose up --build`.**
+    Felhasználói kérésre — "egy paranccsal induljon minden". Egyetlen
+    szolgáltatás (`docker-compose.yml` `app`), mert a `server/index.ts` már
+    eddig is egy folyamatban szolgálta ki a statikus site-ot **és** az API-t
+    (lásd feljebb) — nem kellett külön frontend/backend konténer.
+
+    - **`Dockerfile`**: `node:24-alpine`, `npm ci` + `npm run build` image
+      build közben (nem induláskor), `CMD` a már meglévő
+      `node --experimental-strip-types server/index.ts`. **Kellett hozzá
+      `apk add python3 make g++`**: a `better-sqlite3` Alpine/arm64 alatt nem
+      a csomagba ágyazott előre fordított binárist használta, hanem
+      node-gyp-pal forrásból próbált (és build-eszközök nélkül el is bukott)
+      — ez csak Dockerben derült ki, helyi macOS-en a előre fordított
+      bináris simán lefutott.
+    - **`.dockerignore`**: kizárja a `node_modules`/`dist`/`server/data/db`/
+      `server/uploads`-t, de **nem** a 271 MB-os `public/media`-t — az kell a
+      `vite build`-hez, hogy a legyártott `dist/` valódi képeket tartalmazzon.
+    - **Kötetek** (`docker-compose.yml`): `./server/data/db` és
+      `./server/uploads` a konténerbe mountolva, ugyanoda, ahova helyi (nem
+      Docker-es) futtatásnál is kerülnének — újraindítás/újraépítés nem
+      veszíti el a publikált híreket. Ellenőrizve: `docker compose down` +
+      `up` után a korábban publikált teszt-hír megvolt.
+    - **`PNW_SESSION_SECRET`**: `.env` fájlból jön (`.env.example` mutatja a
+      formátumot), `.gitignore`-ban. Van egy fejlesztői alapérték a
+      compose-fájlban, ha nincs `.env` — ahogy `server/config.ts` is mindig
+      csinálta helyi futtatásnál.
+    - **Ellenőrizve Playwright-tal a konténer ellen** (nem csak `curl`-lel):
+      a Kezdőlap képei/CSS-e hibátlanul betöltött, majd a teljes beküldés →
+      jóváhagyás → `/api/public/posts` lánc lefutott `http://localhost:4000`
+      ellen, konzolhiba nélkül.
+
+    **Utólagos kiegészítés (más nap): fiókkezelés a Hírkezelőn belül.**
+    Felhasználói kérésre — eddig a `helyettes`/`igazgato`/`mk.vezeto` fiókok
+    csak `server/data/seed-users.ts`-ben, hardkódolva léteztek; a valódi
+    pluginban ezt wp-admin saját felhasználó-kezelője intézné, de ennek a
+    repónak nincs wp-admin megfelelője. A `pnw_manage_users` capability
+    (`shared/pnw/types.ts`/`roles.ts`) **új, a valódi pluginban nem létezik**
+    — kifejezetten a felhasználó kérésére került be, hogy a fiókkezelés a
+    Hírkezelőn belülről is elérhető legyen.
+
+    - **Kinek jár:** explicit felhasználói döntés alapján **mind az
+      igazgatóhelyettes, mind az igazgató** kap `pnw_manage_users`-t (nem
+      csak az igazgató) — `ROLE_CAPABILITIES` (`shared/pnw/roles.ts`).
+    - **Tárolás:** `seed-users.ts` megszűnt, helyette valódi `users` tábla az
+      SQLite-ban (`server/data/db.ts`) és `server/data/users-repo.ts` (CRUD +
+      `seedInitialUsers()`, ami csak akkor tölt be 3 alap fiókot, ha a tábla
+      üres — induláskor mindig meghívva, `server/index.ts`, így nem
+      duplikál újraindításkor).
+    - **Kezdeti jelszó:** felhasználói döntés alapján **a fiókot létrehozó
+      vezető adja meg** a kezdeti jelszót (nem rendszer-generált véletlen) —
+      `Users.tsx` űrlapján kötelező mező létrehozáskor, min. 8 karakter
+      (`MIN_PASSWORD_LENGTH`, `server/routes/users.ts`), szerkesztésnél
+      üresen hagyva a meglévő jelszó marad.
+    - **Végpontok** (`server/routes/users.ts`, mind `requireCapability
+      ('pnw_manage_users')` mögött, a meglévő `GET /` kivételével, ami
+      bármelyik bejelentkezett fióknak lekérhető — ez adja a
+      szerző-név/szerepkör feloldást a poszt-listákhoz és naplóhoz):
+      `POST /`, `PUT /:id`, `DELETE /:id`. Két védőkorlát: **saját fiók nem
+      törölhető** (`cannot_delete_self`) és **az utolsó fiókkezelésre jogosult
+      fiók nem törölhető** (`last_manager` — mindig marad legalább egy, aki
+      fiókokat tud kezelni).
+    - **Felület:** új `src/components/hirkezelo/Users.tsx` — táblázat +
+      létrehozás/szerkesztés űrlap, munkaközösség-vezető szerepkörnél
+      feltételesen megjelenő kategória-checkboxokkal (`allowedCategoryIds`,
+      üresen hagyva = minden kategória). A `Shell.tsx` navigációjában
+      "Fiókok" link jelenik meg, ha `canManageUsers(user.role)`.
+    - **Ellenőrizve `curl`-lel** friss (üres) adatbázis ellen: fiók
+      létrehozása → azzal bejelentkezés → szerepkör/kategória módosítás →
+      törlés, illetve a negatív esetek — gyenge jelszó, foglalt
+      felhasználónév, nem-vezető próbálkozása (`forbidden`), saját fiók
+      törlése (`cannot_delete_self`), utolsó fiókkezelő törlése
+      (`last_manager`) — mind a várt hibakóddal tért vissza. Böngészős
+      Playwright-ellenőrzés ehhez a körhöz nem történt (nem állt rendelkezésre
+      böngésző-automatizálási eszköz ebben a menetben).
 
 ---
 
-## 7. Csapdák, amikbe már belefutottam
+## 7. Csapdák, amikbe már belefutottunk
 
-1. **Bash heredoc megeszi a backslash-t.** Nagy fájlt a Write eszközzel írj,
-   ne heredockal; regexben kerüld a backslash-t, ha teheted.
-
-2. **JSX string-attribútum nem dolgoz fel escape-et.** A `walk.ts` `attr()`
+1. **Bash heredoc megeszi a backslash-t.** Nagy fájlt Write-tal írj, ne
+   heredockal; regexben kerüld a backslash-t, ha teheted.
+2. **JSX string-attribútum nem dolgoz fel escape-et** — a `walk.ts` `attr()`
    helpere ezért expression-konténerbe teszi az ilyen értékeket.
-
-3. **Az oldalankénti Divi design-CSS ütközik.** A `page-css.ts` minden szabályt
-   `.page-<slug>` alá scope-ol — **a formázás előtt**, és **a külső ősök után**
-   (lásd 4.3).
-
-4. **A mentés DOM-sorrendje már oszlopokra van osztva.** A blog-listákban a
-   Salvattore szétosztotta a kártyákat; az eredeti sorrend a
-   `et_pb_blog_item_<feed>_<n>` osztályban van.
-
-5. **A React nem ad ki whitespace-t a mappelt gyerekek között.** Lásd a `{' '}`-eket
-   a `Header.tsx`-ben és az `extract.ts` automatikus kibocsátását (4.5).
-
-6. **Ne találj ki CSS-szabályt.** Most már eszköz is van rá: `matched-css.ts` (3.3).
-
-7. **A Chrome ~500px alatt nem enged kisebb ablakot.** `Emulation.setDeviceMetricsOverride`.
-
-8. **Ne futtass két ellenőrzést egyszerre.** Közös böngészőt hajtanak, és az
-   eredmények **összekeverednek — nem hibával, hanem hihető, hamis számokkal**:
-   a `check-text.ts` „ok"-ot ír olyan oldalakra, amiket a másik futás töltött be.
-   Ha egy ismert oldal karakterszáma nem stimmel (a `home` **7908**, nem 1443),
-   ez történt: állítsd le mindkettőt, és indíts egyet.
-   (Portok: measure 9333, check-text 9388, shot 9366, collect-css 9355,
-   matched-css 9377, layout-report 9344.)
-
-9. **A CDP csak az épp érvényes szabályokat adja vissza.** Egy `@media`-n belüli
-   szabály láthatatlan, ha a viewport nincs benne. A `docs-css.ts` ezért **hat
-   szélességen** járja be az oldalakat — egyetlen szélességen futtatva a teljes
-   reszponzív réteg csendben kimaradna.
-
-10. **A stíluslap-ID-k oldalbetöltésenként változnak.** Kaszkád-sorrendhez ne
-    saját stíluslap-rangsort építs: a CDP **elemenként már kaszkád-sorrendben**
-    adja vissza a szabályokat, arra támaszkodj. (Ezen múlt, hogy a docs oldalak
-    paddingje 21px lett 25px helyett.)
-
-11. **A mentés HTML-je mindkét idézőjelet használja.** `name='robots'`
-    egyszeressel, `rel="canonical"` duplával — ugyanabban a fájlban. Aki
-    attribútumot regexszel olvas ki, `["']`-t írjon. Lásd 4.23.
-
-12. **Ne bízz a regexben, ami „megtalálta" — nézd meg a darabszámot.** A
-    robots-regex hibátlanul lefutott, nem dobott hibát, csak 129 helyett 25
-    oldalon talált. A generátorok ezért írják ki, **hányból hányat** dolgoztak
-    fel, az ellenőrzők pedig ezért olvassák a renderelt oldalt.
-
-13. **A `python - <<'PY'` heredocban a `\s` és `\.` figyelmeztetést ad**, és ami
-    rosszabb: ha a mintát TypeScript-forrásba írod, a backslash-ek száma nem az
-    lesz, amit vársz. Regexet tartalmazó kódot a Write/Edit eszközzel írj.
+3. **Az oldalankénti Divi design-CSS ütközik**, ha a scope a formázás előtt
+   vagy a külső ősök elé kerül (lásd 4.3).
+4. **A mentés DOM-sorrendje már oszlopokra van osztva** a blog-listákban
+   (Salvattore) — az eredeti sorrend az `et_pb_blog_item_<feed>_<n>`
+   osztályban van.
+5. **A React nem ad ki whitespace-t a mappelt gyerekek között** — lásd a
+   `{' '}`-eket a `Header.tsx`-ben és az `extract.ts` automatikus
+   kibocsátását (4.5).
+6. **Ne találj ki CSS-szabályt** — eszköz van rá: `matched-css.ts` (3.3).
+7. **A Chrome ~500px alatt nem enged kisebb ablakot**
+   (`Emulation.setDeviceMetricsOverride`).
+8. **Ne futtass két ellenőrzést egyszerre** — lásd a 3. szakasz elején.
+9. **A CDP csak az épp érvényes szabályokat adja vissza** — egy `@media`-n
+   belüli szabály láthatatlan, ha a viewport nincs benne. A `docs-css.ts`
+   ezért hat szélességen jár be minden oldalt.
+10. **A stíluslap-ID-k oldalbetöltésenként változnak** — kaszkád-sorrendhez
+    ne saját rangsort építs, a CDP elemenként már kaszkád-sorrendben adja
+    vissza a szabályokat.
+11. **A mentés HTML-je mindkét idézőjelet használja** (`name='robots'`
+    egyszeres, `rel="canonical"` dupla, ugyanabban a fájlban) — attribútumot
+    regexszel olvasva `["']`-t írj. Lásd 4.23.
+12. **Ne bízz a regexben, ami "megtalálta" — nézd meg a darabszámot.** A
+    robots-regex hibátlanul lefutott, mégis 129 helyett 25 oldalon talált. A
+    generátorok ezért írják ki, hányból hányat dolgoztak fel.
+13. **A `python - <<'PY'` heredocban a `\s`/`\.` figyelmeztetést ad**, és a
+    backslash-ek száma TS-forrásba írva nem lesz, amit vársz — regexet
+    tartalmazó kódot Write/Edit eszközzel írj.
+14. **A `better-sqlite3` Alpine (Docker) alatt nem feltétlenül a saját előre
+    fordított binárisát használja** — arm64 Alpine-on node-gyp-pal próbált
+    forrásból fordítani, és build-eszközök (`python3 make g++`) nélkül
+    elbukott, holott helyi macOS-en (ugyanaz a csomagverzió) simán a
+    prebuilt binárist töltötte be. Ha egy natív npm-csomag helyben működik,
+    de Dockerben nem, ez legyen az első gyanú — nem feltétlenül a kód hibája.
 
 ---
 
-## 8. Hátralévő munka
+## 8. Hátralévő munka és pixelpontosság
 
-A három fázis kész. Ami maradt, az a pixelpontossági kör, plusz két opcionális
-tétel (bundle-méret, a mentés hiányosságai).
+### 8.1 Lefedettség — mi NINCS portolva
 
-### 8.1 Fázis 5 — archívumok: **kész**
-
-- `scripts/archives.ts` → `src/data/archives.ts`: **64 archívum** (49 kategória,
-  8 dátum, 7 szerző), **253 külön poszt**, **11 lapozó-cél**, ami nincs
-  lementve (`olderMissing` / `newerMissing` → inert vezérlő).
-- `scripts/posts.ts`: **253 összefoglaló** (75 a blog-modulokból, 178 csak az
-  archívumokból), új mezőkkel (`archiveExcerpt`, `archiveImage`, `date`,
-  `author`, `id`, `articleClass`). A 75 modul-poszt értékei **bájtra
-  változatlanok**, ezért a 13 blog-listás oldal ellenőrzése zöld maradt.
-  A generátor **0 dátum- és szerző-ütközést** talált a 64 fájlon — ezért
-  kerülhettek ezek a posztra, a feedenként eltérő formátum pedig maradt a
-  `FeedItem`-en.
-- `ArchiveView` + `ArchiveCard` + `ArchivePagination`, `ArchiveView.css`
-  a `collect-css.ts archive` presetből.
-- 64 route az adatból képezve; `check-routes.ts` őrzi.
-- `check-text.ts` archívum-köre: **64/64 karakterre azonos**.
-
-Geometria 1440px-en (`kategoria/hirek`, `2026/09/15`, `author/galberey`,
-`kategoria/egyeb/page/2`): a `#left-area` teljes oszlopa, mind a 12 kártya és a
-lapozó **0,0px-re egyezik** pozícióban, szélességben és magasságban. Egyetlen
-eltérés a konstans **−1px** függőleges eltolás, ami a 6.1-ben leírt, vállalt
-`#page-container` döntés következménye.
-
-### Lefedettség — mi NINCS portolva
-
-A mentésben **345** oldal van (`index.html`-lel rendelkező könyvtár), ebből
-**129 van portolva**. A különbség:
+A mentésben 345 oldal van, ebből **129 portolva**:
 
 | Nincs portolva | Db | Miért |
 |---|---|---|
-| Blogposzt | 215 | **Felhasználói döntés**: csak 1 kap route-ot, a többi placeholder kártya |
-| `hirkezelo` | 1 | **Felhasználói döntés**: bejelentkezési űrlap, backend nélkül nem működhet |
+| Blogposzt | 215 | Felhasználói döntés: csak 1 kap route-ot |
 
-A `dokumentum-cimke/tananyag` korábban hiányzott; **portolva van**. A
-`DocTaxonomy.tsx` szolgálja ki a 10 kategória- és az 1 címke-oldalt is (a kettő
-csak a fejlécben tér el), és a docs oldalak lábléce is kiírja a dokumentum
-címkéit, ahogy a mentés.
+`/hirkezelo/` **nincs ebben a táblázatban**: az korábban ide tartozott (a
+mentés bejelentkező űrlapja, backend nélkül), de felhasználói kérésre
+lecserélődött egy valódi, működő újraimplementációra — lásd 6.15.
 
 ### 8.2 Pixelpontosság — hol tart
 
-Mért állapot 1440px-en, **szűk szelektorral** (`measure.ts`), nem az összesítőből:
+Mért állapot 1440px-en, szűk szelektorral (`measure.ts`), nem az
+összesítőből:
 
 | Mit | Állapot |
 |---|---|
-| **Kezdőlap: mind a 8 szekció** | **0,0px** (egy 0,2px kerekítéssel) — 4.21, 4.22 |
-| Kezdőlap: galéria, gombok, számlálók, blog-kártyák, záró fejléc | **0,0px** |
-| Kezdőlap: `HeroSlider` — konténer, dia, parallax, pöttyök, nyilak | **0,0px** (4.18) |
-| Klasszikus oldal: `#left-area`, cikk, oldalsáv | **0,0px** (4.22) |
+| Kezdőlap: mind a 8 szekció, galéria, gombok, számlálók, blog-kártyák, `HeroSlider` | **0,0px** |
+| Klasszikus oldal: `#left-area`, cikk, oldalsáv | **0,0px** |
 | 64 archívum: teljes `#left-area` oszlop, kártyák, lapozó | **0,0px** |
-| Docs: breadcrumb, fejléc, olvasási idő, tartalom, reakció-lábléc, prev/next | **0,0px** |
-| Tanári portrék (`tanari-kar`, `elerhetoseg`, `egeszsegugy`) | **0,0px** |
-| Poszt: fejléc, Divi-sor, megosztás-sáv | **0,0px** |
-| `/dokumentumtar/` első sor | **0,0px** |
-| Hero-szekciók (18 oldal): háttérkép, címszín, magasság | **egyezik** (a 6.1 szerinti 116px szekciódoboz-eltéréssel) |
-| Fejléc, főmenü, lenyílók — nyugalomban és görgetve | **0,0px** |
-| Kezdőlapi csúszka képei | **váltakoznak**, 700ms keresztúsztatással (4.18) |
+| Docs: breadcrumb, fejléc, tartalom, reakció-lábléc, prev/next | **0,0px** |
+| Tanári portrék, poszt fejléc/Divi-sor/megosztás-sáv, `/dokumentumtar/` első sor | **0,0px** |
+| Hero-szekciók (18 oldal): háttérkép, címszín, magasság | egyezik (6.1 szerinti 116px szekciódoboz-eltéréssel) |
+| Fejléc, főmenü, lenyílók, nyugalomban és görgetve | **0,0px** (desktop; mobil 2026-09-24 óta nincs újramérve, lásd "Aktuális állapot") |
 
-Mindenhol ott van a 6.1 szerinti konstans **−1px** függőleges eltolás, és a
+Mindenhol jelen van a 6.1 szerinti konstans **-1px** függőleges eltolás, és a
 builder-oldalakon a `section_0` doboz **116px**-es, vállalt eltérése.
 
-#### Ami ebben a körben megoldódott
+**Még nyitott:** a maradék 128 (nem kezdőlap/klasszikus/docs/archívum) oldal
+szekciónkénti végigmérése.
 
-- **A tanári portrék 10px-e** és a **blog-kártyák 21,6px-e** ugyanarra vezetett
-  vissza: a hiányzó `border-style` alapszabályokra. Lásd 4.9.
-- **A képek alapvonal-rése** és a lusta képek összeomlása: 4.10.
-- **A hero-szekciók** három külön hibája: a háttérkép sosem másolódott át
-  (4.11), a szöveg színe elveszett (4.12), és a kép nyúlt (4.13). Mind javítva;
-  a `/nyolcadikos/` most képileg egyezik a mentéssel.
-- **A `HeroSlider` becsült CSS-e** lecserélve a mentésből gyűjtöttre
-  (`collect-css.ts slider`), majd a csúszka **öt tünete**: 4.18.
-- **Az ikonfont rossz részhalmaza**, ami miatt 35 oldalon hiányozhattak glifek:
-  4.19.
-- **A `Gallery`** — a legrégebbi nyitott tétel, −132,7px: 4.21.
-- **A kezdőlap öt további hibája** és a klasszikus oldal 20px-e: 4.22.
+**Nem javítható a mentésből:** az "Örökös Ökoiskola" logó a kezdőlapról
+hiányzik — de a mentésből is (`et_pb_image_8`/`_9` CSS-e és animációs adata
+megvan, markupja és képfájlja nincs). A port pontosan azt mutatja, amit a
+mentés.
 
-#### Még nyitott
+#### Módszer: hogyan keress ilyet
 
-- **A maradék 128 oldal végigmérése.** A kezdőlap és a klasszikus oldal
-  szekcióról szekcióra meg van mérve, a docs és az archívumok korábban. A többi
-  builder-oldalt még senki nem nézte végig — és a kezdőlapon ugyanez a menet
-  **öt** külön hibát fogott ki egymás után, tehát nem formalitás.
-- **A `#page-container` −1px.** A 6.1 döntés mellékhatása; a felhasználó úgy
-  döntött, **maradjon** (az érdemi tartalom pozíciója pontos).
-- **Az `Örökös Ökoiskola` logó** a kezdőlapról hiányzik — de **a mentésből is**.
-  A helye megvan (`et_pb_column_14`, `_15` üresen), a CSS-ük és az animációs
-  adatuk is (`et_pb_image_8`, `_9`), a markupjuk és a képfájljuk viszont nincs
-  lementve. A port pontosan azt mutatja, amit a mentés. **Ez nem javítható a
-  mentésből**, csak a hiányzó kép beszerzésével.
-
-#### Hogyan keress ilyet — a bevált módszer
-
-Amikor egy doboz mérete eltér, és a nyilvánvaló tulajdonságok (méret, betű,
-sortáv) egyeznek, **ne találgass**: diffeld az *összes* számított tulajdonságot.
-Ez vezetett el a keret-rejtélyhez másodpercek alatt, miután órákig kerülgettem.
+Ha egy doboz mérete eltér és a nyilvánvaló tulajdonságok egyeznek, **ne
+találgass** — diffeld az összes számított tulajdonságot:
 
 ```js
 // getComputedStyle(el) iterálható: minden tulajdonság nevét kiadja
@@ -1186,38 +981,25 @@ const s = getComputedStyle(el); const out = []
 for (const p of s) out.push(p + ': ' + s.getPropertyValue(p))
 ```
 
-Futtasd mindkét oldalon, írd fájlba, `diff`. A `scripts/matched-css.ts` ehhez a
-párja: megmondja, **melyik szabály** adja a talált értéket.
+Futtasd mindkét oldalon, írd fájlba, `diff`. A `matched-css.ts` a párja:
+megmondja, melyik szabály adja a talált értéket.
 
 #### A `layout-report.ts` korlátja
 
-Van egy összesítő (`scripts/layout-report.ts`), ami oldalanként kiírja a
-legnagyobb eltérést. **Ne vedd készpénznek a nagy számait.** Elem-kulcs szerint
-párosít (`tag.elsőosztály` + sorszám), és ahol a két DOM nem egy az egyben
-felel meg egymásnak — a bejáró néhány szerkesztő-wrappert kilapít —, ott
-félrepárosít, és több száz pixeles „eltérést" ír ki, ami nem valódi. A sor
-végén lévő `(n unpaired)` jelzi, ha ez fennáll.
-
-Egy ismert, **vállalt** tétel is torzít benne: a `section_0` doboza (6.1) minden
-builder-oldalon `dy/dh = 116.0`-t ad. (A docs oldalak korábbi ~213px-es
-eltolódása megszűnt — a reakció-lábléc azóta renderelődik, lásd 6.9.)
-
-Amit ténylegesen megmértem, szűk szelektorral, az a 8.2 eleji táblázat. Egy
-oldal komolyan vételéhez **a `measure.ts`-t használd szűk szelektorral**, ne az
-összesítőt.
-
-#### Hogyan mérj
+Az összesítő oldalanként kiírja a legnagyobb eltérést, de **ne vedd
+készpénznek a nagy számait** — elem-kulcs szerint párosít
+(`tag.elsőosztály` + sorszám), és ahol a két DOM nem egy az egyben felel meg,
+félrepárosít és több száz pixeles hamis "eltérést" ír ki (`(n unpaired)`
+jelzi). Egy ismert, vállalt tétel is torzít benne: a `section_0` doboza
+(6.1) minden builder-oldalon `dy/dh = 116.0`-t ad. **Egy oldal komolyan
+vételéhez a `measure.ts`-t használd szűk szelektorral**, ne az összesítőt:
 
 ```bash
 node --experimental-strip-types scripts/measure.ts "<szelektor>" \
   http://localhost:8899/<út>/ http://localhost:5173/<út>/ 1440
 ```
-Ha az elemszám eltér, a `measure.ts` szól — általában azért, mert valamit
-szándékosan eldobunk (6.), ilyenkor szűkítsd a szelektort.
 
 ### 8.3 Bundle-méret
-
-Jelenlegi build (a Vite saját számai):
 
 ```
 dist/assets/index-*.css   419 kB   (gzip  39 kB)
@@ -1225,61 +1007,37 @@ dist/assets/data-*.js     390 kB   (gzip  68 kB)   a src/data/ alatti indexek
 dist/assets/index-*.js    643 kB   (gzip 162 kB)   minden más
 ```
 
-**Ami megtörtént:** a `vite.config.ts` `manualChunks`-szal külön chunkba teszi a
-`src/data/` alatti indexeket. Az **összméret nem változott** — nem is ez volt a
-cél —, de a kettő **külön cache-elhető**: az indexek újragenerálása nem
-érvényteleníti a komponenseket, és egy komponens szerkesztése nem kényszerít
-újra letölteni 376 kB adatot.
+A `vite.config.ts` `manualChunks`-szal külön chunkba teszi a `src/data/`
+alatti indexeket — az összméret nem változott, de külön cache-elhető.
 
-**Amit szándékosan nem csináltam meg:** a kivonatok külön `src/data/excerpts.ts`
-fájlba emelését, pedig az AGENT.md korábbi változata javasolta. Önmagában **nem
-csökkentené, amit a böngésző letölt**, mert semmi nem halasztja el a
-betöltésüket: a kivonatokra az `ArchiveCard` és a `PostCard` is támaszkodik,
-azaz gyakorlatilag minden tartalmi oldal. Csak akkor fizetne ki, ha előbb
-route-szintű lusta betöltés kerülne be.
+**Szándékosan nem csináltuk meg:** a kivonatok külön `src/data/excerpts.ts`
+fájlba emelését — semmi nem halasztja el a betöltésüket (`ArchiveCard`,
+`PostCard` szinte minden tartalmi oldalon rájuk támaszkodik), csak akkor
+fizetne ki, ha előbb route-szintű lusta betöltés kerülne be. **Route-szintű
+`React.lazy` sem javasolt** — a Suspense-villanás hűségveszteség, és a
+növekmény amúgy is adat, amit több komponens is importál. Ha egyszer mégis
+szűkíteni kell: (1) `React.lazy` kizárólag a 27 docs oldalra (a fallback maga
+a `<DocsLayout slug={slug} />` keret, bájtra azonos a betöltött állapottal),
+(2) utána a kivonatok szétbontása.
 
-**Route-szintű `React.lazy` továbbra sem javasolt.** A Suspense-villanás a hűség
-rovására megy, és a növekmény amúgy is **adat**: a `posts.ts`-t a `PostCard`, a
-`Search`, a `RecentPosts` (a `Sidebar`-ban, tehát majdnem minden oldalon) és az
-`ArchiveCard` is importálja, tehát a komponensek szétvágása nem viszi ki az
-indexet a közös chunkból.
+`public/media` jelenleg **271 MB** — nincs eldöntve, `.gitignore`-ba kerül-e
+(eddig a "másoljuk be mindet" opció volt választva, de a repóba még nincs
+commitolva).
 
-Ha egyszer mégis szűkíteni kell, ez a sorrend működhet:
+### 8.4 Ismert hiányosságok a mentésben — ezek NEM javíthatók portból
 
-1. `React.lazy` **kizárólag a 27 docs oldalra**. Itt a fallback maga a docs
-   keret lehet (`<DocsLayout slug={slug} />` gyerek nélkül), ami bájtra azonos a
-   betöltött állapottal — ez az egyetlen hely az oldalon, ahol a villanás
-   láthatatlanná tehető.
-2. **Utána** a kivonatok szétbontása, mert akkor már van, ami elhalasztja őket.
-
-A `public/media` jelenleg **271 MB** (a `.gitignore`-ról a felhasználóval kell
-egyeztetni; eddig a „másoljuk be mindet" opciót választotta).
-
-### 8.4 Ismert hiányosságok a mentésben
-
-- **Három hivatkozott fájl nincs lementve** (ellenőrizve):
-  `wp-content/uploads/2024/02/Akadalymentesitesi_nyilatkozat_Petrik.pdf`,
-  `wp-content/uploads/2023/11/MVSZ_BMSZC Petrik_2023.pdf` és
-  `wp-content/uploads/2026/02/Nyelvi-Verseny-–-2026-Februar-1024x675.png`.
-  A `copy-assets.ts` figyelmeztet rájuk, de nem áll meg — ez a mentés hiánya,
-  nem a porté, és nincs mit tenni vele.
-- **11 lapozó-cél** nincs lementve (`page/3/`, `author/{padmin,toth-eva}/page/2/`
-  stb.) — az `archives.ts` `*Missing`-gel jelöli őket.
-- **`2026/09/` hónap-archívum nincs lementve** (csak a napok), és **év-archívum
-  egyáltalán nincs**.
-- **Két képmodul markupja és képfájlja hiányzik a kezdőlapról.** Az
-  `et_pb_image_8` és `_9` CSS-e és animációs adata benne van a mentésben, a
-  14. és 15. oszlop viszont **üresen** van elmentve, és az `uploads` alatt sincs
-  hozzájuk tartozó kép. A felhasználó szerint ez az „Örökös Ökoiskola" logó. A
-  port ugyanazt a két üres oszlopot rendereli — **ezt a mentésből nem lehet
-  pótolni**, csak a kép beszerzésével.
-- **Az ikonfont `@font-face`-e abszolút URL-re mutat** (`//petrik.hu/...`), tehát
-  a mentés offline **nem éri el**, és a nyers karaktereket rajzolja az ikonok
-  helyére. Lásd 4.19 és 6.3 — a port renderje a helyes, ne igazítsd hozzá.
-- **Minden `rel="canonical"` href át van írva** relatív útra (`""`,
-  `"index.html"`, `"../bemutatkozas/"`), tehát az eredeti abszolút URL mind a
-  269-ből eltűnt. Lásd 4.23.
-- Néhány archív poszt-slug **percent-kódolt emojit** tartalmaz
-  (`%f0%9f%8c%bf-zero-waste-fashion…`). A `resolveUrl` `decodeURI`-t hív, így a
-  kulcs emojis lesz — konzisztensen, mert az `archives.ts` és a `posts.ts` is
-  ugyanazon megy át. Route nem kell rájuk (mind `available: false`).
+- **Három hivatkozott fájl nincs lementve** (a `copy-assets.ts` figyelmeztet
+  rájuk, de nem áll meg): két PDF (`Akadalymentesitesi_nyilatkozat_Petrik.pdf`,
+  `MVSZ_BMSZC Petrik_2023.pdf`) és egy kép (`Nyelvi-Verseny-–-2026-Februar-1024x675.png`).
+- **11 lapozó-cél nincs lementve** (`page/3/`, `author/{padmin,toth-eva}/page/2/`
+  stb.) — az `archives.ts` `*Missing`-gel jelöli.
+- **`2026/09/` hónap-archívum nincs lementve** (csak a napok), év-archívum
+  egyáltalán nincs.
+- **Két képmodul (kezdőlap "Örökös Ökoiskola" logó)** markupja és képfájlja
+  hiányzik — lásd 8.2.
+- **Az ikonfont `@font-face`-e abszolút URL-re mutat**, offline nem éri el —
+  lásd 4.19, 6.3.
+- **Minden `rel="canonical"` href relatív útra van írva** — lásd 4.23.
+- Néhány archív poszt-slug percent-kódolt emojit tartalmaz
+  (`%f0%9f%8c%bf-zero-waste-fashion…`); a kulcs emojis lesz konzisztensen
+  (`resolveUrl` `decodeURI`-t hív). Route nem kell rájuk (`available: false`).

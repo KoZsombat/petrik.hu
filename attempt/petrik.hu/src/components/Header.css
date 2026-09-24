@@ -300,11 +300,27 @@ nav#top-menu-nav,
 
 @media (max-width: 980px) {
   #main-header {
+    /*
+     * Intentional deviation from the mirror (user request, see 6.14 in
+     * AGENT.md): the original theme switches this to `position: absolute`
+     * below 980px, so it scrolls away together with #top-header (also
+     * `absolute` below 980px, TopBar.css). Here it stays pinned instead.
+     *
+     * `sticky` rather than `fixed` so the header still participates in
+     * normal flow, right after #top-header (also switched to `static`
+     * below 980px). That gives the "chase, then lock" motion for free: while
+     * #top-header is still scrolling into view the header just scrolls with
+     * it, and once #top-header's 36px has passed under the viewport top the
+     * header locks at top: 0 - no gap, no manual scroll math.
+     */
+    position: sticky;
+    top: 0;
     transition: none;
   }
 
   #et-top-navigation {
     padding-left: 0;
+    padding-top: 24px;
     margin-right: 0;
     transition: none;
   }
@@ -320,6 +336,13 @@ nav#top-menu-nav,
   #et_top_search {
     margin: 0 35px 0 0;
     float: left;
+  }
+
+  #et_search_icon::before {
+    /* #et_top_search collapses to 0 height at this width, so the icon needs
+     * its own offset to sit level with the (taller) hamburger button next
+     * to it. */
+    top: 7px;
   }
 
   .logo_container,

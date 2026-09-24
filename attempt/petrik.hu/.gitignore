@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# /hirkezelo/ backend runtime state - not source, see server/config.ts
+server/data/db
+server/uploads
+
+# Real secrets go here (docker-compose.yml / .env.example), never committed
+.env
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -11,12 +11,15 @@
 }
 
 @media (max-width: 980px) {
-  /* The top bar stops being fixed here and scrolls away with the page, but the
-   * header keeps its 36px offset - the same as the original. Divi's script
-   * landed on one pixel less than at desktop width; matching it keeps the two
-   * renders aligned. */
+  /*
+   * Intentional deviation from the mirror (user request, see 6.14 in
+   * AGENT.md): the top bar and header are back in normal document flow here
+   * (TopBar.css, Header.css) instead of being taken out of it with
+   * fixed/absolute, so they now reserve their own space and the container
+   * needs none added on top - it would otherwise double the offset.
+   */
   #page-container {
-    padding-top: 114px;
+    padding-top: 0;
   }
 }
 

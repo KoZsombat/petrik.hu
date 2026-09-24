@@ -4,6 +4,7 @@ import Header from './Header.tsx'
 import ScrollToTop from './ScrollToTop.tsx'
 import TopBar from './TopBar.tsx'
 import { useDocumentHead } from '../lib/useDocumentHead.ts'
+import { PostsProvider } from '../lib/posts/PostsProvider.tsx'
 import './Layout.css'
 
 /**
@@ -12,20 +13,25 @@ import './Layout.css'
  *
  * Every route in App.tsx sits under this element, so the per-route <title>
  * belongs here rather than in each of the 53 page components - the generated
- * ones could not carry it anyway.
+ * ones could not carry it anyway. `PostsProvider` lives here for the same
+ * reason: `Layout` stays mounted across client-side navigation (only its
+ * `<Outlet>` child swaps), so the live-posts fetch happens once per page
+ * load, not once per route - see PostsContext.tsx.
  */
 export default function Layout() {
   useDocumentHead()
 
   return (
-    <div id="page-container">
-      <ScrollToTop />
-      <TopBar />
-      <Header />
-      <div id="et-main-area">
-        <Outlet />
+    <PostsProvider>
+      <div id="page-container">
+        <ScrollToTop />
+        <TopBar />
+        <Header />
+        <div id="et-main-area">
+          <Outlet />
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </PostsProvider>
   )
 }

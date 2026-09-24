@@ -137,7 +137,15 @@
 
 @media (max-width: 980px) {
   #top-header {
-    position: absolute;
+    /*
+     * The mirror keeps this `absolute` here too (it scrolls away together
+     * with #main-header, which does the same below this width). Changed to
+     * `static` as part of the intentional deviation in Header.css: #main-
+     * header is `sticky` on mobile now, and that only produces the "chase,
+     * then lock" motion the user asked for if this bar sits in normal flow
+     * right before it. See 6.14 in AGENT.md.
+     */
+    position: static;
     transition: none;
   }
 

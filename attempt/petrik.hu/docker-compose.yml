@@ -1,0 +1,24 @@
+# One command to run the whole site: `docker compose up --build`.
+#
+# A single service, matching how server/index.ts already works (see
+# AGENT.md 6.15 "Running it"): it serves both the built static pixel-port
+# and the /hirkezelo/ API from one process, so one container is the whole
+# app - no separate frontend/backend services needed.
+services:
+  app:
+    build: .
+    ports:
+      - '${PNW_PORT:-4000}:4000'
+    environment:
+      PNW_PORT: 4000
+      # Set a real PNW_SESSION_SECRET in a local .env file before exposing
+      # this beyond your own machine - see .env.example.
+      PNW_SESSION_SECRET: ${PNW_SESSION_SECRET:-petrik-news-workflow-dev-secret-change-me}
+    volumes:
+      # The SQLite database and uploaded images, kept on the host so
+      # `docker compose down` / a rebuild never loses published news - the
+      # same two paths server/config.ts already gitignores for local (non-
+      # Docker) runs.
+      - ./server/data/db:/app/server/data/db
+      - ./server/uploads:/app/server/uploads
+    restart: unless-stopped

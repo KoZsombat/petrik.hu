@@ -1,0 +1,133 @@
+/*
+ * Adapted from the plugin's assets/css/pnw.css .pnw-editor-field rules, which
+ * targeted WordPress TinyMCE's own DOM (.wp-editor-wrap, .mce-toolbar-grp).
+ * This editor has no TinyMCE, so the same visual language (light toolbar
+ * strip, rounded frame, 1px border) is re-targeted at RichTextEditor's own
+ * markup instead - see AGENT.md 6.15.
+ */
+.pnw-rte {
+  border: 1px solid #d0d5dd;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.pnw-rte-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 8px;
+  background: #f8fafc;
+  border-bottom: 1px solid var(--pnw-border, #e4e7ec);
+}
+
+.pnw-rte-format {
+  border: 1px solid var(--pnw-border, #e4e7ec);
+  border-radius: 6px;
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+  padding: 0 6px;
+}
+
+.pnw-rte-btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--pnw-text, #172033);
+  min-width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.pnw-rte-btn:hover {
+  background: #eef3f9;
+}
+
+.pnw-rte-btn-active {
+  background: #dbe6f7;
+  border-color: #b9c8dc;
+}
+
+.pnw-rte-body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pnw-rte-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.pnw-rte-list-marker {
+  color: var(--pnw-muted, #667085);
+  padding-top: 8px;
+  width: 16px;
+  text-align: center;
+  flex: none;
+}
+
+.pnw-rte-input {
+  flex: 1;
+  resize: vertical;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 7px 9px;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+.pnw-rte-input:hover {
+  border-color: var(--pnw-border, #e4e7ec);
+}
+
+.pnw-rte-block-active .pnw-rte-input {
+  border-color: #b9c8dc;
+  background: #fff;
+}
+
+.pnw-rte-block-heading .pnw-rte-input {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.pnw-rte-block-blockquote .pnw-rte-input {
+  border-left: 4px solid #b9c8dc;
+  font-style: italic;
+  color: var(--pnw-muted, #667085);
+}
+
+.pnw-rte-remove {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--pnw-danger, #b42318);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 6px;
+  flex: none;
+}
+
+.pnw-rte-add {
+  appearance: none;
+  border: 0;
+  border-top: 1px solid var(--pnw-border, #e4e7ec);
+  background: #f8fafc;
+  color: var(--pnw-primary, #173b6c);
+  font-weight: 700;
+  padding: 9px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.pnw-rte-add:hover {
+  background: #eef3f9;
+}

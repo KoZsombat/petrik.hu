@@ -1,4 +1,4 @@
-import { posts } from '../../data/posts.ts'
+import { usePosts } from '../../lib/posts/postsContext.ts'
 import { useColumnCount } from '../../lib/useColumnCount.ts'
 import PostCard, { type FeedItem } from './PostCard.tsx'
 import './PostFeed.css'
@@ -22,6 +22,15 @@ type Props = {
    */
   hasOlder?: boolean
   className?: string
+  /**
+   * Prepends whatever is currently published through /hirkezelo/ (see
+   * AGENT.md 6.15), newest first, ahead of `items`. Default false/unset: this
+   * is opt-in per feed instance (only the homepage's two feeds turn it on,
+   * via scripts/walk.ts) rather than global, since most PostFeed instances
+   * across the mirrored pages are about one specific historical topic, not
+   * "whatever's newest site-wide".
+   */
+  includeLive?: boolean
 }
 
 /**
@@ -38,9 +47,12 @@ export default function PostFeed({
   align = 'left',
   hasOlder = false,
   className,
+  includeLive = false,
 }: Props) {
+  const { posts, liveSlugs } = usePosts()
   const active = useColumnCount(columns)
-  const known = items.filter((item) => posts[item.slug])
+  const effectiveItems = includeLive ? [...liveSlugs.map((slug): FeedItem => ({ slug })), ...items] : items
+  const known = effectiveItems.filter((item) => posts[item.slug])
 
   const buckets: { item: FeedItem; position: number }[][] = Array.from({ length: active }, () => [])
   known.forEach((item, position) => {

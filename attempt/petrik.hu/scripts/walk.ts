@@ -326,6 +326,12 @@ function emitModule(el: HTMLElement, depth: number, unknown: Set<string>): Emit 
       // An "older posts" link means there were further pages, none of which the
       // snapshot contains; the feed renders the control as inert.
       if (el.querySelector('.pagination a')) props.push('hasOlder')
+      // Intentional deviation from the mirror, homepage only (user request,
+      // see AGENT.md 6.15): a post actually published through /hirkezelo/
+      // shows up in these two feeds, newest first, ahead of the mirrored
+      // items. `dir` is the top-level CLI arg (empty string for home) - see
+      // the dispatch section at the bottom of this file.
+      if (dir === '') props.push('includeLive')
       const feedProps = props.join('\n  ')
       return {
         jsx: ['<PostFeed', `  ${feedProps}`, '  items={[', ...items, '  ]}', '/>'].join('\n'),
