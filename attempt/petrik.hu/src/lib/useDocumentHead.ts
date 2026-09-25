@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { heads } from '../data/head.ts'
+import { useSiteContent } from './site/siteContext.ts'
+import { routeKey } from './site/usePageOverride.ts'
 
 /**
  * The two routes the mirror has no page for, so there is nothing to copy.
@@ -20,6 +22,19 @@ const NOT_FOUND_TITLE = 'Az oldal nem található | petrik.hu'
  * than no robots meta at all. See AGENT.md 6.15.
  */
 const HIRKEZELO_TITLE = 'Hírkezelő | petrik.hu'
+
+/**
+ * The same for the shared login and the Szerkesztő (AGENT.md 6.19): real
+ * tools, never in the snapshot, never to be indexed.
+ */
+const TOOL_TITLES: Record<string, string> = {
+  '/hirkezelo/': HIRKEZELO_TITLE,
+  '/bejelentkezes/': 'Bejelentkezés | petrik.hu',
+  '/szerkeszto/': 'Szerkesztő | petrik.hu',
+}
+
+/** A top-level `/<slug>/` - the only shape a Szerkesztő page can have. */
+const SINGLE_SEGMENT = /^\/([^/]+)\/?$/
 
 /**
  * Sets or removes one <meta> in <head>, keyed by its name.
@@ -70,24 +85,47 @@ function setCanonical(href: string | undefined): void {
  */
 export function useDocumentHead(): void {
   const { pathname } = useLocation()
+  const site = useSiteContent()
 
   useEffect(() => {
-    const head = heads[pathname]
+    const route = routeKey(pathname)
+    const override = site.overrides[route]
+
+    // A mirrored page the Szerkesztő hid is served as the 404 (Layout.tsx).
+    // `route`, not `pathname`: the router serves /nyolcadikos as well as /nyolcadikos/.
+    const head = override?.hidden ? undefined : heads[route]
     if (head) {
-      document.title = head.title
-      setMeta('description', head.description)
+      // The Szerkesztő may replace a mirrored page's title and description
+      // (AGENT.md 6.19); robots and canonical stay the mirror's.
+      document.title = override?.title ? `${override.title} | petrik.hu` : head.title
+      setMeta('description', override?.description ?? head.description)
       setMeta('robots', head.robots)
-      setCanonical(head.canonical ? window.location.origin + pathname : undefined)
+      setCanonical(head.canonical ? window.location.origin + route : undefined)
       return
     }
 
-    if (pathname === '/hirkezelo/') {
-      document.title = HIRKEZELO_TITLE
+    const toolTitle = TOOL_TITLES[route]
+    if (toolTitle) {
+      document.title = toolTitle
       setMeta('description', undefined)
       setMeta('robots', 'noindex, nofollow')
       setCanonical(undefined)
       return
     }
+
+    // A page built in the Szerkesztő (src/pages/DynamicPage.tsx). Until the
+    // one site fetch settles it is unknown whether this is one, so the 404
+    // title must not flash first.
+    const slug = SINGLE_SEGMENT.exec(pathname)?.[1]
+    const page = slug ? site.pages[slug] : undefined
+    if (page) {
+      document.title = `${page.title} | petrik.hu`
+      setMeta('description', page.description || undefined)
+      setMeta('robots', undefined)
+      setCanonical(window.location.origin + route)
+      return
+    }
+    if (slug && site.loading) return
 
     // A live post published through /hirkezelo/ - real content, but its
     // title/etc. is dynamic data this static map can't know in advance.
@@ -100,5 +138,5 @@ export function useDocumentHead(): void {
     setMeta('description', undefined)
     setMeta('robots', undefined)
     setCanonical(undefined)
-  }, [pathname])
+  }, [pathname, site])
 }

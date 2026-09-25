@@ -1,7 +1,12 @@
 import { Children, type ReactNode } from 'react'
+import type { ColumnSpan } from '../../../shared/pnw/page-types.ts'
 
-/** Divi's column widths, named as fractions of the row. */
-export type ColumnSpan = '4_4' | '3_4' | '2_3' | '3_5' | '2_5' | '1_2' | '1_3' | '1_4' | '1_5' | '1_6'
+/**
+ * Divi's column widths, named as fractions of the row. Defined in
+ * shared/pnw/page-types.ts so the Szerkesztő's document model (which the
+ * server validates too) can use it without shared/ importing from src/.
+ */
+export type { ColumnSpan }
 
 type Props = {
   children?: ReactNode

@@ -1,4 +1,6 @@
 import type { ReactNode } from 'react'
+import RichText from '../hirkezelo/RichText.tsx'
+import { usePageOverride } from '../../lib/site/usePageOverride.ts'
 import './Blurb.css'
 
 type Props = {
@@ -31,6 +33,13 @@ export default function Blurb({
   index,
   className,
 }: Props) {
+  // A title/description saved in the Szerkesztő (AGENT.md 6.19).
+  const override = usePageOverride('blurb', index)
+  if (override) {
+    title = override.title ?? title
+    if (override.content) children = <RichText document={override.content} />
+  }
+
   const classes = [
     'et_pb_module',
     'et_pb_blurb',

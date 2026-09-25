@@ -76,6 +76,11 @@ for (const page of selected) {
 
 console.log(`generated ${written} page components and stylesheets`)
 
+// The Szerkesztő's module map (AGENT.md 6.19) is keyed by the same `index`
+// props just written, so it is rebuilt in the same run - never one without the
+// other. It fails loudly if the mirror and the components disagree.
+process.stdout.write(run('scripts/page-inventory.ts', []))
+
 // A quick sanity check: every generated file should parse as JSX-ish source.
 for (const page of selected) {
   const file = resolve(PROJECT_ROOT, `src/pages/${stemOf(page)}.tsx`)

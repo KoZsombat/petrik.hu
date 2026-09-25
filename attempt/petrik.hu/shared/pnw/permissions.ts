@@ -22,6 +22,7 @@ export const ALL_CAPABILITIES: Capability[] = [
   CAPABILITY.VIEW_AUDIT_LOG,
   CAPABILITY.MANAGE_TERMS,
   CAPABILITY.MANAGE_USERS,
+  CAPABILITY.MANAGE_PAGES,
 ]
 
 export const CAPABILITY_LABEL: Record<Capability, string> = {
@@ -31,6 +32,7 @@ export const CAPABILITY_LABEL: Record<Capability, string> = {
   [CAPABILITY.VIEW_AUDIT_LOG]: 'Statisztika és napló',
   [CAPABILITY.MANAGE_TERMS]: 'Kategóriák és címkék létrehozása',
   [CAPABILITY.MANAGE_USERS]: 'Fiókok kezelése',
+  [CAPABILITY.MANAGE_PAGES]: 'Oldalak szerkesztése',
 }
 
 export const CAPABILITY_DESCRIPTION: Record<Capability, string> = {
@@ -40,6 +42,8 @@ export const CAPABILITY_DESCRIPTION: Record<Capability, string> = {
   [CAPABILITY.VIEW_AUDIT_LOG]: 'Megnyithatja a statisztikát és a teljes eseménynaplót.',
   [CAPABILITY.MANAGE_TERMS]: 'Új kategóriát és címkét hozhat létre. A meglévőket enélkül is bárki használhatja.',
   [CAPABILITY.MANAGE_USERS]: 'Hírkezelő-fiókokat hozhat létre, módosíthat és törölhet.',
+  [CAPABILITY.MANAGE_PAGES]:
+    'A Szerkesztőben módosíthatja az oldalak tartalmát, új oldalt hozhat létre vagy törölhet, és szerkesztheti a menüt.',
 }
 
 export function isCapability(value: unknown): value is Capability {
@@ -68,6 +72,20 @@ export function canViewAuditLog(user: HasPermissions): boolean {
 
 export function canManageUsers(user: HasPermissions): boolean {
   return hasCapability(user, CAPABILITY.MANAGE_USERS)
+}
+
+/** The Szerkesztő (/szerkeszto/) - see AGENT.md 6.19. */
+export function canManagePages(user: HasPermissions): boolean {
+  return hasCapability(user, CAPABILITY.MANAGE_PAGES)
+}
+
+/**
+ * Whether the account has anything to do in the Hírkezelő - any permission
+ * but the Szerkesztő's. An account holding only `pnw_manage_pages` is let
+ * into /szerkeszto/, not into the news workflow (AGENT.md 6.19).
+ */
+export function hasNewsPermission(user: HasPermissions): boolean {
+  return user.permissions.some((capability) => capability !== CAPABILITY.MANAGE_PAGES)
 }
 
 export function canManageTerms(user: HasPermissions): boolean {

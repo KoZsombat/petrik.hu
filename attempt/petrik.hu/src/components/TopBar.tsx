@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import { contact, secondaryMenu } from '../data/site.ts'
+import { contact } from '../data/site.ts'
+import { useSiteMenu } from '../lib/site/siteContext.ts'
 import SocialIcons from './SocialIcons.tsx'
 import './TopBar.css'
 import { useFixedHeader } from '../lib/useFixedHeader.ts'
@@ -12,6 +13,8 @@ import { useFixedHeader } from '../lib/useFixedHeader.ts'
 export default function TopBar() {
   // The theme recolours the bar in the fixed state; see useFixedHeader.
   const fixed = useFixedHeader()
+  // The Szerkesztő's edited menu when there is one, else src/data/site.ts (AGENT.md 6.19).
+  const { secondary: secondaryMenu } = useSiteMenu()
   return (
     <div id="top-header" className={fixed ? 'et-fixed-header' : undefined}>
       <div className="container clearfix">
@@ -27,7 +30,7 @@ export default function TopBar() {
             {/* Inline-block items; see the note in Header.tsx about the
                 whitespace the original markup relies on for spacing. */}
             {secondaryMenu.map((item, index) => (
-              <Fragment key={item.label}>
+              <Fragment key={`${item.label}-${index}`}>
                 {index > 0 && ' '}
                 <li className="menu-item">
                   {item.to ? (

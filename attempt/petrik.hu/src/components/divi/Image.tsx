@@ -1,3 +1,4 @@
+import { usePageOverride } from '../../lib/site/usePageOverride.ts'
 import './Image.css'
 
 type Props = {
@@ -34,14 +35,20 @@ export default function Image({
   index,
   className,
 }: Props) {
+  // A replacement picture from the Szerkesztő (AGENT.md 6.19). Its srcset,
+  // sizes and intrinsic size belong to the old file, so they go with it.
+  const override = usePageOverride('image', index)
+  const replaced = override?.src !== undefined
+  if (override) href = override.href ?? href
+
   const image = (
     <img
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      srcSet={srcSet}
-      sizes={sizes}
+      src={replaced ? override.src : src}
+      alt={override?.alt ?? alt}
+      width={replaced ? undefined : width}
+      height={replaced ? undefined : height}
+      srcSet={replaced ? undefined : srcSet}
+      sizes={replaced ? undefined : sizes}
       loading={loading}
       decoding="async"
     />

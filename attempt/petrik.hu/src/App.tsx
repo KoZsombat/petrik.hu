@@ -18,6 +18,9 @@ import Egeszsegugy from './pages/Egeszsegugy.tsx'
 import Elerhetoseg from './pages/Elerhetoseg.tsx'
 import ErettsegiVizsga from './pages/ErettsegiVizsga.tsx'
 import Hirkezelo from './pages/Hirkezelo.tsx'
+import Bejelentkezes from './pages/Bejelentkezes.tsx'
+import Szerkeszto from './pages/Szerkeszto.tsx'
+import DynamicPage from './pages/DynamicPage.tsx'
 import PublishedPost from './pages/PublishedPost.tsx'
 import HomePage from './pages/HomePage.tsx'
 import InMemoriam from './pages/InMemoriam.tsx'
@@ -82,6 +85,11 @@ export default function App() {
             of the 129 mirrored pages. See AGENT.md 6.15 for why /hirek/ and
             not a bare top-level slug. */}
         <Route path="/hirek/:slug/" element={<PublishedPost />} />
+        {/* Not mirror pages either: the shared login that offers the
+            Hírkezelő or the Szerkesztő, and the Szerkesztő itself - the
+            page editor backed by server/routes/pages.ts. See AGENT.md 6.19. */}
+        <Route path="/bejelentkezes/" element={<Bejelentkezes />} />
+        <Route path="/szerkeszto/" element={<Szerkeszto />} />
 
         {/* The document library. The docs pages themselves are generated and
             wired up in src/routes/docsRoutes.tsx. */}
@@ -101,6 +109,13 @@ export default function App() {
         {Object.values(archives).map((archive) => (
           <Route key={archive.route} path={archive.route} element={<ArchiveView />} />
         ))}
+
+        {/* A page created in the Szerkesztő (AGENT.md 6.19), live data like
+            /hirek/:slug/. Every exact route above outranks this pattern
+            whatever the order; it sits here, last before the 404, so the
+            table reads the way it resolves. An unknown slug falls through to
+            <NotFound /> inside DynamicPage itself. */}
+        <Route path="/:slug/" element={<DynamicPage />} />
 
         <Route path="*" element={<NotFound />} />
       </Route>

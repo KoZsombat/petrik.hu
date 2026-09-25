@@ -24,13 +24,15 @@ import auditRoutes from './routes/audit.ts'
 import statisticsRoutes from './routes/statistics.ts'
 import usersRoutes from './routes/users.ts'
 import termsRoutes from './routes/terms.ts'
+import pageRoutes from './routes/pages.ts'
 
 seedInitialUsers()
 seedInitialTerms()
 
 const app = express()
 
-app.use(express.json())
+// A Szerkesztő page document (AGENT.md 6.19) easily outgrows express's 100 KB default.
+app.use(express.json({ limit: '2mb' }))
 app.use(express.urlencoded({ extended: true }))
 app.use(
   session({
@@ -56,6 +58,7 @@ app.use('/api/audit', auditRoutes)
 app.use('/api/statistics', statisticsRoutes)
 app.use('/api/users', usersRoutes)
 app.use('/api/terms', termsRoutes)
+app.use('/api/pages', pageRoutes)
 
 // The rest of the site is a static pixel-port that needs no server at all;
 // this only serves it too so `node server/index.ts` is a complete way to run

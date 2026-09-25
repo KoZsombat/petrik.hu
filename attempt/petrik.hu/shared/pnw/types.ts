@@ -6,10 +6,21 @@
 
 export type Align = 'left' | 'center' | 'right'
 
+/**
+ * One styled stretch of text. `bold`/`italic` are all the Hírkezelő's editor
+ * writes; `color`, `href` and `underline` exist for the Szerkesztő (AGENT.md
+ * 6.19), whose content comes from the mirror's own markup - coloured spans,
+ * links, underlines. A `\n` inside `text` renders as a line break.
+ */
 export type TextRun = {
   text: string
   bold?: boolean
   italic?: boolean
+  underline?: boolean
+  /** A CSS colour, e.g. `#72c3b6`. Validated server-side (server/lib/validation.ts). */
+  color?: string
+  /** A root-relative in-app route (`/nyolcadikos/`) or an absolute http(s)/mailto/tel URL. */
+  href?: string
 }
 
 /**
@@ -24,7 +35,9 @@ export type BlockType = 'paragraph' | 'heading' | 'bulleted-list' | 'numbered-li
 export type RichTextBlock = {
   id: string
   type: BlockType
-  align?: Align
+  align?: Align | 'justify'
+  /** Only read when `type === 'heading'`; a heading without it is an <h2>, as it always was. */
+  level?: 1 | 2 | 3 | 4
   runs: TextRun[]
 }
 
@@ -67,6 +80,12 @@ export const CAPABILITY = {
    * or tag (see AGENT.md 6.16).
    */
   MANAGE_TERMS: 'pnw_manage_terms',
+  /**
+   * The Szerkesztő (/szerkeszto/): edit the content of the mirrored pages,
+   * create/delete new pages and edit the main menu (AGENT.md 6.19). No
+   * equivalent in the real plugin.
+   */
+  MANAGE_PAGES: 'pnw_manage_pages',
 } as const
 
 export type Capability = (typeof CAPABILITY)[keyof typeof CAPABILITY]

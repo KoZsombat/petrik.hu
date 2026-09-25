@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { ApiUser } from '../../lib/hirkezelo/api.ts'
 import {
+  canManagePages,
   canManagePublished,
   canManageUsers,
   canSubmit,
@@ -44,6 +45,8 @@ export default function Shell({ user, onLogout }: { user: ApiUser; onLogout: () 
           </>
         )}
         {canManageUsers(user) && <Link to="/hirkezelo/?pnw_view=users">Fiókok</Link>}
+        {/* The page editor shares this login (AGENT.md 6.19). */}
+        {canManagePages(user) && <Link to="/szerkeszto/">Szerkesztő →</Link>}
         <a className="pnw-nav-spacer" onClick={onLogout} role="button" tabIndex={0}>
           Kijelentkezés
         </a>

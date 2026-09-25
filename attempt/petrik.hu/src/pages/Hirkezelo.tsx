@@ -1,6 +1,12 @@
 import { useSearchParams } from 'react-router-dom'
 import { useSession } from '../lib/hirkezelo/useSession.ts'
-import { canManagePublished, canManageUsers, canSubmit, canViewAuditLog } from '../../shared/pnw/permissions.ts'
+import {
+  canManagePublished,
+  canManageUsers,
+  canSubmit,
+  canViewAuditLog,
+  hasNewsPermission,
+} from '../../shared/pnw/permissions.ts'
 import LoginCard from '../components/hirkezelo/LoginCard.tsx'
 import Unauthorized from '../components/hirkezelo/Unauthorized.tsx'
 import Shell from '../components/hirkezelo/Shell.tsx'
@@ -48,8 +54,9 @@ export default function Hirkezelo() {
   }
 
   // Any single permission is enough to get in - which screens are reachable
-  // is then decided one by one below (AGENT.md 6.16).
-  if (user.permissions.length === 0) {
+  // is then decided one by one below (AGENT.md 6.16). The Szerkesztő's own
+  // right does not count: it opens /szerkeszto/, not this (AGENT.md 6.19).
+  if (!hasNewsPermission(user)) {
     return (
       <div className="pnw-app">
         <Unauthorized onLogout={logout} />

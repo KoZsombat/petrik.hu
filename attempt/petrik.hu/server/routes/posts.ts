@@ -1,7 +1,5 @@
 import { randomUUID } from 'node:crypto'
-import { extname } from 'node:path'
 import { Router } from 'express'
-import multer from 'multer'
 import { CAPABILITY, STATUS } from '../../shared/pnw/types.ts'
 import type { Post } from '../../shared/pnw/types.ts'
 import { canEditWorkflowPost, canViewWorkflowPost } from '../../shared/pnw/access.ts'
@@ -14,30 +12,17 @@ import { logAudit, recentAudit } from '../lib/audit.ts'
 import { notifyApproved, notifyRejected, notifyScheduled, notifySubmitted } from '../lib/notifications.ts'
 import { hasRealText, parseIdList, parseRichText, sanitizeTermIds } from '../lib/validation.ts'
 import { blockText } from '../../shared/pnw/richtext.ts'
-import { TEST_MODE, UPLOADS_DIR, UPLOADS_URL_PREFIX } from '../config.ts'
+import { TEST_MODE } from '../config.ts'
+import { storeImage, upload } from '../lib/uploads.ts'
 
 const router = Router()
-
-const upload = multer({
-  dest: UPLOADS_DIR,
-  limits: { fileSize: 8 * 1024 * 1024 },
-})
 
 function now(): string {
   return new Date().toISOString()
 }
 
-/** Ported from PNW_Actions::handle_featured_image() - re-checks the MIME server-side too. */
-async function handleFeaturedImage(file: Express.Multer.File | undefined): Promise<string | undefined> {
-  if (!file) return undefined
-  if (!file.mimetype.startsWith('image/')) return undefined
-
-  const { rename } = await import('node:fs/promises')
-  const filename = `${randomUUID()}${extname(file.originalname) || ''}`
-  const { join } = await import('node:path')
-  await rename(file.path, join(UPLOADS_DIR, filename))
-  return `${UPLOADS_URL_PREFIX}/${filename}`
-}
+/** The multer config and the image check are shared with the Szerkesztő's media picker (lib/uploads.ts). */
+const handleFeaturedImage = storeImage
 
 router.use(requireLogin)
 

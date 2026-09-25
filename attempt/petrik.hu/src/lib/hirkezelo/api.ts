@@ -5,6 +5,7 @@
  * relative /api/... path is always correct.
  */
 import type { AuditEntry, Capability, Post, Term, TermKind } from '../../../shared/pnw/types.ts'
+import type { BuilderPage, PageDocument, PageOverrides, PageStatus, SiteMenu } from '../../../shared/pnw/page-types.ts'
 import { rememberTerm } from '../terms.ts'
 
 export type ApiUser = {
@@ -204,4 +205,74 @@ export type Statistics = {
 
 export function statistics(): Promise<Statistics> {
   return request('/statistics')
+}
+
+// --- the Szerkesztő (AGENT.md 6.19) -----------------------------------------
+
+export type OverrideSummary = { route: string; modifiedAt: string; hidden: boolean }
+
+export function listPages(): Promise<{ pages: BuilderPage[]; overrides: OverrideSummary[] }> {
+  return request('/pages')
+}
+
+export type PageInput = {
+  title: string
+  description: string
+  status: PageStatus
+  document: PageDocument
+}
+
+export function createPage(input: PageInput): Promise<{ page: BuilderPage }> {
+  return request('/pages', { method: 'POST', body: JSON.stringify(input) })
+}
+
+export function getPage(id: string): Promise<{ page: BuilderPage }> {
+  return request(`/pages/${encodeURIComponent(id)}`)
+}
+
+export function updatePage(id: string, input: PageInput): Promise<{ page: BuilderPage }> {
+  return request(`/pages/${encodeURIComponent(id)}`, { method: 'PUT', body: JSON.stringify(input) })
+}
+
+export function deletePage(id: string): Promise<{ ok: true }> {
+  return request(`/pages/${encodeURIComponent(id)}`, { method: 'DELETE' })
+}
+
+export function getOverrides(route: string): Promise<{ overrides: PageOverrides | null; modifiedAt: string | null }> {
+  return request(`/pages/overrides?route=${encodeURIComponent(route)}`)
+}
+
+export function saveOverrides(overrides: PageOverrides): Promise<{ overrides: PageOverrides; modifiedAt: string }> {
+  return request(`/pages/overrides?route=${encodeURIComponent(overrides.route)}`, {
+    method: 'PUT',
+    body: JSON.stringify({ overrides }),
+  })
+}
+
+export function clearOverrides(route: string): Promise<{ ok: true }> {
+  return request(`/pages/overrides?route=${encodeURIComponent(route)}`, { method: 'DELETE' })
+}
+
+export function getMenu(): Promise<{ menu: SiteMenu | null; modifiedAt: string | null }> {
+  return request('/pages/menu')
+}
+
+export function saveMenu(menu: SiteMenu): Promise<{ menu: SiteMenu }> {
+  return request('/pages/menu', { method: 'PUT', body: JSON.stringify({ menu }) })
+}
+
+export function resetMenu(): Promise<{ ok: true }> {
+  return request('/pages/menu', { method: 'DELETE' })
+}
+
+export type MediaItem = { url: string; name: string; size: number; modifiedAt: string }
+
+export function listMedia(): Promise<{ items: MediaItem[] }> {
+  return request('/pages/media')
+}
+
+export function uploadMedia(file: File): Promise<{ url: string }> {
+  const form = new FormData()
+  form.append('file', file)
+  return request('/pages/media', { method: 'POST', body: form })
 }

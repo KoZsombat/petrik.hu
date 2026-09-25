@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { FormEvent } from 'react'
+import type { FormEvent, ReactNode } from 'react'
 import { ApiError } from '../../lib/hirkezelo/api.ts'
 import type { LoginErrorCode } from '../../../shared/pnw/types.ts'
 
@@ -9,8 +9,22 @@ const MESSAGES: Record<LoginErrorCode, string> = {
   no_access: 'Ezzel a felhasználóval nincs jogosultság a Petrik Hírkezelő használatához.',
 }
 
+type Props = {
+  onLogin: (login: string, password: string) => Promise<void>
+  /** The card's heading - /bejelentkezes/ and /szerkeszto/ reuse this card (AGENT.md 6.19). */
+  title?: string
+  intro?: ReactNode
+  /** The demo-account note; on by default, as the Hírkezelő always showed it. */
+  showDemoHint?: boolean
+}
+
 /** Ported from PNW_Frontend_Shell_Trait::render_login(). */
-export default function LoginCard({ onLogin }: { onLogin: (login: string, password: string) => Promise<void> }) {
+export default function LoginCard({
+  onLogin,
+  title = 'Hírkezelő',
+  intro = 'A felületet azok használhatják, akiknek a fiókján van hírkezelési jogosultság.',
+  showDemoHint = true,
+}: Props) {
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -38,18 +52,12 @@ export default function LoginCard({ onLogin }: { onLogin: (login: string, passwo
   return (
     <section className="pnw-login-card">
       <div className="pnw-kicker">Petrik</div>
-      <h2>Hírkezelő</h2>
+      <h2>{title}</h2>
       {/* Szerepkörök helyett jogosultságok (AGENT.md 6.16) - a felületet az
           használhatja, akinek a fiókján be van kapcsolva legalább egy jog. */}
-      <p>A felületet azok használhatják, akiknek a fiókján van hírkezelési jogosultság.</p>
+      <p>{intro}</p>
 
-      <div className="pnw-login-hint">
-        Ez egy demó bejelentkezés (nincs igazi WordPress mögötte) - próbáld ki bármelyikkel:
-        <br />
-        <code>mk.vezeto</code> / <code>PetrikMK2026!</code> (hírbeküldés) ·{' '}
-        <code>helyettes</code> / <code>PetrikHelyettes2026!</code> (jóváhagyás, fiókok) ·{' '}
-        <code>igazgato</code> / <code>PetrikIgazgato2026!</code> (jóváhagyás, fiókok)
-      </div>
+      {showDemoHint && <DemoHint />}
 
       {error && <div className="pnw-notice pnw-notice-error pnw-login-error">{error}</div>}
 
@@ -83,5 +91,18 @@ export default function LoginCard({ onLogin }: { onLogin: (login: string, passwo
         </p>
       </form>
     </section>
+  )
+}
+
+/** The seeded demo accounts (server/data/users-repo.ts) - the same note wherever the card is shown. */
+function DemoHint() {
+  return (
+    <div className="pnw-login-hint">
+      Ez egy demó bejelentkezés (nincs igazi WordPress mögötte) - próbáld ki bármelyikkel:
+      <br />
+      <code>mk.vezeto</code> / <code>PetrikMK2026!</code> (hírbeküldés) ·{' '}
+      <code>helyettes</code> / <code>PetrikHelyettes2026!</code> (jóváhagyás, fiókok, oldalak) ·{' '}
+      <code>igazgato</code> / <code>PetrikIgazgato2026!</code> (jóváhagyás, fiókok, oldalak)
+    </div>
   )
 }

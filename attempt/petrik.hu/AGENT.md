@@ -44,6 +44,16 @@ minden szekciója **0,0px**-re egyezik. `npm run build`, `npm run lint`,
    (a kezdőlap, a klasszikus oldal, a docs és az archívumok igen).
 3. `public/media` 271 MB — nincs eldöntve, bemegy-e a gitbe.
 
+**2026-09-25: oldalszerkesztő — `/bejelentkezes/` + `/szerkeszto/`**
+(részletek: 6.19, terv: `PAGE-EDITOR-PLAN.md`) — közös bejelentkezés a
+Hírkezelőhöz és a Szerkesztőhöz; a mentett oldalak tartalma egy
+index-kulcsos **felülírási rétegen** át szerkeszthető (a generált TSX
+érintetlen), új oldal hozható létre a webhely saját Divi-komponenseiből és
+másolt CSS-éből, és a menü szerkeszthető. Új jog: `pnw_manage_pages`. Mentett
+felülírás nélkül minden oldal szövege és feje változatlan (`check-text` és
+`check-head` 129/129, 2026-09-25). **Új generált fájl:**
+`src/data/page-inventory.ts` — a `generate.ts` már magától újraírja.
+
 **2026-09-24: mobil fejléc-munka** (részletek: 4.24, 6.14) — a fejléc mobilon
 `position: sticky`, szándékos eltérés a mentéstől (felhasználói kérés). Ez a
 munka **nem** CSS-only volt vakon: a mentés ezen a gépen elérhető
@@ -179,6 +189,8 @@ scripts/            fejlesztői eszközök, sosem kerülnek a bundle-be
   check-routes.ts   route-tábla és oldalkomponensek egyezése
   layout-report.ts  oldalankénti legnagyobb eltérés a mentéshez (lásd 8.2 korlátja)
   shot.ts           screenshot pontos viewport-szélességen
+  page-inventory.ts a Szerkesztő modul-leltára → src/data/page-inventory.ts (6.19)
+  html-to-richtext.ts  mentés-HTML → RichTextDocument, a leltárhoz (6.19)
 
 src/
   components/       Layout, TopBar, Header, Footer, Sidebar, ...
@@ -188,10 +200,18 @@ src/
   components/docs/  a BetterDocs keret: DocsLayout, DocsSearch,
                     DocsCategoryList, DocsBreadcrumb, DocsNav,
                     DocsReactions, DocsIcons, FileBlock, DocsProtectedNote
-  data/             site.ts, footer.ts, posts.ts, docs.ts, archives.ts
+  components/pagebuilder/  PageRenderer, PageExtras, builder-page.css —
+                    a Szerkesztő dokumentumainak renderelése (6.19)
+  components/szerkeszto/   a /szerkeszto/ felülete (6.19)
+  data/             site.ts, footer.ts, posts.ts, docs.ts, archives.ts,
+                    page-inventory.ts (generált, csak a szerkesztő, lustán)
   lib/              useColumnCount.ts, text.ts (fold), useBodyClass.ts,
                     useFixedHeader.ts (a görgetéskor zsugorodó fejléc)
-  pages/            oldalanként egy .tsx + egy .css
+  lib/site/         SiteContentProvider + usePageOverride — a Szerkesztő
+                    felülírásai/oldalai/menüje a publikus oldalon (6.19)
+  pages/            oldalanként egy .tsx + egy .css; kézzel írt, nem generált:
+                    Hirkezelo, PublishedPost, Bejelentkezes, Szerkeszto,
+                    DynamicPage
   pages/docs/       a 27 generált docs oldal
   pages/            Dokumentumtar.tsx, DocTaxonomy.tsx (kategória + címke)
   routes/           docsRoutes.tsx — a 27 docs route
@@ -203,7 +223,7 @@ server/             a /hirkezelo/ Express backendje — NEM a mentés portja,
                     indítja, ugyanúgy, mint a scripts/*.ts-eket.
 shared/pnw/         típusok/jogosultságok/állapotok/kategória-seed, amit a
                     src/ (Vite) ÉS a server/ (Node) is importál — lásd 6.15
-                    és 6.16. Szerepkör nincs: `permissions.ts` (a törölt
+                    és 6.16; page-types.ts a Szerkesztő modellje (6.19). Szerepkör nincs: `permissions.ts` (a törölt
                     `roles.ts` helyén) fiókonkénti capability-készlettel
                     dolgozik, a kategóriák pedig a `terms` táblában élnek
                     (`seed-terms.ts` csak az üres adatbázis feltöltése).
@@ -1073,6 +1093,187 @@ sorként írja ki, tehát ez **döntés**, nem átcsúszás.
       míg a `/kategoria/hirek/page/2/` és a `/kategoria/oktatas/`
       változatlanul 12 kártya, élő hír nélkül.
 
+19. **`/bejelentkezes/` + `/szerkeszto/`: WordPress-szerű oldalszerkesztő a
+    port fölött.** Felhasználói kérés (a terv: `PAGE-EDITOR-PLAN.md`): egy
+    közös bejelentkezés, ami után a fiók a **Hírkezelőt** vagy a
+    **Szerkesztőt** választhatja; a Szerkesztőben a meglévő aloldalak
+    (Nyolcadikosoknak & tsai) tartalma szerkeszthető, új, a webhelyhez
+    illő oldal hozható létre/törölhető, és a főmenü szerkeszthető. Ez sem a
+    mentés portja — a 6.15-ös backendre épül.
+
+    **Két mechanizmus, egy szerkesztő.**
+    - **Mentett (generált) oldal → felülírási réteg**, nem dokumentummá
+      alakítás. A `src/pages/*.tsx` érintetlen marad (továbbra sem szabad
+      kézzel szerkeszteni); a Divi-primitívek (`Text`, `Image`, `Button`,
+      `Blurb`, `Section`) a **már meglévő `index` propjukkal** kikeresik a
+      felülírást (`src/lib/site/usePageOverride.ts`), és ha van, azt
+      renderelik. **Miért nem alakítottuk az oldalakat dokumentummá:** a 129
+      oldal pixelhűsége (8.2) a generált markupon és a `.page-<slug>`-ra
+      scope-olt, *számozott* modulokat célzó CSS-en múlik; egy konverzió ezt
+      mind kockára tenné, a felülírási réteg viszont üresen bájtra azonos
+      kimenetet ad. Szakasz elrejthető (`Section` → `null`), átrendezhető
+      (inline `order` + `data-reordered` attribútum, és **egyetlen** szabály a
+      `divi-layout.css`-ben: `.et_builder_inner_content:has(> …[data-reordered])`
+      flex-oszlop — csak átrendezett oldalon illeszkedik), és új szakasz
+      fűzhető az oldal alá (`PageExtras.tsx`, a `<Outlet />` után, a
+      `.page-<slug>` elemen **kívül**, hogy az oldal számozott szabályai ne
+      ragadjanak rá). A `<head>` címe/leírása is felülírható. Mentett oldal
+      **nem törölhető** (a kódja maga a port): „Rejtés” → a `hidden` jelzővel
+      404-ként szolgálódik ki (`Layout.tsx`) és kikerül a menüből
+      (`useSiteMenu()`); „Eredeti visszaállítása” törli a route teljes
+      felülírását.
+    - **Új oldal → `PageDocument`** (`shared/pnw/page-types.ts`: szakasz →
+      sor → hasáb → modul), ugyanazokon a Divi-komponenseken át renderelve
+      (`src/components/pagebuilder/PageRenderer.tsx`), típusonkénti
+      dokumentum-sorrendű számozással — a markup alakja tehát ugyanaz, mint
+      egy generált oldalé. `/:slug/` route (`DynamicPage.tsx`) közvetlenül a
+      404 előtt; a pontos route-ok ettől függetlenül nyernek. A slug a címből
+      jön létre, utána nem változik; a `RESERVED_SLUGS` (minden meglévő első
+      szintű route + a route-családok előtagjai) és a csupa-szám slug
+      (`/2026/`… dátum-archívumok) tiltott. Törléskor a sor törlődik, a route
+      404, a menübejegyzés kikerül (szerveroldalon).
+    - **Új oldal kinézete — nincs kitalált CSS.** `builder-page.css`
+      (`.page-builder` scope) minden deklarációja a `Nyolcadikos.css`/
+      `Kozoktatas.css`-ből **másolt**, csak a szelektor szerepre cserélve
+      (`.et_pb_text_0 h1` → a fejléc-szakasz `h1`-e); a forrásszabály minden
+      blokk fölött meg van nevezve. A fejléc háttér-gradiense is ezeknek az
+      oldalaknak a `section_0` szabálya (inline, mert a kép a szerzőé).
+      A `templates.ts` kezdő dokumentumai a két oldal szakasz/sor/hasáb
+      felépítését másolják, így az „Új oldal” eleve a webhelyhez illik.
+      A modellbe a tervhez képest egy mező került: `PageColumn.bordered`
+      (Divi `et_pb_with_border`) — a keretes kártyasorhoz kell.
+
+    **Az index-kulcsos szerződés — ezt ne törd el.** A felülírás kulcsa
+    `'<típus>:<Divi index>'` (`text:12`). Ha egy oldalt **más modulsorrenddel**
+    generálsz újra, minden mentett felülírás csendben egy *másik* modulra
+    kerül. Védelem: a `scripts/page-inventory.ts` (a `generate.ts` utolsó
+    lépése) az indexeket **a mentés osztálynevéből** veszi (ahogy a `walk.ts`),
+    és **hibával leáll**, ha a generált komponensek `index`-ei eltérnek a
+    mentésétől; a szerkesztő minden modul mellett mutatja a *most* az oldalon
+    lévő szöveget, így egy elcsúszás szemmel is látszik. A
+    `PageRenderer` egy `OverrideScopeContext`-tel **kikapcsolja** a
+    felülírás-keresést a saját (0-tól számozott) moduljaira — enélkül egy
+    hozzáfűzött szakasz `text:0`-ja felvenné a generált oldal `text:0`
+    felülírását.
+
+    **A leltár (`src/data/page-inventory.ts`) generált** —
+    `node --experimental-strip-types scripts/page-inventory.ts`, ne szerkeszd
+    kézzel. 50 oldal (a builder/docs/poszt oldalak; a klasszikus oldalnak
+    nincs Divi-fája, a két jelszóvédett docs oldal pedig csak jelzést
+    renderel), 670 modul. A modul kezdő tartalmát a
+    `scripts/html-to-richtext.ts` állítja elő a mentés HTML-jéből (ugyanazzal
+    az URL-átírással és div-lapítással, mint az `extract.ts`). **Ami a modellel
+    nem fejezhető ki hűen** (bekezdésen `font-size`, beágyazott lista, blokk
+    `<blockquote>`-ban, inline szöveges `<div>`, kép/táblázat a szövegben),
+    az a modul egészét **csak olvashatóvá** teszi (`lossy` ok) — jelenleg 18
+    ilyen van —, nem rontjuk el csendben az első mentéskor. Csak a szerkesztő
+    tölti be, lustán: a `vite.config.ts` `manualChunks`-a kiveszi a `data`
+    chunkból (~215 KB saját chunk).
+
+    **A gazdag szöveg bővült** (`shared/pnw/types.ts`, minden új mező
+    opcionális, a Hírkezelő viselkedése változatlan): `TextRun.color`/
+    `href`/`underline`, `RichTextBlock.level` (1–4) és `align: 'justify'`;
+    `\n` egy runon belül `<br />`. A `RichText.tsx` ezeket valódi JSX-ként
+    rendereli (`/media/`, `/uploads/`, `mailto:`, `tel:` link sima `<a>`,
+    más belső útvonal `<Link>`). A Szerkesztő szövegmezője
+    (`szerkeszto/RichTextField.tsx`) **nem** a Hírkezelő `RichTextEditor`-át
+    csomagolja, ahogy a terv írta, hanem testvére ugyanazokkal a
+    `pnw-rte-*` osztályokkal: az a blokkonként egy runt tart, és minden
+    leütéskor az első runra írja vissza a blokkot — ez a mentésből importált
+    bekezdések félkövér szavát/színes spanjét/linkjét letörölné. Itt minden
+    run külön mező („+ rész” választ le új runt linkhez/színhez).
+
+    **Jogosultság: `pnw_manage_pages`** („Oldalak szerkesztése”, 6.16
+    mintájára a Fiókok képernyőn fiókonként). A seedelt `helyettes`/`igazgato`
+    megkapja; meglévő adatbázisban a `pages` tábla **első** létrejöttekor egy
+    egyszeri migráció mindenkinek megadja, akinek `pnw_manage_users` joga van
+    (hogy legyen, aki tovább tudja adni) — utána a visszavonás tartós. Új
+    segéd: `hasNewsPermission(user)` — *bármely* jog, a `pnw_manage_pages`
+    kivételével. **Szándékos eltérés a tervtől:** a Hírkezelő-kártya
+    (`/bejelentkezes/`) és a `/hirkezelo/` belépési feltétele ez lett, nem a
+    terv `canSubmit || canReview`-ja (egy csak „Fiókok kezelése” jogú fiók is
+    a Hírkezelőt használja), és egy csak-Szerkesztő fiók így nem kerül be az
+    üres Hírkezelőbe.
+
+    **Backend.** Három tábla (`server/data/db.ts`): `pages`, `page_overrides`
+    (route → JSON), `site_menu` (egyetlen sor, `CHECK (id = 1)`); repók a
+    `posts-repo.ts` mintájára (`pages-repo.ts`, `overrides-repo.ts`,
+    `menu-repo.ts`). `server/routes/pages.ts` minden végpontja
+    `requireCapability('pnw_manage_pages')` mögött: `GET/POST /api/pages`,
+    `GET/PUT/DELETE /api/pages/:id`, `GET/PUT/DELETE /api/pages/overrides?route=`,
+    `GET/PUT/DELETE /api/pages/menu`, `GET/POST /api/pages/media`. A feltöltés
+    multer-konfigja a posztokéval közös (`server/lib/uploads.ts`, 8 MB,
+    `server/uploads`, `/uploads`); egy nem-kép feltöltés ideiglenes fájlja
+    most törlődik. **Validáció** (`server/lib/validation.ts`
+    `sanitizePageDocument`/`sanitizePageOverrides`/`sanitizeSiteMenu`): az
+    értéket **újraépíti**, nem átengedi — ismeretlen modultípus, nem-string
+    tartalom, `javascript:` link, gyanús szín → az egész mentés 422. A
+    `express.json` limitje 2 MB lett (egy oldal-dokumentum kinövi a 100 KB-ot).
+
+    **Publikus oldal — egy lekérés, offline tartalék.** `GET /api/public/site`
+    (bejelentkezés nélkül: publikált oldalak, minden felülírás, a menü) —
+    a `SiteContentProvider` oldalbetöltésenként egyszer kéri le, a
+    `PostsProvider` mintájára, a `Layout`-ban. **Hibánál üres** — ekkor
+    nincs felülírás, a statikus `src/data/site.ts` menü él, az új oldalak
+    404-et adnak, és minden mentett oldal pontosan a mostani. `GET
+    /api/public/pages/:slug` külön is megvan. A `Header`/`TopBar` a
+    `useSiteMenu()`-t olvassa (markup nem változott; a React-kulcs lett
+    `címke-index`, mert egy szerkesztett menüben lehet két azonos nevű pont).
+    A `useDocumentHead` kezeli a két új noindex route-ot, az új oldalak és a
+    felülírt oldalak címét/leírását, és a betöltés alatt nem villantja fel a
+    404-címet egy egyszintű útvonalon. (A terv szerint a `DynamicPage` maga
+    állította volna a címet; egy helyen, a `useDocumentHead`-ben tisztább.)
+
+    **Felület.** `/bejelentkezes/` (`Bejelentkezes.tsx`) és `/szerkeszto/`
+    (`Szerkeszto.tsx`, `?view=list|page|new|menu|media`, `?route=`/`?id=`)
+    — mindkettő `.pnw-app`, tehát 75%/620px alatt 92% (6.17), saját keret-CSS
+    nélkül. A `LoginCard` címe/bevezetője/demó-jegyzete propból jön. A
+    komponensek: `src/components/szerkeszto/` (`PageList`, `OverrideEditor`,
+    `BuilderEditor` + `SectionsEditor` (a fa, a hozzáfűzött szakaszokhoz is),
+    `ModuleEditor`, `RichTextField`, `MediaPicker`, `MenuEditor`,
+    `PagePreview`, `NewPage`, `templates.ts`, `Szerkeszto.css`). Az élő
+    előnézet portállal a `.pnw-app` keret **alá** renderelődik, így valódi
+    szélességben és a valódi CSS-sel látszik, a keret `.pnw-app *`
+    szabályai nélkül. A Hírkezelő navigációjában „Szerkesztő →” link van,
+    a Szerkesztőében „Hírkezelő →”.
+
+    **Kockázatok, amiket tudunk:** (1) az index-elcsúszás, lásd fent;
+    (2) átrendezéskor az `.et_builder_inner_content` flex lesz — a margók
+    flexben nem omlanak össze; a `/nyolcadikos/`-on mérve (természetes
+    sorrend flexben vs. blokkban, 1440/980/500px) egyetlen szakasz sem mozdult,
+    de más oldalt nem mértünk — ha valahol mégis eltol, a visszaút a „csak
+    elrejtés” (a `sectionOrder` kihagyása); (3) a leltár konverziója a fenti
+    esetekben szándékosan csak-olvasható.
+
+    **Ellenőrzés (2026-09-25, Windows-gép).** `tsc -b`, `eslint .`,
+    `vite build`, `check-routes.ts` zöld. **`check-text.ts`: 129/129 oldal
+    azonos szöveg**, futó backenddel, üres adatbázissal — ez a Divi-primitívek
+    módosításának regressziós tesztje. **`check-head.ts`: 129/129.** (Mindkettő
+    darabokban futott, lásd 7.15.) A `better-sqlite3` ezen a gépen sem
+    fordul, ezért a helyi backend egy **teszt-shimmel** futott (`node:sqlite`
+    a `better-sqlite3` helyén, a scratch könyvtárban, nem a repóban) — a valódi
+    `better-sqlite3`-at a **Docker-image** tesztelte: `docker build` zöld, a
+    konténer friss kötetben létrehozza a három új táblát, a létrehozás/
+    frissítés/felülírás/menü/törlés végpontok válaszolnak, és a felhasználó
+    valódi adatbázisának **másolatán** az egyszeri migráció a `helyettes`/
+    `igazgato` fiókot kiegészítette, az `mk.vezeto`-t nem. Fejetlen Chrome-mal
+    (CDP) végigvitt folyamat, 30/30 zöld: a két kártya jogosultság szerint;
+    `mk.vezeto` a `/szerkeszto/`-n `Unauthorized`; 75% középen 1440px-en és
+    92% 500px-en; szövegszerkesztés a felületen át → a publikus oldalon
+    megjelenik, a szakaszgeometria változatlan; elrejtés + átrendezés +
+    hozzáfűzés a publikus oldalon; „Eredeti visszaállítása” után a geometria
+    és a szöveg bájtra a korábbi; új oldal sablonból → élő előnézet →
+    közzététel → Oktatás-menübe téve → desktop és mobil menüben is ott,
+    `/nyilt-nap-2026/`, helyes `<title>`, a fejléc `h1`-e Poppins 60px;
+    törlés után 404 és a menüből is kikerül; kép-feltöltés `/uploads/`-ból
+    `image/png`-ként szolgálva; „Rejtés” egy mentett oldalon → 404 + nincs a
+    menüben. Leállított backenddel minden oldal renderel, a statikus menü
+    látszik, az új oldal 404, konzolhiba csak a várt, elbukó API-kérés.
+    **Nem ellenőrizve:** `docker compose up` a valódi, mountolt
+    adatbázissal (szándékosan — az első indulás migrálja), és kézi,
+    egérrel végigkattintott használat a menüszerkesztőben (az API-ját a
+    teszt hívta, a felületét nem).
+
 ---
 
 ## 7. Csapdák, amikbe már belefutottunk
@@ -1114,6 +1315,16 @@ sorként írja ki, tehát ez **döntés**, nem átcsúszás.
     elbukott, holott helyi macOS-en (ugyanaz a csomagverzió) simán a
     prebuilt binárist töltötte be. Ha egy natív npm-csomag helyben működik,
     de Dockerben nem, ez legyen az első gyanú — nem feltétlenül a kód hibája.
+15. **A `check-text.ts`/`check-head.ts` egy hosszú futás közepén némán
+    megakadhat** (ezen a Windows-gépen ~80 oldal után, mindkettő ugyanott):
+    a böngésző 0% CPU-n áll, a szkript időkorlát nélkül vár egy be nem
+    fejeződő oldalbetöltésre, kimenet nincs. Nem egy konkrét oldal hibája —
+    friss böngészővel ugyanaz az oldal átment. Megoldás: darabokban futtatni
+    (a `check-text.ts` elfogad oldal-könyvtárneveket; a `check-head.ts`
+    nem, annak egy ideiglenes, szeletelő másolata kellett), és ne
+    `| tail`-lel figyeld, mert akkor semmit sem látsz, amíg be nem fejeződik.
+    Ugyanitt: az első oldalon (`home`) egyszer a *mentés* oldala adott 0
+    karaktert — egyedül újrafuttatva `ok`.
 
 ---
 

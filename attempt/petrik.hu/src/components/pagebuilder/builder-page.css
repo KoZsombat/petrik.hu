@@ -1,0 +1,139 @@
+/* The baseline design of a page built in the Szerkesztő (AGENT.md 6.19),
+ * scoped to .page-builder.
+ *
+ * Nothing here is invented. Every declaration is copied from a generated page
+ * stylesheet - src/pages/Nyolcadikos.css and src/pages/Kozoktatas.css, which
+ * scripts/page-css.ts lifted from the mirror. Only the selectors change: those
+ * pages target a numbered module (.et_pb_text_0), a builder page targets the
+ * role that module played (the hero's heading), because a builder page's
+ * numbering is whatever the author made it. The source rule is named above
+ * each block.
+ */
+
+/* The hero band - .et_pb_section_0 on both pages; its background image and
+ * gradient are inline (PageRenderer.tsx), since the picture is the author's. */
+.page-builder .et_pb_section_first.et_pb_section {
+  padding-top: 110px;
+  padding-bottom: 110px;
+}
+
+/* .et_pb_row_0.et_pb_row */
+.page-builder .et_pb_section_first .et_pb_row.et_pb_row {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+/* .et_pb_text_0 h1 */
+.page-builder .et_pb_section_first .et_pb_text h1 {
+  font-family: 'Poppins', Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 600;
+  font-size: 60px;
+}
+
+/* .et_pb_text_0 - the module holding the hero heading */
+.page-builder .et_pb_section_first .et_pb_text:has(h1) {
+  margin-bottom: 20px !important;
+}
+
+/* .et_pb_text_1 - the hero's lead paragraph */
+.page-builder .et_pb_section_first .et_pb_text:not(:has(h1)) {
+  line-height: 1.8em;
+  font-family: 'Poppins', Helvetica, Arial, Lucida, sans-serif;
+  line-height: 1.8em;
+}
+
+/* .et_pb_text_2 h2 - the section headings */
+.page-builder .et_pb_text h2 {
+  font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  font-size: 50px;
+  line-height: 1.3em;
+}
+
+/* Kozoktatas .et_pb_section_1 - the teal band with the curved edges. A section
+ * gets it by switching its dividers on, as that page's does. */
+.page-builder div.et_pb_section.section_has_divider {
+  background-image: linear-gradient(310deg, rgba(0, 196, 186, 0.6) 0%, rgba(29, 209, 78, 0.1) 50%) !important;
+}
+
+.page-builder .section_has_divider.et_pb_section {
+  padding-left: 1px;
+}
+
+.page-builder .et_pb_section.section_has_divider.et_pb_bottom_divider .et_pb_bottom_inside_divider {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDBweCIgdmlld0JveD0iMCAwIDEyODAgMTQwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIGZpbGw9InJnYmEoMTE0LDE5NSwxODIsMC4xNSkiPjxwYXRoIGQ9Ik0wIDE0MGgxMjgwQzU3My4wOCAxNDAgMCAwIDAgMHoiIGZpbGwtb3BhY2l0eT0iLjMiLz48cGF0aCBkPSJNMCAxNDBoMTI4MEM1NzMuMDggMTQwIDAgMzAgMCAzMHoiIGZpbGwtb3BhY2l0eT0iLjUiLz48cGF0aCBkPSJNMCAxNDBoMTI4MEM1NzMuMDggMTQwIDAgNjAgMCA2MHoiLz48L2c+PC9zdmc+);
+  background-size: 100% 100px;
+  bottom: 0;
+  height: 100px;
+  z-index: 1;
+  transform: scale(1, 1);
+}
+
+.page-builder .et_pb_section.section_has_divider.et_pb_top_divider .et_pb_top_inside_divider {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDBweCIgdmlld0JveD0iMCAwIDEyODAgMTQwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIGZpbGw9InJnYmEoMTE0LDE5NSwxODIsMC4xNSkiPjxwYXRoIGQ9Ik05NzguODEgMTIyLjI1TDAgMGgxMjgwbC0yNjIuMSAxMTYuMjZhNzMuMjkgNzMuMjkgMCAwIDEtMzkuMDkgNS45OXoiIGZpbGwtb3BhY2l0eT0iLjUiLz48cGF0aCBkPSJNOTgzLjE5IDk1LjIzTDAgMGgxMjgwbC0yNjYgOTEuNTJhNzIuNTggNzIuNTggMCAwIDEtMzAuODEgMy43MXoiLz48L2c+PC9zdmc+);
+  background-size: 100% 100px;
+  top: 0;
+  height: 100px;
+  z-index: 1;
+  transform: scale(1, 1);
+}
+
+/* Nyolcadikos .et_pb_column_8/_9/_10 - the card columns' teal top edge */
+.page-builder .et_pb_column.et_pb_with_border {
+  border-top-width: 3px;
+  border-top-color: #72c3b6;
+}
+
+/* Nyolcadikos .et_pb_blurb_0 … _8 */
+.page-builder .et_pb_blurb.et_pb_blurb {
+  font-size: 16px;
+}
+
+.page-builder .et_pb_blurb .et-pb-icon {
+  font-size: 28px;
+  color: #0c71c3;
+  font-family: ETmodules !important;
+  font-weight: 400 !important;
+}
+
+/* Nyolcadikos .et_pb_button_0 */
+body #page-container .page-builder .et_pb_section .et_pb_button {
+  color: #ffffff !important;
+  background-color: #0c71c3;
+}
+
+.page-builder .et_pb_button,
+.page-builder .et_pb_button:after {
+  transition: all 300ms ease 0ms;
+}
+
+@media only screen and (max-width: 980px) {
+  /* Nyolcadikos .et_pb_text_2 h2 */
+  .page-builder .et_pb_text h2 {
+    font-size: 40px;
+  }
+
+  body #page-container .page-builder .et_pb_section .et_pb_button:after {
+    display: inline-block;
+    opacity: 0;
+  }
+
+  body #page-container .page-builder .et_pb_section .et_pb_button:hover:after {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  /* Nyolcadikos .et_pb_text_0 h1 */
+  .page-builder .et_pb_section_first .et_pb_text h1 {
+    font-size: 40px;
+  }
+
+  /* Nyolcadikos .et_pb_text_2 h2 */
+  .page-builder .et_pb_text h2 {
+    font-size: 30px;
+  }
+}

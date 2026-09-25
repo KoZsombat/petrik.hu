@@ -1,0 +1,550 @@
+/*
+ * The Szerkesztő's own editor chrome (AGENT.md 6.19). Everything that looks
+ * like the Hírkezelő *is* the Hírkezelő's `.pnw-*` rules (src/pages/
+ * Hirkezelo.css, the plugin's CSS); this file only adds what the plugin never
+ * had - the page tree, the run-level text editor, the media grid - in the
+ * same visual language, reading the same `--pnw-*` variables.
+ *
+ * None of it is a port of the mirror; the pages the editor *produces* are
+ * styled by builder-page.css, which is.
+ */
+
+.szk-app .szk-muted {
+  color: var(--pnw-muted);
+  font-size: 14px;
+}
+
+.szk-app code {
+  background: #f2f4f7;
+  border-radius: 6px;
+  padding: 1px 6px;
+}
+
+.szk-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.szk-form .pnw-field {
+  margin-bottom: 0;
+}
+
+.szk-subheading {
+  margin: 12px 0 0;
+  font-size: 18px;
+}
+
+.szk-field input[type='text'],
+.szk-select,
+.szk-target select,
+.szk-media-current-fields input,
+.szk-add-module,
+.szk-search input,
+.szk-menu-label {
+  width: 100%;
+  border: 1px solid #d0d5dd;
+  border-radius: 10px;
+  padding: 9px 11px;
+  color: var(--pnw-text);
+  background: #fff;
+  font: inherit;
+}
+
+.szk-inline-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.szk-target {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.szk-target select {
+  width: auto;
+  flex: none;
+}
+
+.szk-target input[type='text'] {
+  flex: 1;
+  min-width: 0;
+}
+
+.szk-check {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.szk-error {
+  display: block;
+  color: var(--pnw-danger);
+  font-weight: 700;
+}
+
+.szk-link {
+  appearance: none;
+  border: 0;
+  background: none;
+  color: var(--pnw-primary);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 6px;
+}
+
+/* The tree: sections > rows > columns > modules ----------------------------- */
+
+.szk-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.szk-tree > .szk-node {
+  align-self: stretch;
+}
+
+.szk-node {
+  background: var(--pnw-card);
+  border: 1px solid var(--pnw-border);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.szk-section {
+  border-left: 4px solid var(--pnw-primary);
+}
+
+.szk-section-hidden {
+  opacity: 0.55;
+  border-left-color: var(--pnw-muted);
+}
+
+.szk-dragging {
+  outline: 2px dashed var(--pnw-primary);
+}
+
+.szk-section[draggable='true'] > .szk-node-head {
+  cursor: grab;
+}
+
+.szk-grip {
+  color: var(--pnw-muted);
+  letter-spacing: -2px;
+}
+
+.szk-row {
+  background: #f8fafc;
+}
+
+.szk-node-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.szk-summary {
+  color: var(--pnw-muted);
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  flex: 1;
+}
+
+.szk-tools {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.szk-tools button,
+.szk-layouts button {
+  appearance: none;
+  border: 1px solid var(--pnw-border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--pnw-text);
+  font: inherit;
+  font-size: 13px;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+.szk-tools button:hover,
+.szk-layouts button:hover {
+  background: #eef3f9;
+}
+
+.szk-tools .szk-danger {
+  color: var(--pnw-danger);
+}
+
+.szk-layouts {
+  display: inline-flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.szk-layouts .szk-layout-active {
+  background: #dbe6f7;
+  border-color: #b9c8dc;
+  font-weight: 700;
+}
+
+.szk-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.szk-columns {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 10px;
+}
+
+.szk-column {
+  padding: 10px;
+  gap: 8px;
+}
+
+.szk-module {
+  border: 1px solid var(--pnw-border);
+  border-radius: 10px;
+  padding: 8px;
+  background: #fff;
+}
+
+.szk-module-open {
+  border-color: #b9c8dc;
+  box-shadow: 0 4px 14px rgba(16, 24, 40, 0.06);
+}
+
+.szk-module-title {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+}
+
+.szk-module-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 10px;
+}
+
+.szk-thumb {
+  width: 44px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex: none;
+}
+
+.szk-original {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f9fafb;
+  color: var(--pnw-muted);
+  font-size: 13px;
+}
+
+.szk-add {
+  appearance: none;
+  align-self: flex-start;
+  border: 1px dashed #b9c8dc;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--pnw-primary);
+  font: inherit;
+  font-weight: 700;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.szk-add:hover {
+  background: #eef3f9;
+}
+
+.szk-add-module {
+  font-size: 13px;
+  padding: 6px 9px;
+  color: var(--pnw-primary);
+  font-weight: 700;
+}
+
+/* The run-level rich text field ------------------------------------------ */
+
+.szk-rte-runbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 8px;
+  background: #fbfcfe;
+  border-bottom: 1px solid var(--pnw-border);
+  font-size: 13px;
+}
+
+.szk-rte-runbar label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  flex: 1;
+  min-width: 220px;
+}
+
+.szk-rte-runbar input[type='text'] {
+  flex: 1;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 5px 8px;
+  font: inherit;
+}
+
+.szk-rte-colors {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.szk-rte-colors input[type='color'] {
+  width: 30px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid var(--pnw-border);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.szk-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid #b9c8dc;
+  cursor: pointer;
+  padding: 0;
+}
+
+.szk-swatch-active {
+  outline: 2px solid var(--pnw-primary);
+  outline-offset: 1px;
+}
+
+.szk-runs {
+  flex: 1;
+  display: flex;
+  min-width: 0;
+}
+
+.szk-runs-multi {
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.szk-runs-multi .szk-run {
+  flex: 1 1 auto;
+  min-width: 10ch;
+  border-color: var(--pnw-border);
+  border-style: dashed;
+}
+
+.szk-run.szk-run-active {
+  border-color: #6f8eb6;
+  border-style: solid;
+  background: #fff;
+}
+
+/* The media picker --------------------------------------------------------- */
+
+.szk-media {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.szk-upload {
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.szk-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.szk-media-item {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid var(--pnw-border);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+
+.szk-media-item:disabled {
+  cursor: default;
+}
+
+.szk-media-item img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+.szk-media-item small {
+  color: var(--pnw-muted);
+}
+
+.szk-media-item-selected {
+  outline: 3px solid var(--pnw-primary);
+}
+
+.szk-media-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.szk-media-current {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.szk-media-current img {
+  width: 120px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 9px;
+  flex: none;
+}
+
+.szk-media-current-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.szk-media-current-fields .pnw-button {
+  align-self: flex-start;
+}
+
+/* The list, the menu, the actions ------------------------------------------- */
+
+.szk-search {
+  margin-bottom: 12px;
+  max-width: 420px;
+}
+
+.szk-row-actions {
+  white-space: nowrap;
+}
+
+.szk-row-actions > * + * {
+  margin-left: 6px;
+}
+
+.szk-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.szk-menu-depth-1 {
+  margin-left: 28px;
+}
+
+.szk-menu-item {
+  padding: 10px;
+}
+
+.szk-menu-fields {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: start;
+}
+
+.szk-menu-fields .pnw-field > label {
+  display: none;
+}
+
+.szk-sticky-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  background: var(--pnw-card);
+  border-top: 1px solid var(--pnw-border);
+  padding: 12px 0;
+}
+
+/* The live preview, portalled below the editor frame ------------------------- */
+
+.szk-preview {
+  border-top: 4px solid var(--pnw-primary, #173b6c);
+  margin-top: 24px;
+}
+
+.szk-preview-label {
+  background: #173b6c;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 16px;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .szk-columns {
+    grid-auto-flow: row;
+  }
+
+  .szk-menu-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .szk-menu-depth-1 {
+    margin-left: 12px;
+  }
+}

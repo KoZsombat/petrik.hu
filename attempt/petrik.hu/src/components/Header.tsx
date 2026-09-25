@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { primaryMenu } from '../data/site.ts'
 import type { MenuItem } from '../data/site.ts'
+import { useSiteMenu } from '../lib/site/siteContext.ts'
 import './Header.css'
 import { useFixedHeader } from '../lib/useFixedHeader.ts'
 
@@ -44,8 +44,8 @@ function MenuEntry({ item, current }: { item: MenuItem; current: string }) {
       )}
       {item.children && (
         <ul className="sub-menu">
-          {item.children.map((child) => (
-            <MenuEntry key={child.label} item={child} current={current} />
+          {item.children.map((child, index) => (
+            <MenuEntry key={`${child.label}-${index}`} item={child} current={current} />
           ))}
         </ul>
       )}
@@ -58,6 +58,8 @@ export default function Header() {
   const fixed = useFixedHeader()
   const { pathname } = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
+  // The Szerkesztő's edited menu when there is one, else src/data/site.ts (AGENT.md 6.19).
+  const { primary: primaryMenu } = useSiteMenu()
 
   return (
     <header id="main-header" className={fixed ? 'et-fixed-header' : undefined}>
@@ -78,7 +80,7 @@ export default function Header() {
                   React emits no whitespace between mapped children, so it has
                   to be written out to keep the spacing identical. */}
               {primaryMenu.map((item, index) => (
-                <Fragment key={item.label}>
+                <Fragment key={`${item.label}-${index}`}>
                   {index > 0 && ' '}
                   <MenuEntry item={item} current={pathname} />
                 </Fragment>
@@ -109,8 +111,8 @@ export default function Header() {
                 hidden={!menuOpen}
                 onClick={() => setMenuOpen(false)}
               >
-                {primaryMenu.map((item) => (
-                  <MenuEntry key={item.label} item={item} current={pathname} />
+                {primaryMenu.map((item, index) => (
+                  <MenuEntry key={`${item.label}-${index}`} item={item} current={pathname} />
                 ))}
               </ul>
             </div>

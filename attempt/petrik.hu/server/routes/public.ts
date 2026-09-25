@@ -6,7 +6,11 @@
  */
 import { Router } from 'express'
 import { STATUS } from '../../shared/pnw/types.ts'
+import type { PageOverrides, PublicPage, PublicSiteContent } from '../../shared/pnw/page-types.ts'
 import { allPosts, findPostBySlug } from '../data/posts-repo.ts'
+import { getPageBySlug, listPages } from '../data/pages-repo.ts'
+import { allOverrides } from '../data/overrides-repo.ts'
+import { getMenu } from '../data/menu-repo.ts'
 
 const router = Router()
 
@@ -26,6 +30,33 @@ router.get('/posts/:slug', (req, res) => {
     return
   }
   res.json({ post })
+})
+
+/**
+ * Everything the Szerkesztő changed (AGENT.md 6.19), in one response - the
+ * public site fetches this once per page load (SiteContentProvider.tsx), and
+ * a failed fetch leaves every page exactly as generated. Drafts never leave
+ * the server.
+ */
+router.get('/site', (_req, res) => {
+  const pages: PublicPage[] = listPages()
+    .filter((page) => page.status === 'publish')
+    .map(({ slug, title, description, document }) => ({ slug, title, description, document }))
+  const overrides: Record<string, PageOverrides> = {}
+  for (const stored of allOverrides()) overrides[stored.overrides.route] = stored.overrides
+  const body: PublicSiteContent = { pages, overrides, menu: getMenu()?.menu ?? null }
+  res.json(body)
+})
+
+/** A builder page on its own, for a direct load of /<slug>/. */
+router.get('/pages/:slug', (req, res) => {
+  const page = getPageBySlug(req.params.slug)
+  if (!page || page.status !== 'publish') {
+    res.status(404).json({ error: 'not_found' })
+    return
+  }
+  const { slug, title, description, document } = page
+  res.json({ page: { slug, title, description, document } satisfies PublicPage })
 })
 
 export default router

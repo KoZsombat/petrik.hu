@@ -1,4 +1,5 @@
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
+import { useSectionOverride } from '../../lib/site/usePageOverride.ts'
 import './Section.css'
 
 type Props = {
@@ -23,6 +24,8 @@ type Props = {
    */
   withBackground?: boolean
   className?: string
+  /** Only the Szerkesztő's builder pages pass this - a background picked in the editor (AGENT.md 6.19). */
+  style?: CSSProperties
 }
 
 /**
@@ -38,7 +41,13 @@ export default function Section({
   fullwidth = false,
   withBackground = false,
   className,
+  style,
 }: Props) {
+  // Hidden or moved in the Szerkesztő (AGENT.md 6.19). With no override
+  // this is { hidden: false } and the section renders exactly as before.
+  const override = useSectionOverride(index)
+  if (override.hidden) return null
+
   const classes = ['et_pb_section', `et_pb_section_${index}`]
   if (withBackground) classes.push('et_pb_with_background')
   if (fullwidth) classes.push('et_pb_fullwidth_section')
@@ -49,8 +58,13 @@ export default function Section({
   if (first) classes.push('et_pb_section_first')
   if (className) classes.push(className)
 
+  const reordered = override.order !== undefined
   return (
-    <div className={classes.join(' ')}>
+    <div
+      className={classes.join(' ')}
+      style={reordered ? { ...style, order: override.order } : style}
+      data-reordered={reordered ? '' : undefined}
+    >
       {dividerTop && <div className="et_pb_top_inside_divider" />}
       {children}
       {dividerBottom && <div className="et_pb_bottom_inside_divider" />}

@@ -111,7 +111,8 @@ export function removeUser(id: string): void {
  * table - so a fresh database still boots with working logins, but after
  * that these are ordinary rows, editable/removable from the Users.tsx
  * screen exactly like any account created there. Their permission sets are
- * what the deleted roles used to grant them (AGENT.md 6.16).
+ * what the deleted roles used to grant them (AGENT.md 6.16), plus the
+ * Szerkesztő's right for the two leaders (6.19).
  */
 export function seedInitialUsers(): void {
   const { n } = countAll.get() as { n: number }
@@ -123,6 +124,8 @@ export function seedInitialUsers(): void {
     CAPABILITY.VIEW_AUDIT_LOG,
     CAPABILITY.MANAGE_TERMS,
     CAPABILITY.MANAGE_USERS,
+    // The Szerkesztő (AGENT.md 6.19); mk.vezeto deliberately has no such right.
+    CAPABILITY.MANAGE_PAGES,
   ]
 
   const seed: { username: string; displayName: string; password: string; permissions: Capability[] }[] = [

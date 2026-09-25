@@ -24,8 +24,13 @@ export default defineConfig({
          * from the code: regenerating them from the mirror should not force a
          * browser to fetch the components again, and editing a component
          * should not force it to fetch 400 KB of data it already has.
+         *
+         * The one exception is the Szerkesztő's page inventory (AGENT.md
+         * 6.19): only the editor needs it, and it imports it lazily, so it
+         * gets a chunk of its own instead of riding in with every page.
          */
-        manualChunks: (id) => (id.includes('/src/data/') ? 'data' : undefined),
+        manualChunks: (id) =>
+          id.includes('/src/data/') && !id.includes('/src/data/page-inventory') ? 'data' : undefined,
       },
     },
   },
