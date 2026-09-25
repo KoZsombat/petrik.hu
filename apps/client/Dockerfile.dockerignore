@@ -1,0 +1,9 @@
+# BuildKit reads <Dockerfile>.dockerignore instead of the root .dockerignore.
+# public/media is deliberately NOT excluded - vite build copies it into dist.
+**/node_modules
+**/dist
+apps/server
+!apps/server/package.json
+.git
+.env
+*.log

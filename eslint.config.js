@@ -1,0 +1,29 @@
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['**/dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
+  {
+    // The backend (AGENT.md 6.15) and the client's dev scripts run under Node, not a browser.
+    files: ['apps/server/**/*.ts', 'apps/client/scripts/**/*.ts'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
+])

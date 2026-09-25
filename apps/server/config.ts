@@ -1,0 +1,70 @@
+/**
+ * Shared configuration for the /hirkezelo/ Express backend - see AGENT.md
+ * 6.15. Mirrors the shape of scripts/mirror.ts's constants, one level up: a
+ * single file every other server module reads paths and flags from.
+ */
+import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+export const SERVER_ROOT = resolve(fileURLToPath(new URL('.', import.meta.url)))
+/** The repo root - apps/server is two levels below it since the client/server split. */
+export const PROJECT_ROOT = resolve(SERVER_ROOT, '../..')
+
+export const DATA_DIR = resolve(SERVER_ROOT, 'data/db')
+export const DATABASE_FILE = resolve(DATA_DIR, 'hirkezelo.db')
+
+export const UPLOADS_DIR = resolve(SERVER_ROOT, 'uploads')
+export const UPLOADS_URL_PREFIX = '/uploads'
+
+/**
+ * The client's build output. Only used when present - i.e. a local
+ * `npm run build` + `npm run server` in one process. In Docker the client is
+ * its own nginx container and this folder does not exist in the server image.
+ */
+export const DIST_DIR = resolve(PROJECT_ROOT, 'apps/client/dist')
+
+export const PORT = Number(process.env.PNW_PORT ?? 4000)
+
+/**
+ * A real secret in production is an env var, not this fallback - but there is
+ * no deployment pipeline for this yet, so a fixed dev default keeps `npm run
+ * server` working out of the box for a pilot with a handful of known users.
+ */
+const DEV_SECRET = 'petrik-news-workflow-dev-secret-change-me'
+export const SESSION_SECRET = process.env.PNW_SESSION_SECRET || DEV_SECRET
+
+/**
+ * The real plugin's PNW_TEST_MODE, ported as a real toggle rather than
+ * hard-coded true - by explicit user request, approving a submission here
+ * really publishes it (GET /api/public/posts, the /hirek/:slug/ page, the
+ * site's recent-posts widgets - see AGENT.md 6.15). It never touches the
+ * real petrik.hu mirror data (src/data/posts.ts) either way; this is its
+ * own, separate SQLite database. Flip to `true` to restore the pilot's
+ * approve-but-never-publish behavior without touching any route logic -
+ * every TEST_MODE check in server/routes/posts.ts reads this one constant.
+ */
+export const TEST_MODE = false as const
+
+/** How often the schedule-publish sweep runs (ms). */
+export const SCHEDULE_CHECK_INTERVAL_MS = 60_000
+
+/**
+ * Whether the login card prints the three seeded demo accounts and their
+ * passwords. On by default for local runs (`npm run server`), off by default
+ * in the Docker image (NODE_ENV=production) - a public deployment must never
+ * advertise working credentials. `PNW_SHOW_DEMO_LOGINS=true|false` overrides.
+ */
+export const SHOW_DEMO_LOGINS =
+  process.env.PNW_SHOW_DEMO_LOGINS !== undefined
+    ? process.env.PNW_SHOW_DEMO_LOGINS === 'true'
+    : process.env.NODE_ENV !== 'production'
+
+/**
+ * When set, the three accounts seeded into an **empty** database get this
+ * password instead of the demo ones in users-repo.ts (which are in the repo,
+ * hence public). Has no effect on a database that already has accounts.
+ */
+export const SEED_PASSWORD = process.env.PNW_SEED_PASSWORD || undefined
+
+/** docker-compose.yml falls back to the same dev string, so this compares the value. */
+export const USING_DEFAULT_SECRET = SESSION_SECRET === DEV_SECRET

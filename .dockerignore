@@ -1,0 +1,17 @@
+# Fallback only: BuildKit uses apps/*/Dockerfile.dockerignore, next to each
+# Dockerfile, and ignores this file for those builds.
+**/node_modules
+**/dist
+dist-ssr
+*.local
+
+# Runtime state, not source - see apps/server/config.ts. Mounted as volumes by
+# docker-compose.yml instead, so it persists across image rebuilds.
+apps/server/data/db
+apps/server/uploads
+
+.git
+.vscode
+.idea
+*.log
+.env

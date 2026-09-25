@@ -1,0 +1,13 @@
+# BuildKit reads <Dockerfile>.dockerignore instead of the root .dockerignore.
+# The server image never needs the client's 271 MB of media, so it is not even
+# sent to the build.
+**/node_modules
+**/dist
+apps/client/public
+apps/client/src
+apps/client/scripts
+apps/server/data/db
+apps/server/uploads
+.git
+.env
+*.log
