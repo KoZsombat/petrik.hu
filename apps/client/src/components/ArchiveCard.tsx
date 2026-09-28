@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import type { MergedPostSummary } from '../lib/posts/postsContext.ts'
+import './ArchiveCard.css'
 
 type Props = { post: MergedPostSummary }
 
@@ -106,8 +107,10 @@ export default function ArchiveCard({ post }: Props) {
       </p>
       {/* The theme leaves whitespace between the excerpt and </article>, which
           is a real space where two cards meet. It renders as nothing, but it
-          is there, so it is reproduced rather than trimmed away. */}
-      {excerpt}{' '}
+          is there, so it is reproduced rather than trimmed away. Wrapped in a
+          span (not a <p>, so it adds no margin of its own - see ArchiveCard.css)
+          purely so a long excerpt can be clamped to a fixed number of lines. */}
+      <span className="archive-excerpt">{excerpt}</span>{' '}
     </article>
   )
 }

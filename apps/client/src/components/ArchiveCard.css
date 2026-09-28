@@ -1,0 +1,36 @@
+/*
+ * Intentional deviation from the mirror (user request): images, titles and
+ * excerpts in a category/date/author archive listing (the "Hírek" page among
+ * them) are capped instead of growing without bound. ArchiveView.css is
+ * generated (scripts/collect-css.ts archive) and says not to edit it, so this
+ * deviation lives in its own hand-written file instead, imported after it -
+ * the same split HeroSlider.css/HeroSliderRuntime.css already uses.
+ *
+ * Unlike PostCard.css's grid, this is a single-column list, not a row of
+ * cards that need to line up - forcing every post to the same fixed height
+ * left a huge blank gap under any post with a short or missing excerpt (a
+ * live post published with no excerpt, for instance). Capping the title and
+ * excerpt to a maximum number of lines each is enough to keep one runaway
+ * post from towering over the rest, without padding the short ones out.
+ */
+.archive-view .et_pb_post .entry-featured-image-url img {
+  display: block;
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.archive-view .et_pb_post .entry-title,
+.archive-view .et_pb_post h2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.archive-view .et_pb_post .archive-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

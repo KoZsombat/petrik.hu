@@ -10,6 +10,87 @@
   background-color: #fff;
 }
 
+/*
+ * Intentional deviation from the mirror (user request): every card in a blog
+ * grid is pinned to the same height instead of growing with its excerpt, so a
+ * row of cards lines up evenly even when a live post (AGENT.md 6.15) brings a
+ * much longer or shorter title/excerpt than the mirrored ones next to it.
+ * The excerpt is clamped, but the title never is (see .entry-title below), so
+ * the height has to be generous enough to fit a real worst case - measured in
+ * a live render at image (309px incl. its own margins) + a 4-line title
+ * (106px) + a 2-line meta line (~54px) + the 2-line clamped excerpt (~48px) +
+ * the "bővebben" link (~32px) + the card's own bottom padding (19px) ≈ 568px.
+ * 600px leaves headroom above that without wasting much space under a short
+ * title, where the extra room just becomes blank space at the card's bottom.
+ */
+.et_pb_blog_grid .et_pb_post {
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  overflow: hidden;
+}
+
+.et_pb_blog_grid .et_pb_post .et_pb_image_container {
+  flex: none;
+}
+
+.et_pb_blog_grid .et_pb_post .et_pb_image_container img {
+  display: block;
+  height: 220px;
+  object-fit: cover;
+}
+
+.et_pb_blog_grid .et_pb_post .entry-title {
+  /*
+   * No line-clamp here on purpose (unlike the excerpt below) - the title is
+   * never truncated, however many lines it needs. flex: none plus a
+   * min-height reserve room for two lines up front, so a one-line title still
+   * lines up with a two-line one above the same meta/excerpt start point; a
+   * title longer than that pushes the rest of the card down instead of being
+   * cut off, and the fixed height + overflow: hidden on .et_pb_post below
+   * clips the excerpt rather than the title if that ever runs the card out
+   * of room.
+   */
+  flex: none;
+  min-height: 2.4em;
+}
+
+.et_pb_blog_grid .et_pb_post .post-meta {
+  flex: none;
+}
+
+.et_pb_blog_grid .et_pb_post .post-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.et_pb_blog_grid .et_pb_post .post-content-inner {
+  /*
+   * flex: 1 with no overflow of its own - overflow: hidden here made this box
+   * a valid flex-shrink target (a flex item's automatic minimum size is 0
+   * once it has overflow: hidden), so the flex column shrank it shorter than
+   * the clamped paragraph inside it actually needed and cut the second line
+   * off mid-way, before the paragraph's own ellipsis ever got to run. Letting
+   * this box keep its content's natural (clamped) height is what reserves
+   * enough room for the full second line.
+   */
+  flex: 1;
+}
+
+.et_pb_blog_grid .et_pb_post .post-content-inner p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.et_pb_blog_grid .et_pb_post .more-link {
+  flex: none;
+  margin-top: auto;
+}
+
 .et_pb_blog_grid h2 {
   font-size: 18px;
 }

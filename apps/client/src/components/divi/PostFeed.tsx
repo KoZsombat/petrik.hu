@@ -51,7 +51,14 @@ export default function PostFeed({
 }: Props) {
   const { posts, liveSlugs } = usePosts()
   const active = useColumnCount(columns)
-  const effectiveItems = includeLive ? [...liveSlugs.map((slug): FeedItem => ({ slug })), ...items] : items
+  // Prepended ahead of the mirrored items, newest first, then capped back to
+  // the feed's own size - same convention as the sidebar's "Legutóbbi
+  // bejegyzések" widget (RecentPosts.tsx). The date comes from the live post
+  // itself (already formatted the way every mirrored card's date is, see
+  // postsContext.ts/toSummary), since a live item has no hand-written date.
+  const effectiveItems = includeLive
+    ? [...liveSlugs.map((slug): FeedItem => ({ slug, date: posts[slug]?.date })), ...items].slice(0, items.length)
+    : items
   const known = effectiveItems.filter((item) => posts[item.slug])
 
   const buckets: { item: FeedItem; position: number }[][] = Array.from({ length: active }, () => [])
