@@ -15,6 +15,7 @@
 .EXAMPLE
   .\deploy.ps1 -Server 3.120.45.67 -Key C:\Users\me\.ssh\petrik.pem -Init
   .\deploy.ps1 -Server 3.120.45.67 -Key C:\Users\me\.ssh\petrik.pem
+  ./deploy.ps1 -Server 3.120.45.67 -Key ~/.ssh/petrik.pem -Platform linux/arm64   # macOS (pwsh), arm64 server
 #>
 param(
   [Parameter(Mandatory = $true)] [string] $Server,
@@ -24,7 +25,11 @@ param(
   # First deploy: also uploads .env.example, to be copied to .env on the server.
   [switch] $Init,
   # Replace the server's database and uploads with this machine's copy.
-  [switch] $WithData
+  [switch] $WithData,
+  # The server's CPU architecture, whatever machine you deploy from. Without this
+  # an Apple Silicon Mac builds arm64 images, which an amd64 EC2 instance cannot
+  # run (the container crash-loops). Use linux/arm64 for a Graviton instance.
+  [ValidateSet('linux/amd64', 'linux/arm64')] [string] $Platform = 'linux/amd64'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -49,7 +54,8 @@ if ($WithData) {
   if ($answer -ne 'yes') { throw 'Cancelled.' }
 }
 
-Invoke-Native 'Building the images' { docker compose build server client }
+$env:DOCKER_DEFAULT_PLATFORM = $Platform
+Invoke-Native "Building the images for $Platform" { docker compose build server client }
 Invoke-Native 'Saving the images' { docker save -o $image petrikhu-server petrikhu-client }
 
 Invoke-Remote 'Preparing the server folder' "mkdir -p ~/$RemoteDir/apps/server/data/db ~/$RemoteDir/apps/server/uploads"

@@ -184,7 +184,10 @@ curl -s localhost:4000 | head -c 200     # should print HTML
 .\deploy.ps1 -Server SERVER -Key $HOME\.ssh\petrik.pem
 ```
 
-It rebuilds the image, uploads it, and restarts the container. The database,
+It rebuilds the image, uploads it, and restarts the container. The images are
+built for the server's CPU (`-Platform`, default `linux/amd64`, so it works the
+same from Windows and from an Apple Silicon Mac; pass `-Platform linux/arm64`
+for an ARM/Graviton server). On macOS run it with `pwsh ./deploy.ps1 ...`. The database,
 uploads and `.env` on the server are untouched. Everyone who is logged in has to
 log in again (sessions live in memory).
 
