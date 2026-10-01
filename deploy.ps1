@@ -13,9 +13,9 @@
   server's database and uploads with this machine's.
 
 .EXAMPLE
-  .\deploy.ps1 -Server 3.120.45.67 -Key C:\Users\me\.ssh\petrik.pem -Init
-  .\deploy.ps1 -Server 3.120.45.67 -Key C:\Users\me\.ssh\petrik.pem
-  ./deploy.ps1 -Server 3.120.45.67 -Key ~/.ssh/petrik.pem -Platform linux/arm64   # macOS (pwsh), arm64 server
+  .\deploy.ps1 -Server SERVER -Key C:\Users\me\.ssh\petrik.pem -Init
+  .\deploy.ps1 -Server SERVER -Key C:\Users\me\.ssh\petrik.pem
+  ./deploy.ps1 -Server SERVER -Key ~/.ssh/petrik.pem -Platform linux/arm64   # macOS (pwsh), arm64 server
 #>
 param(
   [Parameter(Mandatory = $true)] [string] $Server,

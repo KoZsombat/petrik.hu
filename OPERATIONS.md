@@ -9,7 +9,7 @@ what the live site is made of, how to update it, and what can go wrong.
 |---|---|
 | Live site | https://petrik.zsombor.dev |
 | Login (Hírkezelő + Szerkesztő) | https://petrik.zsombor.dev/bejelentkezes/ |
-| Server | AWS EC2 `t3.micro`, Ubuntu, IP **13.60.30.35** (changes if the instance is *stopped* and *started*) |
+| Server | AWS EC2 `t3.micro`, Ubuntu, IP **SERVER** (your server's public IP) (changes if the instance is *stopped* and *started*) |
 | SSH key | `$HOME\.ssh\petrik.pem` — the only way into the server; AWS cannot give you a new copy |
 | Server folder | `~/petrik` |
 | Domain | Cloudflare tunnel `petrik` → `http://client:80` (no open web ports on the server) |
@@ -36,7 +36,7 @@ Docker Desktop must be running. In PowerShell:
 
 ```powershell
 cd $HOME\Downloads\scrape\petrik.hu
-.\deploy.ps1 -Server 13.60.30.35 -Key $HOME\.ssh\petrik.pem
+.\deploy.ps1 -Server SERVER -Key $HOME\.ssh\petrik.pem
 ```
 
 It builds both images on your PC, uploads them and restarts the containers.
@@ -59,7 +59,7 @@ to log in again afterwards.
 or share it. To change a setting:
 
 ```powershell
-ssh -i $HOME\.ssh\petrik.pem ubuntu@13.60.30.35
+ssh -i $HOME\.ssh\petrik.pem ubuntu@SERVER
 nano ~/petrik/.env                                  # Ctrl+O, Enter, Ctrl+X
 cd ~/petrik && docker compose up -d --no-build
 ```
@@ -85,15 +85,15 @@ Everything worth keeping is the database and uploads folders above.
 - **Copy to your PC:**
 
   ```powershell
-  ssh -i $HOME\.ssh\petrik.pem ubuntu@13.60.30.35 "cd petrik && docker compose stop server && tar czf ~/backup.tgz apps/server/data/db apps/server/uploads && docker compose start server"
-  scp -i $HOME\.ssh\petrik.pem ubuntu@13.60.30.35:backup.tgz .\petrik-backup.tgz
+  ssh -i $HOME\.ssh\petrik.pem ubuntu@SERVER "cd petrik && docker compose stop server && tar czf ~/backup.tgz apps/server/data/db apps/server/uploads && docker compose start server"
+  scp -i $HOME\.ssh\petrik.pem ubuntu@SERVER:backup.tgz .\petrik-backup.tgz
   ```
 
 - **Restore a copy** (replaces the live data):
 
   ```powershell
-  scp -i $HOME\.ssh\petrik.pem .\petrik-backup.tgz ubuntu@13.60.30.35:backup.tgz
-  ssh -i $HOME\.ssh\petrik.pem ubuntu@13.60.30.35 "cd petrik && docker compose stop server && sudo rm -rf apps/server/data/db apps/server/uploads && tar xzf ~/backup.tgz && docker compose start server"
+  scp -i $HOME\.ssh\petrik.pem .\petrik-backup.tgz ubuntu@SERVER:backup.tgz
+  ssh -i $HOME\.ssh\petrik.pem ubuntu@SERVER "cd petrik && docker compose stop server && sudo rm -rf apps/server/data/db apps/server/uploads && tar xzf ~/backup.tgz && docker compose start server"
   ```
 
 ## When something is wrong
@@ -102,13 +102,13 @@ All from PowerShell on your PC:
 
 ```powershell
 # Are all three containers "Up"?
-ssh -i $HOME\.ssh\petrik.pem ubuntu@13.60.30.35 "cd petrik && docker compose ps"
+ssh -i $HOME\.ssh\petrik.pem ubuntu@SERVER "cd petrik && docker compose ps"
 
 # What is the server saying? (logins, news, pages failing)
-ssh -i $HOME\.ssh\petrik.pem ubuntu@13.60.30.35 "cd petrik && docker compose logs --tail 50 server"
+ssh -i $HOME\.ssh\petrik.pem ubuntu@SERVER "cd petrik && docker compose logs --tail 50 server"
 
 # Restart everything
-ssh -i $HOME\.ssh\petrik.pem ubuntu@13.60.30.35 "cd petrik && docker compose restart"
+ssh -i $HOME\.ssh\petrik.pem ubuntu@SERVER "cd petrik && docker compose restart"
 ```
 
 | Symptom | What to do |
