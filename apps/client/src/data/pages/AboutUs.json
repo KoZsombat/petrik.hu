@@ -1,0 +1,421 @@
+{
+ "template": "builder",
+ "scope": "page-about-us",
+ "articleClass": "post-4067 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "dividerBottom": true,
+   "className": "et_pb_with_border",
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "gutters": 4,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m0","index":0,"align":"left","content":[]},
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["Our School – a brief history of the last 140 years"]}]},
+          " ",
+          {"tag":"p","children":[{"tag":"strong","children":["Value is our Measure"]}]}
+         ]
+        },
+        {"kind":"divider","id":"m2","index":0}
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r1",
+     "index": 1,
+     "gutters": 4,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "1_2",
+       "index": 1,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m3",
+         "index": 2,
+         "align": "justified",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Our school is one of the ",
+            {"tag":"strong","children":["oldest and most prestigious"]},
+            " vocational training and educational institutions of the Hungarian capital. The name-giver ",
+            {"tag":"strong","children":["Lajos PETRIK"]},
+            ", used to be the chemistry teacher as well as the first principal of the Industrial High School of Budapest founded back on December 7, 1879."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "The entire career of Lajos Petrik was featured and highlighted by his dedication to science, fine arts and towards the love of nature and its challenges. He was meant to be a scientist, a teacher, a potter, an art collector as well as a zealous hiker, altogether. As a devoted climber, he even managed to reach up to the summit of one of the 2,400m high unconquered peaks of Tátra Mountains (today in Slovakia). Perhaps, this might as well be one reason why the school ski-camp in the Fatra and Tátra Mountains, Slovakia has been so successful among our students and teachers for decades."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Thus, our vocational high-school is based on the heritage of Lajos Petrik’s ",
+            {
+             "tag": "strong",
+             "children": ["versatile personality and his aim and dedication to welcome, cherish and share human values"]
+            },
+            "; these are the most important fundaments our school has built its past, present and future on."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "The more than 140 year-old educational institution has always been considered to be one of the most outstanding schools in the vocational training system of the capital as well as of the whole country. Following the path laid by our great founding predecessors, our aim is to preserve and maintain a ",
+            {"tag":"strong","children":["student-centric school."]},
+            " We tend to be a partner institution of the labor-market as well as of the whole society, being open and flexible towards the expectations, needs of the industrial sector in our focus. Through continuous development projects and up-to-date curricula, furthermore by mutual cooperation with our partners from the labor market we are eager to fulfill the external demands and reach our goals set forward in this matter. When elaborating the curricula and through the whole process of education and training, we tend to implement the wishes and expectations of the students, parents or our business partners."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "The outstandingly great number of high-school students (around 1,200) attending the graduate and post-graduate (seral) classes have the unique opportunity to obtain useful theoretical knowledge and practical know-how of various professions in the well-equipped classrooms, IT, science labs and industrial training workstations located in the two buildings of the school."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A staff of more than 130 professional, highly educated teachers and instructors help the students’ development in various subjects and fields."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "It has always been in the central focus of the school to provide versatile basic knowledge and chance for development for our students, besides the high-quality and recognized vocational training schemes. That is why, many students who graduated from our school managed to fulfill their dreams and perform really high in various fields and walks of lives other than industry."
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c2",
+       "span": "1_2",
+       "index": 2,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m4",
+         "index": 3,
+         "align": "justified",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "For more than 100 years the primary profile of our institution proved to be the training of ",
+            {"tag":"strong","children":["chemical industrial specialists"]},
+            ". The high standard of training and education performed in Petrik had obtained national recognition, too, and the industrial specialists, experts graduating from the school were really highly regarded and sought after all across the region."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "In the 1990’s great changes occurred in the life of the school and in the Hungarian economic, industrial world, as well. Facing the dramatic economic, social and labor-market changes, the traditionally chemical industrial vocational school was also forced to face reality and stand on more pillars: it started to develop the ",
+            {"tag":"strong","children":["IT and environmental specialist training scheme"]},
+            "s, as well. Since 2007/2008 after the merger with Irinyi János Environmental and Chemical Industrial School, Petrik has obtained the highest and greatest amount of expertise and experience in environmental and chemical industrial specialist training in the country, providing the necessary human professional supply for the 3rd largest industrial sector of Hungary."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Nevertheless, with the digital revolution ever since the first decade of the 3rd millennia, the number of students and the focus of education has been slowly but surely shifting also towards the swiftly increasing IT industrial demands, on two major educational tracks: ",
+            {"tag":"strong","children":["software developer and network administrator training."]}
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "In September 2008 nine vocational industrial high-schools were organized into so-called TISZK system, which is Integrated Regional Vocational Center, focusing on the demands of the capital city and its extended suburban region on East-West axis. In 2012 two more vocational high-schools joined the TISZK Center with economic profile. The centrally elaborated curricula were also harmonized with the demands and expectations of the business partners, though all the important decisions were made by the coordinating board of the Center, presided by the core-school of the organization, namely by the principal of Petrik. Students were prepared for various professional tracks ending in professional exams in the central school of TISZK, Petrik, aiming to become all kind of specialists or industrial professionals."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "In 2008 thanks to considerable European Union and state funds, the school was fully refurbished and technically developed and even converted into step-free wheel-chair friendly school accessible for physically handicapped students, as well. The school has also adopted the rather prestigious bilingual status, particularly among the vocational high schools in Hungary, offering high quality courses both in English and Hungarian for about quarter of the total number of students."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r2",
+     "index": 2,
+     "columns": [
+      {
+       "id": "c3",
+       "span": "4_4",
+       "index": 3,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m5",
+         "index": 4,
+         "align": "justified",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "In 2015 the ",
+            {"tag":"strong","children":["Technical Industrial Vocational Center of Budapest"]},
+            " (BMSZC) was established out of the former TISZK-system, with 44 other centers altogether nationwide, as a sign of a new shift and phase of development in the Hungarian sc. dual-band vocational training scheme. The headquarter office of the Vocational Training Center was also located in the Petrik A building until June, 2019."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Nowadays, the vocational training scheme as well as the instructors and students tend to be in close partnership and cooperation particularly with IT and chemical industrial companies, organizations and business partners, including the biggest multinational companies of Hungary, e.g.: MOL, Nitrokémia, TEWA, Richter Gedeon, MTelekom, IBM, T-Systems etc."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["Petrik Lajos Technikum"]},
+            " these days is considered to be the flagship school of the BMSZC Vocational Center with outstanding academic and vocational training performances of our students achieved on national and even international level (especially, at competitions on Biology, Chemistry and Environmental Studies). According to the surveys, the students love the school’s „cozy and friendly atmosphere” and its well-trained and helpful professional staff who can facilitate their intellectual and vocational development alike."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "The school has also been awarded by the state as a ",
+            {"tag":"strong","children":["High performer and Eco-school"]},
+            ", where both teachers and students take special care about environmental protection and share an eco-friendly awareness raising attitude. Naturally, as an IT training school, Petrik has also been awarded with the distinguished title of ",
+            {"tag":"strong","children":["Digital School "]},
+            "for several times."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "For many consecutive years our school ",
+            {"tag":"strong","children":["has been ranked among the top ten"]},
+            " vocational high schools in Hungary compiled by HVG magazine experts, claiming that ‘these high ranking institutions can be considered the cream of the Hungarian vocational training’."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "index": 3,
+     "columns": [
+      {
+       "id": "c4",
+       "span": "1_2",
+       "index": 4,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m6",
+         "index": 5,
+         "align": "justified",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["Famous Alumni"]}]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Since the very beginning of its operation our school has paid distinguished attention and care on providing its students with extensive vocational skills and expertise and similarly preparing them with general knowledge fundaments, with the primary intention to broaden their scope of interests in the most versatile way possible."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Among the most famous, notable Petrik alumni we can highlight some really outstanding personalities, such as:"
+           ]
+          },
+          " ",
+          {"tag":"p","children":["Péter NÁDAS, internationally acclaimed writer;"]},
+          " ",
+          {
+           "tag": "p",
+           "children": ["Mihály VAJDA, philosopher, disciple of George LUKÁCS and one of the founder of Budapest School;"]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": ["László KOVÁCS, former minister of foreign affairs of Hungary, European commissioner ;"]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": ["Géza OBERFRANK, former famous director of music of the Hungarian National Opera House;"]
+          },
+          " ",
+          {"tag":"p","children":["Csaba ÖTVÖS: opera singer;"]},
+          " ",
+          {"tag":"p","children":["Ádám VÉGVÁRI, Ferenc DEMJÉN, György KORDA – singers, musicians ;"]},
+          " ",
+          {
+           "tag": "p",
+           "children": ["László FÖLDES HOBO, one of the most popular and acclaimed blues singer and composer in Hungary"]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c5",
+       "span": "1_2",
+       "index": 5,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m7",
+         "index": 6,
+         "align": "justified",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["Our foreign relations"]}]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "It is noteworthy that the Petrik, with almost two dozen foreign language teachers maintains extensive international relations and multiple exchange programs with several other high-schools across Europe, from Italy, Greece, Cyrus through Croatia, Poland and Lithuania to Denmark, funded by the popular Erasmus+ EU-grant."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "These international projects, involving hundreds of students and dozens of educators from the school, are primarily managed by some enthusiastic teachers of English from Petrik, namely by Mr. Ádám Szolnok and Ms.Éva Tóth."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "In the Fall semester 2019, one of our teachers of English, Mr.Zsolt Csutak was awarded with  Fulbrigh Teacher Excellence scholarship to study ‘Media Literacy & cyber security issues in education’ at Kent State University, Ohio, USA. His media literacy educational program has also been continued after his homecoming to Hungary along 2021/22 with the generous support of the US State Department and the US Embassy in Budapest."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "index": 4,
+     "columns": [
+      {"id":"c6","span":"1_3","index":6,"modules":[]},
+      {"id":"c7","span":"1_3","index":7,"modules":[]},
+      {
+       "id": "c8",
+       "span": "1_3",
+       "index": 8,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m8",
+         "index": 7,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"right"},"children":["compiled by Zsolt Csutak, TEFL"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "index": 2,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r5",
+     "index": 5,
+     "columns": [
+      {
+       "id": "c9",
+       "span": "1_2",
+       "index": 9,
+       "modules": [
+        {"kind":"text","id":"m9","index":8,"align":"left","content":[{"tag":"p","children":["Az iskola története"]}]},
+        {
+         "kind": "video",
+         "id": "m10",
+         "index": 0,
+         "url": "https://www.youtube.com/watch?v=d3YG5QNkXA8",
+         "title": "Iskolatörténet"
+        }
+       ]
+      },
+      {
+       "id": "c10",
+       "span": "1_2",
+       "index": 10,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m11","index":9,"align":"left","content":[{"tag":"p","children":["Petrik Lajos"]}]},
+        {
+         "kind": "video",
+         "id": "m12",
+         "index": 1,
+         "url": "https://www.youtube.com/watch?v=GHqyCVSEb7M",
+         "title": "Petrik Lajos"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

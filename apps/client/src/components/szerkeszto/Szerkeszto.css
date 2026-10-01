@@ -548,3 +548,356 @@
     margin-left: 12px;
   }
 }
+
+/* v2 (AGENT.md 6.20): drag and drop, design panel, repeaters ------------------ */
+
+.szk-dropzone {
+  margin: 4px 0;
+  padding: 6px 10px;
+  border: 2px dashed #b7c3d4;
+  border-radius: 8px;
+  color: #6b7a90;
+  font-size: 12px;
+  text-align: center;
+}
+
+.szk-dropzone-over {
+  border-color: #0c71c3;
+  background: #e6f1fb;
+  color: #0c71c3;
+}
+
+.szk-grip {
+  cursor: grab;
+  padding: 2px 6px;
+  border: 1px solid #d5dbe5;
+  border-radius: 6px;
+  background: #fff;
+  line-height: 1;
+}
+
+.szk-column-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.szk-column-remove {
+  margin-left: auto;
+}
+
+.szk-design {
+  margin: 12px 0 0;
+  padding: 8px 12px 12px;
+  border: 1px solid #d5dbe5;
+  border-radius: 8px;
+}
+
+.szk-design legend {
+  padding: 0 6px;
+  font-weight: 600;
+}
+
+.szk-design-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 4px 16px;
+}
+
+.szk-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+}
+
+.szk-input-invalid {
+  border-color: #b32d2e !important;
+}
+
+.szk-repeater-item {
+  margin: 8px 0;
+  padding: 8px 12px;
+  border: 1px solid #d5dbe5;
+  border-radius: 8px;
+}
+
+.szk-repeater-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+/* v2.1: the WordPress-like list and editor (AGENT.md 6.22) --------------------- */
+
+.szk-subsubsub {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+  color: #6b7a90;
+}
+
+.szk-subsubsub li {
+  white-space: pre;
+}
+
+.szk-subsubsub button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #0c71c3;
+  font: inherit;
+  cursor: pointer;
+}
+
+.szk-subsubsub .szk-tab-current {
+  color: #1d2327;
+  font-weight: 700;
+}
+
+.szk-count {
+  color: #6b7a90;
+  font-weight: 400;
+}
+
+.szk-tablenav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+}
+
+.szk-tablenav .szk-search {
+  margin-left: auto;
+  padding: 0;
+}
+
+.szk-bulk {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.szk-pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #6b7a90;
+}
+
+.szk-pagination button {
+  min-width: 28px;
+  border: 1px solid #d5dbe5;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.szk-check-col {
+  width: 32px;
+}
+
+.szk-sort {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.szk-row-title {
+  font-weight: 700;
+}
+
+.szk-pages-table small {
+  display: block;
+  color: #6b7a90;
+}
+
+.szk-row-selected {
+  background: #f0f6fc;
+}
+
+/* The row actions sit under the title and appear on hover or keyboard focus, as in WordPress. */
+.szk-row-actions-hover {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 2px;
+  font-size: 13px;
+  opacity: 0;
+}
+
+.szk-pages-table tr:hover .szk-row-actions-hover,
+.szk-pages-table tr:focus-within .szk-row-actions-hover {
+  opacity: 1;
+}
+
+.szk-row-actions-hover button,
+.szk-row-actions-hover a {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #0c71c3;
+  font: inherit;
+  cursor: pointer;
+}
+
+.szk-row-actions-hover .szk-danger-link {
+  color: #b32d2e;
+}
+
+/* The WordPress-like editor: content left, boxes right ------------------------- */
+
+.szk-editor-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .szk-editor-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.szk-title-input {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  border: 1px solid #d5dbe5;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.szk-editor-side {
+  position: sticky;
+  top: 12px;
+  display: grid;
+  gap: 14px;
+}
+
+.szk-box {
+  border: 1px solid #d5dbe5;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.szk-box h4 {
+  margin: 0;
+  padding: 10px 14px;
+  border-bottom: 1px solid #e3e8ef;
+  font-size: 14px;
+}
+
+.szk-box-body {
+  display: grid;
+  gap: 10px;
+  padding: 12px 14px;
+}
+
+.szk-box-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-top: 1px solid #e3e8ef;
+  background: #f6f8fb;
+}
+
+.szk-box-danger .szk-box-body {
+  gap: 6px;
+}
+
+.szk-save-state {
+  margin: 0;
+  color: #6b7a90;
+  font-size: 13px;
+}
+
+.szk-undo-redo {
+  display: flex;
+  gap: 6px;
+}
+
+.szk-permalink {
+  word-break: break-all;
+}
+
+.szk-danger-link {
+  color: #b32d2e;
+}
+
+/* The edit dialog (AGENT.md 6.23) ------------------------------------------------ */
+
+.szk-modal {
+  width: min(980px, 94vw);
+  max-width: none;
+  max-height: 92vh;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: #fff;
+  color: #1d2327;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.szk-modal::backdrop {
+  background: rgba(20, 28, 40, 0.55);
+}
+
+body:has(dialog.szk-modal[open]) {
+  overflow: hidden;
+}
+
+.szk-modal-frame {
+  display: flex;
+  flex-direction: column;
+  max-height: 92vh;
+}
+
+.szk-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 22px;
+  border-bottom: 1px solid #e3e8ef;
+}
+
+.szk-modal-head h3 {
+  margin: 0;
+}
+
+.szk-modal-close {
+  border: 0;
+  background: none;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.szk-modal-body {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  padding: 18px 22px;
+  overflow-y: auto;
+}
+
+.szk-modal-foot {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 22px;
+  border-top: 1px solid #e3e8ef;
+  background: #f6f8fb;
+}

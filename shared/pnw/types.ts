@@ -7,6 +7,27 @@
 export type Align = 'left' | 'center' | 'right'
 
 /**
+ * The inline styles the mirror's text carries and the Szerkesztő may write
+ * (AGENT.md 6.20): the properties `styleProp()` in scripts/extract.ts meets in
+ * the mirror, camelCased like React's `style`. Validated server-side - never
+ * free CSS.
+ */
+export const RICH_STYLE_KEYS = [
+  'color',
+  'fontSize',
+  'fontFamily',
+  'fontWeight',
+  'letterSpacing',
+  'textTransform',
+  'textAlign',
+  'lineHeight',
+] as const
+
+export type RichStyleKey = (typeof RICH_STYLE_KEYS)[number]
+
+export type RichStyle = Partial<Record<RichStyleKey, string>>
+
+/**
  * One styled stretch of text. `bold`/`italic` are all the Hírkezelő's editor
  * writes; `color`, `href` and `underline` exist for the Szerkesztő (AGENT.md
  * 6.19), whose content comes from the mirror's own markup - coloured spans,
@@ -21,6 +42,8 @@ export type TextRun = {
   color?: string
   /** A root-relative in-app route (`/nyolcadikos/`) or an absolute http(s)/mailto/tel URL. */
   href?: string
+  /** Any other whitelisted inline style (a `<span style>` on the mirror's pages). */
+  style?: RichStyle
 }
 
 /**
@@ -30,14 +53,33 @@ export type TextRun = {
  * list-item/quote, each holding styled runs. It renders through real JSX
  * everywhere (editor, preview modal, review screen, published view).
  */
-export type BlockType = 'paragraph' | 'heading' | 'bulleted-list' | 'numbered-list' | 'blockquote'
+export type BlockType =
+  | 'paragraph'
+  | 'heading'
+  | 'bulleted-list'
+  | 'numbered-list'
+  | 'blockquote'
+  /** The mirror's non-`<p>` inline wrapper (AGENT.md 4.2) - Divi gives `<p>` a margin, a `<div>` none. */
+  | 'div'
+  /** Inline content straight in the module, with no block element around it. */
+  | 'plain'
+  /** A table (Hírkezelő): the cells are in `table`, `runs` stays a single empty run. */
+  | 'table'
+
+export type RichTable = { header: boolean; rows: string[][] }
 
 export type RichTextBlock = {
   id: string
   type: BlockType
   align?: Align | 'justify'
   /** Only read when `type === 'heading'`; a heading without it is an <h2>, as it always was. */
-  level?: 1 | 2 | 3 | 4
+  level?: 1 | 2 | 3 | 4 | 5 | 6
+  /** Nesting depth of a list item (0 = the outer list). */
+  depth?: number
+  /** Whitelisted block styles besides `textAlign`, which `align` carries. */
+  style?: RichStyle
+  /** Only for `type === 'table'`: plain-text cells, row by row; the first row is a header when `header`. */
+  table?: RichTable
   runs: TextRun[]
 }
 
@@ -124,6 +166,8 @@ export type Term = {
   route?: string
 }
 
+export type ImagePosition = 'top' | 'bottom'
+
 export type Post = {
   id: string
   /** Stable from creation, even if the title is edited later - the public /hirek/:slug/ URL. */
@@ -135,6 +179,8 @@ export type Post = {
   tagIds: string[]
   /** Public URL path under /uploads/, or undefined. */
   featuredImage?: string
+  /** Where the featured image sits in the article: above the text (the default) or below it. */
+  imagePosition?: ImagePosition
   authorId: string
   status: PostStatus
   reviewNote?: string

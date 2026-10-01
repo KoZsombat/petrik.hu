@@ -1,0 +1,3805 @@
+{
+ "template": "builder",
+ "scope": "page-tanari-kar",
+ "articleClass": "post-910 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "1_2",
+       "index": 0,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Tanári kar"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Egységben az erő. Több mint 100 oktató tanítja az iskola diákjait közoktatásban, szakképzésben, nappali és esti munkarendben."
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {"id":"c1","span":"1_2","index":1,"last":true,"modules":[]}
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c2",
+       "span": "1_6",
+       "index": 2,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m2",
+         "index": 0,
+         "className": "et_pb_with_border",
+         "name": "Babusa Tamás",
+         "position": "informatika szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Babusa Tamás",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m3",
+         "index": 2,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["babusa.tamas@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m4",
+         "index": 3,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.020"]}]
+        }
+       ]
+      },
+      {
+       "id": "c3",
+       "span": "1_6",
+       "index": 3,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m5",
+         "index": 1,
+         "className": "et_pb_with_border",
+         "name": "B. Tóth Katalin",
+         "position": "angol nyelv",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/btoth_katalin.jpg",
+          "alt": "B. Tóth Katalin",
+          "width": 654,
+          "height": 982,
+          "srcSet": "/media/wp-content/uploads/2020/09/btoth_katalin.jpg 654w, /media/wp-content/uploads/2020/09/btoth_katalin-200x300.jpg 200w",
+          "sizes": "(max-width: 654px) 100vw, 654px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m6",
+         "index": 4,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["btoth@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m7",
+         "index": 5,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.131"]}]
+        }
+       ]
+      },
+      {
+       "id": "c4",
+       "span": "1_6",
+       "index": 4,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m8",
+         "index": 2,
+         "className": "et_pb_with_border",
+         "name": "Bálint György",
+         "position": "történelem",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/balint_gyorgy.jpg",
+          "alt": "Bálint György",
+          "width": 660,
+          "height": 991,
+          "srcSet": "/media/wp-content/uploads/2020/09/balint_gyorgy.jpg 660w, /media/wp-content/uploads/2020/09/balint_gyorgy-200x300.jpg 200w",
+          "sizes": "(max-width: 660px) 100vw, 660px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m9",
+         "index": 6,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["balint@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m10",
+         "index": 7,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.131"]}]
+        }
+       ]
+      },
+      {
+       "id": "c5",
+       "span": "1_6",
+       "index": 5,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m11",
+         "index": 3,
+         "className": "et_pb_with_border",
+         "name": "Balogh Zoltán",
+         "position": "informatika szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Balogh Zoltán",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m12",
+         "index": 8,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["baloghz@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m13",
+         "index": 9,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.020"]}]
+        }
+       ]
+      },
+      {
+       "id": "c6",
+       "span": "1_6",
+       "index": 6,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m14",
+         "index": 4,
+         "className": "et_pb_with_border",
+         "name": "Balogh Botond",
+         "position": "testnevelés tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Balogh Botond",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m15",
+         "index": 10,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["balogh.botond@petrik.hu"]}]
+        }
+       ]
+      },
+      {
+       "id": "c7",
+       "span": "1_6",
+       "index": 7,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m16",
+         "index": 5,
+         "className": "et_pb_with_border",
+         "name": "Barabás Gergő",
+         "position": "11.A osztályfőnök vegyész szakmai tanár, angol nyelv tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Barabás Gergő",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m17",
+         "index": 11,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["barabas.gergo@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m18",
+         "index": 12,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.103"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "index": 2,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c8",
+       "span": "1_6",
+       "index": 8,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m19",
+         "index": 6,
+         "className": "et_pb_with_border",
+         "name": "Bátki Ottilia",
+         "position": "szakmai igazgatóhelyettes vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2021/10/batki_ottilia_2021.jpg",
+          "alt": "Bátki Ottilia",
+          "width": 672,
+          "height": 988,
+          "srcSet": "/media/wp-content/uploads/2021/10/batki_ottilia_2021.jpg 672w, /media/wp-content/uploads/2021/10/batki_ottilia_2021-480x706.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 672px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m20",
+         "index": 13,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["batki.ottilia@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m21",
+         "index": 14,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.103"]}]
+        }
+       ]
+      },
+      {
+       "id": "c9",
+       "span": "1_6",
+       "index": 9,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m22",
+         "index": 7,
+         "className": "et_pb_with_border",
+         "name": "Bende Gyöngyi Zsuzsanna",
+         "position": "angol nyelv",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/bende_gyongyi.jpg",
+          "alt": "Bende Gyöngyi Zsuzsanna",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/bende_gyongyi.jpg 600w, /media/wp-content/uploads/2020/09/bende_gyongyi-480x720.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m23",
+         "index": 15,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["bende.gyongyi@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m24",
+         "index": 16,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.131"]}]
+        }
+       ]
+      },
+      {
+       "id": "c10",
+       "span": "1_6",
+       "index": 10,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m25",
+         "index": 8,
+         "className": "et_pb_with_border",
+         "name": "Benyó Judit",
+         "position": "vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Benyó Judit",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m26",
+         "index": 17,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["benyo.judit@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m27",
+         "index": 18,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.125"]}]
+        }
+       ]
+      },
+      {
+       "id": "c11",
+       "span": "1_6",
+       "index": 11,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m28",
+         "index": 9,
+         "className": "et_pb_with_border",
+         "name": "Béresné Bodó Noémi",
+         "position": "9.d osztályfőnök munkaközösség-vezető angol nyelv tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/beresne_bodo_noemi.jpg",
+          "alt": "Béresné Bodó Noémi",
+          "width": 656,
+          "height": 985,
+          "srcSet": "/media/wp-content/uploads/2020/09/beresne_bodo_noemi.jpg 656w, /media/wp-content/uploads/2020/09/beresne_bodo_noemi-200x300.jpg 200w",
+          "sizes": "(max-width: 656px) 100vw, 656px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m29",
+         "index": 19,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["noemi@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m30",
+         "index": 20,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.131"]}]
+        }
+       ]
+      },
+      {
+       "id": "c12",
+       "span": "1_6",
+       "index": 12,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m31",
+         "index": 10,
+         "className": "et_pb_with_border",
+         "name": "Bődi István",
+         "position": "vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Bődi István",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m32",
+         "index": 21,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["bodi.istvan@petrik.hu"]}]
+        },
+        {"kind":"text","id":"m33","index":22,"align":"left","content":[]}
+       ]
+      },
+      {
+       "id": "c13",
+       "span": "1_6",
+       "index": 13,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m34",
+         "index": 11,
+         "className": "et_pb_with_border",
+         "name": "Bogdán Marianna",
+         "position": "informatika szakmai tanár<br />",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Bogdán Marianna",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m35",
+         "index": 23,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["bogdan.marianna@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m36",
+         "index": 24,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.021"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "index": 3,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c14",
+       "span": "1_6",
+       "index": 14,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m37",
+         "index": 12,
+         "className": "et_pb_with_border",
+         "name": "Bozóki Judit",
+         "position": "11.B osztályfőnök, vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/bozoki_judit.jpg",
+          "alt": "Bozóki Judit",
+          "width": 656,
+          "height": 985,
+          "srcSet": "/media/wp-content/uploads/2020/09/bozoki_judit.jpg 656w, /media/wp-content/uploads/2020/09/bozoki_judit-200x300.jpg 200w",
+          "sizes": "(max-width: 656px) 100vw, 656px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m38",
+         "index": 25,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["bozoky@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m39",
+         "index": 26,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.130"]}]
+        }
+       ]
+      },
+      {
+       "id": "c15",
+       "span": "1_6",
+       "index": 15,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m40",
+         "index": 13,
+         "className": "et_pb_with_border",
+         "name": "Czikkely Imre",
+         "position": "10. osztályfőnök, informatika szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Czikkely Imre",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m41",
+         "index": 27,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["czikkely.imre@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m42",
+         "index": 28,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.017"]}]
+        }
+       ]
+      },
+      {
+       "id": "c16",
+       "span": "1_6",
+       "index": 16,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m43",
+         "index": 14,
+         "className": "et_pb_with_border",
+         "name": "Czinkóczi Tamás",
+         "position": "12.D osztályfőnök, informatika szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/czinkoczi_tamas.jpg",
+          "alt": "Czinkóczi Tamás",
+          "width": 656,
+          "height": 985,
+          "srcSet": "/media/wp-content/uploads/2020/09/czinkoczi_tamas.jpg 656w, /media/wp-content/uploads/2020/09/czinkoczi_tamas-200x300.jpg 200w",
+          "sizes": "(max-width: 656px) 100vw, 656px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m44",
+         "index": 29,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["ctamas@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m45",
+         "index": 30,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.021"]}]
+        }
+       ]
+      },
+      {
+       "id": "c17",
+       "span": "1_6",
+       "index": 17,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m46",
+         "index": 15,
+         "className": "et_pb_with_border",
+         "name": "Csák Szilárd",
+         "position": "9.B osztályfőnök történelem",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/csak_szilard.jpg",
+          "alt": "Csák Szilárd",
+          "width": 652,
+          "height": 979,
+          "srcSet": "/media/wp-content/uploads/2020/09/csak_szilard.jpg 652w, /media/wp-content/uploads/2020/09/csak_szilard-200x300.jpg 200w",
+          "sizes": "(max-width: 652px) 100vw, 652px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m47",
+         "index": 31,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["csak@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m48",
+         "index": 32,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.219"]}]
+        }
+       ]
+      },
+      {
+       "id": "c18",
+       "span": "1_6",
+       "index": 18,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m49",
+         "index": 16,
+         "className": "et_pb_with_border",
+         "name": "Csutak Zsolt",
+         "position": "angol nyelv",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/csutak_zsolt.jpg",
+          "alt": "Csutak Zsolt",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/csutak_zsolt.jpg 600w, /media/wp-content/uploads/2020/09/csutak_zsolt-480x720.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m50",
+         "index": 33,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["csutak.zsolt@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m51",
+         "index": 34,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.131"]}]
+        }
+       ]
+      },
+      {
+       "id": "c19",
+       "span": "1_6",
+       "index": 19,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m52",
+         "index": 17,
+         "className": "et_pb_with_border",
+         "name": "Darányi Katalin",
+         "position": "13.A osztályfőnök angol nyelv",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/daranyi_katalin.jpg",
+          "alt": "Darányi Katalin",
+          "width": 700,
+          "height": 1051,
+          "srcSet": "/media/wp-content/uploads/2020/09/daranyi_katalin.jpg 700w, /media/wp-content/uploads/2020/09/daranyi_katalin-200x300.jpg 200w, /media/wp-content/uploads/2020/09/daranyi_katalin-682x1024.jpg 682w",
+          "sizes": "(max-width: 700px) 100vw, 700px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m53",
+         "index": 35,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["dkati@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m54",
+         "index": 36,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.131"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "index": 4,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c20",
+       "span": "1_6",
+       "index": 20,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m55",
+         "index": 18,
+         "className": "et_pb_with_border",
+         "name": "De Rose Lynn",
+         "position": "anyanyelvi lektor",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "De Rose Lynn",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m56",
+         "index": 37,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["lektor@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m57",
+         "index": 38,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.131"]}]
+        }
+       ]
+      },
+      {
+       "id": "c21",
+       "span": "1_6",
+       "index": 21,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m58",
+         "index": 19,
+         "className": "et_pb_with_border",
+         "name": "Demkó Erika",
+         "position": "magyar",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/demko_erika-1.jpg",
+          "alt": "Demkó Erika",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/demko_erika-1.jpg 600w, /media/wp-content/uploads/2020/09/demko_erika-1-480x720.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m59",
+         "index": 39,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["demko.erika@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m60",
+         "index": 40,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.219"]}]
+        }
+       ]
+      },
+      {
+       "id": "c22",
+       "span": "1_6",
+       "index": 22,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m61",
+         "index": 20,
+         "className": "et_pb_with_border",
+         "name": "Duschák Zsuzsanna",
+         "position": "12.A osztályfőnök magyar, angol",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/duchak_zsuzsanna.jpg",
+          "alt": "Duschák Zsuzsanna",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/duchak_zsuzsanna.jpg 600w, /media/wp-content/uploads/2020/09/duchak_zsuzsanna-480x720.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m62",
+         "index": 41,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["duschak@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m63",
+         "index": 42,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.219"]}]
+        }
+       ]
+      },
+      {
+       "id": "c23",
+       "span": "1_6",
+       "index": 23,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m64",
+         "index": 21,
+         "className": "et_pb_with_border",
+         "name": "Elekesné Sallai Mónika Angéla",
+         "position": "2/14.VL osztályfőnök, vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Elekesné Sallai Mónika Angéla",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m65",
+         "index": 43,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["sallai.monika@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m66",
+         "index": 44,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.208"]}]
+        }
+       ]
+      },
+      {
+       "id": "c24",
+       "span": "1_6",
+       "index": 24,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m67",
+         "index": 22,
+         "className": "et_pb_with_border",
+         "name": "Fandel Richárd Gábor",
+         "position": "1/13.VL osztályfőnök, munkaközösség-vezető, vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/fandel_richard.jpg",
+          "alt": "Fandel Richárd Gábor",
+          "width": 652,
+          "height": 979,
+          "srcSet": "/media/wp-content/uploads/2020/09/fandel_richard.jpg 652w, /media/wp-content/uploads/2020/09/fandel_richard-200x300.jpg 200w",
+          "sizes": "(max-width: 652px) 100vw, 652px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m68",
+         "index": 45,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["fandel@petrik.hu"]}]
+        },
+        {"kind":"text","id":"m69","index":46,"align":"center","content":[{"tag":"p","children":["B.309"]}]}
+       ]
+      },
+      {
+       "id": "c25",
+       "span": "1_6",
+       "index": 25,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m70",
+         "index": 23,
+         "className": "et_pb_with_border",
+         "name": "Farkas Erika",
+         "position": "magyar, történelem",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/farkas_erika.jpg",
+          "alt": "Farkas Erika",
+          "width": 658,
+          "height": 988,
+          "srcSet": "/media/wp-content/uploads/2020/09/farkas_erika.jpg 658w, /media/wp-content/uploads/2020/09/farkas_erika-200x300.jpg 200w",
+          "sizes": "(max-width: 658px) 100vw, 658px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m71",
+         "index": 47,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["farkas.erika@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m72",
+         "index": 48,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.219"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r5",
+     "index": 5,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c26",
+       "span": "1_6",
+       "index": 26,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m73",
+         "index": 24,
+         "className": "et_pb_with_border",
+         "name": "Ferencei Boglárka",
+         "position": "média",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Ferencei Boglárka",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m74",
+         "index": 49,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["ferencei.boglarka@petrik.hu"]}]
+        }
+       ]
+      },
+      {
+       "id": "c27",
+       "span": "1_6",
+       "index": 27,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m75",
+         "index": 25,
+         "className": "et_pb_with_border",
+         "name": "Forgó Zsuzsanna",
+         "position": "vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Forgó Zsuzsanna",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m76",
+         "index": 50,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["forgo.zsuzsanna@petrik.hu"]}]
+        }
+       ]
+      },
+      {
+       "id": "c28",
+       "span": "1_6",
+       "index": 28,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m77",
+         "index": 26,
+         "className": "et_pb_with_border",
+         "name": "Fortuna Zsuzsanna",
+         "position": "vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/fortuna_zsuzsanna.jpg",
+          "alt": "Fortuna Zsuzsanna",
+          "width": 664,
+          "height": 997,
+          "srcSet": "/media/wp-content/uploads/2020/09/fortuna_zsuzsanna.jpg 664w, /media/wp-content/uploads/2020/09/fortuna_zsuzsanna-200x300.jpg 200w",
+          "sizes": "(max-width: 664px) 100vw, 664px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m78",
+         "index": 51,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["fortuna@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m79",
+         "index": 52,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.110"]}]
+        }
+       ]
+      },
+      {
+       "id": "c29",
+       "span": "1_6",
+       "index": 29,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m80",
+         "index": 27,
+         "className": "et_pb_with_border",
+         "name": "Gál-Berey Csilla",
+         "position": "igazgató",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2021/10/gal_berey_csilla_2021.jpg",
+          "alt": "Gál-Berey Csilla",
+          "width": 675,
+          "height": 985,
+          "srcSet": "/media/wp-content/uploads/2021/10/gal_berey_csilla_2021.jpg 675w, /media/wp-content/uploads/2021/10/gal_berey_csilla_2021-480x700.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 675px, 100vw"
+         },
+         "content": [" "," ",{"tag":"p","children":["matematika"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m81",
+         "index": 53,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["galberey@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m82",
+         "index": 54,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.110"]}]
+        }
+       ]
+      },
+      {
+       "id": "c30",
+       "span": "1_6",
+       "index": 30,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m83",
+         "index": 28,
+         "className": "et_pb_with_border",
+         "name": "Gőgh Zsolt",
+         "position": "környezetvédelmi szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/gogh_zsolt.jpg",
+          "alt": "Gőgh Zsolt",
+          "width": 656,
+          "height": 985,
+          "srcSet": "/media/wp-content/uploads/2020/09/gogh_zsolt.jpg 656w, /media/wp-content/uploads/2020/09/gogh_zsolt-200x300.jpg 200w",
+          "sizes": "(max-width: 656px) 100vw, 656px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m84",
+         "index": 55,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["goghzs@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m85",
+         "index": 56,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.041"]}]
+        }
+       ]
+      },
+      {
+       "id": "c31",
+       "span": "1_6",
+       "index": 31,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m86",
+         "index": 29,
+         "className": "et_pb_with_border",
+         "name": "Frank Attila",
+         "position": "vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Frank Attila",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m87",
+         "index": 57,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["frank.attila@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m88",
+         "index": 58,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.018"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r6",
+     "index": 6,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c32",
+       "span": "1_6",
+       "index": 32,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m89",
+         "index": 30,
+         "className": "et_pb_with_border",
+         "name": "Guth Gabriella",
+         "position": "10.E osztályfőnök, munkaközösség-vezető, angol nyelv tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/guth_gabriella.jpg",
+          "alt": "Guth Gabriella",
+          "width": 654,
+          "height": 982,
+          "srcSet": "/media/wp-content/uploads/2020/09/guth_gabriella.jpg 654w, /media/wp-content/uploads/2020/09/guth_gabriella-200x300.jpg 200w",
+          "sizes": "(max-width: 654px) 100vw, 654px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m90",
+         "index": 59,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["guth@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m91",
+         "index": 60,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.131"]}]
+        }
+       ]
+      },
+      {
+       "id": "c33",
+       "span": "1_6",
+       "index": 33,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m92",
+         "index": 31,
+         "className": "et_pb_with_border",
+         "name": "Hajagos Máté",
+         "position": "DÖK segítő tanár, magyar történelem",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/11/hajagos_mate.jpg",
+          "alt": "Hajagos Máté",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/11/hajagos_mate.jpg 600w, /media/wp-content/uploads/2020/11/hajagos_mate-480x720.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m93",
+         "index": 61,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["hajagos.mate@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m94",
+         "index": 62,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.219"]}]
+        }
+       ]
+      },
+      {
+       "id": "c34",
+       "span": "1_6",
+       "index": 34,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m95",
+         "index": 32,
+         "className": "et_pb_with_border",
+         "name": "Halász Gábor",
+         "position": "munkaközösség-vezető, informatika szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/halasz_gabor.jpg",
+          "alt": "Halász Gábor",
+          "width": 656,
+          "height": 985,
+          "srcSet": "/media/wp-content/uploads/2020/09/halasz_gabor.jpg 656w, /media/wp-content/uploads/2020/09/halasz_gabor-200x300.jpg 200w",
+          "sizes": "(max-width: 656px) 100vw, 656px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m96",
+         "index": 63,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["halasz.gabor@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m97",
+         "index": 64,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.021"]}]
+        }
+       ]
+      },
+      {
+       "id": "c35",
+       "span": "1_6",
+       "index": 35,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m98",
+         "index": 33,
+         "className": "et_pb_with_border",
+         "name": "Hertelendi Gábor",
+         "position": "rendszergazda, informatika szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Hertelendi Gábor",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m99",
+         "index": 65,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["hertelendi.gabor@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m100",
+         "index": 66,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.019"]}]
+        }
+       ]
+      },
+      {
+       "id": "c36",
+       "span": "1_6",
+       "index": 36,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m101",
+         "index": 34,
+         "className": "et_pb_with_border",
+         "name": "Horváth Gyöngyi",
+         "position": "pénzügyi ismeretek, német nyelv",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Horváth Gyöngyi",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m102",
+         "index": 67,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["horvathg@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m103",
+         "index": 68,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.131"]}]
+        }
+       ]
+      },
+      {
+       "id": "c37",
+       "span": "1_6",
+       "index": 37,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m104",
+         "index": 35,
+         "className": "et_pb_with_border",
+         "name": "Horváth Norbert",
+         "position": "vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Horváth Norbert",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m105",
+         "index": 69,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["horvath.norbert@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m106",
+         "index": 70,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.125"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r7",
+     "index": 7,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c38",
+       "span": "1_6",
+       "index": 38,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m107",
+         "index": 36,
+         "className": "et_pb_with_border",
+         "name": "Horváth Zoltán",
+         "position": "vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Horváth Zoltán",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m108",
+         "index": 71,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["horvath.zoltan.okt@petrik.hu"]}]
+        }
+       ]
+      },
+      {
+       "id": "c39",
+       "span": "1_6",
+       "index": 39,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m109",
+         "index": 37,
+         "className": "et_pb_with_border",
+         "name": "Jabelkó-Tolnai Csilla Anna",
+         "position": "angol",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tolnay_csilla.jpg",
+          "alt": "Jabelkó-Tolnai Csilla Anna",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tolnay_csilla.jpg 600w, /media/wp-content/uploads/2020/09/tolnay_csilla-480x720.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m110",
+         "index": 72,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["tolnai@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m111",
+         "index": 73,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.131"]}]
+        }
+       ]
+      },
+      {
+       "id": "c40",
+       "span": "1_6",
+       "index": 40,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m112",
+         "index": 38,
+         "className": "et_pb_with_border",
+         "name": "Kállóné Husi Zsuzsanna",
+         "position": "testnevelés",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/husi_zsuzsanna.jpg",
+          "alt": "Kállóné Husi Zsuzsanna",
+          "width": 652,
+          "height": 979,
+          "srcSet": "/media/wp-content/uploads/2020/09/husi_zsuzsanna.jpg 652w, /media/wp-content/uploads/2020/09/husi_zsuzsanna-200x300.jpg 200w",
+          "sizes": "(max-width: 652px) 100vw, 652px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m113",
+         "index": 74,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["husi@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m114",
+         "index": 75,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.016"]}]
+        }
+       ]
+      },
+      {
+       "id": "c41",
+       "span": "1_6",
+       "index": 41,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m115",
+         "index": 39,
+         "className": "et_pb_with_border",
+         "name": "Karsai Gergő",
+         "position": "testnevelés",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/karsai_gergo.jpg",
+          "alt": "Karsai Gergő",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/karsai_gergo.jpg 600w, /media/wp-content/uploads/2020/09/karsai_gergo-480x720.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m116",
+         "index": 76,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["karsai.gergo@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m117",
+         "index": 77,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.016"]}]
+        }
+       ]
+      },
+      {
+       "id": "c42",
+       "span": "1_6",
+       "index": 42,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m118",
+         "index": 40,
+         "className": "et_pb_with_border",
+         "name": "Kaspareik Péter",
+         "position": "matematika angol nyelven, matematika, angol nyelv",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Kaspareik Péter",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m119",
+         "index": 78,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["kasparek.peter@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m120",
+         "index": 79,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.133"]}]
+        }
+       ]
+      },
+      {
+       "id": "c43",
+       "span": "1_6",
+       "index": 43,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m121",
+         "index": 41,
+         "className": "et_pb_with_border",
+         "name": "Király Zalán",
+         "position": "testnevelés",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Király Zalán",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m122",
+         "index": 80,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["kiraly.zalan@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m123",
+         "index": 81,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.016"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r8",
+     "index": 8,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c44",
+       "span": "1_6",
+       "index": 44,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m124",
+         "index": 42,
+         "className": "et_pb_with_border",
+         "name": "Koczka István",
+         "position": "informatika szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/koczka_istvan.jpg",
+          "alt": "Koczka István",
+          "width": 656,
+          "height": 985,
+          "srcSet": "/media/wp-content/uploads/2020/09/koczka_istvan.jpg 656w, /media/wp-content/uploads/2020/09/koczka_istvan-200x300.jpg 200w",
+          "sizes": "(max-width: 656px) 100vw, 656px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m125",
+         "index": 82,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["koczka.istvan@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m126",
+         "index": 83,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.130"]}]
+        }
+       ]
+      },
+      {
+       "id": "c45",
+       "span": "1_6",
+       "index": 45,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m127",
+         "index": 43,
+         "className": "et_pb_with_border",
+         "name": "Kollár Zsuzsanna",
+         "position": "10.A osztályfőnök, matematika angol nyelven, matematika, angol nyelv",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Kollár Zsuzsanna",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m128",
+         "index": 84,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["kollar.zsuzsanna@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m129",
+         "index": 85,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.131"]}]
+        }
+       ]
+      },
+      {
+       "id": "c46",
+       "span": "1_6",
+       "index": 46,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m130",
+         "index": 44,
+         "className": "et_pb_with_border",
+         "name": "Kovács Olivér",
+         "position": "13.B osztályfőnök, fizika, vegész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/kovacs_oliver.jpg",
+          "alt": "Kovács Olivér",
+          "width": 658,
+          "height": 988,
+          "srcSet": "/media/wp-content/uploads/2020/09/kovacs_oliver.jpg 658w, /media/wp-content/uploads/2020/09/kovacs_oliver-200x300.jpg 200w",
+          "sizes": "(max-width: 658px) 100vw, 658px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m131",
+         "index": 86,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["kovacs.oliver@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m132",
+         "index": 87,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.130"]}]
+        }
+       ]
+      },
+      {
+       "id": "c47",
+       "span": "1_6",
+       "index": 47,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m133",
+         "index": 45,
+         "className": "et_pb_with_border",
+         "name": "Kovácsné Antal Éva",
+         "position": "matematika",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Kovácsné Antal Éva",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m134",
+         "index": 88,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["antal.eva@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m135",
+         "index": 89,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.133"]}]
+        }
+       ]
+      },
+      {
+       "id": "c48",
+       "span": "1_6",
+       "index": 48,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m136",
+         "index": 46,
+         "className": "et_pb_with_border",
+         "name": "Kugyelláné Schmidtka Ágnes",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Kugyelláné Schmidtka Ágnes",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         }
+        },
+        {"kind":"text","id":"m137","index":90,"align":"left","content":[]},
+        {
+         "kind": "text",
+         "id": "m138",
+         "index": 91,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.016"]}]
+        }
+       ]
+      },
+      {
+       "id": "c49",
+       "span": "1_6",
+       "index": 49,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m139",
+         "index": 47,
+         "className": "et_pb_with_border",
+         "name": "Laman Richárd",
+         "position": "testnevelés",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Laman Richárd",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m140",
+         "index": 92,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["laman.richard@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m141",
+         "index": 93,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.016"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r9",
+     "index": 9,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c50",
+       "span": "1_6",
+       "index": 50,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m142",
+         "index": 48,
+         "className": "et_pb_with_border",
+         "name": "Latabár Endre",
+         "position": "12.E osztályfőnök, angol nyelv tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/latabar_endre.jpg",
+          "alt": "Latabár Endre",
+          "width": 658,
+          "height": 988,
+          "srcSet": "/media/wp-content/uploads/2020/09/latabar_endre.jpg 658w, /media/wp-content/uploads/2020/09/latabar_endre-200x300.jpg 200w",
+          "sizes": "(max-width: 658px) 100vw, 658px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m143",
+         "index": 94,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["latabar.endre@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m144",
+         "index": 95,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.131"]}]
+        }
+       ]
+      },
+      {
+       "id": "c51",
+       "span": "1_6",
+       "index": 51,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m145",
+         "index": 49,
+         "className": "et_pb_with_border",
+         "name": "Lénárdné Bárdossy Ágota",
+         "position": "informatika szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Lénárdné Bárdossy Ágota",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m146",
+         "index": 96,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["bardossya@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m147",
+         "index": 97,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.020"]}]
+        }
+       ]
+      },
+      {
+       "id": "c52",
+       "span": "1_6",
+       "index": 52,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m148",
+         "index": 50,
+         "className": "et_pb_with_border",
+         "name": "Dr. Lois Isabella",
+         "position": "vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2021/10/dr_lois_isabella.jpg",
+          "alt": "Dr. Lois Isabella",
+          "width": 681,
+          "height": 982,
+          "srcSet": "/media/wp-content/uploads/2021/10/dr_lois_isabella.jpg 681w, /media/wp-content/uploads/2021/10/dr_lois_isabella-480x692.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 681px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m149",
+         "index": 98,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["lois@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m150",
+         "index": 99,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.208"]}]
+        }
+       ]
+      },
+      {
+       "id": "c53",
+       "span": "1_6",
+       "index": 53,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m151",
+         "index": 51,
+         "className": "et_pb_with_border",
+         "name": "Lovas Margaret Anikó",
+         "position": "munkaközösség-vezető, matematika tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/lovas_margarett.jpg",
+          "alt": "Lovas Margaret Anikó",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/lovas_margarett.jpg 600w, /media/wp-content/uploads/2020/09/lovas_margarett-480x720.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m152",
+         "index": 100,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["lovas@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m153",
+         "index": 101,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.130"]}]
+        }
+       ]
+      },
+      {
+       "id": "c54",
+       "span": "1_6",
+       "index": 54,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m154",
+         "index": 52,
+         "className": "et_pb_with_border",
+         "name": "Lukács Ferenc",
+         "position": "matematika, fizika",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/lukacs_ferenc.jpg",
+          "alt": "Lukács Ferenc",
+          "width": 652,
+          "height": 979,
+          "srcSet": "/media/wp-content/uploads/2020/09/lukacs_ferenc.jpg 652w, /media/wp-content/uploads/2020/09/lukacs_ferenc-200x300.jpg 200w",
+          "sizes": "(max-width: 652px) 100vw, 652px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m155",
+         "index": 102,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["lukacs.ferenc@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m156",
+         "index": 103,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.130"]}]
+        }
+       ]
+      },
+      {
+       "id": "c55",
+       "span": "1_6",
+       "index": 55,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m157",
+         "index": 53,
+         "className": "et_pb_with_border",
+         "name": "Madarász Ákos",
+         "position": "matematika-angol",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Madarász Ákos",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m158",
+         "index": 104,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["madarasz.akos@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m159",
+         "index": 105,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.130"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r10",
+     "index": 10,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c56",
+       "span": "1_6",
+       "index": 56,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m160",
+         "index": 54,
+         "className": "et_pb_with_border",
+         "name": "Márta József István",
+         "position": "vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Márta József István",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m161",
+         "index": 106,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["marta.jozsef@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m162",
+         "index": 107,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.213"]}]
+        }
+       ]
+      },
+      {
+       "id": "c57",
+       "span": "1_6",
+       "index": 57,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m163",
+         "index": 55,
+         "className": "et_pb_with_border",
+         "name": "Dr. Máté Marianna",
+         "position": "9.A osztályfőnök, matematika, kémia",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Dr. Máté Marianna",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m164",
+         "index": 108,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["mate.marianna@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m165",
+         "index": 109,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.130"]}]
+        }
+       ]
+      },
+      {
+       "id": "c58",
+       "span": "1_6",
+       "index": 58,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m166",
+         "index": 56,
+         "className": "et_pb_with_border",
+         "name": "Merényi Miklós",
+         "position": "2/14. RS osztályfőnök, munkaközösség-vezető, informatika szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Merényi Miklós",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m167",
+         "index": 110,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["merenyi.miklos@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m168",
+         "index": 111,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.017"]}]
+        }
+       ]
+      },
+      {
+       "id": "c59",
+       "span": "1_6",
+       "index": 59,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m169",
+         "index": 57,
+         "className": "et_pb_with_border",
+         "name": "Mészáros Tamás",
+         "position": "informatika szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Mészáros Tamás",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m170",
+         "index": 112,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["meszaros.tamas@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m171",
+         "index": 113,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.016"]}]
+        }
+       ]
+      },
+      {
+       "id": "c60",
+       "span": "1_6",
+       "index": 60,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m172",
+         "index": 58,
+         "className": "et_pb_with_border",
+         "name": "Nagy Judit",
+         "position": "matematika",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/nagy_judit.jpg",
+          "alt": "Nagy Judit",
+          "width": 656,
+          "height": 985,
+          "srcSet": "/media/wp-content/uploads/2020/09/nagy_judit.jpg 656w, /media/wp-content/uploads/2020/09/nagy_judit-200x300.jpg 200w",
+          "sizes": "(max-width: 656px) 100vw, 656px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m173",
+         "index": 114,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["nagy.judit@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m174",
+         "index": 115,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.130"]}]
+        }
+       ]
+      },
+      {
+       "id": "c61",
+       "span": "1_6",
+       "index": 61,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m175",
+         "index": 59,
+         "className": "et_pb_with_border",
+         "name": "Nagyné Németh Ildikó Andrea",
+         "position": "12.C osztályfőnök vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Nagyné Németh Ildikó Andrea",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m176",
+         "index": 116,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["nemeth.ildiko@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m177",
+         "index": 117,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.309"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r11",
+     "index": 11,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c62",
+       "span": "1_6",
+       "index": 62,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m178",
+         "index": 60,
+         "className": "et_pb_with_border",
+         "name": "Omischl-Németh Eszter",
+         "position": "11.G osztályfőnök, magyar nyelv és irodalom, angol nyelv",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Omischl-Németh Eszter",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m179",
+         "index": 118,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["nemeth.eszter@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m180",
+         "index": 119,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.219"]}]
+        }
+       ]
+      },
+      {
+       "id": "c63",
+       "span": "1_6",
+       "index": 63,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m181",
+         "index": 61,
+         "className": "et_pb_with_border",
+         "name": "Pappné Debreczeni Ildikó",
+         "position": "9.C osztályfőnök, környezetvédelem szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/pappne_debreczeni_ildik.jpg",
+          "alt": "Pappné Debreczeni Ildikó",
+          "width": 656,
+          "height": 985,
+          "srcSet": "/media/wp-content/uploads/2020/09/pappne_debreczeni_ildik.jpg 656w, /media/wp-content/uploads/2020/09/pappne_debreczeni_ildik-200x300.jpg 200w",
+          "sizes": "(max-width: 656px) 100vw, 656px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m182",
+         "index": 120,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["pappne@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m183",
+         "index": 121,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.041"]}]
+        }
+       ]
+      },
+      {
+       "id": "c64",
+       "span": "1_6",
+       "index": 64,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m184",
+         "index": 62,
+         "className": "et_pb_with_border",
+         "name": "Penksza Károly Lászlóné",
+         "position": "általános igazgatóhelyettes, biológia tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/penksza_karolyne.jpg",
+          "alt": "Penksza Károly Lászlóné",
+          "width": 672,
+          "height": 976,
+          "srcSet": "/media/wp-content/uploads/2020/09/penksza_karolyne.jpg 672w, /media/wp-content/uploads/2020/09/penksza_karolyne-480x697.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 672px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m185",
+         "index": 122,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["asztalos@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m186",
+         "index": 123,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["Diákcentrum"]}]
+        }
+       ]
+      },
+      {
+       "id": "c65",
+       "span": "1_6",
+       "index": 65,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m187",
+         "index": 63,
+         "className": "et_pb_with_border",
+         "name": "Petri Judit",
+         "position": "10.B osztályfőnök, vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/petri_judit.jpg",
+          "alt": "Petri Judit",
+          "width": 654,
+          "height": 982,
+          "srcSet": "/media/wp-content/uploads/2020/09/petri_judit.jpg 654w, /media/wp-content/uploads/2020/09/petri_judit-200x300.jpg 200w",
+          "sizes": "(max-width: 654px) 100vw, 654px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m188",
+         "index": 124,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["petri.judit@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m189",
+         "index": 125,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.041"]}]
+        }
+       ]
+      },
+      {
+       "id": "c66",
+       "span": "1_6",
+       "index": 66,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m190",
+         "index": 64,
+         "className": "et_pb_with_border",
+         "name": "Rausch Péter",
+         "position": "11.C osztályfőnök, munkaközösség-vezető, környezetvédelem szakmai tanár, kémia",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/rausch_peter.jpg",
+          "alt": "Rausch Péter",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/rausch_peter.jpg 600w, /media/wp-content/uploads/2020/09/rausch_peter-480x720.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m191",
+         "index": 126,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["rausch.peter@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m192",
+         "index": 127,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.041"]}]
+        }
+       ]
+      },
+      {
+       "id": "c67",
+       "span": "1_6",
+       "index": 67,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m193",
+         "index": 65,
+         "className": "et_pb_with_border",
+         "name": "Ribní Ferenc",
+         "position": "informatika szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Ribní Ferenc",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m194",
+         "index": 128,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["ribni.ferenc@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m195",
+         "index": 129,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.020"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r12",
+     "index": 12,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c68",
+       "span": "1_6",
+       "index": 68,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m196",
+         "index": 66,
+         "className": "et_pb_with_border",
+         "name": "Sárközi-Paulik Brigitta",
+         "position": "igazgatóhelyettes, 11.E osztályfőnök, angol nyelv",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/sarkozi_paulik_brigitta.jpg",
+          "alt": "Sárközi-Paulik Brigitta",
+          "width": 658,
+          "height": 988,
+          "srcSet": "/media/wp-content/uploads/2020/09/sarkozi_paulik_brigitta.jpg 658w, /media/wp-content/uploads/2020/09/sarkozi_paulik_brigitta-200x300.jpg 200w",
+          "sizes": "(max-width: 658px) 100vw, 658px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m197",
+         "index": 130,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["paulik@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m198",
+         "index": 131,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.108"]}]
+        }
+       ]
+      },
+      {
+       "id": "c69",
+       "span": "1_6",
+       "index": 69,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m199",
+         "index": 67,
+         "className": "et_pb_with_border",
+         "name": "",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         }
+        },
+        {
+         "kind": "text",
+         "id": "m200",
+         "index": 132,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["@petrik.hu"]}]
+        },
+        {"kind":"text","id":"m201","index":133,"align":"left","content":[]}
+       ]
+      },
+      {
+       "id": "c70",
+       "span": "1_6",
+       "index": 70,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m202",
+         "index": 68,
+         "className": "et_pb_with_border",
+         "name": "Schubert Bence",
+         "position": "testnevelés",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Schubert Bence",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m203",
+         "index": 134,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["schubert.bence@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m204",
+         "index": 135,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.016"]}]
+        }
+       ]
+      },
+      {
+       "id": "c71",
+       "span": "1_6",
+       "index": 71,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m205",
+         "index": 69,
+         "className": "et_pb_with_border",
+         "name": "Seres Orsolya Zsuzsanna",
+         "position": "10.C osztályfőnök, angol nyelv tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/seres_orsolya.jpg",
+          "alt": "Seres Orsolya Zsuzsanna",
+          "width": 656,
+          "height": 985,
+          "srcSet": "/media/wp-content/uploads/2020/09/seres_orsolya.jpg 656w, /media/wp-content/uploads/2020/09/seres_orsolya-200x300.jpg 200w",
+          "sizes": "(max-width: 656px) 100vw, 656px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m206",
+         "index": 136,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["seres@petrik.hu"]}]
+        }
+       ]
+      },
+      {
+       "id": "c72",
+       "span": "1_6",
+       "index": 72,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m207",
+         "index": 70,
+         "className": "et_pb_with_border",
+         "name": "Siska Dávid",
+         "position": "vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Siska Dávid",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m208",
+         "index": 137,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["siska.david@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m209",
+         "index": 138,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.309"]}]
+        }
+       ]
+      },
+      {
+       "id": "c73",
+       "span": "1_6",
+       "index": 73,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m210",
+         "index": 71,
+         "className": "et_pb_with_border",
+         "name": "",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         }
+        },
+        {
+         "kind": "text",
+         "id": "m211",
+         "index": 139,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["@petrik.hu"]}]
+        },
+        {"kind":"text","id":"m212","index":140,"align":"left","content":[]}
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r13",
+     "index": 13,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c74",
+       "span": "1_6",
+       "index": 74,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m213",
+         "index": 72,
+         "className": "et_pb_with_border",
+         "name": "Sőre Ferenc",
+         "position": "vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/sore_ferenc.jpg",
+          "alt": "Sőre Ferenc",
+          "width": 656,
+          "height": 986,
+          "srcSet": "/media/wp-content/uploads/2020/09/sore_ferenc.jpg 656w, /media/wp-content/uploads/2020/09/sore_ferenc-200x300.jpg 200w",
+          "sizes": "(max-width: 656px) 100vw, 656px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m214",
+         "index": 141,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["sore@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m215",
+         "index": 142,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.125"]}]
+        }
+       ]
+      },
+      {
+       "id": "c75",
+       "span": "1_6",
+       "index": 75,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m216",
+         "index": 73,
+         "className": "et_pb_with_border",
+         "name": "Szabados István",
+         "position": "9.KNY osztályfőnök,munkaközösség-vezető, magyar nyelv és irodalom, történelem",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/szabados_istvan.jpg",
+          "alt": "Szabados István",
+          "width": 648,
+          "height": 973,
+          "srcSet": "/media/wp-content/uploads/2020/09/szabados_istvan.jpg 648w, /media/wp-content/uploads/2020/09/szabados_istvan-200x300.jpg 200w",
+          "sizes": "(max-width: 648px) 100vw, 648px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m217",
+         "index": 143,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["szabados@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m218",
+         "index": 144,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.219"]}]
+        }
+       ]
+      },
+      {
+       "id": "c76",
+       "span": "1_6",
+       "index": 76,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m219",
+         "index": 74,
+         "className": "et_pb_with_border",
+         "name": "Dr. Szabó Marianna",
+         "position": "13.C osztályfőnök, környezetvédelmi szakmai tanár, biológia",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/szabo_marianne.jpg",
+          "alt": "Dr. Szabó Marianna",
+          "width": 412,
+          "height": 618,
+          "srcSet": "/media/wp-content/uploads/2020/09/szabo_marianne.jpg 412w, /media/wp-content/uploads/2020/09/szabo_marianne-200x300.jpg 200w",
+          "sizes": "(max-width: 412px) 100vw, 412px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m220",
+         "index": 145,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["dr.szabo.marianna@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m221",
+         "index": 146,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.041"]}]
+        }
+       ]
+      },
+      {
+       "id": "c77",
+       "span": "1_6",
+       "index": 77,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m222",
+         "index": 75,
+         "className": "et_pb_with_border",
+         "name": "Szajkó Orsolya",
+         "position": "vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2021/10/szajko_orsolya.jpg",
+          "alt": "Szajkó Orsolya",
+          "width": 681,
+          "height": 994,
+          "srcSet": "/media/wp-content/uploads/2021/10/szajko_orsolya.jpg 681w, /media/wp-content/uploads/2021/10/szajko_orsolya-480x701.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 681px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m223",
+         "index": 147,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["szajko.orsolya@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m224",
+         "index": 148,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.041"]}]
+        }
+       ]
+      },
+      {
+       "id": "c78",
+       "span": "1_6",
+       "index": 78,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m225",
+         "index": 76,
+         "className": "et_pb_with_border",
+         "name": "Szolnok Ádám",
+         "position": "igazgatóhelyettes, angol",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/szolnok_adam.jpg",
+          "alt": "Szolnok Ádám",
+          "width": 652,
+          "height": 979,
+          "srcSet": "/media/wp-content/uploads/2020/09/szolnok_adam.jpg 652w, /media/wp-content/uploads/2020/09/szolnok_adam-200x300.jpg 200w",
+          "sizes": "(max-width: 652px) 100vw, 652px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m226",
+         "index": 149,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["szolnok@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m227",
+         "index": 150,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.017"]}]
+        }
+       ]
+      },
+      {
+       "id": "c79",
+       "span": "1_6",
+       "index": 79,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m228",
+         "index": 77,
+         "className": "et_pb_with_border",
+         "name": "Takács Emese",
+         "position": "matematika",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/takacs_emese.jpg",
+          "alt": "Takács Emese",
+          "width": 654,
+          "height": 982,
+          "srcSet": "/media/wp-content/uploads/2020/09/takacs_emese.jpg 654w, /media/wp-content/uploads/2020/09/takacs_emese-200x300.jpg 200w",
+          "sizes": "(max-width: 654px) 100vw, 654px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m229",
+         "index": 151,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["tmse@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m230",
+         "index": 152,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.213"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r14",
+     "index": 14,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c80",
+       "span": "1_6",
+       "index": 80,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m231",
+         "index": 78,
+         "className": "et_pb_with_border",
+         "name": "Tihanyi Péter",
+         "position": "vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tihanyi_peter.jpg",
+          "alt": "Tihanyi Péter",
+          "width": 654,
+          "height": 982,
+          "srcSet": "/media/wp-content/uploads/2020/09/tihanyi_peter.jpg 654w, /media/wp-content/uploads/2020/09/tihanyi_peter-200x300.jpg 200w",
+          "sizes": "(max-width: 654px) 100vw, 654px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m232",
+         "index": 153,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["tihanyi@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m233",
+         "index": 154,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.220"]}]
+        }
+       ]
+      },
+      {
+       "id": "c81",
+       "span": "1_6",
+       "index": 81,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m234",
+         "index": 79,
+         "className": "et_pb_with_border",
+         "name": "Tóth Béla",
+         "position": "testnevelés",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/toth_bela.jpg",
+          "alt": "Tóth Béla",
+          "width": 654,
+          "height": 982,
+          "srcSet": "/media/wp-content/uploads/2020/09/toth_bela.jpg 654w, /media/wp-content/uploads/2020/09/toth_bela-200x300.jpg 200w",
+          "sizes": "(max-width: 654px) 100vw, 654px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m235",
+         "index": 155,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["tela@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m236",
+         "index": 156,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.016"]}]
+        }
+       ]
+      },
+      {
+       "id": "c82",
+       "span": "1_6",
+       "index": 82,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m237",
+         "index": 80,
+         "className": "et_pb_with_border",
+         "name": "Tóth Enikő",
+         "position": "matematika",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/toth_eniko.jpg",
+          "alt": "Tóth Enikő",
+          "width": 652,
+          "height": 979,
+          "srcSet": "/media/wp-content/uploads/2020/09/toth_eniko.jpg 652w, /media/wp-content/uploads/2020/09/toth_eniko-200x300.jpg 200w",
+          "sizes": "(max-width: 652px) 100vw, 652px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m238",
+         "index": 157,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["totheniko@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m239",
+         "index": 158,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.110"]}]
+        }
+       ]
+      },
+      {
+       "id": "c83",
+       "span": "1_6",
+       "index": 83,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m240",
+         "index": 81,
+         "className": "et_pb_with_border",
+         "name": "Tóth Edina",
+         "position": "vegyész szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/toth_edina.jpg",
+          "alt": "Tóth Edina",
+          "width": 654,
+          "height": 982,
+          "srcSet": "/media/wp-content/uploads/2020/09/toth_edina.jpg 654w, /media/wp-content/uploads/2020/09/toth_edina-200x300.jpg 200w",
+          "sizes": "(max-width: 654px) 100vw, 654px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m241",
+         "index": 159,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["tothe@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m242",
+         "index": 160,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.110"]}]
+        }
+       ]
+      },
+      {
+       "id": "c84",
+       "span": "1_6",
+       "index": 84,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m243",
+         "index": 82,
+         "className": "et_pb_with_border",
+         "name": "Tóth Éva",
+         "position": "13.D osztályfőnök, angol nyelv tanár, szakmai informatika tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/10/toth_eva.jpg",
+          "alt": "Tóth Éva",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/10/toth_eva.jpg 600w, /media/wp-content/uploads/2020/10/toth_eva-480x720.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "image",
+         "id": "m244",
+         "index": 0,
+         "src": "/media/wp-content/uploads/2023/10/bathyscaphe-6934707_1280.png",
+         "href": "https://forms.gle/cif8azLVMrBJhEuB8",
+         "width": 1280,
+         "height": 784,
+         "srcSet": "/media/wp-content/uploads/2023/10/bathyscaphe-6934707_1280.png 1280w, /media/wp-content/uploads/2023/10/bathyscaphe-6934707_1280-980x600.png 980w, /media/wp-content/uploads/2023/10/bathyscaphe-6934707_1280-480x294.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1280px, 100vw"
+        },
+        {
+         "kind": "text",
+         "id": "m245",
+         "index": 161,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["toth.eva@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m246",
+         "index": 162,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.113"]}]
+        }
+       ]
+      },
+      {
+       "id": "c85",
+       "span": "1_6",
+       "index": 85,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m247",
+         "index": 83,
+         "className": "et_pb_with_border",
+         "name": "Tóth Krisztina",
+         "position": "11.B osztályfőnök, vegyész szakmai tanárz, kémia tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Tóth Krisztina",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m248",
+         "index": 163,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["toth.krisztina@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m249",
+         "index": 164,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["B.041"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r15",
+     "index": 15,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c86",
+       "span": "1_6",
+       "index": 86,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m250",
+         "index": 84,
+         "className": "et_pb_with_border",
+         "name": "Uhlár Zoltán István",
+         "position": "gépész",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/uhlar_zoltan.jpg",
+          "alt": "Uhlár Zoltán István",
+          "width": 654,
+          "height": 982,
+          "srcSet": "/media/wp-content/uploads/2020/09/uhlar_zoltan.jpg 654w, /media/wp-content/uploads/2020/09/uhlar_zoltan-200x300.jpg 200w",
+          "sizes": "(max-width: 654px) 100vw, 654px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m251",
+         "index": 165,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["uhlarz@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m252",
+         "index": 166,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.132"]}]
+        }
+       ]
+      },
+      {
+       "id": "c87",
+       "span": "1_6",
+       "index": 87,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m253",
+         "index": 85,
+         "className": "et_pb_with_border",
+         "name": "Urbin Péter",
+         "position": "informatika szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/urbin_peter.jpg",
+          "alt": "Urbin Péter",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/urbin_peter.jpg 600w, /media/wp-content/uploads/2020/09/urbin_peter-480x720.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m254",
+         "index": 167,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["urbin.peter@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m255",
+         "index": 168,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.019"]}]
+        }
+       ]
+      },
+      {
+       "id": "c88",
+       "span": "1_6",
+       "index": 88,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m256",
+         "index": 86,
+         "className": "et_pb_with_border",
+         "name": "Vámos Tibor",
+         "position": "12.C osztályfőnök, környezetvédelmi szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/vamos_tibor.jpg",
+          "alt": "Vámos Tibor",
+          "width": 652,
+          "height": 979,
+          "srcSet": "/media/wp-content/uploads/2020/09/vamos_tibor.jpg 652w, /media/wp-content/uploads/2020/09/vamos_tibor-200x300.jpg 200w",
+          "sizes": "(max-width: 652px) 100vw, 652px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m257",
+         "index": 169,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["vamos.tibor@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m258",
+         "index": 170,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.213"]}]
+        }
+       ]
+      },
+      {
+       "id": "c89",
+       "span": "1_6",
+       "index": 89,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m259",
+         "index": 87,
+         "className": "et_pb_with_border",
+         "name": "Villányi-Borsics Eszter",
+         "position": "13.E osztályfőnök,angol nyelv tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/villanyi_eszter.jpg",
+          "alt": "Villányi-Borsics Eszter",
+          "width": 656,
+          "height": 985,
+          "srcSet": "/media/wp-content/uploads/2020/09/villanyi_eszter.jpg 656w, /media/wp-content/uploads/2020/09/villanyi_eszter-200x300.jpg 200w",
+          "sizes": "(max-width: 656px) 100vw, 656px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m260",
+         "index": 171,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["villanyi@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m261",
+         "index": 172,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.113"]}]
+        }
+       ]
+      },
+      {
+       "id": "c90",
+       "span": "1_6",
+       "index": 90,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m262",
+         "index": 88,
+         "className": "et_pb_with_border",
+         "name": "Völgyi Ferenc Iván",
+         "position": "9.E osztályfőnök, informatika szakmai tanár",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2026/05/vfi-1.jpg",
+          "alt": "Völgyi Ferenc Iván",
+          "width": 977,
+          "height": 1023,
+          "srcSet": "/media/wp-content/uploads/2026/05/vfi-1.jpg 977w, /media/wp-content/uploads/2026/05/vfi-1-480x503.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 977px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m263",
+         "index": 173,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["volgyi@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m264",
+         "index": 174,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.116"]}]
+        }
+       ]
+      },
+      {
+       "id": "c91",
+       "span": "1_6",
+       "index": 91,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m265",
+         "index": 89,
+         "className": "et_pb_with_border",
+         "name": "Weisz Ilona",
+         "position": "vegyész szakmai tanár, biológia, kémia",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/weisz_ilona.jpg",
+          "alt": "Weisz Ilona",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/weisz_ilona.jpg 600w, /media/wp-content/uploads/2020/09/weisz_ilona-480x720.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m266",
+         "index": 175,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["weisz@petrik.hu"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m267",
+         "index": 176,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["A.116"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r16",
+     "index": 16,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c92",
+       "span": "1_6",
+       "index": 92,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m268",
+         "index": 90,
+         "className": "et_pb_with_border",
+         "name": "",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         }
+        },
+        {
+         "kind": "text",
+         "id": "m269",
+         "index": 177,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["@petrik.hu"]}]
+        },
+        {"kind":"text","id":"m270","index":178,"align":"left","content":[]}
+       ]
+      },
+      {
+       "id": "c93",
+       "span": "1_6",
+       "index": 93,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m271",
+         "index": 91,
+         "className": "et_pb_with_border",
+         "name": "",
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         }
+        },
+        {
+         "kind": "text",
+         "id": "m272",
+         "index": 179,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["@petrik.hu"]}]
+        },
+        {"kind":"text","id":"m273","index":180,"align":"left","content":[]}
+       ]
+      },
+      {"id":"c94","span":"1_6","index":94,"modules":[]},
+      {"id":"c95","span":"1_6","index":95,"modules":[]},
+      {"id":"c96","span":"1_6","index":96,"modules":[]},
+      {"id":"c97","span":"1_6","index":97,"last":true,"modules":[]}
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "index": 2,
+   "className": "et_pb_with_border",
+   "rows": [
+    {
+     "id": "r17",
+     "index": 17,
+     "columns": [
+      {
+       "id": "c98",
+       "span": "1_3",
+       "index": 98,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m274",
+         "index": 181,
+         "align": "center",
+         "bgLayout": "dark",
+         "content": [
+          {"tag":"h2","children":[{"tag":"span","style":{"color":"#808080"},"children":["Levelezési címünk"]}]},
+          " ",
+          {"tag":"p","children":["1146 Budapest, Thököly út 48-54."]}
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c99",
+       "span": "1_3",
+       "index": 99,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m275",
+         "index": 182,
+         "align": "center",
+         "bgLayout": "dark",
+         "content": [
+          {"tag":"h2","children":[{"tag":"span","style":{"color":"#808080"},"children":["Telefon"]}]},
+          " ",
+          {"tag":"p","children":[{"tag":"a","href":"tel:+3613434810","children":["+36 1 343 4810"]}]}
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c100",
+       "span": "1_3",
+       "index": 100,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m276",
+         "index": 183,
+         "align": "center",
+         "bgLayout": "dark",
+         "content": [
+          {"tag":"h2","children":[{"tag":"span","style":{"color":"#808080"},"children":["E-mail"]}]},
+          " ",
+          {"tag":"p","children":[{"tag":"a","href":"mailto:info@petrik.hu","children":["info@petrik.hu"]}]}
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r18",
+     "index": 18,
+     "columns": [
+      {
+       "id": "c101",
+       "span": "4_4",
+       "index": 101,
+       "last": true,
+       "modules": [
+        {
+         "kind": "social-follow",
+         "id": "m277",
+         "index": 0,
+         "networks": [
+          {
+           "network": "facebook",
+           "href": "https://www.facebook.com/BMSZCPetrik/",
+           "title": "Kövesse a (z) Facebook elemet",
+           "label": "Követés"
+          },
+          {
+           "network": "instagram",
+           "href": "https://www.instagram.com/petrikinsta/",
+           "title": "Kövesse a (z) Instagram elemet",
+           "label": "Követés"
+          },
+          {"network":"youtube","href":"#","title":"Kövesse a (z) Youtube elemet","label":"Követés"},
+          {"network":"rss","href":"#","title":"Kövesse a (z) RSS elemet","label":"Követés"}
+         ],
+         "align": "center"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

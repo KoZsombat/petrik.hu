@@ -1,0 +1,46 @@
+{
+ "template": "docs",
+ "scope": "page-docs-alapito-okirat",
+ "docsSlug": "alapito-okirat",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2022/08/Alapito_okirat_2022_07_29_BMSZC.pdf",
+             "children": ["Alapito_okirat_2022_07_29_BMSZC"]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

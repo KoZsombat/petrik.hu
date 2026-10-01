@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { heads } from '../data/head.ts'
 import { useSiteContent } from './site/siteContext.ts'
-import { routeKey } from './site/usePageOverride.ts'
+import { routeKey } from './site/route.ts'
+import { mirroredTitle } from './headTitle.ts'
 
 /**
  * The two routes the mirror has no page for, so there is nothing to copy.
@@ -24,7 +25,7 @@ const NOT_FOUND_TITLE = 'Az oldal nem található | petrik.hu'
 const HIRKEZELO_TITLE = 'Hírkezelő | petrik.hu'
 
 /**
- * The same for the shared login and the Szerkesztő (AGENT.md 6.19): real
+ * The same for the shared login and the Szerkesztő (AGENT.md 6.20): real
  * tools, never in the snapshot, never to be indexed.
  */
 const TOOL_TITLES: Record<string, string> = {
@@ -89,16 +90,17 @@ export function useDocumentHead(): void {
 
   useEffect(() => {
     const route = routeKey(pathname)
-    const override = site.overrides[route]
+    const edit = site.pages[route]
 
-    // A mirrored page the Szerkesztő hid is served as the 404 (Layout.tsx).
+    // A mirrored page the Szerkesztő deleted is served as the 404 (DocumentPage.tsx).
     // `route`, not `pathname`: the router serves /nyolcadikos as well as /nyolcadikos/.
-    const head = override?.hidden ? undefined : heads[route]
+    const head = edit?.deleted ? undefined : heads[route]
     if (head) {
       // The Szerkesztő may replace a mirrored page's title and description
-      // (AGENT.md 6.19); robots and canonical stay the mirror's.
-      document.title = override?.title ? `${override.title} | petrik.hu` : head.title
-      setMeta('description', override?.description ?? head.description)
+      // (AGENT.md 6.20); robots and canonical stay the mirror's. A title left
+      // as it was keeps the mirror's own, suffix and all.
+      document.title = edit?.title && edit.title !== mirroredTitle(route) ? `${edit.title} | petrik.hu` : head.title
+      setMeta('description', edit?.description || head.description)
       setMeta('robots', head.robots)
       setCanonical(head.canonical ? window.location.origin + route : undefined)
       return
@@ -113,11 +115,11 @@ export function useDocumentHead(): void {
       return
     }
 
-    // A page built in the Szerkesztő (src/pages/DynamicPage.tsx). Until the
+    // A page built in the Szerkesztő (src/pages/DocumentPage.tsx). Until the
     // one site fetch settles it is unknown whether this is one, so the 404
     // title must not flash first.
     const slug = SINGLE_SEGMENT.exec(pathname)?.[1]
-    const page = slug ? site.pages[slug] : undefined
+    const page = edit && !edit.deleted ? edit : undefined
     if (page) {
       document.title = `${page.title} | petrik.hu`
       setMeta('description', page.description || undefined)
@@ -132,7 +134,7 @@ export function useDocumentHead(): void {
     // src/pages/PublishedPost.tsx sets document.title itself once it loads;
     // this only has to not fight that by falling through to NOT_FOUND_TITLE
     // below on every render before the fetch resolves.
-    if (pathname.startsWith('/hirek/')) return
+    if (pathname.startsWith('/hirek/') || pathname.startsWith('/hirkezelo/elonezet/')) return
 
     document.title = pathname === '/kereses/' ? SEARCH_TITLE : NOT_FOUND_TITLE
     setMeta('description', undefined)

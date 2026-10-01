@@ -1,0 +1,62 @@
+{
+ "template": "docs",
+ "scope": "page-docs-vegyipari-muveletek",
+ "docsSlug": "vegyipari-muveletek",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "content": [
+          {
+           "tag": "a",
+           "href": "/media/wp-content/uploads/2020/09/vegyipari_muveletek_1.pdf",
+           "children": ["Vegyipari műveletek I"]
+          },
+          {"tag":"br"},
+          " ",
+          {
+           "tag": "a",
+           "href": "/media/wp-content/uploads/2020/09/vegyipari_muveletek_2.pdf",
+           "children": ["Vegyipari műveletek II"]
+          },
+          {"tag":"br"},
+          " ",
+          {
+           "tag": "a",
+           "href": "/media/wp-content/uploads/2020/09/vegyipari_muveletek_3.pdf",
+           "children": ["Vegyipari műveletek III"]
+          },
+          {"tag":"br"},
+          " ",
+          {
+           "tag": "a",
+           "href": "/media/wp-content/uploads/2020/09/vegyipari-muveleti-gyakorlatok_14.pdf",
+           "children": ["Vegyipari műveleti gyakorlatok 14"]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

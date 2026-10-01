@@ -21,7 +21,15 @@ export function emptyDocument(): RichTextDocument {
 
 /** The editor keeps one run per block (see RichTextEditor.tsx); this reads any block regardless. */
 export function blockText(block: RichTextBlock): string {
+  // A table's text is its cells, so a post that is only a table still counts as having content.
+  if (block.type === 'table' && block.table) return block.table.rows.map((row) => row.join(' ')).join(' ')
   return block.runs.map((run) => run.text).join('')
+}
+
+export function emptyTable(rows = 3, columns = 3): RichTextBlock {
+  const block = emptyBlock('table')
+  block.table = { header: true, rows: Array.from({ length: rows }, () => Array.from({ length: columns }, () => '')) }
+  return block
 }
 
 export function documentText(doc: RichTextDocument): string {
@@ -39,7 +47,8 @@ export function isBlank(doc: RichTextDocument): boolean {
  */
 export function isSafeHref(href: string): boolean {
   if (href.startsWith('/') && !href.startsWith('//')) return true
-  return /^(https?:\/\/|mailto:|tel:)/i.test(href)
+  // `//host/path` - the mirror has one (a Facebook link on /projekt/); a plain anchor, like any absolute URL.
+  return /^(https?:\/\/|\/\/[a-z0-9]|mailto:|tel:)/i.test(href)
 }
 
 /** `#rgb`/`#rrggbb`/`rgb()`/`rgba()` or a bare colour keyword - never anything that could close a style. */

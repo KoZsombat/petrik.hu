@@ -1,0 +1,527 @@
+{
+ "template": "builder",
+ "scope": "page-languagecert-vizsgak",
+ "articleClass": "post-4379 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["LanguageCert vizsgák"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"p","children":["Államilag elismert nemzetközi angol nyelvvizsga."]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "4_4",
+       "index": 1,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m2",
+         "index": 2,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [{"tag":"strong","children":["LanguageCert államilag elismert nemzetközi angol nyelvvizsga"]}]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A LanguageCert vizsgák a City & Guilds angol nyelvvizsgák utódjai, miután a Peoplecert Qualifications nevű angol cég megvásárolta a City & Guilds vizsgák szellemi tulajdonjogát és gondoskodik a vizsgák nemzetközi folytonosságáról."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A LanguageCert Nemzetközi Angol Nyelvvizsgák Nagy-Britannia egyik állami referenciakereten megtalálható angol nyelvvizsgarendszere, amelyet Európa több országában is elfogadnak."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A Peoplecert egy vizsgafejlesztéssel és vizsgaszervezéssel foglalkozó globális szervezet, amely az elmúlt közel 20 évben információs technológiai és menedzsment vizsgák fejlesztésével, illetve online vizsgáztatási platformok kidolgozásával és működtetésével alapozta meg hírnevét a világ több, mint 150 országában.  "
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A Közös Európai Referenciakeret 6 szintjére kidolgozott vizsga számos előnyt nyújt felvételihez, diplomához, hazai és külföldi tanulmányokhoz, munkavállaláshoz. Felépítésében az egyszerűségre törekszik, és az általános, kommunikatív angol nyelvtudást méri hétköznapi, életszerű feladatokkal."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A vizsga alatt egynyelvű szótár használata megengedett. A LanguageCert vizsgaközpont korszerű oktatási segédanyagokkal, letölthető mintafeladatokkal, értékelt mintavizsgákkal és felkészítő feladatokkal segíti a vizsgára való felkészülést."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A vizsga olvasáskészség. íráskészség, beszédkészség és beszédértés részekből áll. A nyelvvizsgát csak akkreditált vizsgahelyeken lehet letenni, komplexen is, illetve külön írásbeli vagy szóbeli részvizsga formájában. A vizsgázók a nemzetközi bizonyítvány mellett államilag elismert nyelvvizsga bizonyítványt kapnak a sikeresen letett írásbeli és szóbeli részvizsgákért is."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "index": 2,
+     "columns": [
+      {
+       "id": "c2",
+       "span": "4_4",
+       "index": 2,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m3",
+         "index": 3,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["A nyelvvizsga előnyei"]}]},
+          " ",
+          {
+           "tag": "ul",
+           "children": [
+            {"tag":"li","children":["nemzetközileg is elismert egynyelvű nyelvvizsga"]},
+            {"tag":"li","children":["a gyakorlati, kommunikatív nyelvtudásra helyezi a hangsúlyt"]},
+            {"tag":"li","children":["a feladatok hétköznapiak, életszerűek"]},
+            {"tag":"li","children":["a vizsga alatt egynyelvű szótár használata megengedett"]},
+            {"tag":"li","children":["a szóbeli vizsgán tanár-diák párbeszéde zajlanak, nincs helyben végzett értékelés"]}
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "index": 3,
+     "columns": [
+      {
+       "id": "c3",
+       "span": "4_4",
+       "index": 3,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m4",
+         "index": 4,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["A nyelvvizsga felépítése"]}]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A LanguageCert Vizsgaközpont egynyelvű írásbeli, szóbeli vagy komplex angol nyelvvizsgákat kínál Magyarországon."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "index": 4,
+     "columns": [
+      {
+       "id": "c4",
+       "span": "1_3",
+       "index": 4,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m5",
+         "index": 5,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["írásbeli részvizsga: "]}]},
+          " ",
+          {"tag":"ol","children":[{"tag":"li","children":["olvasáskészség"]},{"tag":"li","children":["íráskészség"]}]}
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c5",
+       "span": "1_3",
+       "index": 5,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m6",
+         "index": 6,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["szóbeli részvizsga"]}]},
+          " ",
+          {"tag":"ol","children":[{"tag":"li","children":["beszédkészség"]},{"tag":"li","children":["beszédértés"]}]}
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c6",
+       "span": "1_3",
+       "index": 6,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m7",
+         "index": 7,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["komplex vizsga"]}]},
+          " ",
+          {"tag":"p","children":["írásbeli részvizsga + szóbeli részvizsga"]}
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r5",
+     "index": 5,
+     "columns": [
+      {
+       "id": "c7",
+       "span": "4_4",
+       "index": 7,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m8",
+         "index": 8,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [{"tag":"strong","children":["Jelentkezés, árak, vizsgaidőpontok, jelentkezési határidők "]}]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "http://languagecert.hu/informacio_vizsga",
+             "children": ["http://languagecert.hu/informacio_vizsga"]
+            }
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Felhívjuk szíves figyelmeteket, hogy a szóbeli vizsgák időpontja az aktuális vizsgabeosztás függvényében a fent megadott dátumok közül bármelyiken lehetséges."
+           ]
+          },
+          " ",
+          {"tag":"p","children":["A vizsgabeosztást a vizsgaközpont, illetve a vizsgahely határozza meg."]}
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r6",
+     "index": 6,
+     "columns": [
+      {
+       "id": "c8",
+       "span": "4_4",
+       "index": 8,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m9",
+         "index": 9,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["Vizsgaszabályzat"]}]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A jelentkezés és a vizsgán való részvétel feltétele a Vizsgaszabályzatban foglaltak elfogadása és tudomásulvétele."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A Vizsgaszabályzat elérhető a következő linken:  ",
+            {
+             "tag": "a",
+             "href": "http://www.languagecert.hu/vizsgaszabalyzat",
+             "children": ["http://www.languagecert.hu/vizsgaszabalyzat"]
+            },
+            "  "
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r7",
+     "index": 7,
+     "columns": [
+      {
+       "id": "c9",
+       "span": "4_4",
+       "index": 9,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m10",
+         "index": 10,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["Nyelvvizsga értékelése"]}]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A komplex vizsga végeredménye az írásbeli és a szóbeli vizsgarészek eredményéből tevődik össze: amennyiben mindkét vizsgarészen legalább PASS eredményt ér el a vizsgázó, úgy LanguageCert komplex nyelvvizsgája sikeres lesz."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Sikeres írásbeli részvizsgához az ",
+            {"tag":"em","children":["olvasáskészség"]},
+            " ",
+            {"tag":"em","children":["(Reading)"]},
+            " és ",
+            {"tag":"em","children":["íráskészség"]},
+            {"tag":"em","children":[" (Writing)"]},
+            " mérésénél  legalább PASS eredményt kell elérniük a vizsgázóknak."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Sikeres szóbeli részvizsgához a ",
+            {"tag":"em","children":["beszédértés (Listening)"]},
+            " és a ",
+            {"tag":"em","children":["beszédkészség"]},
+            " (Speaking) mérésénél kell minimum PASS eredménnyel teljesíteniük a vizsgázóknak."
+           ]
+          },
+          " ",
+          {"tag":"p","children":["Az értékelésről részletesebb információ a vizsgaközpont honlapján található:"]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"a","href":"http://www.languagecert.hu/ertekeles","children":["http://www.languagecert.hu/ertekeles"]}
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r8",
+     "index": 8,
+     "columns": [
+      {
+       "id": "c10",
+       "span": "4_4",
+       "index": 10,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m11",
+         "index": 11,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["Eredmények közlése"]}]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            " A vizsgaközpont feltölti az eredményeket az elektronikus adatbázisba, amint a végleges eredmények rendelkezésre állnak. Ez nem lehet később, mint az első vizsgaalkalomtól számított 30 nap. A vizsgahelyek feladata, hogy a vizsgázókat az eredményekről értesítsék az előre megbeszélt módon."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Vizsgaközpontunk személyesen is felvilágosítást ad az eredményekről, amennyiben a vizsgázó igazolni tudja személyazonosságát."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r9",
+     "index": 9,
+     "columns": [
+      {
+       "id": "c11",
+       "span": "4_4",
+       "index": 11,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m12",
+         "index": 12,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["Felkészítést segítő anyagok"]}]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "További részletes leírás a vizsgáról, gyakorló feladatsorok, mintamegoldások és szóbeli mintaanyagok a ",
+            {"tag":"a","href":"http://www.languagecert.hu","children":["www.languagecert.hu"]},
+            " weboldalon találhatók."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r10",
+     "index": 10,
+     "columns": [
+      {
+       "id": "c12",
+       "span": "4_4",
+       "index": 12,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m13",
+         "index": 13,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["A Vizsgaközpont elérhetősége"]}]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A LanguageCert vizsgaközpont munkatársai szívesen állnak az önök rendelkezésére a következő elérhetőségeken:"
+           ]
+          },
+          " ",
+          {"tag":"p","children":[{"tag":"strong","children":["LanguageCert Nemzetközi Angol Nyelvvizsgaközpont"]}]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "1095 Budapest, Soroksári út. 48.",
+            {"tag":"br"},
+            "T + 36 1 612 0308",
+            {"tag":"br"},
+            "E ",
+            {"tag":"a","href":"mailto:info@languagecert.hu","children":["info@languagecert.hu"]},
+            "   "
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "strong",
+             "children": [
+              "Felügyeleti szerv: Oktatási Hivatal Nyelvvizsgáztatási Akkreditációs Központ    ",
+              {"tag":"a","href":"http://www.nyak.hu/","children":["www.nyak.hu"]},
+              " "
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

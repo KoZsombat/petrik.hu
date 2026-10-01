@@ -1,0 +1,283 @@
+{
+ "template": "builder",
+ "scope": "page-kozoktatas",
+ "articleClass": "post-1559 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Közoktatás"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"p","children":["Általános műveltség és az erős szakmai alapok építése"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "4_4",
+       "index": 1,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m2",
+         "index": 2,
+         "align": "left",
+         "content": [{"tag":"p","children":["Közoktatáshoz kapcsolódó hírek"]}]
+        },
+        {
+         "kind": "post-feed",
+         "id": "m3",
+         "index": 0,
+         "className": "et_pb_with_border",
+         "items": [
+          {"slug":"erettsegi-vizsgak-2024-osz","date":"2024 okt 24"},
+          {"slug":"csibetabor-tajekoztato-2022","date":"2022 aug 23"},
+          {"slug":"erettsegi-jelentkezes-idopontok-technikus-tanuloknak","date":"2022 jan 18"},
+          {"slug":"tajekoztato-vegzosoknek-es-szuleiknek-a-szalagavato-napjarol","date":"2022 jan 03"},
+          {"slug":"oszi-szakmai-vizsga-idopontok-2021","date":"2021 szept 18"},
+          {"slug":"tanevnyito","date":"2021 aug 26"},
+          {"slug":"a-petrik-alapitvany-tanulmanyi-osztondijaba-reszesulo-tanuloink","date":"2021 máj 31"},
+          {"slug":"vizsgazoi-eszrevetel-kozep-es-emelt-szintu-erettsegi-dolgozatokhoz","date":"2021 máj 31"},
+          {"slug":"tajekoztato-a-2021-evi-tavaszi-emelt-szintu-erettsegi-vizsgak-lebonyolitasarol","date":"2021 máj 03"},
+          {"slug":"erettsegi-jelentkezes-technikus-tanuloknak","date":"2021 jan 31"}
+         ],
+         "columns": 3,
+         "align": "left",
+         "hasOlder": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "index": 2,
+   "rows": [
+    {
+     "id": "r2",
+     "index": 2,
+     "columns": [
+      {
+       "id": "c2",
+       "span": "4_4",
+       "index": 2,
+       "last": true,
+       "modules": [{"kind":"text","id":"m4","index":3,"align":"left","content":["Képzési kínálatunk"]}]
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "index": 3,
+     "columns": [
+      {
+       "id": "c3",
+       "span": "1_3",
+       "index": 3,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m5",
+         "index": 0,
+         "src": "/media/wp-content/uploads/2020/08/vegyesz-agazat.jpg",
+         "width": 1920,
+         "height": 1281,
+         "srcSet": "/media/wp-content/uploads/2020/08/vegyesz-agazat.jpg 1920w, /media/wp-content/uploads/2020/08/vegyesz-agazat-1280x854.jpg 1280w, /media/wp-content/uploads/2020/08/vegyesz-agazat-980x654.jpg 980w, /media/wp-content/uploads/2020/08/vegyesz-agazat-480x320.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1920px, 100vw",
+         "loading": "lazy"
+        },
+        {
+         "kind": "text",
+         "id": "m6",
+         "index": 4,
+         "align": "left",
+         "content": [
+          {"tag":"h3","style":{"color":"#0c71c3"},"children":["Vegyipar"]},
+          " ",
+          {
+           "tag": "p",
+           "style": {
+            "color": "#ffdaa4",
+            "fontSize": "12px",
+            "letterSpacing": "2px",
+            "textTransform": "uppercase",
+            "fontFamily": "'Open Sans', Arial, sans-serif"
+           },
+           "children": [{"tag":"span","style":{"color":"#72c3b6"},"children":["A JÖVŐ A TE KEZEDBEN"]}]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A jövő gyógyszeripari vagy vegyipari szakembereként szeretnél hozzájárulni ahhoz, hogy az emberiség leküzdhesse az őt sújtó betegségeket, járványokat vagy egyre környezetbarátabb technológiákkal tegye kényelmesebbé a mindennapi életet? Több mint 140 éves hagyományokra visszatekintő vegyészeti képzésünk, amelynek része a két tanítási nyelvű képzés is, csak rád vár!"
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "button",
+         "id": "m7",
+         "index": 0,
+         "to": "/vegyipar_agazat",
+         "align": "right",
+         "icon": "T",
+         "label": "Tudj meg róla többet"
+        }
+       ]
+      },
+      {
+       "id": "c4",
+       "span": "1_3",
+       "index": 4,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m8",
+         "index": 1,
+         "src": "/media/wp-content/uploads/2020/08/kornyezetvedelem-agazat.jpg",
+         "srcSet": "/media/wp-content/uploads/2020/08/kornyezetvedelem-agazat-scaled.jpg 2560w, /media/wp-content/uploads/2020/08/kornyezetvedelem-agazat-1280x855.jpg 1280w, /media/wp-content/uploads/2020/08/kornyezetvedelem-agazat-980x654.jpg 980w, /media/wp-content/uploads/2020/08/kornyezetvedelem-agazat-480x320.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 2560px, 100vw"
+        },
+        {
+         "kind": "text",
+         "id": "m9",
+         "index": 5,
+         "align": "left",
+         "content": [
+          {"tag":"h3","style":{"color":"#0c71c3"},"children":["Környezetvédelem és vízügy"]},
+          " ",
+          {
+           "tag": "p",
+           "style": {
+            "color": "#ffdaa4",
+            "fontSize": "12px",
+            "letterSpacing": "2px",
+            "textTransform": "uppercase",
+            "fontFamily": "'Open Sans', Arial, sans-serif"
+           },
+           "children": [{"tag":"span","style":{"color":"#72c3b6"},"children":["a jÖVŐRŐL TE GondoskodSZ"]}]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Ha törődsz a környezeteddel, de szeretnél többet tenni a megóvásáért, akkor a környezetvédelmi szakirány az, ami neked való. A környezetvédelem hivatás és tudomány is egyben. Gyakorlati tudásalapú képzésünk garancia arra, hogy a jövő környezetvédelmi szakemberévé válhass."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "button",
+         "id": "m10",
+         "index": 1,
+         "to": "/kornyezetvedelem_es_vizugy_agazat",
+         "align": "right",
+         "icon": "T",
+         "label": "Tudj meg róla többet"
+        }
+       ]
+      },
+      {
+       "id": "c5",
+       "span": "1_3",
+       "index": 5,
+       "last": true,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m11",
+         "index": 2,
+         "src": "/media/wp-content/uploads/2020/08/informatika-agazat.jpg",
+         "width": 1920,
+         "height": 1280,
+         "srcSet": "/media/wp-content/uploads/2020/08/informatika-agazat.jpg 1920w, /media/wp-content/uploads/2020/08/informatika-agazat-1280x853.jpg 1280w, /media/wp-content/uploads/2020/08/informatika-agazat-980x653.jpg 980w, /media/wp-content/uploads/2020/08/informatika-agazat-480x320.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1920px, 100vw",
+         "loading": "lazy"
+        },
+        {
+         "kind": "text",
+         "id": "m12",
+         "index": 6,
+         "align": "left",
+         "content": [
+          {"tag":"h3","style":{"color":"#0c71c3"},"children":["Informatika és távközlés"]},
+          " ",
+          {
+           "tag": "p",
+           "style": {
+            "color": "#ffdaa4",
+            "fontSize": "12px",
+            "letterSpacing": "2px",
+            "textTransform": "uppercase",
+            "fontFamily": "'Open Sans', Arial, sans-serif"
+           },
+           "children": [{"tag":"span","style":{"color":"#72c3b6"},"children":["A jövő egy kattintásra tőled"]}]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Informatikai szakirányunk képzései a jövő munkaerő-piacára készítik fel a tanulóinkat: gyakorlatorientált környezetben az elméleti, gyakorlati tantárgyakat az idegen nyelv tanulásával ötvözve olyan projektalapú oktatásban részesülhetsz, mely hidat képez a munka világa és az iskola között."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "button",
+         "id": "m13",
+         "index": 2,
+         "to": "/informatika_es_tavkozles_agazat",
+         "align": "right",
+         "icon": "T",
+         "label": "Tudj meg róla többet"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

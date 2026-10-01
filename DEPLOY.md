@@ -203,6 +203,24 @@ The whole state is two folders on the server: `~/petrik/apps/server/data/db` and
   scp -i $HOME\.ssh\petrik.pem ubuntu@SERVER:backup.tgz .\petrik-backup.tgz
   ```
 
+## First deploy after the page-editor v2 (AGENT.md 6.20)
+
+The server rebuilds its `pages` table by itself on first start, and the old
+per-page overrides (`page_overrides`) are **not** applied any more until they
+are migrated into documents - once, by hand, from the repo checkout:
+
+```
+# on the server: back up, then dry-run on a COPY of the database
+cp apps/server/data/db/hirkezelo.db* /tmp/ && node --experimental-strip-types apps/client/scripts/migrate-overrides.ts /tmp/hirkezelo.db
+# happy with the report? run it for real against the live database (server stopped)
+docker compose stop server
+node --experimental-strip-types apps/client/scripts/migrate-overrides.ts apps/server/data/db/hirkezelo.db --write
+docker compose start server
+```
+
+(Needs Node 24 on the machine that runs it; with no `page_overrides` rows it
+reports "nothing to migrate".)
+
 ## Troubleshooting
 
 | Symptom | Fix |

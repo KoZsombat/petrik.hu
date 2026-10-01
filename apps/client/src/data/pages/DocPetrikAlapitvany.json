@@ -1,0 +1,306 @@
+{
+ "template": "docs",
+ "scope": "page-docs-petrik-alapitvany",
+ "docsSlug": "petrik-alapitvany",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "content": [
+          {"tag":"div","children":[{"tag":"strong","children":["Petrik Alapítvány – Beszámoló"]}]},
+          " ",
+          " ",
+          {
+           "tag": "div",
+           "style": {"textAlign":"justify"},
+           "children": [
+            "Az alapítvány támogatja a BMSZC Petrik Lajos Két Tanítási Nyelvű Technikum oktatási színvonalának emeléséhez és az iskola tudományos tevékenységeihez, kutatásaihoz szükséges eszközök, berendezések beszerzését. Jutalmazza a kiváló tanulmányi és versenyeredményeket elérő tanulókat és felkészítő tanáraikat. Az alapítvány hozzájárul a nevelési, ismeretterjesztési tevékenység támogatásához belföldi és külföldi kiadású ismeretterjesztő anyagok, kiadványok beszerzéséhez."
+           ]
+          },
+          " ",
+          {
+           "tag": "div",
+           "style": {"textAlign":"justify"},
+           "children": [
+            {"tag":"strong","children":["Tehetséggondozás"]},
+            " keretében segíti a tanulók versenyeken való részvételét (nevezési díj, útiköltség és szállásdíj támogatás). Támogatja a ",
+            {"tag":"strong","children":["szociálisan hátrányos helyzetű tanulókat"]},
+            " (kollégium és étkezés). Finanszírozza a Petrik szervezésében megvalósuló – Petrik tanulmányi verseny, szavalóversenyek, olvasást népszerűsítő verseny – szervezési költségeit, jutalmazza a versenyek helyezettjeit. Támogatja a diákkörök, ezen belül az iskolai ",
+            {"tag":"strong","children":["diákönkormányzat"]},
+            " tevékenységeit, programjait, valamint a Digitilás-, Pénzügyi- és Fenntarthatósági Témahetek köré szerveződő tevékenységeket. Finanszírozza az oktatói csapatépítő programokat: külföldi és belföldi csapatépítő napok és kirándulások."
+           ]
+          },
+          " ",
+          {
+           "tag": "div",
+           "style": {"textAlign":"justify"},
+           "children": [
+            "A 2023-as évben a magas színvonalú ",
+            {"tag":"strong","children":["nyelvtanulási programok támogatása"]},
+            " keretében hozzájárult a karintiai német nyelvi tábor megvalósulásához, a továbbiakban is segíti a belföldi és külföldi cserekapcsolatok, szakmai programokkal kapcsolatos tapasztalatcserét célzó programok és partnertalálkozók megvalósulását."
+           ]
+          },
+          " ",
+          {
+           "tag": "div",
+           "style": {"textAlign":"justify"},
+           "children": [
+            "A ",
+            {"tag":"strong","children":["tudományos kutatási tevékenység és képességfejlesztés"]},
+            " keretében támogatja a Környezeti Kutatócsoport tevékenységét, konferenciákon és versenyeken való részvételét, a Curie, a Herba Medica Tanulmányi versenyre való felkészülést és részvételt, valamint a WRO Lego robot-, a Prograce 2023. országos programozó-, a Skils Junior versenyeken való felkészülést segítő eszközök beszerzését és a részvételt."
+           ]
+          },
+          " ",
+          {
+           "tag": "div",
+           "style": {"textAlign":"justify"},
+           "children": [
+            "Támogatja a ",
+            {"tag":"strong","children":["pályaorientációs tevékenységhe"]},
+            "z kapcsolódó programokat és előadásokat (Pályaorientációs Nap, Pályaorientációs workshopok)."
+           ]
+          },
+          " ",
+          {
+           "tag": "div",
+           "style": {"textAlign":"justify"},
+           "children": [
+            "Hozzájárul az ",
+            {"tag":"strong","children":["iskolai közösségépítő táborok- csibetábor, diákönkormányzati tábor"]},
+            " – étkezési, szállás, utazás és programköltségeihez."
+           ]
+          },
+          " ",
+          {
+           "tag": "div",
+           "style": {"textAlign":"justify"},
+           "children": [
+            "Támogatja az iskola kulturális örökségének megőrzése céljából szervezett, hagyományápoló és hagyományteremtő programokat: Petrik emlékplakett, az iskola nevezetes termeinek emléktáblái, koszorúzás, iskolai ünnepségek, megemlékezések, szalagavató ünnepség."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":["2025. év:"]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"a","href":"/media/wp-content/uploads/2020/11/Petrik-Alapitvany-fokonyvi-2019.pdf"},
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2026/05/1.-melleklet_24KOZ_Petrik.pdf",
+             "children": ["Közlemény az adózó rendelkezése szerint a kedvezményezett részére átutalt összeg felhasználásáról"]
+            },
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-fokonyvi-2019.pdf",
+             "children": [{"tag":"br"}]
+            },
+            {"tag":"a","href":"/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg1-2019.pdf"},
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2026/05/2.-melleklet_2025-Petrik-beszamolo.pdf",
+             "children": ["A kettős könyvvitelt vezető egyéb szervezet egyszerűsített éves beszámolója"]
+            },
+            {"tag":"a","href":"/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg1-2019.pdf"},
+            {"tag":"br"},
+            {"tag":"a","href":"/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg2-2019.pdf"},
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2026/05/3.-melleklet_Petrik-Alapitvany-szakmai-beszamolo-2025.-evre.pdf",
+             "children": ["Szakmai beszámoló 2025 "]
+            },
+            {"tag":"a","href":"/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg2-2019.pdf"}
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2026/05/Dokumentum-a-2025.-evi-beszamolo-elfogadasarol260817708202605051547598410_1777998195825.pdf",
+             "children": ["Szakmai beszámoló elfogadása 2025."]
+            }
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/petrik_alapitvany_alapito-okirat.pdf",
+             "children": ["Alapító okirat",{"tag":"br"}]
+            },
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-Vegzes.pdf",
+             "children": ["Petrik Alapítvány Végzés"]
+            }
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"a","href":"/media/wp-content/uploads/2020/11/alapvegzes.pdf","children":["A"]},
+            {"tag":"a","href":"/media/wp-content/uploads/2020/11/alapvegzes.pdf","children":["lapvégzés"]}
+           ]
+          },
+          " ",
+          {"tag":"p","children":[" "]},
+          " ",
+          {"tag":"p","children":[" "]},
+          " ",
+          {"tag":"p","children":[" "]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-fokonyvi-2019.pdf",
+             "children": ["Mérleg 2019 – Főkönyvi",{"tag":"br"}]
+            },
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg1-2019.pdf",
+             "children": ["Mérleg 2019 – 1"]
+            },
+            {"tag":"br"},
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg2-2019.pdf",
+             "children": ["Mérleg 2019 – 2"]
+            }
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-fokonyvi-2018.pdf",
+             "children": ["Mérleg 2018 – Főkönyvi",{"tag":"br"}]
+            },
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg1-2018.pdf",
+             "children": ["Mérleg 2018 – 1"]
+            },
+            {"tag":"a","href":"/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg2-2018.pdf"},
+            {"tag":"br"},
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg2-2018.pdf",
+             "children": ["Mérleg 2018 – 2"]
+            }
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-fokonyvi-2017.pdf",
+             "children": ["Mérleg 2017 – Főkönyvi"]
+            },
+            {"tag":"br"},
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg1-2017.pdf",
+             "children": ["Mérleg 2017 – 1"]
+            },
+            {"tag":"br"},
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg2-2017.pdf",
+             "children": ["Mérleg 2017 – 2"]
+            }
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-fokonyvi-2015.pdf",
+             "children": ["Mérleg 2015 – Főkönyvi",{"tag":"br"}]
+            },
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg1-2015.pdf",
+             "children": ["Mérleg 2015 – 1"]
+            },
+            {"tag":"br"},
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg2-2015.pdf",
+             "children": ["Mérleg 2015 – 2"]
+            }
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg0-2014.pdf",
+             "children": ["Mérleg 2014 – 0",{"tag":"br"}]
+            },
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg1-2014.pdf",
+             "children": ["Mérleg 2014 – 1"]
+            },
+            {"tag":"br"},
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg2-2014.pdf",
+             "children": ["Mérleg 2014 – 2",{"tag":"br"}]
+            },
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Petrik-Alapitvany-merleg-2014_egyesitett.pdf",
+             "children": ["Mérleg 2014 – Egyesített"]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -5,7 +5,7 @@
  * relative /api/... path is always correct.
  */
 import type { AuditEntry, Capability, Post, Term, TermKind } from '../../../../../shared/pnw/types.ts'
-import type { BuilderPage, PageDocument, PageOverrides, PageStatus, SiteMenu } from '../../../../../shared/pnw/page-types.ts'
+import type { PageDocument, PageStatus, SiteMenu, StoredPage } from '../../../../../shared/pnw/page-types.ts'
 import { rememberTerm } from '../terms.ts'
 
 export type ApiUser = {
@@ -144,7 +144,7 @@ export function updatePost(id: string, form: FormData): Promise<SaveResponse> {
 
 export function reviewerSave(
   id: string,
-  data: { title: string; content: unknown; excerpt: string; categoryIds: string[]; tagIds: string[] },
+  data: { title: string; content: unknown; excerpt: string; categoryIds: string[]; tagIds: string[]; imagePosition: 'top' | 'bottom' },
 ): Promise<{ notice: string }> {
   return request(`/posts/${id}/reviewer`, { method: 'PUT', body: JSON.stringify(data) })
 }
@@ -207,11 +207,12 @@ export function statistics(): Promise<Statistics> {
   return request('/statistics')
 }
 
-// --- the Szerkesztő (AGENT.md 6.19) -----------------------------------------
+// --- the Szerkesztő (AGENT.md 6.20) -----------------------------------------
 
-export type OverrideSummary = { route: string; modifiedAt: string; hidden: boolean }
+/** A saved page as the list sees it: no document. */
+export type PageSummary = Omit<StoredPage, 'document'>
 
-export function listPages(): Promise<{ pages: BuilderPage[]; overrides: OverrideSummary[] }> {
+export function listPages(): Promise<{ pages: PageSummary[] }> {
   return request('/pages')
 }
 
@@ -222,35 +223,45 @@ export type PageInput = {
   document: PageDocument
 }
 
-export function createPage(input: PageInput): Promise<{ page: BuilderPage }> {
+export function createPage(input: PageInput): Promise<{ page: StoredPage }> {
   return request('/pages', { method: 'POST', body: JSON.stringify(input) })
 }
 
-export function getPage(id: string): Promise<{ page: BuilderPage }> {
+export function getPage(id: string): Promise<{ page: StoredPage }> {
   return request(`/pages/${encodeURIComponent(id)}`)
 }
 
-export function updatePage(id: string, input: PageInput): Promise<{ page: BuilderPage }> {
+export function updatePage(id: string, input: PageInput): Promise<{ page: StoredPage }> {
   return request(`/pages/${encodeURIComponent(id)}`, { method: 'PUT', body: JSON.stringify(input) })
 }
 
-export function deletePage(id: string): Promise<{ ok: true }> {
+/** The first call moves a created page to the trash, a second one on a trashed page deletes it for good. */
+export function deletePage(id: string): Promise<{ ok: true; permanent: boolean }> {
   return request(`/pages/${encodeURIComponent(id)}`, { method: 'DELETE' })
 }
 
-export function getOverrides(route: string): Promise<{ overrides: PageOverrides | null; modifiedAt: string | null }> {
-  return request(`/pages/overrides?route=${encodeURIComponent(route)}`)
+/** Out of the trash, as a draft. */
+export function restorePage(id: string): Promise<{ page: StoredPage }> {
+  return request(`/pages/${encodeURIComponent(id)}/restore`, { method: 'POST' })
 }
 
-export function saveOverrides(overrides: PageOverrides): Promise<{ overrides: PageOverrides; modifiedAt: string }> {
-  return request(`/pages/overrides?route=${encodeURIComponent(overrides.route)}`, {
-    method: 'PUT',
-    body: JSON.stringify({ overrides }),
-  })
+/** The saved edit (or tombstone) of a mirrored route; `null` while it is still the bundled default. */
+export function getPageByRoute(route: string): Promise<{ page: StoredPage | null }> {
+  return request(`/pages/by-route?route=${encodeURIComponent(route)}`)
 }
 
-export function clearOverrides(route: string): Promise<{ ok: true }> {
-  return request(`/pages/overrides?route=${encodeURIComponent(route)}`, { method: 'DELETE' })
+export function savePageByRoute(route: string, input: PageInput): Promise<{ page: StoredPage }> {
+  return request(`/pages/by-route?route=${encodeURIComponent(route)}`, { method: 'PUT', body: JSON.stringify(input) })
+}
+
+/** "Törlés" of a mirrored page: a tombstone. The route serves the 404 until it is reset. */
+export function deletePageByRoute(route: string): Promise<{ ok: true }> {
+  return request(`/pages/by-route?route=${encodeURIComponent(route)}`, { method: 'DELETE' })
+}
+
+/** "Visszaállítás az eredetire": drops the edit or the tombstone. */
+export function resetPageByRoute(route: string): Promise<{ ok: true }> {
+  return request(`/pages/by-route/reset?route=${encodeURIComponent(route)}`, { method: 'POST' })
 }
 
 export function getMenu(): Promise<{ menu: SiteMenu | null; modifiedAt: string | null }> {

@@ -1,0 +1,407 @@
+{
+ "template": "builder",
+ "scope": "page-bemutatkozas",
+ "articleClass": "post-128 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "dividerBottom": true,
+   "className": "et_pb_with_border",
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "gutters": 4,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m0","index":0,"align":"left","content":[]},
+        {"kind":"text","id":"m1","index":1,"align":"left","content":["Több mint 140 éve az érték a mérték"]},
+        {"kind":"divider","id":"m2","index":0}
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r1",
+     "index": 1,
+     "gutters": 4,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "1_2",
+       "index": 1,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m3",
+         "index": 2,
+         "align": "justified",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "A Petrik Lajos Szakgimnázium jogelődje, az Állami Középipartanoda, pontosan 140 éve, 1879. december 7-én nyitotta meg kapuit a diákság előtt."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Az Állami Középipartanoda 1879. december 7-én nyitotta meg kapuit hallgatói előtt. Az ipar igényei szerint a gépészet, az építészet és a vegyészet szakirányokban kínáltak képzési lehetőséget. Az iskola első épülete a Főherceg Sándor tér (ma Gutenberg tér) 4. szám alatt működött. 1889-ben, a Hauszmann Alajos által tervezett, a József körút és a Népszínház utca sarkán álló új épületegyüttesbe költözött az iskola. Igazgatójának Hegedűs Károlyt nevezték ki, aki 35 éven keresztül látta el az intézményvezetés feladatait."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "1898-tól az iskola új neve Magyar Királyi Állami Felső Ipariskola lett. A négy fő szakirány a gépészet, a vegyipar, a fém- és vasipar, valamint a faipar volt. "
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A vegyipari szakirány 1940-ben költözött a Thököly út 48. alatt álló iskolaépületbe, amely ma is otthonául szolgál."
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c2",
+       "span": "1_2",
+       "index": 2,
+       "last": true,
+       "modules": [
+        {
+         "kind": "testimonial",
+         "id": "m4",
+         "index": 0,
+         "author": "Petrik Lajos",
+         "portrait": "/media/wp-content/uploads/2020/08/petrik_lajos-az_iskola_nevadoja.jpg",
+         "align": "justified",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Az iskola névadója, Petrik Lajos, 1880-tól tanára, 1905-től 1914-ig pedig igazgatója volt az intézménynek. Életpályáját a tudomány, a képzőművészet, a természet kihívásai iránti nyitottság jellemezte. Egyszerre volt tudós, tanár, keramikus, műgyűjtő és természetjáró."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r2",
+     "index": 2,
+     "gutters": 4,
+     "columns": [
+      {
+       "id": "c3",
+       "span": "4_4",
+       "index": 3,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m5","index":3,"align":"left","content":["Iskolánkról"]},
+        {"kind":"divider","id":"m6","index":1}
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "index": 3,
+     "columns": [
+      {
+       "id": "c4",
+       "span": "4_4",
+       "index": 4,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m7",
+         "index": 4,
+         "align": "justified",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Iskolánk a főváros egyik legrégibb múltra visszatekintő középfokú szakképző intézménye. A BMSZC Petrik Lajos Két Tanítási Nyelvű Technikum jogelődje, az Állami Középipartanoda, 1879. december 7-én nyitotta meg kapuit a diákság előtt."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Az ipar igényei szerint a gépészet, az építészet és a vegyészet szakirányokban kínáltak képzési lehetőséget. A vegyipari szakirány, önálló intézményként, 1940-ben költözött a Thököly út 48. alatt álló iskolaépületbe, amely ma is otthonául szolgál."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A névadónk, ",
+            {"tag":"strong","children":["Petrik Lajos"]},
+            " által képviselt sokoldalúság, az értékek befogadása és továbbadása az a cél, amelyre iskolánk múltja, jelene és jövője épül. Ez a ",
+            {"tag":"strong","children":["tradíció"]},
+            " jut kifejezésre hagyományainkban, szakmai hitvallásunkban. Az elődök által kijelölt úton haladva célunk a ",
+            {"tag":"strong","children":["tanulócentrikus"]},
+            ", és ezen keresztül ",
+            {"tag":"strong","children":["partnerközpontú "]},
+            "iskola működtetése. Iskolánk ",
+            {"tag":"strong","children":["nyitott"]},
+            " a társadalmi elvárások és a ",
+            {"tag":"strong","children":["változó munkaerő-piaci igények"]},
+            " irányába, és folytonos ",
+            {"tag":"strong","children":["újítással, megújulással"]},
+            ", fejlesztéssel törekszik e feladatok ellátására. Kölcsönösen együttműködünk szakmai partnereinkkel. Oktató-nevelő munkánk során figyelembe vesszük, és beépítjük programunkba a szülők, a tanulók és a munkáltatók igényeit. A hozzánk járó tanulók az iskola két épületében található ",
+            {
+             "tag": "strong",
+             "children": ["korszerű, jól felszerelt tantermekben, laboratóriumokban, informatikai és ipari modellező műhelyek"]
+            },
+            "ben sajátíthatják el a szakmák elméleti és gyakorlati ismereteit."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Iskolánk mindig nagy gondot fordított arra, hogy tanulóinak képességeit minél szélesebb körben kibontakoztassa, és az elismerten magas színvonalú szakképzése mellett magasabb szintű általános műveltséget is adjon. Iskolánk híres, egykori diákjainak sorában köszönthetjük többek között Nádas Péter világhírű írót, Vajda Mihály filozófust, a Budapesti Iskola egyik alapítóját, Kovács László egykori külügyminisztert, Európai Uniós Biztost, valamint a magyar komoly- és könnyűzene olyan kimagasló alakjait, mint Oberfrank Géza, az Operaház egykori karnagya, Demjén Ferenc, Korda György és Földes László (Hobo)."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Kiemelt figyelmet fordítunk a nemzetközi kapcsolatok ápolására, folyamatosan részt veszünk az Erasmus+ programban, jelenleg Dániában, Portugáliában, Lengyelországban, Horvátországban, Spanyolországban, Görögországban, Litvániában, Olaszországban és Cipruson vannak partneriskoláink, partnerintézményeink."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Iskolánk a HVG „Középiskola 2019” című kiadványában a szakgimnáziumok rangsorában az országos 10. helyezést érte el. A kiadvány szerint „A rangsorban élen végzett szakgimnáziumok a szakképzés elitjébe tartoznak […]”."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": ["Iskolánk fenntartója 2015. július 01-je óta a Budapesti Műszaki Szakképzési Centrum."]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Az iskola B épületének történetével foglalkozó honlap ezen a linken érhető el: ",
+            {"tag":"a","href":"https://petrikbepulet.webnode.hu/","children":["https://petrikbepulet.webnode.hu/"]}
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m8",
+         "index": 5,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"right"},"children":["Iskolavezetés"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "index": 2,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r4",
+     "index": 4,
+     "columns": [
+      {
+       "id": "c5",
+       "span": "1_2",
+       "index": 5,
+       "modules": [
+        {"kind":"text","id":"m9","index":6,"align":"left","content":[{"tag":"p","children":["Az iskola története"]}]},
+        {
+         "kind": "video",
+         "id": "m10",
+         "index": 0,
+         "url": "https://www.youtube.com/watch?v=d3YG5QNkXA8",
+         "title": "Iskolatörténet"
+        }
+       ]
+      },
+      {
+       "id": "c6",
+       "span": "1_2",
+       "index": 6,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m11","index":7,"align":"left","content":[{"tag":"p","children":["Petrik Lajos"]}]},
+        {
+         "kind": "video",
+         "id": "m12",
+         "index": 1,
+         "url": "https://www.youtube.com/watch?v=GHqyCVSEb7M",
+         "title": "Petrik Lajos"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "index": 3,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r5",
+     "index": 5,
+     "columns": [
+      {
+       "id": "c7",
+       "span": "4_4",
+       "index": 7,
+       "last": true,
+       "modules": [{"kind":"text","id":"m13","index":8,"align":"left","content":["Díjak és elismerések"]}]
+      }
+     ]
+    },
+    {
+     "id": "r6",
+     "index": 6,
+     "columns": [
+      {
+       "id": "c8",
+       "span": "1_2",
+       "index": 8,
+       "modules": [
+        {
+         "kind": "blurb",
+         "id": "m14",
+         "index": 0,
+         "title": "Nemzetközi Együttműködési Kultúráért Nívódíj - a 'Játszunk Kémiát!' című Leonardo projektért.",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"right"},"children":["– 2013. május"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m15",
+         "index": 1,
+         "title": "Digitális Témahét 2018 Innovatív Pedagógus díj Tóth Éva projektvezetőnek a Be Digitally Aware projektért",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"right"},"children":["– 2018. május 18."]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m16",
+         "index": 2,
+         "title": "Digitális Témahét 2019 pedagógus pályázat II. helyezés Tóth Éva projektvezetőnek a WorkIT c. projekttel",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"right"},"children":["– 2019. június 8."]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m17",
+         "index": 3,
+         "title": "Digitális Témahét 2019 Oracle Academy Program „Kódolj STEM projektet!” különdíj a WorkIt c. projektért szakképző intézményi kategóriában",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"right"},"children":["– 2019. június 8."]}]
+        }
+       ]
+      },
+      {
+       "id": "c9",
+       "span": "1_2",
+       "index": 9,
+       "last": true,
+       "modules": [
+        {
+         "kind": "blurb",
+         "id": "m18",
+         "index": 4,
+         "title": "#petrikcodeweek intézményi különdíj a Kódolás Hete versenyben, DPMK - 2019/10 •\tSzakképzési Díj 2020 elnyerése Innováció Kategóriában a Digitális Témahét a Petrikben: WorkIt c projektért -",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"right"},"children":["– 2020. március 12."]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m19",
+         "index": 5,
+         "title": "Richter Gedeon Alapítvány által létrehozott a Magyar Kémiaoktatásért Díj",
+         "position": "left",
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"right"},
+           "children": [
+            "2020 – Dr. Dóbéné Cserjés Edit",
+            {"tag":"br"},
+            " 2016 – Vámos István",
+            {"tag":"br"},
+            " 2015 – Dr. Stankovics Éva",
+            {"tag":"br"},
+            " 2013 – Baranyiné C Veres Anna",
+            {"tag":"br"},
+            " 2005 – Fogarasi József",
+            {"tag":"br"},
+            " 2004 – Dr. Lovas Zoltánné",
+            {"tag":"br"},
+            " 2003 – Ütő Piroska",
+            {"tag":"br"},
+            " 2000 – Kisszékelyi Gyuláné",
+            {"tag":"br"},
+            " 1999 – Surányi Istvánné"
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "blurb",
+         "id": "m20",
+         "index": 6,
+         "title": "Digitális Témahét 2020, “Nívódíjas Pedagógus” különdíj Tóth Éva projektvezetőnek a Socially Re-designed c. projektért",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"right"},"children":["– 2020. július 1."]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

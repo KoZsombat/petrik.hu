@@ -1,14 +1,22 @@
 /**
- * Regenerates every builder page component and its design stylesheet from the
- * mirror, then reports what was written.
+ * Regenerates every page's default document and design stylesheet from the
+ * mirror (AGENT.md 6.20), then reports what was written.
  *
- *   node --experimental-strip-types scripts/generate.ts
+ *   PETRIK_MIRROR=<mirror dir> node --experimental-strip-types scripts/generate.ts [Component...]
+ *
+ * walk.ts is still the one place that reads the mirror. It prints a page as a
+ * React component; that source is converted in memory to a PageDocument
+ * (scripts/tsx-to-document.ts) and never written to disk, so the two shapes
+ * cannot disagree. The result lands in src/data/pages/: `<Component>.json`,
+ * `<Component>.css` and the registry `index.ts`.
+ *
+ * Afterwards run scripts/render-pages.ts check - or, when the mirror really
+ * changed, review the diff and `render-pages.ts baseline`.
  */
 import { execFileSync } from 'node:child_process'
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
-import { dirname, resolve } from 'node:path'
-import { PAGES, scopeClass, type PageEntry } from './pages.ts'
+import { PAGES, scopeClass } from './pages.ts'
 import { PROJECT_ROOT } from './mirror.ts'
+import { writeDocument, writeMirrorRoutes, writeRegistry } from './documents.ts'
 
 const node = process.execPath
 
@@ -20,19 +28,16 @@ function run(script: string, args: string[]): string {
   })
 }
 
-/** Where the component lands under src/pages, without the extension. */
-const stemOf = (page: PageEntry) => page.out ?? page.component
-
 /**
  * Pages written in the WordPress editor carry no Divi module design block, so
  * there is nothing to scope. Every other kind has one - including the docs
  * pages, whose bodies are Divi trees like any other.
  */
-const hasDesignCss = (page: PageEntry) => page.kind !== 'classic'
+const hasDesignCss = (page: (typeof PAGES)[number]) => page.kind !== 'classic'
 
 /**
  * With no arguments every page is regenerated. Naming components narrows it to
- * those - useful when one module changes and a 129-page rewrite would bury the
+ * those - useful when one module changes and a 53-page rewrite would bury the
  * one file that was meant to move.
  */
 const only = new Set(process.argv.slice(2))
@@ -45,47 +50,19 @@ if (only.size && selected.length !== only.size) {
 let written = 0
 for (const page of selected) {
   const arg = page.dir === '' ? 'home' : page.dir
-  const scope = scopeClass(page)
-  const stem = stemOf(page)
-  // A component in a subdirectory needs one more `../` on each of its imports.
-  const up = stem.split('/').length
-
-  let source = run('scripts/walk.ts', [arg, `--scope=${scope}`, `--kind=${page.kind}`, `--up=${up}`])
-  source = source.replace('export default function Page()', `export default function ${page.component}()`)
-
-  const lines = source.split('\n')
-  if (hasDesignCss(page)) {
-    // Give the page its own design stylesheet import, after the last component import.
-    const lastImport = lines.reduce((last, line, i) => (line.startsWith('import ') ? i : last), 0)
-    lines.splice(lastImport + 1, 0, `import './${page.component}.css'`)
-  }
-
-  const target = resolve(PROJECT_ROOT, `src/pages/${stem}.tsx`)
-  mkdirSync(dirname(target), { recursive: true })
-  writeFileSync(target, lines.join('\n'), 'utf8')
+  const source = run('scripts/walk.ts', [arg, `--scope=${scopeClass(page)}`, `--kind=${page.kind}`])
+  writeDocument(page.component, source)
 
   if (hasDesignCss(page)) {
     run('scripts/page-css.ts', [
       page.dir === '' ? '.' : page.dir,
-      `src/pages/${stem}.css`,
-      `.${scope}`,
+      `src/data/pages/${page.component}.css`,
+      `.${scopeClass(page)}`,
     ])
   }
   written += 1
 }
 
-console.log(`generated ${written} page components and stylesheets`)
-
-// The Szerkesztő's module map (AGENT.md 6.19) is keyed by the same `index`
-// props just written, so it is rebuilt in the same run - never one without the
-// other. It fails loudly if the mirror and the components disagree.
-process.stdout.write(run('scripts/page-inventory.ts', []))
-
-// A quick sanity check: every generated file should parse as JSX-ish source.
-for (const page of selected) {
-  const file = resolve(PROJECT_ROOT, `src/pages/${stemOf(page)}.tsx`)
-  const text = readFileSync(file, 'utf8')
-  if (!text.includes('export default function')) {
-    console.error(`  !! ${stemOf(page)}.tsx has no default export`)
-  }
-}
+writeRegistry()
+writeMirrorRoutes()
+console.log(`generated ${written} page documents and stylesheets`)

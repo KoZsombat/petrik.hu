@@ -1,16 +1,20 @@
 /**
- * The Szerkesztő's document model (AGENT.md 6.19) - shared by the editor
+ * The Szerkesztő's document model (AGENT.md 6.20) - shared by the editor
  * (src/components/szerkeszto/), the public renderer (src/components/
- * pagebuilder/) and the backend's validation (server/lib/validation.ts).
+ * pagebuilder/), the generation scripts and the backend's validation
+ * (server/lib/validation.ts).
  *
- * Two mechanisms, one model:
- * - a **builder page** (a page created in the Szerkesztő) is a whole
- *   `PageDocument`, rendered through the same Divi primitives a generated
- *   page uses, so its markup - and therefore its look - is the same shape;
- * - a **mirrored page** keeps its generated TSX untouched and gains a
- *   `PageOverrides` layer, keyed by the Divi `index` its modules already pass.
+ * **Every page of the site is a `PageDocument`**: the mirrored pages ship as
+ * default documents bundled with the client (src/data/pages/), a page edited
+ * in the Szerkesztő is a full document in the database that replaces its
+ * default, and a page created there is a document too. One renderer
+ * (PageRenderer.tsx) draws all of them through the same Divi components, and a
+ * default document renders byte-for-byte what the generated component it
+ * replaced rendered (scripts/render-pages.ts is that gate). An *edited* page
+ * carries no such guarantee - what it looks like is its editor's choice.
  */
-import type { Align, RichTextDocument } from './types.ts'
+import type { Align } from './types.ts'
+import type { RichContent } from './rich-content.ts'
 
 /** Divi's column widths, named as fractions of the row. Lives here so shared/ never imports from src/. */
 export type ColumnSpan = '4_4' | '3_4' | '2_3' | '3_5' | '2_5' | '1_2' | '1_3' | '1_4' | '1_5' | '1_6'
@@ -20,149 +24,248 @@ export const COLUMN_SPANS: ColumnSpan[] = ['4_4', '3_4', '2_3', '3_5', '2_5', '1
 /** Divi's text-module alignment (note `justified`, not CSS's `justify`). */
 export type TextAlign = 'left' | 'center' | 'right' | 'justified'
 
-export type PageModule =
-  | { kind: 'text'; id: string; align?: TextAlign; bgLayout?: 'light' | 'dark'; content: RichTextDocument }
-  | { kind: 'image'; id: string; src: string; alt?: string; href?: string; width?: number; height?: number }
-  | { kind: 'button'; id: string; label: string; to?: string; href?: string; align?: Align }
-  | {
-      kind: 'blurb'
-      id: string
-      title?: string
-      titleHref?: string
-      image?: { src: string; alt?: string }
-      icon?: string
-      content: RichTextDocument
-    }
-  | { kind: 'divider'; id: string }
-  | { kind: 'video'; id: string; url: string }
-  | { kind: 'toggle'; id: string; title: string; content: RichTextDocument }
+/* --- design settings ------------------------------------------------------- */
+
+/**
+ * Structured design settings on a section, row, column or module (AGENT.md
+ * 6.20). Never raw CSS: every value is a number in a range, an enum or a
+ * validated colour, and they are rendered as one generated `<style>` element
+ * per document (src/lib/designCss.ts) because the mirror's own stylesheets
+ * mark nearly everything `!important`, which an inline style cannot beat.
+ */
+export type Design = {
+  /** Text colour. */
+  color?: string
+  /** Background colour. */
+  background?: string
+  /** Font size in px. */
+  fontSize?: number
+  fontWeight?: number
+  textAlign?: 'left' | 'center' | 'right' | 'justify'
+  /** Spacing in px. */
+  paddingTop?: number
+  paddingBottom?: number
+  marginTop?: number
+  marginBottom?: number
+  borderWidth?: number
+  borderColor?: string
+}
+
+export const DESIGN_NUMBER_LIMITS = {
+  fontSize: [8, 120],
+  fontWeight: [100, 900],
+  paddingTop: [0, 400],
+  paddingBottom: [0, 400],
+  marginTop: [0, 400],
+  marginBottom: [0, 400],
+  borderWidth: [0, 20],
+} as const
+
+/* --- modules --------------------------------------------------------------- */
+
+/** An image as the modules carry it - exactly the props the generated pages passed. */
+export type PageImage = {
+  src: string
+  alt?: string
+  width?: number
+  height?: number
+  srcSet?: string
+  sizes?: string
+  /** Carried from the mirror: an image with no size must not be lazy (AGENT.md 4.22). */
+  loading?: 'lazy' | 'eager'
+}
+
+export type FeedItem = {
+  slug: string
+  date?: string
+  author?: { name: string; to: string }
+}
+
+export type SocialNetwork = { network: string; href: string; title: string; label: string }
+
+export type GalleryItem = PageImage & { full?: string }
+
+export type Slide = { image: string; heading?: string; text?: string }
+
+export type PricingTable = { title: string; sum?: string; items: string[] }
+
+export type HeaderButton = { label: string; to?: string; href?: string }
+
+/**
+ * Fields every node carries beyond its own:
+ * - `index` - the Divi number its class wears (`et_pb_text_12`), which is what
+ *   the page's generated design stylesheet targets. A converted module keeps
+ *   its original index wherever it is moved, so it keeps its look; a module
+ *   created in the editor gets `max(existing of its kind) + 1`, so it can never
+ *   collide with a rule meant for another module. Filled in by
+ *   `normalizeDocument` when missing (documents saved by the v1 builder).
+ * - `className` - extra classes the mirror put on it (`et_pb_with_border`).
+ */
+type NodeBase = { id: string; index?: number; className?: string; design?: Design }
+
+export type PageModule = NodeBase &
+  (
+    | { kind: 'text'; align?: TextAlign; bgLayout?: 'light' | 'dark'; content: RichContent }
+    | ({ kind: 'image'; href?: string } & PageImage)
+    | { kind: 'button'; label: string; to?: string; href?: string; align?: Align; icon?: string }
+    | {
+        kind: 'blurb'
+        title?: string
+        titleHref?: string
+        image?: PageImage
+        icon?: string
+        position?: 'top' | 'left' | 'right'
+        align?: TextAlign
+        content: RichContent
+      }
+    | { kind: 'divider' }
+    | { kind: 'video'; url: string; title?: string }
+    | { kind: 'toggle'; title: string; defaultOpen?: boolean; content: RichContent }
+    | {
+        kind: 'post-feed'
+        items: FeedItem[]
+        columns?: 1 | 2 | 3
+        align?: Align
+        hasOlder?: boolean
+        /** Prepends what is published through the Hírkezelő (the home page's two feeds). */
+        includeLive?: boolean
+      }
+    | {
+        kind: 'team-member'
+        name: string
+        position?: string
+        image?: PageImage
+        headingLevel?: 4 | 6
+        align?: Align
+        content?: RichContent
+      }
+    | { kind: 'social-follow'; networks: SocialNetwork[]; align?: Align }
+    | { kind: 'number-counter'; value: number; title: string; suffix?: string }
+    | { kind: 'testimonial'; author: string; portrait?: string; align?: TextAlign; content: RichContent }
+    | { kind: 'pricing-tables'; tables: PricingTable[] }
+    | { kind: 'hero-slider'; slides: Slide[]; intervalMs?: number; headerOffset?: string }
+    | { kind: 'gallery'; items: GalleryItem[]; perPage?: number }
+    | { kind: 'fullwidth-header'; heading: string; text?: string; buttons?: HeaderButton[]; align?: Align }
+    | { kind: 'file-block'; embed: string; href: string; label: string; buttonLabel: string; embedLabel: string }
+  )
 
 export type PageModuleKind = PageModule['kind']
 
-export const MODULE_KINDS: PageModuleKind[] = ['text', 'image', 'button', 'blurb', 'divider', 'video', 'toggle']
+export const MODULE_KINDS: PageModuleKind[] = [
+  'text',
+  'image',
+  'button',
+  'blurb',
+  'divider',
+  'video',
+  'toggle',
+  'post-feed',
+  'team-member',
+  'social-follow',
+  'number-counter',
+  'testimonial',
+  'pricing-tables',
+  'hero-slider',
+  'gallery',
+  'fullwidth-header',
+  'file-block',
+]
 
-export type PageColumn = {
-  id: string
+/** The kinds the editor's "+ Modul" picker offers inside a column (a file block only fits a docs page's frame). */
+export const COLUMN_MODULE_KINDS: PageModuleKind[] = MODULE_KINDS.filter((kind) => kind !== 'file-block')
+
+/* --- layout ---------------------------------------------------------------- */
+
+export type PageColumn = NodeBase & {
   span: ColumnSpan
-  /** Divi's `et_pb_with_border` - the teal top border of /nyolcadikos/'s card columns (builder-page.css). */
-  bordered?: boolean
+  /** Divi's `et-last-child`. Absent: the last column of its row. */
+  last?: boolean
   modules: PageModule[]
 }
-export type PageRow = { id: string; gutters?: 3 | 4; columns: PageColumn[] }
-export type PageSection = {
-  id: string
+
+export type PageRow = NodeBase & { gutters?: 3 | 4; columns: PageColumn[] }
+
+export type PageSection = NodeBase & {
   /** The hero band: the first section of a page, Divi's `et_pb_section_first`. */
   first?: boolean
-  background?: { color?: string; image?: string }
   dividerTop?: boolean
   dividerBottom?: boolean
+  /** Divi's `et_pb_with_background` (`background-size: cover`). Absent: true when `background.image` is set. */
+  withBackground?: boolean
+  /** A section whose modules sit directly in it - `modules` instead of `rows` (the home slider). */
+  fullwidth?: boolean
+  background?: { color?: string; image?: string }
   rows: PageRow[]
+  /** Only in a fullwidth section. */
+  modules?: PageModule[]
 }
-export type PageDocument = { sections: PageSection[] }
+
+/** Which frame renders around the sections. */
+export type PageTemplate = 'builder' | 'docs' | 'post' | 'classic'
+
+export const PAGE_TEMPLATES: PageTemplate[] = ['builder', 'docs', 'post', 'classic']
+
+export type PageDocument = {
+  /** Default `builder`: `#main-content > article` around the Divi tree. */
+  template?: PageTemplate
+  /**
+   * The page's scope class (`page-nyolcadikos`) - what its generated design
+   * stylesheet is namespaced under. Absent: `page-builder`, the design every
+   * page created in the Szerkesztő wears (builder-page.css).
+   */
+  scope?: string
+  /** The `<article>`'s classes (builder, post, classic). */
+  articleClass?: string
+  sections: PageSection[]
+  /** docs: the document in src/data/docs.ts this page is, which the BetterDocs frame is built from. */
+  docsSlug?: string
+  /** docs: the body is WordPress's password form, replaced by a note. */
+  protected?: boolean
+  /** docs: modules sitting in the frame itself rather than in a section (the PDF file block). */
+  body?: PageModule[]
+  /** post: the mirror's per-post data. */
+  post?: { slug: string; date: string; articleId: string; bodyClasses: string[] }
+  /** classic: the heading and the prose. */
+  heading?: string
+  content?: RichContent
+}
 
 export type PageStatus = 'draft' | 'publish'
 
-/** A page created in the Szerkesztő - one row of the `pages` table. */
-export type BuilderPage = {
+/** Where a page comes from: the mirror (it has a bundled default) or created in the Szerkesztő. */
+export type PageOrigin = 'mirror' | 'custom'
+
+/**
+ * One row of the `pages` table: a page saved in the Szerkesztő. For a mirrored
+ * route it is an *edit* of the bundled default - or, with `deleted`, a
+ * tombstone; a missing row means "use the default". `slug` is set only for
+ * custom pages (their route is `/<slug>/`).
+ */
+export type StoredPage = {
   id: string
-  /** Served at `/<slug>/`. Stable after creation, like a post's slug. */
-  slug: string
+  route: string
+  origin: PageOrigin
+  template: PageTemplate
+  deleted: boolean
+  slug?: string
   title: string
   description: string
-  document: PageDocument
+  /** Null for a tombstone. */
+  document: PageDocument | null
   status: PageStatus
   authorId: string
   createdAt: string
   modifiedAt: string
+  modifiedById?: string
 }
 
-/** What `/api/public/site` hands the public site: published pages only, no ids or authors. */
-export type PublicPage = Pick<BuilderPage, 'slug' | 'title' | 'description' | 'document'>
-
-/* --- the override layer for mirrored pages ------------------------------- */
-
-export type TextOverride = { content: RichTextDocument }
-export type ImageOverride = { src?: string; alt?: string; href?: string }
-export type ButtonOverride = { label?: string; to?: string; href?: string }
-export type BlurbOverride = { title?: string; content?: RichTextDocument }
-
-export type ModuleOverrideMap = {
-  text: TextOverride
-  image: ImageOverride
-  button: ButtonOverride
-  blurb: BlurbOverride
-}
-
-/** The module types a mirrored page's content can be overridden on. */
-export type OverrideKind = keyof ModuleOverrideMap
-
-export const OVERRIDE_KINDS: OverrideKind[] = ['text', 'image', 'button', 'blurb']
-
-export type ModuleOverride = ModuleOverrideMap[OverrideKind]
-
-/** `'text:12'` - the module type and the Divi index the generated component passes. */
-export type OverrideKey = `${OverrideKind}:${number}`
-
-export function overrideKey(kind: OverrideKind, index: number): OverrideKey {
-  return `${kind}:${index}`
-}
-
-/**
- * The override layer for a mirrored page. Keys are `<module-type>:<divi index>`
- * - which is why regenerating a page with a different module order would
- * silently move every override onto a different module (AGENT.md 6.19).
- */
-export type PageOverrides = {
+/** What `/api/public/site` hands the public site: published edits and tombstones, no ids or authors. */
+export type PublicPage = {
   route: string
-  modules: Record<string, ModuleOverride>
-  /** Section `index` props. */
-  hiddenSections: number[]
-  /** Section `index` props in display order; omitted unless the user reordered. */
-  sectionOrder?: number[]
-  /** Appended below the page, rendered by PageExtras.tsx. */
-  extraSections: PageSection[]
-  /** `<head>` overrides. */
-  title?: string
-  description?: string
-  /** "Rejtés": the page is served as the 404 page (a mirrored page cannot really be deleted). */
-  hidden?: boolean
-}
-
-export function emptyOverrides(route: string): PageOverrides {
-  return { route, modules: {}, hiddenSections: [], extraSections: [] }
-}
-
-/* --- the editable-module inventory of the mirrored pages ------------------- */
-
-/**
- * `content` is the module's mirror markup converted to rich text - the
- * editor's starting point. It is `null` when that conversion would lose
- * something (a table, an inline image, a styled <div>...): such a module is
- * listed read-only instead of being silently degraded, and `lossy` says why.
- */
-export type InventoryModule =
-  | { kind: 'text'; index: number; section: number; text: string; content: RichTextDocument | null; lossy?: string }
-  | { kind: 'image'; index: number; section: number; src: string; alt: string; href?: string }
-  | { kind: 'button'; index: number; section: number; label: string; to?: string; href?: string }
-  | {
-      kind: 'blurb'
-      index: number
-      section: number
-      title: string
-      text: string
-      content: RichTextDocument | null
-      lossy?: string
-    }
-
-/** A Divi section of a mirrored page, by the `index` its <Section> passes, with a snippet to recognise it by. */
-export type InventorySection = { index: number; text: string }
-
-export type PageInventory = {
-  /** The component under src/pages - shown next to the route in the editor. */
-  component: string
-  kind: 'builder' | 'docs' | 'post'
-  sections: InventorySection[]
-  modules: InventoryModule[]
+  title: string
+  description: string
+  deleted: boolean
+  document: PageDocument | null
 }
 
 /* --- the menu ------------------------------------------------------------ */
@@ -184,7 +287,6 @@ export type SiteMenu = {
 /** Everything the public site reads from the Szerkesztő, in one fetch (SiteContentProvider.tsx). */
 export type PublicSiteContent = {
   pages: PublicPage[]
-  overrides: Record<string, PageOverrides>
   menu: SiteMenu | null
 }
 
@@ -199,9 +301,9 @@ export function nodeId(prefix: string): string {
 }
 
 /**
- * The slugs a builder page may never take: every top-level route the app
- * already serves (so a builder page can never shadow one), plus the prefixes
- * of the route families. The server checks new slugs against this.
+ * The slugs a page created in the Szerkesztő may never take: every top-level
+ * route the app already serves (so a custom page can never shadow one), plus
+ * the prefixes of the route families. The server checks new slugs against this.
  */
 export const RESERVED_SLUGS = new Set([
   'about-us',

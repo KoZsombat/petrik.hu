@@ -34,6 +34,7 @@ export default function ReadOnlyDetails({ post }: { post: Post }) {
           content={post.content}
           categoryIds={post.categoryIds}
           image={post.featuredImage}
+          imagePosition={post.imagePosition}
           date={post.date}
         />
       </div>

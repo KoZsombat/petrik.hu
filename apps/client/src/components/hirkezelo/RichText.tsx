@@ -87,6 +87,33 @@ function renderGroup(group: Group) {
   }
 
   const { block } = group
+  if (block.type === 'table' && block.table) {
+    const [first, ...rest] = block.table.rows
+    const head = block.table.header && first ? first : null
+    const body = head ? rest : block.table.rows
+    return (
+      <table key={block.id} className="pnw-news-table">
+        {head && (
+          <thead>
+            <tr>
+              {head.map((cell, at) => (
+                <th key={at}>{cell}</th>
+              ))}
+            </tr>
+          </thead>
+        )}
+        <tbody>
+          {body.map((row, rowAt) => (
+            <tr key={rowAt}>
+              {row.map((cell, at) => (
+                <td key={at}>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )
+  }
   const style = block.align && block.align !== 'left' ? { textAlign: block.align } : undefined
 
   if (block.type === 'heading') {

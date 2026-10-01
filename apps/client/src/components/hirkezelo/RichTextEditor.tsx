@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
-import type { Align, BlockType, RichTextBlock, RichTextDocument } from '../../../../../shared/pnw/types.ts'
-import { blockText, emptyBlock } from '../../../../../shared/pnw/richtext.ts'
+import type { Align, BlockType, RichTable, RichTextBlock, RichTextDocument } from '../../../../../shared/pnw/types.ts'
+import { blockText, emptyBlock, emptyTable } from '../../../../../shared/pnw/richtext.ts'
 import './RichTextEditor.css'
 
 type Props = {
@@ -52,6 +52,20 @@ export default function RichTextEditor({ id, value, onChange }: Props) {
     setActiveId(block.id)
   }
 
+  /** Inserts a 3×3 table (with a header row) after the active block, or at the end. */
+  function addTable(): void {
+    const block = emptyTable()
+    const at = active ? value.findIndex((entry) => entry.id === active.id) + 1 : value.length
+    commit([...value.slice(0, at), block, ...value.slice(at)])
+    setActiveId(block.id)
+  }
+
+  function setTable(blockId: string, table: RichTable, record: boolean): void {
+    const next = value.map((block) => (block.id === blockId ? { ...block, table } : block))
+    if (record) commit(next)
+    else onChange(next)
+  }
+
   function removeBlock(blockId: string): void {
     if (value.length <= 1) return
     const index = value.findIndex((block) => block.id === blockId)
@@ -83,6 +97,7 @@ export default function RichTextEditor({ id, value, onChange }: Props) {
           className="pnw-rte-format"
           aria-label="Bekezdés stílusa"
           value={active?.type === 'heading' ? 'heading' : 'paragraph'}
+          disabled={active?.type === 'table'}
           onChange={(event) => updateActive((block) => ({ ...block, type: event.target.value as BlockType }))}
         >
           <option value="paragraph">Bekezdés</option>
@@ -127,6 +142,9 @@ export default function RichTextEditor({ id, value, onChange }: Props) {
         <ToolbarButton label="Jobbra igazítás" active={active?.align === 'right'} onClick={() => setAlign('right')}>
           ⇥
         </ToolbarButton>
+        <ToolbarButton label="Táblázat beszúrása" active={active?.type === 'table'} onClick={addTable}>
+          <span className="pnw-rte-btn-wide">⊞ Táblázat</span>
+        </ToolbarButton>
         <ToolbarButton label="Visszavonás" onClick={undo}>
           ↶
         </ToolbarButton>
@@ -157,6 +175,7 @@ export default function RichTextEditor({ id, value, onChange }: Props) {
               editSnapshot.current = null
             }}
             onChangeText={(text) => setText(block.id, text)}
+            onChangeTable={(table, record) => setTable(block.id, table, record)}
             onRemove={() => removeBlock(block.id)}
           />
         ))}
@@ -223,6 +242,7 @@ function BlockRow({
   onFocus,
   onBlur,
   onChangeText,
+  onChangeTable,
   onRemove,
 }: {
   block: RichTextBlock
@@ -231,8 +251,22 @@ function BlockRow({
   onFocus: () => void
   onBlur: () => void
   onChangeText: (text: string) => void
+  onChangeTable: (table: RichTable, record: boolean) => void
   onRemove: () => void
 }) {
+  if (block.type === 'table' && block.table) {
+    return (
+      <div className={`pnw-rte-block pnw-rte-block-table${active ? ' pnw-rte-block-active' : ''}`} onFocus={onFocus}>
+        <TableEditor table={block.table} onChange={onChangeTable} />
+        {removable && (
+          <button type="button" className="pnw-rte-remove" aria-label="Táblázat törlése" onClick={onRemove}>
+            ×
+          </button>
+        )}
+      </div>
+    )
+  }
+
   const isList = block.type === 'bulleted-list' || block.type === 'numbered-list'
   const style: CSSProperties = {
     fontWeight: block.runs[0]?.bold ? 700 : undefined,
@@ -258,6 +292,98 @@ function BlockRow({
           ×
         </button>
       )}
+    </div>
+  )
+}
+
+const MAX_ROWS = 100
+const MAX_COLUMNS = 30
+
+/**
+ * The table block's editor: a grid of inputs, one per cell, with buttons to
+ * add and remove rows and columns and a switch for the header row. Cells are
+ * plain text - the same limit the rest of the editor's blocks have - so a table
+ * can never carry markup. Structural changes are undo steps; typing in a cell
+ * is not (the input's own undo covers that).
+ */
+function TableEditor({ table, onChange }: { table: RichTable; onChange: (table: RichTable, record: boolean) => void }) {
+  const columns = Math.max(1, ...table.rows.map((row) => row.length))
+  const pad = (row: string[]) => [...row, ...Array.from({ length: columns - row.length }, () => '')]
+  const rows = table.rows.map(pad)
+
+  return (
+    <div className="pnw-table-editor">
+      <div className="pnw-table-tools">
+        <button
+          type="button"
+          className="pnw-button pnw-button-secondary pnw-button-small"
+          disabled={rows.length >= MAX_ROWS}
+          onClick={() => onChange({ ...table, rows: [...rows, Array.from({ length: columns }, () => '')] }, true)}
+        >
+          + Sor
+        </button>
+        <button
+          type="button"
+          className="pnw-button pnw-button-secondary pnw-button-small"
+          disabled={rows.length <= 1}
+          onClick={() => onChange({ ...table, rows: rows.slice(0, -1) }, true)}
+        >
+          − Sor
+        </button>
+        <button
+          type="button"
+          className="pnw-button pnw-button-secondary pnw-button-small"
+          disabled={columns >= MAX_COLUMNS}
+          onClick={() => onChange({ ...table, rows: rows.map((row) => [...row, '']) }, true)}
+        >
+          + Oszlop
+        </button>
+        <button
+          type="button"
+          className="pnw-button pnw-button-secondary pnw-button-small"
+          disabled={columns <= 1}
+          onClick={() => onChange({ ...table, rows: rows.map((row) => row.slice(0, -1)) }, true)}
+        >
+          − Oszlop
+        </button>
+        <label className="pnw-table-header-toggle">
+          <input
+            type="checkbox"
+            checked={table.header}
+            onChange={(event) => onChange({ ...table, rows, header: event.target.checked }, true)}
+          />
+          Fejlécsor
+        </label>
+      </div>
+      <div className="pnw-table-scroll">
+        <table className="pnw-news-table pnw-table-grid">
+          <tbody>
+            {rows.map((row, rowAt) => (
+              <tr key={rowAt} className={table.header && rowAt === 0 ? 'pnw-table-head-row' : undefined}>
+                {row.map((cell, at) => (
+                  <td key={at}>
+                    <input
+                      type="text"
+                      value={cell}
+                      aria-label={`${rowAt + 1}. sor, ${at + 1}. oszlop`}
+                      maxLength={2000}
+                      onChange={(event) =>
+                        onChange(
+                          {
+                            ...table,
+                            rows: rows.map((r, i) => (i === rowAt ? r.map((c, j) => (j === at ? event.target.value : c)) : r)),
+                          },
+                          false,
+                        )
+                      }
+                    />
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

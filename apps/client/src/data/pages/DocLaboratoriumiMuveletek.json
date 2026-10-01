@@ -1,0 +1,52 @@
+{
+ "template": "docs",
+ "scope": "page-docs-laboratoriumi-muveletek",
+ "docsSlug": "laboratoriumi-muveletek",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "content": [
+          {
+           "tag": "a",
+           "href": "/media/wp-content/uploads/2020/09/labormuv_1.pdf",
+           "children": ["Laboratóriumi műveletek I."]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/09/labormuv_2.pdf",
+             "children": ["Laboratóriumi műveletek II."]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

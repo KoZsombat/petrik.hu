@@ -17,6 +17,46 @@ db.pragma('journal_mode = WAL')
 const hadPagesTable =
   db.prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'pages'").get() !== undefined
 
+/**
+ * `route` is the key: `/nyilt-nap/` for a page created in the Szerkesztő (its
+ * `slug` is `nyilt-nap`), `/nyolcadikos/` for an edit of a mirrored page. A
+ * mirrored route with no row means "use the bundled default"; `deleted` is the
+ * tombstone of a deleted one and has no document.
+ */
+const PAGES_DDL = (name: string) => `
+  CREATE TABLE IF NOT EXISTS ${name} (
+    id TEXT PRIMARY KEY,
+    route TEXT NOT NULL UNIQUE,
+    origin TEXT NOT NULL DEFAULT 'custom',
+    template TEXT NOT NULL DEFAULT 'builder',
+    deleted INTEGER NOT NULL DEFAULT 0,
+    slug TEXT UNIQUE,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL DEFAULT '',
+    document TEXT,
+    status TEXT NOT NULL,
+    author_id TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    modified_at TEXT NOT NULL,
+    modified_by_id TEXT
+  );
+`
+
+if (hadPagesTable && !(db.pragma('table_info(pages)') as { name: string }[]).some((column) => column.name === 'route')) {
+  // The v1 table (AGENT.md 6.19), where only pages created in the Szerkesztő lived: keyed by slug, no tombstones.
+  // Rebuilt under the generalised schema; every old row is a custom page.
+  db.exec('ALTER TABLE pages RENAME TO pages_v1')
+  db.exec(PAGES_DDL('pages'))
+  db.exec(`
+    INSERT INTO pages (id, route, origin, template, deleted, slug, title, description, document, status, author_id, created_at, modified_at)
+    SELECT id, '/' || slug || '/', 'custom', 'builder', 0, slug, title, description, document, status, author_id, created_at, modified_at
+    FROM pages_v1
+  `)
+  db.exec('DROP TABLE pages_v1')
+} else {
+  db.exec(PAGES_DDL('pages'))
+}
+
 db.exec(`
   CREATE TABLE IF NOT EXISTS posts (
     id TEXT PRIMARY KEY,
@@ -27,6 +67,7 @@ db.exec(`
     category_ids TEXT NOT NULL,
     tag_ids TEXT NOT NULL DEFAULT '[]',
     featured_image TEXT,
+    image_position TEXT NOT NULL DEFAULT 'top',
     author_id TEXT NOT NULL,
     status TEXT NOT NULL,
     review_note TEXT,
@@ -76,27 +117,9 @@ db.exec(`
 
   CREATE INDEX IF NOT EXISTS terms_kind_idx ON terms(kind);
 
-  -- The Szerkesztő (AGENT.md 6.19): pages created in it, the override layer
-  -- over the mirrored pages, and the edited menu. Every JSON column is
-  -- validated on the way in (server/lib/validation.ts).
-  CREATE TABLE IF NOT EXISTS pages (
-    id TEXT PRIMARY KEY,
-    slug TEXT NOT NULL UNIQUE,
-    title TEXT NOT NULL,
-    description TEXT NOT NULL DEFAULT '',
-    document TEXT NOT NULL,
-    status TEXT NOT NULL,
-    author_id TEXT NOT NULL,
-    created_at TEXT NOT NULL,
-    modified_at TEXT NOT NULL
-  );
-
-  CREATE TABLE IF NOT EXISTS page_overrides (
-    route TEXT PRIMARY KEY,
-    data TEXT NOT NULL,
-    modified_at TEXT NOT NULL,
-    modified_by_id TEXT
-  );
+  -- The Szerkesztő (AGENT.md 6.20): every page saved in it - created there, or
+  -- an edit/tombstone of a mirrored route (PAGES_DDL) - and the edited menu.
+  -- Every JSON column is validated on the way in (server/lib/validation.ts).
 
   CREATE TABLE IF NOT EXISTS site_menu (
     id INTEGER PRIMARY KEY CHECK (id = 1),
@@ -120,6 +143,9 @@ function migrate(): void {
   const posts = columnNames('posts')
   if (!posts.has('tag_ids')) {
     db.exec(`ALTER TABLE posts ADD COLUMN tag_ids TEXT NOT NULL DEFAULT '[]'`)
+  }
+  if (!posts.has('image_position')) {
+    db.exec(`ALTER TABLE posts ADD COLUMN image_position TEXT NOT NULL DEFAULT 'top'`)
   }
 
   const users = columnNames('users')

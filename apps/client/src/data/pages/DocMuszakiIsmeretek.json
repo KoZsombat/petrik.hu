@@ -1,0 +1,47 @@
+{
+ "template": "docs",
+ "scope": "page-docs-muszaki-ismeretek",
+ "docsSlug": "muszaki-ismeretek",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "content": [
+          {"tag":"a","href":"/media/wp-content/uploads/2020/09/muszismeret_1.pdf","children":["Műszaki ismeret I"]},
+          {"tag":"br"},
+          " ",
+          {"tag":"a","href":"/media/wp-content/uploads/2020/09/muszismeret_2.pdf","children":["Műszaki ismeret II"]},
+          {"tag":"br"},
+          " ",
+          {
+           "tag": "a",
+           "href": "/media/wp-content/uploads/2020/09/muszisme_feladat_12a_januar_7.pdf",
+           "children": ["Műszaki ismeretek – Projekt feladat"]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

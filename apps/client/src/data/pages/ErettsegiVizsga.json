@@ -1,0 +1,86 @@
+{
+ "template": "builder",
+ "scope": "page-erettsegi-vizsga",
+ "articleClass": "post-1200 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Érettségi"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"p","children":["A felsőoktatás kapujában"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "4_4",
+       "index": 1,
+       "last": true,
+       "modules": [
+        {
+         "kind": "post-feed",
+         "id": "m2",
+         "index": 0,
+         "className": "et_pb_with_border",
+         "items": [
+          {"slug":"erettsegi-vizsgak-2024-osz","date":"2024 okt 24"},
+          {"slug":"erettsegi-jelentkezes-idopontok-technikus-tanuloknak","date":"2022 jan 18"},
+          {"slug":"vizsgazoi-eszrevetel-kozep-es-emelt-szintu-erettsegi-dolgozatokhoz","date":"2021 máj 31"},
+          {"slug":"tajekoztato-a-2021-evi-tavaszi-emelt-szintu-erettsegi-vizsgak-lebonyolitasarol","date":"2021 máj 03"},
+          {"slug":"erettsegi-jelentkezes-technikus-tanuloknak","date":"2021 jan 31"},
+          {"slug":"emelt-erettsegi-szobeli-biztonsagi-intezkedesek","date":"2020 nov 12"},
+          {"slug":"emelt-es-kozepszintu-erettsegi-dolgozatok-vizsgazoi-eszrevetelek","date":"2020 nov 09"},
+          {"slug":"oszi-emelt-szintu-erettsegi-vizsgakozpont-tajekoztato","date":"2020 okt 16"},
+          {"slug":"oszi-erettsegi-vizsgaidoszak","date":"2020 szept 17"}
+         ],
+         "columns": 3,
+         "align": "left"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

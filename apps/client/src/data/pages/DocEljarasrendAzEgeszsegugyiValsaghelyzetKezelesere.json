@@ -1,0 +1,46 @@
+{
+ "template": "docs",
+ "scope": "page-docs-eljarasrend-az-egeszsegugyi-valsaghelyzet-kezelesere",
+ "docsSlug": "eljarasrend-az-egeszsegugyi-valsaghelyzet-kezelesere",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2022/03/eljarasrend_petrik_2022_03_07.pdf",
+             "children": ["Digitális munkarend idejére alkalmazott eljárásrend"]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,57 @@
+{
+ "template": "docs",
+ "scope": "page-docs-statisztika",
+ "docsSlug": "statisztika",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2021/01/vizsgaeredmenyek-2019-20.pdf",
+             "children": ["Vizsga eredmények"]
+            },
+            {"tag":"a","href":"/media/wp-content/uploads/2021/01/hazirend.pdf","children":[{"tag":"br"}]},
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2021/01/osztaly-adatok.pdf",
+             "children": ["Osztály létszám adatok",{"tag":"br"}]
+            },
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2021/01/lemorzsolodas-aranya.pdf",
+             "children": ["Lemorzsolodási adadtok"]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

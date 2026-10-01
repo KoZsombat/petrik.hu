@@ -1,0 +1,86 @@
+{
+ "template": "builder",
+ "scope": "page-in-memoriam",
+ "articleClass": "post-1387 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["In memorian"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"p","children":["Örök emlékezetül"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "4_4",
+       "index": 1,
+       "last": true,
+       "modules": [
+        {
+         "kind": "post-feed",
+         "id": "m2",
+         "index": 0,
+         "className": "et_pb_with_border",
+         "items": [
+          {"slug":"szenasy-jozsefne-emlekere","date":"2024 nov 08"},
+          {"slug":"suranyi-istvanne-emlekere","date":"2022 nov 23"},
+          {"slug":"somlai-ivanne-gyaszjelentes","date":"2022 márc 21"},
+          {"slug":"bonifert-gyorgy-emlekere","date":"2020 szept 28"},
+          {"slug":"golopencza-krisztina-emlekere","date":"2020 szept 28"},
+          {"slug":"szomoru-szivvel-bucsuzunk-kedves-kolleganktol-bati-ivantol","date":"2020 szept 28"},
+          {"slug":"bucsuzunk-mityko-janos-tanar-urtol","date":"2020 szept 28"},
+          {"slug":"bucsuzunk-kedves-kolleganktol-kisszekelyi-evatol","date":"2020 szept 28"},
+          {"slug":"demeny-istvan-emlekezetere","date":"2020 szept 28"}
+         ],
+         "columns": 3,
+         "align": "left"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

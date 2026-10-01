@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
-import type { RichTextDocument, Term, TermKind } from '../../../../../shared/pnw/types.ts'
+import type { ImagePosition, RichTextDocument, Term, TermKind } from '../../../../../shared/pnw/types.ts'
 import * as api from '../../lib/hirkezelo/api.ts'
 import { ApiError } from '../../lib/hirkezelo/api.ts'
 import { termsOfKind, useTerms } from '../../lib/terms.ts'
+import { emptyDocument, isBlank } from '../../../../../shared/pnw/richtext.ts'
+import { NEWS_TEMPLATES } from '../../../../../shared/pnw/news-templates.ts'
 import RichTextEditor from './RichTextEditor.tsx'
 
 type Props = {
@@ -21,6 +23,10 @@ type Props = {
   canCreateTerms: boolean
   currentImage?: string
   onImageChange: (file: File | null) => void
+  imagePosition: ImagePosition
+  onImagePositionChange: (value: ImagePosition) => void
+  /** Offers the news templates (Hírsablonok) above the title - for authors writing a new post. */
+  templates?: boolean
 }
 
 const TERM_ERROR_MESSAGES: Record<string, string> = {
@@ -51,8 +57,14 @@ export default function PostFields({
   canCreateTerms,
   currentImage,
   onImageChange,
+  imagePosition,
+  onImagePositionChange,
+  templates = false,
 }: Props) {
   const [preview, setPreview] = useState<string | null>(null)
+  const [templateId, setTemplateId] = useState('')
+  // Bumped to remount the (uncontrolled) file input when the form is cleared.
+  const [fileKey, setFileKey] = useState(0)
   const terms = useTerms()
 
   useEffect(
@@ -69,9 +81,74 @@ export default function PostFields({
   }
 
   const shownImage = preview ?? currentImage
+  const template = NEWS_TEMPLATES.find((entry) => entry.id === templateId)
+
+  /** Ported from the plugin's installTemplates(): asks before replacing text, offers the title prefix. */
+  function applyTemplate(): void {
+    if (!template) return
+    if (
+      (title.trim() || !isBlank(content)) &&
+      !window.confirm('A sablon a jelenlegi cím/szöveg egy részét lecserélheti. Biztosan alkalmazod?')
+    ) {
+      return
+    }
+    if (template.title && (!title.trim() || window.confirm('A sablonhoz tartozó címkezdetet is beírjuk?'))) {
+      onTitleChange(template.title)
+    }
+    onContentChange(template.build())
+  }
+
+  /** Empties the whole form so a new post can start from nothing (the plugin's "reset draft"). */
+  function clearForm(): void {
+    if (!window.confirm('Biztosan kitörlöd a cím, a szöveg, a kivonat, a kategóriák, a címkék és a kép tartalmát?')) return
+    onTitleChange('')
+    onContentChange(emptyDocument())
+    onExcerptChange('')
+    onCategoryIdsChange([])
+    onTagIdsChange([])
+    onImagePositionChange('top')
+    setTemplateId('')
+    handleFile(null)
+    setFileKey((key) => key + 1)
+  }
 
   return (
     <>
+      {templates && (
+        <div className="pnw-template-panel">
+          <div className="pnw-template-copy">
+            <strong>Hírsablonok</strong>
+            <span>Válassz egy típust, és előkészítjük a hír szerkezetét.</span>
+          </div>
+          <div className="pnw-template-controls">
+            <select
+              aria-label="Hírsablon kiválasztása"
+              value={templateId}
+              onChange={(event) => setTemplateId(event.target.value)}
+            >
+              <option value="">— Válassz sablont —</option>
+              {NEWS_TEMPLATES.map((entry) => (
+                <option key={entry.id} value={entry.id}>
+                  {entry.name}
+                </option>
+              ))}
+            </select>
+            <button type="button" className="pnw-button pnw-button-secondary" disabled={!template} onClick={applyTemplate}>
+              Sablon alkalmazása
+            </button>
+          </div>
+          <small>{template?.description ?? 'Nem kötelező sablont használni.'}</small>
+        </div>
+      )}
+      {templates && (
+        <div className="pnw-clear-bar">
+          <button type="button" className="pnw-button pnw-button-danger pnw-button-small" onClick={clearForm}>
+            ✕ Űrlap ürítése
+          </button>
+          <small>Mindent töröl, hogy tiszta lappal indulhass.</small>
+        </div>
+      )}
+
       <div className="pnw-field">
         <label htmlFor="pnw-title">
           Cím <span>*</span>
@@ -150,6 +227,7 @@ export default function PostFields({
           )}
         </div>
         <input
+          key={fileKey}
           id="pnw-featured"
           className="pnw-featured-input"
           type="file"
@@ -157,6 +235,27 @@ export default function PostFields({
           onChange={(event) => handleFile(event.target.files?.[0] ?? null)}
         />
         <small>JPG, PNG, WebP vagy GIF. Új kép feltöltésével a jelenlegi kiemelt kép lecserélődik.</small>
+        <fieldset className="pnw-image-position">
+          <legend>A kép helye a hírben</legend>
+          <label>
+            <input
+              type="radio"
+              name="pnw-image-position"
+              checked={imagePosition === 'top'}
+              onChange={() => onImagePositionChange('top')}
+            />
+            <span>A szöveg felett</span>
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="pnw-image-position"
+              checked={imagePosition === 'bottom'}
+              onChange={() => onImagePositionChange('bottom')}
+            />
+            <span>A szöveg alatt</span>
+          </label>
+        </fieldset>
       </div>
     </>
   )

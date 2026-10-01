@@ -1,0 +1,85 @@
+{
+ "template": "builder",
+ "scope": "page-szakmai-vizsga",
+ "articleClass": "post-1208 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Szakmai vizsga"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"p","children":["A középiskolai tanulmányok lezárása"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "4_4",
+       "index": 1,
+       "last": true,
+       "modules": [
+        {
+         "kind": "post-feed",
+         "id": "m2",
+         "index": 0,
+         "className": "et_pb_with_border",
+         "items": [
+          {"slug":"2026-tavaszi-vizsgaidoszak-technikusi-vizsgaidopontok","date":"2026 ápr 28"},
+          {"slug":"oszi-szakmai-vizsga-idopontok-2023","date":"2023 szept 28"},
+          {"slug":"szakmai-vizsga-idopontok-2023-tavasz","date":"2023 márc 01"},
+          {"slug":"javito-potlo-szakmai-vizsga-2022-osz","date":"2022 szept 20"},
+          {"slug":"szakmai-vizsga-idopontok-2022-tavasz","date":"2022 ápr 01"},
+          {"slug":"oszi-szakmai-vizsga-idopontok-2021","date":"2021 szept 18"},
+          {"slug":"szakmai-vizsga-idopontok-2021-tavasz","date":"2021 márc 23"},
+          {"slug":"oszi-potlo-es-javito-szakmai-vizsgak","date":"2020 szept 19"}
+         ],
+         "columns": 3,
+         "align": "left"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

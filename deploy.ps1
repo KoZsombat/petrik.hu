@@ -32,7 +32,7 @@ Set-Location $PSScriptRoot
 
 $target = "$User@$Server"
 $sshArgs = @('-i', $Key, '-o', 'StrictHostKeyChecking=accept-new')
-$image = Join-Path $env:TEMP 'petrikhu-images.tar'
+$image = Join-Path ([System.IO.Path]::GetTempPath()) 'petrikhu-images.tar'
 
 function Invoke-Native([string] $Label, [scriptblock] $Command) {
   Write-Host "==> $Label" -ForegroundColor Cyan

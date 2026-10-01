@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { ApiUser } from '../../lib/hirkezelo/api.ts'
-import { hasNewsPermission, permissionSummary } from '../../../../../shared/pnw/permissions.ts'
+import { canManageUsers, hasNewsPermission, permissionSummary } from '../../../../../shared/pnw/permissions.ts'
 
 /**
  * The Szerkesztő's header and navigation (AGENT.md 6.19) - the Hírkezelő's
@@ -25,6 +25,7 @@ export default function Shell({ user, onLogout }: { user: ApiUser; onLogout: () 
         <Link to="/szerkeszto/?view=new">+ Új oldal</Link>
         <Link to="/szerkeszto/?view=menu">Menü</Link>
         <Link to="/szerkeszto/?view=media">Médiatár</Link>
+        {canManageUsers(user) && <Link to="/szerkeszto/?view=users">Fiókok</Link>}
         {hasNewsPermission(user) && <Link to="/hirkezelo/">Hírkezelő →</Link>}
         <a className="pnw-nav-spacer" onClick={onLogout} role="button" tabIndex={0}>
           Kijelentkezés

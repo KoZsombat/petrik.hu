@@ -62,6 +62,13 @@ induláskor figyelmeztetés, ha élesben a nyilvános alap `PNW_SESSION_SECRET`
 fut. **Élesben nem ellenőrizve** — a szkript szintaxisa, a compose-konfig
 és a változók egy helyi szerveren igen.
 
+**2026-10-01: Szerkesztő v2 — minden oldal dokumentum** (részletek: 6.20) —
+az 53 generált oldal `PageDocument` (`src/data/pages/`), egy renderer rajzolja
+mindet, az alapértelmezett render bájtra azonos a régi TSX-ével
+(`render-pages.ts check`, 53/53); szerkesztve már teljes elrendezés/design
+szintig átírható, törölhető (tombstone), visszaállítható. A v1 felülírási réteg
+(6.19) ezzel **megszűnt**; a migrációja `migrate-overrides.ts`.
+
 **2026-09-25: oldalszerkesztő — `/bejelentkezes/` + `/szerkeszto/`**
 (részletek: 6.19, terv: `PAGE-EDITOR-PLAN.md`) — közös bejelentkezés a
 Hírkezelőhöz és a Szerkesztőhöz; a mentett oldalak tartalma egy
@@ -238,8 +245,11 @@ apps/client/scripts/  fejlesztői eszközök, sosem kerülnek a bundle-be
   check-routes.ts   route-tábla és oldalkomponensek egyezése
   layout-report.ts  oldalankénti legnagyobb eltérés a mentéshez (lásd 8.2 korlátja)
   shot.ts           screenshot pontos viewport-szélességen
-  page-inventory.ts a Szerkesztő modul-leltára → src/data/page-inventory.ts (6.19)
-  html-to-richtext.ts  mentés-HTML → RichTextDocument, a leltárhoz (6.19)
+  tsx-to-document.ts   a walk.ts TSX-kimenete → PageDocument (6.20)
+  documents.ts      src/data/pages/*.json + registry + shared/pnw/mirror-routes.ts írása (6.20)
+  render-pages.ts   az alapértelmezett dokumentumok SSR-je; `check` = a bájtazonos kapu (6.20)
+  render-baseline.json  a 53 oldal eredeti (TSX-ből vett) HTML-jének SHA-256-ja
+  migrate-overrides.ts  a v1 `page_overrides` → dokumentumok, egyszeri (6.20)
   seed-categories.ts   a Hírkezelő 37 kezdő kategóriája → shared/pnw/seed-categories.ts
 
 apps/client/src/
@@ -250,15 +260,16 @@ apps/client/src/
   components/docs/  a BetterDocs keret: DocsLayout, DocsSearch,
                     DocsCategoryList, DocsBreadcrumb, DocsNav,
                     DocsReactions, DocsIcons, FileBlock, DocsProtectedNote
-  components/pagebuilder/  PageRenderer, PageExtras, builder-page.css —
-                    a Szerkesztő dokumentumainak renderelése (6.19)
+  components/pagebuilder/  PageRenderer, RichContent, builder-page.css —
+                    MINDEN oldal renderelése dokumentumból (6.20)
   components/szerkeszto/   a /szerkeszto/ felülete (6.19)
   data/             site.ts, footer.ts, posts.ts, docs.ts, archives.ts,
-                    page-inventory.ts (generált, csak a szerkesztő, lustán)
+                    pages/ — az 53 oldal alapértelmezett dokumentuma (.json),
+                    stíluslapja (.css) és a registry (index.ts) — GENERÁLT (6.20)
   lib/              useColumnCount.ts, text.ts (fold), useBodyClass.ts,
                     useFixedHeader.ts (a görgetéskor zsugorodó fejléc)
-  lib/site/         SiteContentProvider + usePageOverride — a Szerkesztő
-                    felülírásai/oldalai/menüje a publikus oldalon (6.19)
+  lib/site/         SiteContentProvider — a Szerkesztő szerkesztett oldalai,
+                    tombstone-jai és menüje a publikus oldalon (6.20)
   pages/            oldalanként egy .tsx + egy .css; kézzel írt, nem generált:
                     Hirkezelo, PublishedPost, Bejelentkezes, Szerkeszto,
                     DynamicPage
@@ -1333,6 +1344,193 @@ sorként írja ki, tehát ez **döntés**, nem átcsúszás.
     adatbázissal (szándékosan — az első indulás migrálja), és kézi,
     egérrel végigkattintott használat a menüszerkesztőben (az API-ját a
     teszt hívta, a felületét nem).
+
+### 6.20 Szerkesztő v2 — minden oldal dokumentum, teljesen átírható
+
+**Döntés (felhasználó, 2026-09-26): az egész oldal átírható és létrehozható.**
+Ez a 6.19 „sorok szerkesztése” megoldását váltja le, és az 1. pont „pixelpontos”
+célját *csak a szerkesztett oldalakra* fordítja meg: **pixelpontosság csak a
+még nem szerkesztett oldalra garantált**; aki szerkeszt egy oldalt, annak a
+kinézete az ő döntése. A 6.19 többi része (jogosultság, `/bejelentkezes/`,
+menüszerkesztő, médiatár, kép-feltöltés) érvényben maradt.
+
+**Mi változott.**
+- Az 53 generált oldal (25 builder, 27 docs, 1 poszt, 1 classic) már nem
+  `.tsx`: **`src/data/pages/<Komponens>.json`** (`PageDocument`) + `.css` (az
+  oldal Divi-stíluslapja, scope-osztály alatt) + a `index.ts` registry
+  (`pageDefaults`, route → alapértelmezett dokumentum). A `.tsx`-ek törölve.
+  Nem dokumentum: a 64 archívum, `/dokumentumtar/`, a taxonómiák, `/kereses/`,
+  `/hirek/:slug/` (adatnézetek).
+- Egy renderer: `PageRenderer` rajzol minden `template`-et (`builder` /
+  `docs` / `post` / `classic`) ugyanazokkal a Divi-komponensekkel, mint a
+  generált oldalak. Útvonal: `App.tsx` a registry-ből, `pages/DocumentPage.tsx`:
+  szerkesztett dokumentum, ha van; tombstone → 404; különben az alapértelmezett.
+  `key={route}` kell rajta: a node-id-k (`m0`) oldalak közt ismétlődnek, és
+  nélküle a Toggle/HeroSlider állapota átlógna a következő oldalra.
+- **A generálás:** `walk.ts` továbbra is az egyetlen hely, ami a mirrort olvassa;
+  a kimenetét (TSX-forrás) a `tsx-to-document.ts` (TypeScript-AST) alakítja
+  dokumentummá memóriában, így nem tud eltérni. `generate.ts` → `src/data/pages/`
+  + `shared/pnw/mirror-routes.ts`. Szigorú: ismeretlen elem/prop/stílus hiba.
+  **`MIRROR_ROOT` most `PETRIK_MIRROR` env-ből jön.** (Ezen a gépen a mirror
+  nincs meg: a konverzió a meglévő TSX-ből ment; a `generate.ts` mirrorral még
+  nincs kipróbálva — fusson utána `render-pages.ts check`, vagy ha a mirror
+  tényleg változott, nézd át a diffet és `render-pages.ts baseline`.)
+- **Rich text v2** (`shared/pnw/rich-content.ts`): a tárolt forma **hű HTML-fa**
+  (`RichNode` = szöveg vagy `{tag, style?, href?, children?}`), nem blokk+run.
+  Ok: a mirror `<strong><a>` és `<a><strong>` sorrendet, két egyforma szomszédos
+  `<a>`-t és üres elemet is tartalmaz — ezt a lapos run-modell nem tudja bájtra
+  visszaadni. A szerkesztő egy lapított nézeten (`richToBlocks`/`blocksToRich`,
+  blokkok+run-ok) dolgozik, és csak az szerkesztett mező fája íródik újra.
+  Stílus-whitelist: `color, fontSize, fontFamily, fontWeight, letterSpacing,
+  textTransform, textAlign, lineHeight` (`RICH_STYLE_PATTERNS`, a szerver és a
+  szerkesztő közös). A `<a>` típusa a célból dől el (http → új lap; `/media/`,
+  `//`, `mailto:`, `tel:` → sima `<a>`; más `/…` → router-`Link`).
+- **Modulok:** a v1 hét + `post-feed, team-member, social-follow,
+  number-counter, testimonial, pricing-tables, hero-slider, gallery,
+  fullwidth-header, file-block`. `PageModule` mezői pontosan azok a propok,
+  amiket a walker írt.
+- **A Divi `index` szerződése:** csak azt dönti el, melyik számozott osztályt
+  viseli a csomópont (`et_pb_text_12`) — ezt célozza az oldal stíluslapja. Egy
+  átvett modul **a helyén tartja az eredeti indexét**, bárhová kerül; az új
+  modul `max(a fajta indexei)+1`-et kap (`allocator`, `nextIndex`), így nem
+  ütközhet egy másik modulnak szánt szabállyal. A v1-es dokumentumok index
+  nélkül jöttek; `normalizeDocument` a hiányzót dokumentumsorrendben pótolja
+  (pont azt a számozást adja, amivel a v1 renderelt), a `bordered`-et
+  `et_pb_with_border` osztállyá, a blokk-tartalmat fává alakítja.
+- **Design-beállítások** (`design` szakaszon/soron/hasábon/modulon): szín,
+  háttér, betűméret/-vastagság, igazítás, térközök, keret — számok tartományban,
+  `isSafeColor`-os színek, enumok, soha nyers CSS. A mirror stíluslapjai szinte
+  mindent `!important`-tal írnak, ezért **egy generált `<style>`** (`lib/
+  designCss.ts`) szabályai `.scope.scope .et_pb_text_12 { … !important }`
+  alakúak (a scope-osztály kétszer: egyenlő specificitásnál is nyer). React
+  szöveg-gyerekként épül, `dangerouslySetInnerHTML` nincs. Tervezetlen
+  design → nincs `<style>` elem, az oldal markupja a régi. Böngészőben
+  ellenőrizve: az `!important`-os oldalszabályt a beállítás veri.
+- **Tárolás/API:** a `pages` tábla `route`-kulcsú (`origin` mirror|custom,
+  `template`, `deleted`, `slug` csak a létrehozott oldalnál). Indításkor a v1
+  tábla magától átépül. `GET /api/pages` (lista, dokumentum nélkül),
+  `GET/PUT/DELETE /api/pages/by-route?route=` (szerkesztés / **tombstone**),
+  `POST …/by-route/reset` (vissza az eredetire), `/:id` a létrehozott oldalaké.
+  A route-nak szerepelnie kell a `shared/pnw/mirror-routes.ts`-ben, és a
+  `template`/`docsSlug`/poszt-slug egyeznie kell (különben az invented slug
+  összeomlasztaná a `DocsLayout`/`PostHeader` kereső-throw-ját).
+  `/api/public/site`: publikált szerkesztések + tombstone-ok (az alapértelmezettet
+  a kliens tudja). Backend nélkül minden oldal az alapértelmezett. A
+  `PNW_DATA_DIR`/`PNW_UPLOADS_DIR` env scratch-adatbázishoz.
+- **Szerkesztő:** minden oldal ugyanabban a fa-szerkesztőben (`PageEditor`)
+  nyílik; *Eredeti / Szerkesztve / Törölve / Új* állapot; Szerkesztés, Törlés
+  (mirrored: tombstone → 404 + kikerül a menüből), Visszaállítás az eredetire.
+  Fa: húzással (⠿) és nyilakkal átrendezhető szakasz/sor/modul, modul bármely
+  hasábba áthúzható, sor hasábjai (preset + hasábonkénti szélesség, `+ hasáb`),
+  design-panel mindenen, minden új modulfajtához szerkesztő, hír-lista
+  „feltöltés kategóriából”, `RichTextField` v2 (h1–h6, div, sima szöveg,
+  beágyazott lista, méret/betű/betűköz/NAGYBETŰS, hatókör: szövegrész/
+  bekezdés). Az élő előnézet minden oldalon a valódi `PageRenderer`.
+  Az eltávolított réteg: `PageOverrides`/`usePageOverride`/`PageExtras`/
+  `OverrideEditor`/`page-inventory`/`html-to-richtext`/`data-reordered`.
+- **Migráció** (`migrate-overrides.ts <db> [--write]`): minden `page_overrides`
+  sor → az oldal alapértelmezett dokumentuma + modulfelülírások (kind+index) +
+  elrejtett szakaszok kihagyva + `sectionOrder` + hozzáfűzött szakaszok (új
+  indexekkel) + cím/leírás; `hidden` → tombstone. A szerver validátorán megy át;
+  sikeres `--write` után a `page_overrides` eldobva. A hozzáfűzött szakaszok
+  innentől az oldal saját scope-ja alatt renderelnek (nem `page-builder`).
+
+**A kapu (a „pixelpontos újra” bizonyítéka).** Az 53 oldal eredeti, TSX-ből
+renderelt HTML-jének SHA-256-ja `scripts/render-baseline.json`-ban. `node
+--experimental-strip-types scripts/render-pages.ts check` (Vite SSR +
+`renderToStaticMarkup`, böngésző nélkül) az alapértelmezett dokumentumokat
+renderelve **53/53 bájtra azonos** (a TSX törlése előtt a teljes HTML-t is
+összevetettük, `snapshot`/`compare`). Divi-primitív vagy renderer módosítása
+után ezt kell futtatni; csak szándékos változásnál `baseline`.
+
+**Ellenőrzés (2026-10-01, macOS).** `tsc -b`, `vite build`, `eslint .`,
+`check-routes.ts`, `render-pages.ts check` (53/53) zöld; az 53 alapértelmezett
+dokumentum a szerver validátorán veszteség nélkül átmegy (egyetlen különbség: a
+docs `file-block` kap egy `index`-et). Szerver `better-sqlite3`-mal, scratch
+adatbázison: a v1 `pages` átépül, a migráció (szöveg-felülírás, elrejtett +
+átrendezett + hozzáfűzött szakasz, elrejtett oldal) lefut, a publikus API a
+várt dokumentumot adja. Fejetlen Chrome-mal (CDP): szerkesztett oldal a helyes
+szakaszsorrenddel és `<title>`-lel; törölt oldal 404 és nincs a menüben; v1-es
+létrehozott oldal renderel; a szerkesztő listája 54 sor, a banner látszik;
+szövegszerkesztés → élő előnézet; 3→2 hasáb a modulok megtartásával; modul
+áthúzása másik hasábba (a modul megtartja az indexét); design-szín az
+`!important`-os szabály fölött; mentés → publikus oldal; visszaállítás → az
+eredeti. **Nem ellenőrizve:** `check-text`/`check-head`/`measure` (nincs mirror
+ezen a gépen); `generate.ts` mirrorral; `docker compose up`; a Szerkesztő
+összes új modulszerkesztője egyenként egérrel (a fa, a rich-text és a design
+volt végigvíve); `deploy.ps1`.
+
+**Kockázatok:** a szerkesztett oldal eltér a mirrortól (szándékos, 8.2 mérései
+rá nem érvényesek); egy áthelyezett modul indexalapú osztályai az új környezetben
+nem feltétlenül illenek az oldal szabályaihoz (a design-panel a megoldás, nem új
+CSS); a szerkesztett oldal első betöltéskor egy pillanatra az alapértelmezettet
+mutatja (a `/api/public/site` fetch után cserélődik — ugyanúgy, mint a v1-es
+felülírásoknál).
+
+### 6.21 Hírkezelő: hírsablonok, kép helye, „Megtekintés publikáltként”
+
+(Felhasználói kérés, 2026-10-01; az eredeti plugin: merenyimiklos/petrik-news-workflow.)
+- **Hírsablonok:** az eredeti plugin `pnw-ux.js` 5 sablonja (Versenyeredmény,
+  Esemény/rendezvény, Tájékoztató, Kirándulás/programbeszámoló, Pályázat/felhívás)
+  `shared/pnw/news-templates.ts`-ben, blokkokként (h3 + bekezdés + lista). A
+  `PostFields` tetején választható az új hír szerkesztőjében (a közzétett hír
+  szerkesztőjében és a vezetői ellenőrzésen nincs); jelenlegi szöveg esetén
+  megerősítést kér, és felajánlja a címkezdetet — mint az eredeti.
+- **A kép helye:** `Post.imagePosition` (`top` | `bottom`, alap `top`), új
+  `image_position` oszlop (indításkor ALTER), a szerző, a vezetői szerkesztés és
+  a közzétett hír szerkesztője is állítja; `PostTemplatePreview` a szöveg felett
+  vagy alatt rajzolja a képet — ugyanez a közzétett oldalon és minden előnézetben.
+- **„Megtekintés publikáltként ↗”** a jóváhagyó oldalon: új lapon nyitja a
+  `/hirkezelo/elonezet/:id/`-t (`PostPreviewPage`) — a legutóbb mentett hír a
+  valódi egyhír-oldalon, fejléc/lábléc/oldalsáv, `noindex`, bejelentkezés kell
+  (`GET /api/posts/:id` ellenőriz). A mentetlen vezetői módosításokat nem látja.
+- Ellenőrizve fejetlen Chrome-mal, scratch adatbázison: kép alul → az `IMG` a
+  szöveg után; a gomb `target=_blank`; sablon alkalmazása 9 blokkot ad; a
+  jóváhagyó oldalon a rádió a mentett értéket mutatja. `PNW_API` env a Vite
+  proxyhoz (ha a 4000-es porton más szerver — pl. Docker — fut).
+
+### 6.22 Szerkesztő: WordPress-szerű elrendezés és működés
+
+(Felhasználói kérés, 2026-10-01: az ügyfél WordPresshez szokott, ne legyen nehezebb. A felső navigáció marad.)
+- **Oldalak listája** = „Összes oldal”: állapot-fülek számlálóval (*Mind · Közzétéve ·
+  Piszkozat · Szerkesztve · Kuka*), keresés, tömeges művelet, rendezhető oszlopok,
+  20/oldal lapozás, a sor műveletei a cím alatt, ráhúzásra/fókuszra (`.szk-row-actions-hover`).
+- **Kuka** kétlépcsős törlés: a létrehozott oldal első `DELETE`-re `deleted=1`
+  (a dokumentum megmarad, 404, kikerül a menüből), `POST /api/pages/:id/restore`
+  piszkozatként visszahozza, a kukában lévő oldal második `DELETE`-je végleges. A
+  mirrored oldalnál a kuka a tombstone, a visszaállítás a `reset`. A `/api/public/site`
+  a kukás oldal dokumentumát nem küldi.
+- **Szerkesztő:** bal oldalt nagy címmező + tartalom-fa, jobb oldalt *Közzététel*
+  (állapot, mentés állapota, Vissza/Újra, élő előnézet, Megtekintés, Mentés/Frissítés),
+  *Oldal* (cím a webhelyen, meta description) és a Kuka/Visszaállítás. Ctrl/Cmd+S ment;
+  Ctrl/Cmd+Z / +Shift+Z (Ctrl+Y) az egész oldalt vonja vissza (beviteli mezőben a
+  böngészőé marad; 700 ms-on belüli módosítások egy lépés). Nem mentett váltásnál
+  figyelmeztet. Szakasz/sor/modul **megkettőzhető** (⧉: új id + új Divi-index).
+- **Nem csináltuk:** automatikus piszkozatmentés, külön „elem” oldalsáv (a beállítások
+  a fában maradnak), menü- és médiatár-átrendezés.
+- Ellenőrizve fejetlen Chrome-mal, scratch adatbázison: fülek/számlálók, kukába és
+  vissza, kereső, megkettőzés (egyedi index), vissza/ismétlés, Ctrl+S, kétoszlopos rács.
+
+### 6.23 Táblázat a Hírkezelőben; szerkesztés párbeszédablakban a Szerkesztőben
+
+(Felhasználói kérés, 2026-10-01.)
+- **Táblázat a hírben:** új blokktípus `table` (`RichTextBlock.table = { header, rows: string[][] }`,
+  a `runs` egyetlen üres run marad). Az eszköztár „▦” gombja 3×3-as, fejlécsoros táblát
+  szúr be az aktív blokk után; a rács celláinak szerkesztése, + / − sor, + / − oszlop,
+  „Fejlécsor” kapcsoló (a szerkezeti változás visszavonható, a cellagépelés a mező
+  saját undo-ja). A cella sima szöveg — markup nem fér bele. A `RichText` `<table
+  class="pnw-news-table">`-t rajzol (`thead` ha van fejléc); a `blockText` a cellákat
+  adja, így a csak-táblázat hír is „van szövege”. A szerver `parseRichText` a tábla
+  alakját ellenőrzi (≤100 sor, ≤30 oszlop, szöveg-cellák ≤2000 karakter).
+- **Szerkesztés dialógusban:** minden modul, valamint a szakasz/sor/hasáb beállításai
+  (és design-panelje) natív `<dialog>`-ban (`Modal.tsx`, `showModal()`) nyílik: legfelső
+  réteg, fókuszcsapda, Esc/háttérkattintás/„Kész” zár, a háttér nem görgethető. A
+  módosítások azonnal érvényesek (a fa állapota az igazság), nincs „mégse”. A fában a
+  modul sora csak összefoglaló marad.
+- Ellenőrizve fejetlen Chrome-mal, scratch adatbázison: tábla beszúrása, oszlop hozzáadása,
+  cellák kitöltése → előnézet és a közzétett oldal sablonja `thead` + sorok; beküldés
+  csak-táblázatos hírrel sikerült; a modul-dialógus megnyílik (RichText + design), Esc zárja,
+  a szakasz beállításai is dialógusban.
 
 ---
 

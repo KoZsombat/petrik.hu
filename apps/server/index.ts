@@ -39,8 +39,9 @@ seedInitialTerms()
 
 const app = express()
 
-// A Szerkesztő page document (AGENT.md 6.19) easily outgrows express's 100 KB default.
-app.use(express.json({ limit: '2mb' }))
+// A Szerkesztő page document (AGENT.md 6.20) easily outgrows express's 100 KB default
+// (the staff page alone is ~120 KB; nginx's client_max_body_size is 10m).
+app.use(express.json({ limit: '8mb' }))
 app.use(express.urlencoded({ extended: true }))
 app.use(
   session({

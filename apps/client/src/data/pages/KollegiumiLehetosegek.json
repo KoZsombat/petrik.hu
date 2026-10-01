@@ -1,0 +1,135 @@
+{
+ "template": "builder",
+ "scope": "page-kollegiumi-lehetosegek",
+ "articleClass": "post-6266 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [
+          {
+           "tag": "h1",
+           "children": [{"tag":"span","style":{"color":"#72c3b6"},"children":["BMSZC Bolyai János Kollégiuma"]}]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "4_4",
+       "index": 1,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "strong",
+             "children": ["Felvételt nyert tanulóinknak lehetőségük van igénybe venni a BMSZC Bolyai János Kollégium szolgáltatásait."]
+            }
+           ]
+          },
+          " ",
+          {"tag":"p","children":[" "]},
+          " ",
+          {"tag":"p","children":["A kollégium elérhetősége: "]},
+          " ",
+          {"tag":"p","children":["1134 Budapest, Angyalföldi út 2."]},
+          " ",
+          {"tag":"p","children":["Kollégiumvezető: +36-70/502-15-63"]},
+          " ",
+          {"tag":"p","children":["Tanári és ügyeleti szobák: +36-70/502-15-65 vagy 66"]},
+          " ",
+          {"tag":"p","children":["Porta: +36-70/502-13-58"]},
+          " ",
+          {
+           "tag": "p",
+           "children": ["Email: ",{"tag":"a","href":"mailto:bolyai@bolyai-szakkozep.hu","children":["bolyai@bolyai-szakkozep.hu"]}]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Webhely: ",
+            {
+             "tag": "a",
+             "href": "https://bolyai.bmszc.hu/p/bolyai-kollegium",
+             "children": ["https://bolyai.bmszc.hu/p/bolyai-kollegium"]
+            }
+           ]
+          },
+          " ",
+          {"tag":"p","children":[" "]},
+          " ",
+          {"tag":"p","children":["Működési rend: "]},
+          " ",
+          {"tag":"p","children":["24 órás pedagógiai ügyelet: 06:00-14:00, 14:00-22:00, 22:00-06:00"]},
+          " ",
+          {"tag":"p","children":[" "]},
+          " ",
+          {"tag":"p","children":["Étkezési elérhetőség:"]},
+          " ",
+          {"tag":"p","children":["Vassné Stevlik Teréz"]},
+          " ",
+          {"tag":"p","children":["Tel.: +36-20/852-85-97"]},
+          " ",
+          {"tag":"p","children":["Email: ebedlemondas.obudal@gmail.com"]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "kollégiummal kapcsolatos tudnivalókat ",
+            {"tag":"a","href":"/media/wp-content/uploads/2024/04/BMSZC_Bolyai_Janos_Kollegium.pdf","children":["itt"]},
+            " találják."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,77 @@
+{
+ "template": "docs",
+ "scope": "page-docs-hazirend",
+ "docsSlug": "hazirend",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2026/02/Hazirend_hitelesiett_2025_2026-1.pdf",
+             "children": ["Házirend 2025/26"]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "4_4",
+       "index": 1,
+       "last": true,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m1",
+         "index": 0,
+         "src": "/media/wp-content/uploads/2023/10/underwater-ruin-7568606_1280.jpg",
+         "href": "https://docs.google.com/forms/d/e/1FAIpQLSf-5RxmFSsy28I8ES2Sr76RhdENeq2P285Dz48_w_MKWAe3Tw/viewform",
+         "width": 921,
+         "height": 1280,
+         "srcSet": "/media/wp-content/uploads/2023/10/underwater-ruin-7568606_1280.jpg 921w, /media/wp-content/uploads/2023/10/underwater-ruin-7568606_1280-480x667.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 921px, 100vw"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

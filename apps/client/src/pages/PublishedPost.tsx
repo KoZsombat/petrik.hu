@@ -53,6 +53,7 @@ export default function PublishedPost() {
       content={post.content}
       categoryIds={post.categoryIds}
       image={post.featuredImage}
+      imagePosition={post.imagePosition}
       date={post.date}
     />
   )

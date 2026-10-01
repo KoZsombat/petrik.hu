@@ -1,6 +1,5 @@
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
-import { usePageOverride } from '../../lib/site/usePageOverride.ts'
 import './Button.css'
 
 type Props = {
@@ -20,16 +19,6 @@ type Props = {
 
 /** Divi's button module. */
 export default function Button({ children, to, href, align = 'left', icon, index }: Props) {
-  // A label/target saved in the Szerkesztő (AGENT.md 6.19). A new target
-  // replaces both the route and the URL - it is one or the other.
-  const override = usePageOverride('button', index)
-  if (override) {
-    children = override.label ?? children
-    if (override.to || override.href) {
-      to = override.to
-      href = override.href
-    }
-  }
   const className = `et_pb_button et_pb_button_${index} et_pb_bg_layout_light`
   const style = icon ? ({ '--et-button-icon': `'${icon}'` } as CSSProperties) : undefined
   /**

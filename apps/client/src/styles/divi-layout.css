@@ -71,17 +71,6 @@
   padding: 0;
 }
 
-/*
- * Not from the theme: the Szerkesztő's section reordering (AGENT.md 6.19).
- * Section.tsx only sets `data-reordered` (and an inline `order`) on a page the
- * editor actually reordered, so every other page keeps the theme's plain block
- * flow and this rule never matches there.
- */
-.et_builder_inner_content:has(> .et_pb_section[data-reordered]) {
-  display: flex;
-  flex-direction: column;
-}
-
 /* Rows -------------------------------------------------------------------- */
 
 .et_pb_row {

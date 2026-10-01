@@ -1,7 +1,5 @@
 import type { ReactNode } from 'react'
 import type { TextAlign } from '../../../../../shared/pnw/page-types.ts'
-import RichText from '../hirkezelo/RichText.tsx'
-import { usePageOverride } from '../../lib/site/usePageOverride.ts'
 import './Text.css'
 
 export type { TextAlign }
@@ -33,8 +31,6 @@ export default function Text({
   bgLayout = 'light',
   className,
 }: Props) {
-  // Content saved in the Szerkesztő replaces the generated children (AGENT.md 6.19).
-  const override = usePageOverride('text', index)
   const classes = [
     'et_pb_module',
     'et_pb_text',
@@ -46,7 +42,7 @@ export default function Text({
 
   return (
     <div className={classes.join(' ')}>
-      <div className="et_pb_text_inner">{override ? <RichText document={override.content} /> : children}</div>
+      <div className="et_pb_text_inner">{children}</div>
     </div>
   )
 }

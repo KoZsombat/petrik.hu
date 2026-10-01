@@ -1,0 +1,912 @@
+{
+ "template": "builder",
+ "scope": "page-home",
+ "articleClass": "post-2 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "fullwidth": true,
+   "rows": [],
+   "modules": [
+    {
+     "kind": "hero-slider",
+     "id": "m0",
+     "index": 0,
+     "slides": [
+      {"image":"/media/wp-content/uploads/2020/08/kezdooldal_nyito_kep-scaled.jpg"},
+      {"image":"/media/wp-content/uploads/2024/05/MG_6097-scaled.jpg"}
+     ],
+     "intervalMs": 7000,
+     "headerOffset": "116px"
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m1","index":0,"align":"left","content":[{"tag":"p","children":["Kiemelt híreink"]}]},
+        {
+         "kind": "post-feed",
+         "id": "m2",
+         "index": 0,
+         "className": "et_pb_with_border",
+         "items": [
+          {"slug":"szeptember-21-ei-nyilt-nap-a-petrikben","date":"2026 szept 11"},
+          {"slug":"nyolcadikos-felveteli-elokeszito-foglalkozasok-a-2026-2027-tanevben","date":"2026 szept 08"},
+          {"slug":"informaciok-az-indulo-esti-kepzesekrol-2026","date":"2026 aug 26"}
+         ],
+         "columns": 3,
+         "align": "left",
+         "includeLive": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "4_4",
+       "index": 1,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m3","index":1,"align":"left","content":["Legfrissebb híreink"]},
+        {
+         "kind": "post-feed",
+         "id": "m4",
+         "index": 1,
+         "className": "et_pb_with_border",
+         "items": [
+          {"slug":"kutatok-ejszakaja-a-petrikben","date":"2026 szept 15"},
+          {"slug":"kodok-szuperhosok-es-urutazas-jon-az-idei-kodolas-hete-a-petrikben","date":"2026 szept 09"},
+          {"slug":"palyazati-kiiras-bufe-uzemeltetesere","date":"2026 júl 28"},
+          {
+           "slug": "ujabb-orszagos-elismeres-a-dthpetrik-nek-innovativ-projekt-dijat-nyert-a-petrik-motion-pictures",
+           "date": "2026 jún 16"
+          },
+          {"slug":"europai-elismerest-nyert-a-lunaverzum-projekt","date":"2026 jún 04"},
+          {"slug":"ceglatogatason-a-10-e-osztaly-betekintes-az-it-vilagaba","date":"2026 máj 14"},
+          {"slug":"ceglatogatas-az-aimotive-kft-nel","date":"2026 máj 07"},
+          {"slug":"etkezzes-igenybevetelenek-feltetelei-a-2026-2027-tanevben","date":"2026 ápr 27"},
+          {"slug":"elmenybeszamolo-a-iii-civil-reggelirol-egyutt-ero-studio","date":"2026 ápr 19"},
+          {
+           "slug": "egy-nap-europai-parlamenti-kepviselokent-a-12-d-latogatasa-az-europa-elmenykozpontban",
+           "date": "2026 ápr 14"
+          },
+          {"slug":"petrik-motion-pictures-a-zaronap-amikor-minden-eletre-kelt","date":"2026 ápr 03"},
+          {"slug":"petrik-motion-pictures-lenduletben-a-digitalis-temahet","date":"2026 márc 27"}
+         ],
+         "columns": 3,
+         "align": "left",
+         "includeLive": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "index": 2,
+   "rows": [
+    {
+     "id": "r2",
+     "index": 2,
+     "columns": [
+      {
+       "id": "c2",
+       "span": "4_4",
+       "index": 2,
+       "last": true,
+       "modules": [{"kind":"text","id":"m5","index":2,"align":"left","content":["Képzési kínálatunk"]}]
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "index": 3,
+     "columns": [
+      {
+       "id": "c3",
+       "span": "1_3",
+       "index": 3,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m6",
+         "index": 0,
+         "src": "/media/wp-content/uploads/2020/08/vegyesz-agazat.jpg",
+         "width": 1920,
+         "height": 1281,
+         "srcSet": "/media/wp-content/uploads/2020/08/vegyesz-agazat.jpg 1920w, /media/wp-content/uploads/2020/08/vegyesz-agazat-1280x854.jpg 1280w, /media/wp-content/uploads/2020/08/vegyesz-agazat-980x654.jpg 980w, /media/wp-content/uploads/2020/08/vegyesz-agazat-480x320.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1920px, 100vw",
+         "loading": "lazy"
+        },
+        {
+         "kind": "text",
+         "id": "m7",
+         "index": 3,
+         "align": "left",
+         "content": [
+          {"tag":"h3","style":{"color":"#0c71c3"},"children":["Vegyipar"]},
+          " ",
+          {
+           "tag": "p",
+           "style": {
+            "color": "#ffdaa4",
+            "fontSize": "12px",
+            "letterSpacing": "2px",
+            "textTransform": "uppercase",
+            "fontFamily": "'Open Sans', Arial, sans-serif"
+           },
+           "children": [{"tag":"span","style":{"color":"#72c3b6"},"children":["A JÖVŐ A TE KEZEDBEN"]}]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A jövő gyógyszeripari vagy vegyipari szakembereként szeretnél hozzájárulni ahhoz, hogy az emberiség leküzdhesse az őt sújtó betegségeket, járványokat vagy egyre környezetbarátabb technológiákkal tegye kényelmesebbé a mindennapi életet? Több mint 140 éves hagyományokra visszatekintő vegyészeti képzésünk, amelynek része a két tanítási nyelvű képzés is, csak rád vár!"
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "button",
+         "id": "m8",
+         "index": 0,
+         "to": "/vegyipar_agazat",
+         "align": "right",
+         "icon": "T",
+         "label": "Tudj meg róla többet"
+        }
+       ]
+      },
+      {
+       "id": "c4",
+       "span": "1_3",
+       "index": 4,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m9",
+         "index": 1,
+         "src": "/media/wp-content/uploads/2020/08/kornyezetvedelem-agazat.jpg",
+         "srcSet": "/media/wp-content/uploads/2020/08/kornyezetvedelem-agazat-scaled.jpg 2560w, /media/wp-content/uploads/2020/08/kornyezetvedelem-agazat-1280x855.jpg 1280w, /media/wp-content/uploads/2020/08/kornyezetvedelem-agazat-980x654.jpg 980w, /media/wp-content/uploads/2020/08/kornyezetvedelem-agazat-480x320.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 2560px, 100vw"
+        },
+        {
+         "kind": "text",
+         "id": "m10",
+         "index": 4,
+         "align": "left",
+         "content": [
+          {"tag":"h3","style":{"color":"#0c71c3"},"children":["Környezetvédelem és vízügy"]},
+          " ",
+          {
+           "tag": "p",
+           "style": {
+            "color": "#ffdaa4",
+            "fontSize": "12px",
+            "letterSpacing": "2px",
+            "textTransform": "uppercase",
+            "fontFamily": "'Open Sans', Arial, sans-serif"
+           },
+           "children": [{"tag":"span","style":{"color":"#72c3b6"},"children":["a jÖVŐRŐL TE GondoskodSZ"]}]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Ha törődsz a környezeteddel, de szeretnél többet tenni a megóvásáért, akkor a környezetvédelmi szakirány az, ami neked való. A környezetvédelem hivatás és tudomány is egyben. Gyakorlati tudásalapú képzésünk garancia arra, hogy a jövő környezetvédelmi szakemberévé válhass."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "button",
+         "id": "m11",
+         "index": 1,
+         "to": "/kornyezetvedelem_es_vizugy_agazat",
+         "align": "right",
+         "icon": "T",
+         "label": "Tudj meg róla többet"
+        }
+       ]
+      },
+      {
+       "id": "c5",
+       "span": "1_3",
+       "index": 5,
+       "last": true,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m12",
+         "index": 2,
+         "src": "/media/wp-content/uploads/2020/08/informatika-agazat.jpg",
+         "width": 1920,
+         "height": 1280,
+         "srcSet": "/media/wp-content/uploads/2020/08/informatika-agazat.jpg 1920w, /media/wp-content/uploads/2020/08/informatika-agazat-1280x853.jpg 1280w, /media/wp-content/uploads/2020/08/informatika-agazat-980x653.jpg 980w, /media/wp-content/uploads/2020/08/informatika-agazat-480x320.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1920px, 100vw",
+         "loading": "lazy"
+        },
+        {
+         "kind": "text",
+         "id": "m13",
+         "index": 5,
+         "align": "left",
+         "content": [
+          {"tag":"h3","style":{"color":"#0c71c3"},"children":["Informatika és távközlés"]},
+          " ",
+          {
+           "tag": "p",
+           "style": {
+            "color": "#ffdaa4",
+            "fontSize": "12px",
+            "letterSpacing": "2px",
+            "textTransform": "uppercase",
+            "fontFamily": "'Open Sans', Arial, sans-serif"
+           },
+           "children": [{"tag":"span","style":{"color":"#72c3b6"},"children":["A jövő egy kattintásra tőled"]}]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Informatikai szakirányunk képzései a jövő munkaerő-piacára készítik fel a tanulóinkat: gyakorlatorientált környezetben az elméleti, gyakorlati tantárgyakat az idegen nyelv tanulásával ötvözve olyan projektalapú oktatásban részesülhetsz, mely hidat képez a munka világa és az iskola között."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "button",
+         "id": "m14",
+         "index": 2,
+         "to": "/informatika_es_tavkozles_agazat",
+         "align": "right",
+         "icon": "T",
+         "label": "Tudj meg róla többet"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "index": 3,
+   "rows": [
+    {
+     "id": "r4",
+     "index": 4,
+     "columns": [
+      {
+       "id": "c6",
+       "span": "4_4",
+       "index": 6,
+       "last": true,
+       "modules": [{"kind":"text","id":"m15","index":6,"align":"left","content":["Miért jelentkezz hozzánk?"]}]
+      }
+     ]
+    },
+    {
+     "id": "r5",
+     "index": 5,
+     "columns": [
+      {
+       "id": "c7",
+       "span": "1_2",
+       "index": 7,
+       "modules": [
+        {
+         "kind": "blurb",
+         "id": "m16",
+         "index": 0,
+         "title": "Több mint 140 éves iskola",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Hagyományaink nagy múltra tekintenek vissza"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m17",
+         "index": 1,
+         "title": "Izgalmas projektek és programok a 21. századi készségek fejlesztéséért",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Híd az iskola és a munka világa között"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m18",
+         "index": 2,
+         "title": "A szakképzést nemzetközi szintre emeljük",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Erasmus és eTwinning projektek részese lehetsz"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m19",
+         "index": 3,
+         "title": "Dinamikus együttműködés a pedagógusok és a tanulók között",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Itt számít, mit gondolsz!"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m20",
+         "index": 4,
+         "title": "Pezsdítő sportélet",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Sokféle sportprogramon, vagy szakkörön kamatoztathatod az eddig elsajtátított tudásod, vagy léphetsz a következő szintre"
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "blurb",
+         "id": "m21",
+         "index": 5,
+         "title": "Hogy egy igazi közösség tagjává válhass",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        }
+       ]
+      },
+      {
+       "id": "c8",
+       "span": "1_2",
+       "index": 8,
+       "last": true,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m22",
+         "index": 3,
+         "src": "/media/wp-content/uploads/2020/08/siker-scaled.jpg",
+         "width": 2369,
+         "height": 2560,
+         "srcSet": "/media/wp-content/uploads/2020/08/siker-scaled.jpg 2369w, /media/wp-content/uploads/2020/08/siker-scaled-1280x1383.jpg 1280w, /media/wp-content/uploads/2020/08/siker-scaled-980x1059.jpg 980w, /media/wp-content/uploads/2020/08/siker-scaled-480x519.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 2369px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "index": 4,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r6",
+     "index": 6,
+     "columns": [
+      {
+       "id": "c9",
+       "span": "4_4",
+       "index": 9,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m23",
+         "index": 7,
+         "align": "left",
+         "content": [{"tag":"p","children":["Partnerek, Projektek, Szakmai programok"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r7",
+     "index": 7,
+     "columns": [
+      {
+       "id": "c10",
+       "span": "1_6",
+       "index": 10,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m24",
+         "index": 4,
+         "src": "/media/wp-content/uploads/2021/10/mupa_partneriskola_logo_2021.jpg",
+         "href": "/penz7-a-petrikben/",
+         "width": 1600,
+         "height": 818,
+         "srcSet": "/media/wp-content/uploads/2021/10/mupa_partneriskola_logo_2021.jpg 1600w, /media/wp-content/uploads/2021/10/mupa_partneriskola_logo_2021-1280x654.jpg 1280w, /media/wp-content/uploads/2021/10/mupa_partneriskola_logo_2021-980x501.jpg 980w, /media/wp-content/uploads/2021/10/mupa_partneriskola_logo_2021-480x245.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1600px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c11",
+       "span": "1_6",
+       "index": 11,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m25",
+         "index": 5,
+         "src": "/media/wp-content/uploads/2022/09/LanguageCert_partnerintezmeny_logo_v2-scaled.jpg",
+         "href": "https://languagecert.hu/",
+         "width": 2560,
+         "height": 1507,
+         "srcSet": "/media/wp-content/uploads/2022/09/LanguageCert_partnerintezmeny_logo_v2-scaled.jpg 2560w, /media/wp-content/uploads/2022/09/LanguageCert_partnerintezmeny_logo_v2-scaled-1280x754.jpg 1280w, /media/wp-content/uploads/2022/09/LanguageCert_partnerintezmeny_logo_v2-scaled-980x577.jpg 980w, /media/wp-content/uploads/2022/09/LanguageCert_partnerintezmeny_logo_v2-scaled-480x283.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 2560px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c12",
+       "span": "1_6",
+       "index": 12,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m26",
+         "index": 6,
+         "src": "/media/wp-content/uploads/2020/10/tempus_kozalapitvany.png",
+         "href": "https://tka.hu/",
+         "width": 123,
+         "height": 73,
+         "srcSet": "/media/wp-content/uploads/2020/10/tempus_kozalapitvany.png 123w, /media/wp-content/uploads/2020/10/tempus_kozalapitvany-20x12.png 20w",
+         "sizes": "(max-width: 123px) 100vw, 123px",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c13",
+       "span": "1_6",
+       "index": 13,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m27",
+         "index": 7,
+         "src": "/media/wp-content/uploads/2020/10/logo-erasmus-plus.png",
+         "href": "https://tka.hu/",
+         "width": 1758,
+         "height": 358,
+         "srcSet": "/media/wp-content/uploads/2020/10/logo-erasmus-plus.png 1758w, /media/wp-content/uploads/2020/10/logo-erasmus-plus-1280x261.png 1280w, /media/wp-content/uploads/2020/10/logo-erasmus-plus-980x200.png 980w, /media/wp-content/uploads/2020/10/logo-erasmus-plus-480x98.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1758px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {"id":"c14","span":"1_6","index":14,"modules":[]},
+      {"id":"c15","span":"1_6","index":15,"last":true,"modules":[]}
+     ]
+    },
+    {
+     "id": "r8",
+     "index": 8,
+     "columns": [
+      {
+       "id": "c16",
+       "span": "1_6",
+       "index": 16,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m28",
+         "index": 10,
+         "src": "/media/wp-content/uploads/2021/03/penz7.png",
+         "href": "/penz7-a-petrikben/",
+         "width": 1033,
+         "height": 1294,
+         "srcSet": "/media/wp-content/uploads/2021/03/penz7.png 1033w, /media/wp-content/uploads/2021/03/penz7-980x1228.png 980w, /media/wp-content/uploads/2021/03/penz7-480x601.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1033px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c17",
+       "span": "1_6",
+       "index": 17,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m29",
+         "index": 11,
+         "src": "/media/wp-content/uploads/2020/08/etwinning_school.png",
+         "href": "https://www.etwinning.net/hu/",
+         "width": 349,
+         "height": 381,
+         "srcSet": "/media/wp-content/uploads/2020/08/etwinning_school.png 349w, /media/wp-content/uploads/2020/08/etwinning_school-275x300.png 275w, /media/wp-content/uploads/2020/08/etwinning_school-18x20.png 18w",
+         "sizes": "(max-width: 349px) 100vw, 349px",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c18",
+       "span": "1_6",
+       "index": 18,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m30",
+         "index": 12,
+         "src": "/media/wp-content/uploads/2023/10/6x_badge_DTH2023.png",
+         "href": "/kategoria/egyeb/projekt/dthpetrik2023/",
+         "width": 300,
+         "height": 300,
+         "srcSet": "/media/wp-content/uploads/2023/10/6x_badge_DTH2023.png 300w, /media/wp-content/uploads/2023/10/6x_badge_DTH2023-150x150.png 150w, /media/wp-content/uploads/2023/10/6x_badge_DTH2023-20x20.png 20w",
+         "sizes": "(max-width: 300px) 100vw, 300px",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c19",
+       "span": "1_6",
+       "index": 19,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m31",
+         "index": 13,
+         "src": "/media/wp-content/uploads/2023/10/MicrosoftTeams-image-24.png",
+         "href": "https://codeweek.eu/",
+         "width": 600,
+         "height": 600,
+         "srcSet": "/media/wp-content/uploads/2023/10/MicrosoftTeams-image-24.png 600w, /media/wp-content/uploads/2023/10/MicrosoftTeams-image-24-480x480.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c20",
+       "span": "1_6",
+       "index": 20,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m32",
+         "index": 14,
+         "src": "/media/wp-content/uploads/2023/12/Partneriskola1733x1733_szines.png",
+         "href": "https://www.otpfayalapitvany.hu/web/home",
+         "width": 1733,
+         "height": 1733,
+         "srcSet": "/media/wp-content/uploads/2023/12/Partneriskola1733x1733_szines.png 1733w, /media/wp-content/uploads/2023/12/Partneriskola1733x1733_szines-1280x1280.png 1280w, /media/wp-content/uploads/2023/12/Partneriskola1733x1733_szines-980x980.png 980w, /media/wp-content/uploads/2023/12/Partneriskola1733x1733_szines-480x480.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1733px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c21",
+       "span": "1_6",
+       "index": 21,
+       "last": true,
+       "modules": [
+        {
+         "kind": "gallery",
+         "id": "m33",
+         "index": 0,
+         "items": [
+          {
+           "src": "/media/wp-content/uploads/2024/04/ProSuli_logo_vector_Yettel_RGB_lime-kek-400x284.png",
+           "width": 400,
+           "height": 284,
+           "srcSet": "/media/wp-content/uploads/2024/04/ProSuli_logo_vector_Yettel_RGB_lime-kek.png 479w, /media/wp-content/uploads/2024/04/ProSuli_logo_vector_Yettel_RGB_lime-kek-400x284.png 480w",
+           "sizes": "(max-width:479px) 479px, 100vw",
+           "loading": "lazy",
+           "full": "/media/wp-content/uploads/2024/04/ProSuli_logo_vector_Yettel_RGB_lime-kek.png"
+          }
+         ],
+         "perPage": 4
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "index": 5,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r9",
+     "index": 9,
+     "columns": [
+      {
+       "id": "c22",
+       "span": "4_4",
+       "index": 22,
+       "last": true,
+       "modules": [{"kind":"text","id":"m34","index":8,"align":"left","content":["Rólunk – Aki Petrikes lesz…"]}]
+      }
+     ]
+    },
+    {
+     "id": "r10",
+     "index": 10,
+     "columns": [
+      {
+       "id": "c23",
+       "span": "1_2",
+       "index": 23,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m35",
+         "index": 9,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "… részévé válik egy több mint 140 éve létező hagyománynak, amit a Petrik neve fémjelez. Aki Petrikes lesz, egy elfogadó, egymást támogató iskolai közösség tagja lesz. Aki Petrikes lesz, olyan szaktudást kap, amellyel könnyedén elhelyezkedhet a munka világában, hiszen a Petrik neve garancia a kiemelkedő szaktudásra. Ha Petrikes leszel, olyan életre szóló élményekkel fogsz gazdagodni, amelyekre mindig vidáman és szeretettel gondolsz majd vissza. Mire vársz még?"
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c24",
+       "span": "1_2",
+       "index": 24,
+       "last": true,
+       "modules": [
+        {
+         "kind": "video",
+         "id": "m36",
+         "index": 0,
+         "url": "https://www.youtube.com/watch?v=NnanAwvV8FI",
+         "title": "Válaszd a Petriket!"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r11",
+     "index": 11,
+     "columns": [
+      {
+       "id": "c25",
+       "span": "1_5",
+       "index": 25,
+       "modules": [{"kind":"number-counter","id":"m37","index":0,"value":1178,"title":"Diák"}]
+      },
+      {
+       "id": "c26",
+       "span": "1_5",
+       "index": 26,
+       "modules": [{"kind":"number-counter","id":"m38","index":1,"value":120,"title":"Oktató"}]
+      },
+      {
+       "id": "c27",
+       "span": "1_5",
+       "index": 27,
+       "modules": [{"kind":"number-counter","id":"m39","index":2,"value":35,"title":"Tanterem"}]
+      },
+      {
+       "id": "c28",
+       "span": "1_5",
+       "index": 28,
+       "modules": [{"kind":"number-counter","id":"m40","index":3,"value":23,"title":"Labor"}]
+      },
+      {
+       "id": "c29",
+       "span": "1_5",
+       "index": 29,
+       "last": true,
+       "modules": [{"kind":"number-counter","id":"m41","index":4,"value":1,"title":"Cél"}]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "index": 6,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r12",
+     "index": 12,
+     "columns": [
+      {
+       "id": "c30",
+       "span": "4_4",
+       "index": 30,
+       "last": true,
+       "modules": [{"kind":"text","id":"m42","index":10,"align":"left","content":["Szakmai partnerek"]}]
+      }
+     ]
+    },
+    {
+     "id": "r13",
+     "index": 13,
+     "columns": [
+      {
+       "id": "c31",
+       "span": "1_6",
+       "index": 31,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m43",
+         "index": 15,
+         "src": "/media/wp-content/uploads/2020/09/egis.png",
+         "href": "https://hu.egis.health/",
+         "width": 800,
+         "height": 600,
+         "srcSet": "/media/wp-content/uploads/2020/09/egis.png 800w, /media/wp-content/uploads/2020/09/egis-480x360.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 800px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c32",
+       "span": "1_6",
+       "index": 32,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m44",
+         "index": 16,
+         "src": "/media/wp-content/uploads/2020/09/richter_gedeon.png",
+         "href": "https://www.richter.hu/",
+         "width": 800,
+         "height": 600,
+         "srcSet": "/media/wp-content/uploads/2020/09/richter_gedeon.png 800w, /media/wp-content/uploads/2020/09/richter_gedeon-480x360.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 800px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c33",
+       "span": "1_6",
+       "index": 33,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m45",
+         "index": 17,
+         "src": "/media/wp-content/uploads/2020/09/teva.png",
+         "href": "https://www.teva.hu/",
+         "width": 800,
+         "height": 600,
+         "srcSet": "/media/wp-content/uploads/2020/09/teva.png 800w, /media/wp-content/uploads/2020/09/teva-480x360.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 800px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c34",
+       "span": "1_6",
+       "index": 34,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m46",
+         "index": 18,
+         "src": "/media/wp-content/uploads/2020/09/sanofi.png",
+         "href": "https://www.sanofi.hu/",
+         "width": 800,
+         "height": 600,
+         "srcSet": "/media/wp-content/uploads/2020/09/sanofi.png 800w, /media/wp-content/uploads/2020/09/sanofi-480x360.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 800px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c35",
+       "span": "1_6",
+       "index": 35,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m47",
+         "index": 19,
+         "src": "/media/wp-content/uploads/2020/09/cisco.png",
+         "href": "https://www.cisco.com/",
+         "width": 800,
+         "height": 600,
+         "srcSet": "/media/wp-content/uploads/2020/09/cisco.png 800w, /media/wp-content/uploads/2020/09/cisco-480x360.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 800px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c36",
+       "span": "1_6",
+       "index": 36,
+       "last": true,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m48",
+         "index": 20,
+         "src": "/media/wp-content/uploads/2020/09/microsoft-logo.png",
+         "href": "http://microsoft.com/",
+         "width": 800,
+         "height": 600,
+         "srcSet": "/media/wp-content/uploads/2020/09/microsoft-logo.png 800w, /media/wp-content/uploads/2020/09/microsoft-logo-480x360.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 800px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "index": 7,
+   "fullwidth": true,
+   "rows": [],
+   "modules": [
+    {
+     "kind": "fullwidth-header",
+     "id": "m49",
+     "index": 0,
+     "heading": "Budapesti Műszaki SZC Petrik Lajos Két Tanítási Nyelvű Technikum",
+     "text": "Több mint 140 éve az érték a mérték!",
+     "buttons": [{"label":"Elérhetőség","to":"/elerhetoseg/"},{"label":"Petrik alapítvány","to":"/elerhetoseg/"}],
+     "align": "center"
+    }
+   ]
+  }
+ ]
+}

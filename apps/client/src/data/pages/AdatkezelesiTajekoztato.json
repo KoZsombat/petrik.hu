@@ -1,0 +1,140 @@
+{
+ "template": "classic",
+ "scope": "page-adatkezelesi-tajekoztato",
+ "articleClass": "post-3 page type-page status-publish hentry",
+ "heading": "Adatvédelmi irányelvek",
+ "content": [
+  {"tag":"h2","children":["Kik vagyunk"]},
+  " ",
+  {"tag":"p","children":["A weboldalunk címe: ../"]},
+  " ",
+  {"tag":"h2","children":["Melyek azok a személyes adatok, amiket gyűjtünk és milyen céllal gyűjtjük ezeket"]},
+  " ",
+  {"tag":"h3","children":["Hozzászólások"]},
+  " ",
+  {
+   "tag": "p",
+   "children": [
+    "Hozzászólás beküldésekor a hozzászólási űrlapban megadottakon kívül begyűjtésre kerül a hozzászóló IP címe és a böngészőazonosító karakterlánc a kéretlen tartalmak kiszűrése céljából."
+   ]
+  },
+  " ",
+  {
+   "tag": "p",
+   "children": [
+    "Egy személytelenített, az e-mail címből előállított karakterlánc (hashnek szokás nevezni) kerül továbbításra a Gravatar szolgáltatás felé, ha ez az oldalon használatban van. A Gravatar szolgáltatás feltételei az alábbi címen tekinthetőek meg: https://automattic.com/privacy/. A hozzászólás elfogadása után, a hozzászólásunk tartalma és a profil képünk is megjelenik nyilvánosan."
+   ]
+  },
+  " ",
+  {"tag":"h3","children":["Média"]},
+  " ",
+  {
+   "tag": "p",
+   "children": [
+    "Amennyiben regisztrált felhasználó által kerül kép feltöltésre a honlapra, kerülni kell az az olyan EXIF-eket, amelyekben GPS pozíció adatok is szerepelnek. A honlap látogatói ezeket letölthetik és kinyerhetik a helyadatokat a honlapon található képekből."
+   ]
+  },
+  " ",
+  {"tag":"h3","children":["Kapcsolatfelvételi űrlapok"]},
+  " ",
+  {"tag":"h3","children":["Sütik"]},
+  " ",
+  {
+   "tag": "p",
+   "children": [
+    "Ha hozzászólást írunk a honlapon, a megadott nevet, e-mail és honlap címet sütikben eltároljuk. A tárolás a kényelmi célokat szolgál azért, így a következő hozzászóláskor ezeket a mező adatokat nem kell kitölteni. A sütik lejárati ideje egy év."
+   ]
+  },
+  " ",
+  {
+   "tag": "p",
+   "children": [
+    "Ha ellátogatunk a bejelentkezési oldalra, akkor átmeneti sütiket állítunk be annak érdekében, hogy megállapítsuk, hogy a böngésző elfogadja-e a sütiket. Ezek a sütik nem tartalmaznak személyes információt, és törlődnek, ahogy bezárjuk a böngészőt."
+   ]
+  },
+  " ",
+  {
+   "tag": "p",
+   "children": [
+    "A honlapra történő bejelentkezéskor több sütit hozunk létre, amely elmenti a bejelentkezési információt és a szerkesztőfelület megjelenítési opcióit. A bejelentkezési sütik két napig érvényesek, a szerkesztőfelület megjelenítési opcióit tároló süti egy évig. Amennyiben az „Emlékezz rám” opciót bejelöljük, a bejelentkezés két hétig folytatódik. Kijelentkezéskor a bejelentkezési sütik eltávolításra kerülnek."
+   ]
+  },
+  " ",
+  {
+   "tag": "p",
+   "children": [
+    "Amennyiben bejegyzést vagy oldalt szerkesztünk, egy újabb sütit tárol el a böngészőnk. Ez a süti nem tartalmaz személyes adatot, egyszerűen csak a bejegyzés azonosító számát tárolja, amelyet szerkesztettünk. Egy nap múlva jár le az érvényessége."
+   ]
+  },
+  " ",
+  {"tag":"h3","children":["Más honlapokról származó beágyazott tartalmak"]},
+  " ",
+  {
+   "tag": "p",
+   "children": [
+    "A honlapon elérhető bejegyzések külső forrásból származó beágyazott tartalmakat (pl. videók, képek, cikkek stb.) használhatnak. A külső forrásból származó beágyazott tartalmak pontosan úgy viselkednek, mintha meglátogattunk volna egy másik honlapot."
+   ]
+  },
+  " ",
+  {
+   "tag": "p",
+   "children": [
+    "Ezek a webhelyek lehetséges, hogy adatot gyűjtenek a látogatókról, sütiket vagy harmadik féltől származó követőkódot használnak, figyelik a beágyazott tartalommal kapcsolatos felhasználói viselkedést, ha rendelkezünk felhasználói fiókkal és be vagyunk jelentkezve az oldalra."
+   ]
+  },
+  " ",
+  {"tag":"h3","children":["Analitika"]},
+  " ",
+  {"tag":"h2","children":["Kivel osztjuk meg a felhasználói adatokat"]},
+  " ",
+  {"tag":"h2","children":["Mennyi ideig őrizzük a személyes adatot"]},
+  " ",
+  {
+   "tag": "p",
+   "children": [
+    "Ha hozzászólunk, a hozzászólás és annak metaadatai nem meghatározható ideig a rendszerben maradnak. Ennek célja, hogy az összes ezt követő bármely hozzászólás általunk megismertté és jóváhagyottá váljon, azaz ne kerüljön fel a moderálandó hozzászólások listájára."
+   ]
+  },
+  " ",
+  {
+   "tag": "p",
+   "children": [
+    "A honlapon regisztrált felhasználók (ha vannak ilyenek) személyes adatai a saját felhasználói profiljukban is tárolásra kerülnek. Minden felhasználó megtekintheti, szerkesztheti vagy törölheti a személyes adatait bármikor (kivéve, hogy nem változtathatja meg a saját felhasználói nevét). A honlap rendszergazdái ezen információkat szintén megtekinthetik és szerkeszthetik."
+   ]
+  },
+  " ",
+  {"tag":"h2","children":["Milyen jogokkal rendelkezik a felhasználó a saját adatai kapcsán"]},
+  " ",
+  {
+   "tag": "p",
+   "children": [
+    "A weboldalon regisztrált fiók vagy hozzászólás írása esetén kérhető a személyes adatok export fájlban történő megküldése, amely bármilyen adatot tartalmaz, amit korábban a felhasználó rendelkezésünkre bocsátott. Kérhető továbbá, hogy bármilyen korábban megadott személyes adatot töröljük. Ez nem vonatkozik azokra az adatokra, amelyeket adminisztrációs, jogi vagy biztonsági okokból kötelező megőriznünk."
+   ]
+  },
+  " ",
+  {"tag":"h2","children":["Hová továbbítjuk az adatokat"]},
+  " ",
+  {
+   "tag": "p",
+   "children": ["A látogatók által beküldött hozzászólásokat automatikus spamszűrő szolgáltatás ellenőrizheti."]
+  },
+  " ",
+  {"tag":"h2","children":["Kapcsolati adatok"]},
+  " ",
+  {"tag":"h2","children":["További információk"]},
+  " ",
+  {"tag":"h3","children":["Hogyan védjük a felhasználói személyes adatokat"]},
+  " ",
+  {"tag":"h3","children":["Érvényben lévő eljárások adatkezelési sérelmek esetén"]},
+  " ",
+  {"tag":"h3","children":["Milyen harmadik féltől származó adatokat kapunk"]},
+  " ",
+  {
+   "tag": "h3",
+   "children": ["Milyen automatizált döntéshozatalt és/vagy profilalkotást végzünk a felhasználói adatokkal"]
+  },
+  " ",
+  {"tag":"h3","children":["Szabályozott iparág közzétételi követelményei"]}
+ ],
+ "sections": []
+}

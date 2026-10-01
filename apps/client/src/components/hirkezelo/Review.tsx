@@ -4,7 +4,7 @@ import * as api from '../../lib/hirkezelo/api.ts'
 import { ApiError } from '../../lib/hirkezelo/api.ts'
 import type { ApiUser } from '../../lib/hirkezelo/api.ts'
 import { STATUS } from '../../../../../shared/pnw/types.ts'
-import type { AuditEntry, Post, RichTextDocument } from '../../../../../shared/pnw/types.ts'
+import type { AuditEntry, ImagePosition, Post, RichTextDocument } from '../../../../../shared/pnw/types.ts'
 import { canManageTerms, canReview, canSubmit } from '../../../../../shared/pnw/permissions.ts'
 import { canEditWorkflowPost } from '../../../../../shared/pnw/access.ts'
 import { statusLabel } from '../../../../../shared/pnw/statuses.ts'
@@ -27,6 +27,7 @@ export default function Review({ user, postId }: { user: ApiUser; postId: string
   const [excerpt, setExcerpt] = useState('')
   const [categoryIds, setCategoryIds] = useState<string[]>([])
   const [tagIds, setTagIds] = useState<string[]>([])
+  const [imagePosition, setImagePosition] = useState<ImagePosition>('top')
   const [previewOpen, setPreviewOpen] = useState(false)
   const [reviewNote, setReviewNote] = useState('')
   const [rejectNote, setRejectNote] = useState('')
@@ -45,6 +46,7 @@ export default function Review({ user, postId }: { user: ApiUser; postId: string
       setExcerpt(postResult.post.excerpt)
       setCategoryIds(postResult.post.categoryIds)
       setTagIds(postResult.post.tagIds)
+      setImagePosition(postResult.post.imagePosition ?? 'top')
       setAudit(auditResult.entries)
       setLoading(false)
     })
@@ -108,7 +110,7 @@ export default function Review({ user, postId }: { user: ApiUser; postId: string
   async function saveReviewerEdits(): Promise<void> {
     setBusy(true)
     try {
-      const result = await api.reviewerSave(postId, { title, content, excerpt, categoryIds, tagIds })
+      const result = await api.reviewerSave(postId, { title, content, excerpt, categoryIds, tagIds, imagePosition })
       navigate(`/hirkezelo/?pnw_notice=${result.notice}&pnw_view=review&post_id=${postId}`)
     } finally {
       setBusy(false)
@@ -170,11 +172,24 @@ export default function Review({ user, postId }: { user: ApiUser; postId: string
           onImageChange={() => {
             /* the reviewer edits text/categories only, the plugin's own reviewer_save has no image field */
           }}
+          imagePosition={imagePosition}
+          onImagePositionChange={setImagePosition}
         />
         <div className="pnw-form-actions pnw-form-actions-spread">
-          <button type="button" className="pnw-button pnw-button-preview" onClick={() => setPreviewOpen(true)}>
-            Előnézet
-          </button>
+          <div className="pnw-form-actions-main">
+            <button type="button" className="pnw-button pnw-button-preview" onClick={() => setPreviewOpen(true)}>
+              Előnézet
+            </button>
+            {/* The saved version, as a real page of the site (header, footer, sidebar) in a new tab. */}
+            <a
+              className="pnw-button pnw-button-preview"
+              href={`/hirkezelo/elonezet/${post.id}/`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Megtekintés publikáltként ↗
+            </a>
+          </div>
           <div className="pnw-form-actions-main">
             <button
               type="button"
@@ -196,6 +211,7 @@ export default function Review({ user, postId }: { user: ApiUser; postId: string
         categoryIds={categoryIds}
         tagIds={tagIds}
         image={post.featuredImage}
+        imagePosition={imagePosition}
       />
 
       <div className="pnw-decision-grid">

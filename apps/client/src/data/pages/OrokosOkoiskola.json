@@ -1,0 +1,185 @@
+{
+ "template": "builder",
+ "scope": "page-orokos-okoiskola",
+ "articleClass": "post-2063 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "1_2",
+       "index": 0,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Ökoiskola"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"p","children":["Környezeti nevelés és fenntarthatóság"]}]
+        }
+       ]
+      },
+      {"id":"c1","span":"1_2","index":1,"last":true,"modules":[]}
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c2",
+       "span": "4_4",
+       "index": 2,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m2","index":2,"align":"left","content":[{"tag":"p","children":["Kedves Petrikesek! "]}]},
+        {
+         "kind": "text",
+         "id": "m3",
+         "index": 3,
+         "align": "left",
+         "content": [{"tag":"p","children":["Iskolánk elnyerte az Örökös Ökoiskola címet."]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "index": 2,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r2",
+     "index": 2,
+     "columns": [
+      {
+       "id": "c3",
+       "span": "4_4",
+       "index": 3,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m4",
+         "index": 4,
+         "align": "left",
+         "content": [{"tag":"p","children":["Ökoiskolával kapcsolatos hírek"]}]
+        },
+        {
+         "kind": "post-feed",
+         "id": "m5",
+         "index": 0,
+         "items": [{"slug":"mozdulj-a-klimaert"},{"slug":"fold-napja"}],
+         "columns": 3,
+         "align": "left"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "index": 3,
+   "rows": [
+    {
+     "id": "r3",
+     "index": 3,
+     "columns": [
+      {
+       "id": "c4",
+       "span": "1_3",
+       "index": 4,
+       "modules": [
+        {"kind":"text","id":"m6","index":5,"align":"left","content":[{"tag":"h1","children":["Elérhetőség"]}]},
+        {
+         "kind": "blurb",
+         "id": "m7",
+         "index": 0,
+         "title": "Dr. Szabó Marianna",
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m8",
+         "index": 1,
+         "title": "B. épület 010",
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m9",
+         "index": 2,
+         "title": "dr.szabo.marianna@petrik.hu",
+         "titleHref": "mailto:dr.szabo.marianna@petrik.hu",
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": []
+        }
+       ]
+      },
+      {
+       "id": "c5",
+       "span": "2_3",
+       "index": 5,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m10",
+         "index": 6,
+         "align": "left",
+         "content": [{"tag":"h1","children":["Örökös Ökoiskola adatok"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m11",
+         "index": 3,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["Intézmény:"]}," Petrik Lajos Technikum"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

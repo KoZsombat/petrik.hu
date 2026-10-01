@@ -1,0 +1,1072 @@
+{
+ "template": "builder",
+ "scope": "page-nyolcadikos",
+ "articleClass": "post-1111 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Nyolcadikosoknak"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"p","children":["A továbbtanulás kapujában"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "4_4",
+       "index": 1,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m2",
+         "index": 2,
+         "align": "left",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["Piacképes, 21. századi képzés a Petrikben"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m3",
+         "index": 3,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"justify"},
+           "children": [
+            "Napjainkban az a fiatal pályakezdő, aki naprakész, piacképes és gyakorlat-orientált szaktudással hagyja ott az iskolapadot és lép ki a munkaerőpiacra, szinte behozhatatlan előnyre tehet szert. A BMSZC Petrik Lajos Két Tanítási Nyelvű Technikum egy olyan szakképző intézmény, ahol a hozzánk járó diákok négy piacképes szakmában szerezhetik meg modern, gyakorlati tudás alapú szakképesítésüket."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "index": 2,
+     "columns": [
+      {
+       "id": "c2",
+       "span": "1_3",
+       "index": 2,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m4",
+         "index": 4,
+         "align": "left",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["Mi a Petrik?"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m5",
+         "index": 5,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"justify"},
+           "children": [
+            "A Petrik Lajos Két Tanítási Nyelvű Technikum Budapest egyik legrégibb középfokú szakképző intézményeként 2019-ben ünnepelte fennállásának 140. évfordulóját. Névadónk, Petrik Lajos az iskola egykori híres tanára és későbbi igazgatója. Az általa képviselt sokoldalúság, értékközpontú és diákcentrikus világnézet az irányadó gondolkodás, amelyre iskolánk hagyományai épülnek, továbbá meghatározza jelenünket és jövőnket is. Petrikes diáknak lenni egyet jelent a szakma iránti elköteleződéssel, a világra nyitott, újító gondolkodással, ami az elődeinket is jellemezte."
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c3",
+       "span": "1_3",
+       "index": 3,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m6",
+         "index": 6,
+         "align": "left",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["Mit kínál a Petrik?"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m7",
+         "index": 7,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"justify"},
+           "children": [
+            "A hagyományos vegyipari képzés mellett környezetvédelem és vízügy, valamint informatika és távközlés ágazatokban nyújt képzést az iskola az ide jelentkező nyolcadikos vagy az érettségi után szakképesítést szerezni kívánó diákok számára. A 2020/2021-es tanévtől bevezetett szakképzési struktúra alapján a tanulmányaikat a Petrikben elkezdő kilencedikes diákok 5 év (két tanítási nyelvű osztályok esetében 6 év) elteltével az érettségi bizonyítvány mellé technikusi oklevelet is kapnak. Az érettségi utáni szakképzésben pedig a vegyész technikusi, a környezetvédelmi technikusi, az informatikai rendszer- és alkalmazás-üzemeltető technikus vagy a szoftverfejlesztő és –tesztelő szakma választható iskolánkban."
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c4",
+       "span": "1_3",
+       "index": 4,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m8",
+         "index": 8,
+         "align": "left",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["Miben nyújt többet a Petrik? "]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m9",
+         "index": 9,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"justify"},
+           "children": [
+            "A korszerű, jól felszerelt laboratóriumokban, szaktantermekben folyó képzés mellett számunkra fontos, hogy diákjaink érdeklődését és tudását nem csak a szakma, hanem a világ iránt is folyamatosan szélesítsük, és kihívások elé állítsuk őket. Ez a cél vezérel minket, amikor rendszeresen részt veszünk országos és nemzetközi versenyeken, szakmai projektekben. Jelenleg 9 európai uniós ország középiskolájával és cégével van együttműködésünk Erasmus+ projektek révén, ezzel lehetőséget biztosítva diákjainknak külföldi szakmai gyakorlatra is. Emellett eTwinning iskolaként minden évben részt veszünk a Kódolás Hetén, a Biztonságos Internet Napon és a Digitális Témahéten, de rendszeresen szervezünk programokat a Pénz7 vagy a Fenntarthatósági Témahét keretében is."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "index": 3,
+     "columns": [
+      {
+       "id": "c5",
+       "span": "4_4",
+       "index": 5,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m10","index":10,"align":"left","content":["Felvételire jelentkezés"]},
+        {
+         "kind": "text",
+         "id": "m11",
+         "index": 11,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "A jelentkezési lapokat az általános iskolában kell kitölteni, és ezt az általános iskola küldi el a középiskoláknak."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A 0091, 0092, 0093, 0094 kódszámú tanulmányi területekre a felvétel a tanulmányi pontok, a központi írásbeli vizsgán és a helyi szóbeli beszélgetésen szerzett összesített pontok alapján, azonos feltételekkel történik."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "index": 4,
+     "columns": [
+      {
+       "id": "c6",
+       "span": "4_4",
+       "index": 6,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m12",
+         "index": 12,
+         "align": "left",
+         "content": [{"tag":"p","children":["Választható tanulmányi területek, ágazatok (éves szinten 5 induló osztály)"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r5",
+     "index": 5,
+     "columns": [
+      {
+       "id": "c7",
+       "span": "1_4",
+       "index": 7,
+       "className": "et_pb_with_border",
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m13",
+         "index": 13,
+         "align": "center",
+         "content": [{"tag":"p","children":["0091",{"tag":"br"},"Vegyipari ágazat"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m14",
+         "index": 14,
+         "align": "center",
+         "content": [{"tag":"p","children":["Két tanítási nyelvű vegyész technikus (28 fő)"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m15",
+         "index": 15,
+         "align": "center",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["Okleveles technikus képzés (ELTE)"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m16",
+         "index": 16,
+         "align": "center",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["5+1 éves két tanítási nyelvű vegyészképzés"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m17",
+         "index": 17,
+         "align": "left",
+         "content": [
+          {
+           "tag": "ul",
+           "children": [
+            {"tag":"li","children":["28 fő"]},
+            {"tag":"li","children":["emelt szintű angol nyelvoktatás,"]},
+            {"tag":"li","children":["matematika, kémia, szakmai kémia tantárgyak angol nyelven történő oktatása,"]},
+            {"tag":"li","children":["kapcsolódó természettudományos tantárgyak,"]},
+            {"tag":"li","children":["laboratóriumi gyakorlatok,"]},
+            {"tag":"li","children":["tehetséggondozás"]}
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m18",
+         "index": 18,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":["vegyész technikus végzettség"]},
+          " ",
+          {"tag":"p","children":["Szakmairányok: általános laboráns, termelési folyamatirányító"]}
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c8",
+       "span": "1_4",
+       "index": 8,
+       "className": "et_pb_with_border",
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m19",
+         "index": 19,
+         "align": "center",
+         "content": [{"tag":"p","children":["0092",{"tag":"br"},"Vegyipari ágazat"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m20",
+         "index": 20,
+         "align": "center",
+         "content": [{"tag":"p","children":["Vegyész technikus (32 fő)"]}]
+        },
+        {"kind":"text","id":"m21","index":21,"align":"center","content":[]},
+        {
+         "kind": "text",
+         "id": "m22",
+         "index": 22,
+         "align": "center",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["5 éves vegyészképzés"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m23",
+         "index": 23,
+         "align": "left",
+         "content": [
+          {
+           "tag": "ul",
+           "children": [
+            {"tag":"li","children":["32 fő"]},
+            {"tag":"li","children":["magas szintű kémiaoktatás,"]},
+            {"tag":"li","children":["a vegyészet mellett fókuszban a kapcsolódó természettudományok,"]},
+            {"tag":"li","children":["laboratóriumi gyakorlatok,"]},
+            {"tag":"li","children":["angol és német választható idegen nyelv,"]},
+            {"tag":"li","children":["tehetséggondozás"]}
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m24",
+         "index": 24,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":["vegyész technikus végzettség"]},
+          " ",
+          {"tag":"p","children":["Szakmairányok: általános laboráns, termelési folyamatirányító"]}
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c9",
+       "span": "1_4",
+       "index": 9,
+       "className": "et_pb_with_border",
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m25",
+         "index": 25,
+         "align": "center",
+         "content": [{"tag":"p","children":["0093",{"tag":"br"},"Környezetvédelem és vízügyi ágazat"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m26",
+         "index": 26,
+         "align": "center",
+         "content": [{"tag":"p","children":["Környezetvédelmi technikus (32 fő)"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m27",
+         "index": 27,
+         "align": "center",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["Okleveles technikus (Óbudai Egyetem)"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m28",
+         "index": 28,
+         "align": "center",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["5 éves környezetvédelmi képzés"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m29",
+         "index": 29,
+         "align": "left",
+         "content": [
+          {
+           "tag": "ul",
+           "children": [
+            {"tag":"li","children":["32 fő"]},
+            {"tag":"li","children":["emelt szintű biológiaoktatás,"]},
+            {"tag":"li","children":["a környezetvédelem mellett fókuszban a kapcsolódó természettudományok,"]},
+            {"tag":"li","children":["környezetvédelmi gyakorlatok,"]},
+            {"tag":"li","children":["angol és német választható idegen nyelv,"]},
+            {"tag":"li","children":["tehetséggondozás"]}
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m30",
+         "index": 30,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":["környezetvédelmi technikus végzettség"]},
+          " ",
+          {"tag":"p","children":["Szakmairány: környezetvédelem"]}
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c10",
+       "span": "1_4",
+       "index": 10,
+       "last": true,
+       "className": "et_pb_with_border",
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m31",
+         "index": 31,
+         "align": "center",
+         "content": [{"tag":"p","children":["0094",{"tag":"br"},"Informatika és távközlés ágazat"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m32",
+         "index": 32,
+         "align": "center",
+         "content": [
+          {"tag":"p","children":["Szoftverfejlesztő és -tesztelő (okleveles technikus – ÓE)"]},
+          " ",
+          {
+           "tag": "p",
+           "children": ["Informatikai rendszer- és alkalmazás-üzemeltető technikus  (okleveles technikus – BME)"]
+          },
+          " ",
+          {"tag":"p","children":["(Összesen 64 fő)"]}
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m33",
+         "index": 33,
+         "align": "left",
+         "content": [
+          {
+           "tag": "ul",
+           "children": [
+            {"tag":"li","children":["32 fő okleveles szoftverfejlesztő és -tesztelő"]},
+            {"tag":"li","children":["16 fő okleveles rendszerüzemeltető"]},
+            {"tag":"li","children":["választható mindkét szakma"]},
+            {"tag":"li","children":["emelt szintű angol nyelvoktatás,"]},
+            {"tag":"li","children":["emelt szintű informatikaoktatás,"]},
+            {
+             "tag": "li",
+             "children": ["fókuszban a webprogramozás, szoftverfejlesztés és rendszergazdai, hálózati ismeretek oktatása,"]
+            },
+            {"tag":"li","children":["tehetséggondozás"]}
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m34",
+         "index": 34,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":["szoftverfejlesztő és -tesztelő"]},
+          " ",
+          {"tag":"p","children":["informatikai rendszer- és alkalmazás-üzemeltető"]}
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r6",
+     "index": 6,
+     "columns": [
+      {
+       "id": "c11",
+       "span": "4_4",
+       "index": 11,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m35","index":35,"align":"left","content":[{"tag":"p","children":["Tanulmányi pontok"]}]},
+        {
+         "kind": "text",
+         "id": "m36",
+         "index": 36,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Az általános iskolából hozott eredmények: az általános iskola 7. osztály év végi, 8. osztály félévi osztályzatai magyar nyelv és irodalom, történelem, idegen nyelv, matematika, fizika, kémia, földrajz, biológia és informatika tantárgyakból."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A felvételi vizsga egy ",
+            {"tag":"strong","children":["Központi, egységes írásbeli"]},
+            "ből",
+            {"tag":"strong","children":[" "]},
+            "és egy ",
+            {"tag":"strong","children":["Szóbeli"]},
+            " ",
+            {"tag":"strong","children":["beszélgetés"]},
+            "ből",
+            {"tag":"strong","children":[" "]},
+            "áll."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "pricing-tables",
+         "id": "m37",
+         "index": 0,
+         "tables": [
+          {
+           "title": "Központi, egységes írásbeli vizsga",
+           "sum": "2026. január 24. 10 óra",
+           "items": ["Pótnap: 2026. február 03. 14 óra"]
+          },
+          {
+           "title": "Szóbeli vizsga",
+           "sum": "2026. március 11.",
+           "items": ["2026. március 11. napon a honlapon feltüntetett beosztás alapján."]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m38",
+         "index": 37,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Az egységes, központi írásbeli vizsgára külön jelentkezési lapon kell jelentkezni a felvételizőnek abba az iskolába, amelyikben a felvételit meg kívánja írni. A jelentkezési lapok benyújtási határideje ",
+            {"tag":"strong","children":["2025. december 01"]},
+            {"tag":"strong","children":["."]}
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r7",
+     "index": 7,
+     "columns": [
+      {
+       "id": "c12",
+       "span": "4_4",
+       "index": 12,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m39",
+         "index": 38,
+         "align": "left",
+         "content": [{"tag":"p","children":["Beiskolázási tájékoztató"]}]
+        },
+        {
+         "kind": "button",
+         "id": "m40",
+         "index": 0,
+         "to": "/media/wp-content/uploads/2025/09/petrik-beiskolazasi-ismerteto-2026-27-iskolai-1.pdf",
+         "align": "center",
+         "label": "Nyolcadikosok beiskolázási ismertetője"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r8",
+     "index": 8,
+     "columns": [
+      {
+       "id": "c13",
+       "span": "4_4",
+       "index": 13,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m41",
+         "index": 39,
+         "align": "left",
+         "content": [{"tag":"p","children":["A felvételi vizsga tartalma"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r9",
+     "index": 9,
+     "columns": [
+      {
+       "id": "c14",
+       "span": "1_2",
+       "index": 14,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m42",
+         "index": 40,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [{"tag":"strong","children":["Központi írásbeli vizsga"]}," minden szakon: matematika és anyanyelv"]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A diszfunkciós zavarokkal küzdő tanulóknak – szakvéleménnyel alátámasztott kérelemre – több időt biztosítunk a központi írásbeli megírásakor."
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c15",
+       "span": "1_2",
+       "index": 15,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m43",
+         "index": 41,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["Szóbeli rész "]},
+            "egy rövid, kötetlen általános beszélgetésből, majd azt követő szakmai kérdésekből áll. Kérjük a diákokat, hozzák magukkal a KRÉTA-kivonatot, bármelyik tantárgyból egy füzetet és  – ha van – a versenyeredményeiket igazoló okleveleiket."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Szóbeli témakörökről bővebben ",
+            {"tag":"a","href":"/felveteli-informavio-nyolcadikosoknak-szobeli-temakorok/","children":["itt"]},
+            "."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r10",
+     "index": 10,
+     "columns": [
+      {
+       "id": "c16",
+       "span": "4_4",
+       "index": 16,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m44",
+         "index": 42,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Szóbelire azokat az informatikus felvételizőket hívjuk be, akik a hozott- és az írásbeli felvételin szerzett pontokból összesen legalább 60 pontot értek el!"
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r11",
+     "index": 11,
+     "columns": [
+      {
+       "id": "c17",
+       "span": "4_4",
+       "index": 17,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m45",
+         "index": 43,
+         "align": "left",
+         "content": [{"tag":"p","children":["A vizsgázó teljesítményének értékelése"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m46",
+         "index": 44,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": ["Az általános iskolából hozott tanulmányi pontok és a felvételi vizsgán elért eredmények alapján történik."]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Az általános iskolából hozott eredmények: az általános iskola 7. osztály év végi, 8. osztály félévi osztályzatai magyar nyelv és irodalom, történelem, idegen nyelv, matematika, fizika, kémia, földrajz, biológia és informatika tantárgyakból. A hozott pontokat az egyes tantárgyakból szerzett érdemjegyekből átváltott pontok összege hatátozza meg: a jeles 2 pont, a jó 1 pont, míg az elégtelen, az elégséges és a közepes 0 pontot ér. Ha mind a 10-10 tantárgyból jeles érdemjegyet kap a tanuló, akkor összesen maximum 40 pont szerezhető."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": ["Felvételi vizsga pontjai: írásbelin összesen 100 pont, a szóbelin 30 pont szerezhető."]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r12",
+     "index": 12,
+     "columns": [
+      {
+       "id": "c18",
+       "span": "4_4",
+       "index": 18,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m47",
+         "index": 45,
+         "align": "left",
+         "content": [{"tag":"p","children":["A felvételi döntés alapja"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r13",
+     "index": 13,
+     "columns": [
+      {
+       "id": "c19",
+       "span": "1_2",
+       "index": 19,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m48",
+         "index": 46,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["Hozott pont: (40 pont)",{"tag":"br"}]}]},
+          " ",
+          {
+           "tag": "ul",
+           "children": [
+            {
+             "tag": "ul",
+             "children": [{"tag":"li","children":["általános iskolai tanulmányi eredmény (tanulmányi pontok): 40 pont"]}]
+            }
+           ]
+          },
+          " ",
+          {"tag":"p","children":[{"tag":"strong","children":[" "]}]}
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c20",
+       "span": "1_2",
+       "index": 20,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m49",
+         "index": 47,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["Szerzett pont: (130 pont)",{"tag":"br"}]}]},
+          " ",
+          {
+           "tag": "ul",
+           "children": [
+            {"tag":"li","children":["központi, egységes írásbeli vizsga eredménye: 50-50 pont"]},
+            {"tag":"li","children":["szóbeli beszélgetés eredménye: 30 pont"]}
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r14",
+     "index": 14,
+     "columns": [
+      {
+       "id": "c21",
+       "span": "4_4",
+       "index": 21,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m50",
+         "index": 48,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["Összesen"]},
+            {"tag":"strong","children":[" "]},
+            "szerezhető ",
+            {"tag":"strong","children":["170 pont, "]},
+            "amely a hozott pontokból és a szerzett pontókból adódik össze."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "index": 2,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r15",
+     "index": 15,
+     "columns": [
+      {
+       "id": "c22",
+       "span": "4_4",
+       "index": 22,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m51",
+         "index": 49,
+         "align": "left",
+         "content": [{"tag":"p","children":["A nyolcadikos felvételihez kapcsolódó hírek"]}]
+        },
+        {
+         "kind": "post-feed",
+         "id": "m52",
+         "index": 0,
+         "className": "et_pb_with_border",
+         "items": [
+          {"slug":"beiratkozasi-informaciok-leendo-kilencedikesek-szamara-2026-junius-25-26","date":"2026 máj 12"},
+          {"slug":"csibetabor-2026","date":"2026 máj 08"},
+          {"slug":"vegleges-felveteli-jegyzek-a-2026-2027-tanevre","date":"2026 ápr 27"},
+          {"slug":"kozepfoku-felveteli-2026-marcius-25-en-indul-a-sorrendmodositas","date":"2026 márc 24"},
+          {"slug":"ideiglenes-felveteli-lista-2026","date":"2026 márc 16"},
+          {"slug":"szobeli-felveteli-beosztas-2026-marcius","date":"2026 márc 03"}
+         ],
+         "columns": 3,
+         "align": "left",
+         "hasOlder": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "index": 3,
+   "rows": [
+    {
+     "id": "r16",
+     "index": 16,
+     "columns": [
+      {
+       "id": "c23",
+       "span": "1_3",
+       "index": 23,
+       "modules": [
+        {"kind":"text","id":"m53","index":50,"align":"left","content":[{"tag":"h1","children":["Iskolai adatok"]}]},
+        {
+         "kind": "blurb",
+         "id": "m54",
+         "index": 0,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["OM azonosíró:"]}," 203058"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m55",
+         "index": 1,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["Iskola neve:"]},
+            " Budapesti Műszaki SZC Petrik Lajos Két Tanítási Nyelvű Technikum"
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "blurb",
+         "id": "m56",
+         "index": 2,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["Iskola címe:"]}," 1146 Budapest Thököly út 48-54. "]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m57",
+         "index": 3,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["Feladatellátási hely kódja:"]}," 009"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m58",
+         "index": 51,
+         "align": "left",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["Technikai kód"]},": 520 413"]}]
+        }
+       ]
+      },
+      {
+       "id": "c24",
+       "span": "2_3",
+       "index": 24,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m59",
+         "index": 52,
+         "align": "left",
+         "content": [{"tag":"h1","children":[{"tag":"strong","children":["Jelentkezési laphoz szükséges adatok"]}]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m60",
+         "index": 4,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Intézménytípus:",{"tag":"strong","children":[" technikum"]}]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m61",
+         "index": 5,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [{"tag":"strong","children":["0091 vegyész technikus "]},"(5+1 éves két tanítási nyelvű vegyészképzés)"]
+          }
+         ]
+        },
+        {
+         "kind": "blurb",
+         "id": "m62",
+         "index": 6,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["0092 vegyész technikus "]},"(5 éves vegyészképzés)"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m63",
+         "index": 7,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [{"tag":"strong","children":["0093 környezetvédelmi technikus "]},"(5 éves környezetvédelmi képzés)"]
+          }
+         ]
+        },
+        {
+         "kind": "blurb",
+         "id": "m64",
+         "index": 8,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [{"tag":"strong","children":["0094 informatika és távközlés "]},"(5 éves informatikaképzés)"]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

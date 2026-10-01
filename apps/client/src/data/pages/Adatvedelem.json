@@ -1,0 +1,237 @@
+{
+ "template": "builder",
+ "scope": "page-adatvedelem",
+ "articleClass": "post-5103 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "1_2",
+       "index": 0,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Adatvédelem"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [
+          {
+           "tag": "p",
+           "children": ["A természetes személyeket a személyes adataik kezelésével kapcsolatos Általános adatvédelem "]
+          }
+         ]
+        }
+       ]
+      },
+      {"id":"c1","span":"1_2","index":1,"last":true,"modules":[]}
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c2",
+       "span": "4_4",
+       "index": 2,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m2",
+         "index": 2,
+         "align": "left",
+         "content": [{"tag":"p","children":["Adatvédelmi tisztviselő:"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m3",
+         "index": 3,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": ["Csőke Ádám",{"tag":"br"},"Címe: 1149 Budapest, Várna u. 23.",{"tag":"br"},"E-mail címe: gdpr@petrik.hu"]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "index": 2,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r2",
+     "index": 2,
+     "columns": [
+      {
+       "id": "c3",
+       "span": "4_4",
+       "index": 3,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m4",
+         "index": 4,
+         "align": "left",
+         "content": [{"tag":"p","children":["Adatvédelmi dokumentumok"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "index": 3,
+     "columns": [
+      {
+       "id": "c4",
+       "span": "1_2",
+       "index": 4,
+       "modules": [
+        {"kind":"text","id":"m5","index":5,"align":"left","content":[{"tag":"p","children":["Alap dokumentumok"]}]},
+        {
+         "kind": "blurb",
+         "id": "m6",
+         "index": 0,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Adatkezelési tevékenységek Nyilvántartás"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m7",
+         "index": 1,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Általános adatkezelési tájékoztató"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m8",
+         "index": 2,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Intézményi adatkezelési szabályzat"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m9",
+         "index": 3,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Iratkezelési szabályzat"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m10",
+         "index": 4,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Kamera szabályzat"]}]
+        }
+       ]
+      },
+      {
+       "id": "c5",
+       "span": "1_2",
+       "index": 5,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m11","index":6,"align":"left","content":[{"tag":"p","children":["Sablon dokumentumok"]}]},
+        {
+         "kind": "blurb",
+         "id": "m12",
+         "index": 5,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Adatkezelési tájékoztató hozzájárulás alapján ……………-hoz"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m13",
+         "index": 6,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [
+          {"tag":"p","children":["ADATKEZELÉSI HOZZÁJÁRULÁS hozzájárulás alapján kezelt adatokhoz törvényes képviselő"]}
+         ]
+        },
+        {
+         "kind": "blurb",
+         "id": "m14",
+         "index": 7,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["ADATKEZELÉSI HOZZÁJÁRULÁS hozzájárulás alapján kezelt adatokhoz"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m15",
+         "index": 8,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": ["Tájékoztatás nem hozzájárulás alapján kezelt adatok esetében törvényes képviselő részére"]
+          }
+         ]
+        },
+        {
+         "kind": "blurb",
+         "id": "m16",
+         "index": 9,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Tájékoztatás nem hozzájárulás alapján kezelt adatok esetében"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

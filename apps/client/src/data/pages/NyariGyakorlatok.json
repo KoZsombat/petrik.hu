@@ -1,0 +1,134 @@
+{
+ "template": "builder",
+ "scope": "page-nyari-gyakorlatok",
+ "articleClass": "post-1537 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Nyári gyakorlat"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"p","children":["Vállalati környezetben, életszerű munkakörülmények között"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "4_4",
+       "index": 1,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m2",
+         "index": 2,
+         "align": "left",
+         "content": [{"tag":"p","children":["Nyári gyakorlathoz kapcsolodó bejegyzések"]}]
+        },
+        {
+         "kind": "post-feed",
+         "id": "m3",
+         "index": 0,
+         "items": [
+          {
+           "slug": "nyari-gyakorlat-dokumentumai",
+           "date": "febr 8, 2023",
+           "author": {"name":"Tamás Györgyi","to":"/author/gyorgyi-tamas/"}
+          }
+         ],
+         "columns": 3,
+         "align": "left"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "index": 2,
+     "columns": [
+      {
+       "id": "c2",
+       "span": "1_3",
+       "index": 2,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m4",
+         "index": 3,
+         "align": "left",
+         "content": [{"tag":"h1","children":[{"tag":"strong","children":["A nyári gyakorlatok koordinátorának elérhetőség"]}]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m5",
+         "index": 0,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Szolnok Ádám"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m6",
+         "index": 1,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["A.017 tanári"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m7",
+         "index": 2,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"a","href":"mailto:szolnok@petrik.hu","children":["szolnok@petrik.hu"]}]
+        }
+       ]
+      },
+      {"id":"c3","span":"2_3","index":3,"last":true,"modules":[]}
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1176 @@
+{
+ "template": "builder",
+ "scope": "page-elerhetoseg",
+ "articleClass": "post-55 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "1_2",
+       "index": 0,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Elérhetőség"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [
+          {
+           "tag": "p",
+           "children": ["Budapesti Műszaki Szakképzési Centrum",{"tag":"br"},"Petrik Lajos Két Tanítási Nyelvű Technikum"]
+          }
+         ]
+        }
+       ]
+      },
+      {"id":"c1","span":"1_2","index":1,"last":true,"modules":[]}
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c2",
+       "span": "4_4",
+       "index": 2,
+       "last": true,
+       "modules": [{"kind":"text","id":"m2","index":2,"align":"left","content":["Elérhetőség"]}]
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "index": 2,
+     "columns": [
+      {
+       "id": "c3",
+       "span": "1_3",
+       "index": 3,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m3",
+         "index": 0,
+         "src": "/media/wp-content/uploads/2020/09/kepAsset-11024px.png",
+         "width": 1024,
+         "height": 917,
+         "srcSet": "/media/wp-content/uploads/2020/09/kepAsset-11024px.png 1024w, /media/wp-content/uploads/2020/09/kepAsset-11024px-980x878.png 980w, /media/wp-content/uploads/2020/09/kepAsset-11024px-480x430.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1024px, 100vw"
+        },
+        {
+         "kind": "text",
+         "id": "m4",
+         "index": 3,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"center","color":"#0c71c3","fontSize":"large"},
+           "children": [{"tag":"strong","children":["Budapesti Műszaki Szakképzési Centrum"]}]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m5",
+         "index": 4,
+         "align": "center",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": ["Levelezési cím",{"tag":"br"},{"tag":"strong","children":["1149 Budapest, Várna utca 23.",{"tag":"br"}]}]
+          },
+          " ",
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": ["Web – ",{"tag":"a","href":"http://www.bmszc.hu","children":[{"tag":"strong","children":["www.bmszc.hu"]}]}]
+          },
+          " ",
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": [
+            "OM azonosító – ",
+            {"tag":"strong","children":["203058",{"tag":"br"}]},
+            "Adószám ",
+            {"tag":"strong","children":["– 15831880-2-42"]}
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": [
+            "Főigazgató – ",
+            {"tag":"strong","children":["Csordás Katalin",{"tag":"br"}]},
+            "Kancellár – ",
+            {"tag":"strong","children":["Viszkok Mihály"]}
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c4",
+       "span": "1_3",
+       "index": 4,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m6",
+         "index": 1,
+         "src": "/media/wp-content/uploads/2020/09/logo-kerek-kicsi.png",
+         "width": 607,
+         "height": 607,
+         "srcSet": "/media/wp-content/uploads/2020/09/logo-kerek-kicsi.png 607w, /media/wp-content/uploads/2020/09/logo-kerek-kicsi-480x480.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 607px, 100vw"
+        },
+        {
+         "kind": "text",
+         "id": "m7",
+         "index": 5,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"center","color":"#0c71c3","fontSize":"large"},
+           "children": [
+            {"tag":"strong","children":["Budapesti Műszaki SZC"]},
+            {"tag":"br"},
+            {"tag":"strong","children":[" Petrik Lajos Két Tanítási Nyelvű Technikum"]}
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m8",
+         "index": 6,
+         "align": "center",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": [
+            "Levelezési cím",
+            {"tag":"br"},
+            {"tag":"strong","children":["1146 Budapest, Thököly út 48-54.",{"tag":"br"}]},
+            {"tag":"br"},
+            "Web – ",
+            {"tag":"a","href":"/","children":[{"tag":"strong","children":["www.petrik.hu"]}]},
+            {"tag":"br"},
+            "E-mail – ",
+            {"tag":"a","href":"mailto:info@petrik.hu","children":[{"tag":"strong","children":["info@petrik.hu"]}]}
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A porta – ",
+            {"tag":"strong","children":["+36 70 502 1723",{"tag":"br"}]},
+            "B porta: – ",
+            {"tag":"strong","children":["+36 70 502 1724"]},
+            {"tag":"strong"}
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": [
+            "Az iskola OM azonosítója – ",
+            {"tag":"strong","children":["203 058"]},
+            {"tag":"br"},
+            "Az iskola technikai kódja – ",
+            {"tag":"strong","children":["520413"]}
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c5",
+       "span": "1_3",
+       "index": 5,
+       "last": true,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m9",
+         "index": 2,
+         "src": "/media/wp-content/uploads/2020/09/logo-kerek-kicsi.png",
+         "width": 607,
+         "height": 607,
+         "srcSet": "/media/wp-content/uploads/2020/09/logo-kerek-kicsi.png 607w, /media/wp-content/uploads/2020/09/logo-kerek-kicsi-480x480.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 607px, 100vw"
+        },
+        {
+         "kind": "text",
+         "id": "m10",
+         "index": 7,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"center","color":"#0c71c3","fontSize":"large"},
+           "children": [{"tag":"strong","children":["Petrik Alapítvány"]}]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m11",
+         "index": 8,
+         "align": "center",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": ["Levelezési cím",{"tag":"br"}," ",{"tag":"strong","children":["1146 Budapest, Thököly út 48-54."]}]
+          },
+          " ",
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": [
+            "Adószám – ",
+            {"tag":"strong","children":["19674959-1-42",{"tag":"br"}," "]},
+            {"tag":"span","style":{"fontSize":"14px"},"children":["Számlaszám – "]},
+            {"tag":"strong","children":["11714006-20266635"]}
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "index": 2,
+   "rows": [
+    {
+     "id": "r3",
+     "index": 3,
+     "columns": [
+      {
+       "id": "c6",
+       "span": "4_4",
+       "index": 6,
+       "last": true,
+       "modules": [{"kind":"text","id":"m12","index":9,"align":"left","content":["Az iskola vezetői"]}]
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "index": 4,
+     "columns": [
+      {
+       "id": "c7",
+       "span": "1_5",
+       "index": 7,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m13",
+         "index": 0,
+         "className": "et_pb_with_border",
+         "name": "Gál-Berey Csilla",
+         "position": "Igazgató",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2021/10/gal_berey_csilla_2021.jpg",
+          "alt": "Gál-Berey Csilla",
+          "width": 675,
+          "height": 985,
+          "srcSet": "/media/wp-content/uploads/2021/10/gal_berey_csilla_2021.jpg 675w, /media/wp-content/uploads/2021/10/gal_berey_csilla_2021-480x700.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 675px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m14",
+         "index": 10,
+         "align": "left",
+         "content": [
+          {"tag":"p","style":{"textAlign":"center"},"children":["+36 70 502 1719",{"tag":"br"},"galberey@petrik.hu"]},
+          " ",
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": [{"tag":"em","children":["fogadó óra: Időpont egyeztetés szerint, a titkarsag@petrik.hu címen."]}]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c8",
+       "span": "1_5",
+       "index": 8,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m15",
+         "index": 1,
+         "className": "et_pb_with_border",
+         "name": "Penksza Károlyné",
+         "position": "Általános igazgatóhelyettes",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/penksza_karolyne.jpg",
+          "alt": "Penksza Károlyné",
+          "width": 672,
+          "height": 976,
+          "srcSet": "/media/wp-content/uploads/2020/09/penksza_karolyne.jpg 672w, /media/wp-content/uploads/2020/09/penksza_karolyne-480x697.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 672px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m16",
+         "index": 11,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["+36 70 502 1792",{"tag":"br"},"asztalos@petrik.hu"]}]
+        }
+       ]
+      },
+      {
+       "id": "c9",
+       "span": "1_5",
+       "index": 9,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m17",
+         "index": 2,
+         "className": "et_pb_with_border",
+         "name": "Bátki Ottilia",
+         "position": "Szakmai igazgatóhelyettes",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2021/10/batki_ottilia_2021.jpg",
+          "alt": "Bátki Ottilia",
+          "width": 672,
+          "height": 988,
+          "srcSet": "/media/wp-content/uploads/2021/10/batki_ottilia_2021.jpg 672w, /media/wp-content/uploads/2021/10/batki_ottilia_2021-480x706.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 672px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m18",
+         "index": 12,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": ["+36 70 502 1791",{"tag":"br"},"batki.ottilia@petrik.hu"]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c10",
+       "span": "1_5",
+       "index": 10,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m19",
+         "index": 3,
+         "className": "et_pb_with_border",
+         "name": "Sárközi-Paulik Brigitta",
+         "position": "igazgatóhelyettes",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/sarkozi_paulik_brigitta.jpg",
+          "alt": "Sárközi-Paulik Brigitta",
+          "width": 658,
+          "height": 988,
+          "srcSet": "/media/wp-content/uploads/2020/09/sarkozi_paulik_brigitta.jpg 658w, /media/wp-content/uploads/2020/09/sarkozi_paulik_brigitta-200x300.jpg 200w",
+          "sizes": "(max-width: 658px) 100vw, 658px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m20",
+         "index": 13,
+         "align": "left",
+         "content": [{"tag":"p","children":["+36 70 506 9336"]}," ",{"tag":"p","children":["paulik@petrik.hu"]}]
+        }
+       ]
+      },
+      {
+       "id": "c11",
+       "span": "1_5",
+       "index": 11,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m21",
+         "index": 4,
+         "className": "et_pb_with_border",
+         "name": "Szolnok Ádám",
+         "position": "Szervezésért és kommunikációért felelős igazgatóhelyettes",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/szolnok_adam.jpg",
+          "alt": "Szolnok Ádám",
+          "width": 652,
+          "height": 979,
+          "srcSet": "/media/wp-content/uploads/2020/09/szolnok_adam.jpg 652w, /media/wp-content/uploads/2020/09/szolnok_adam-200x300.jpg 200w",
+          "sizes": "(max-width: 652px) 100vw, 652px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m22",
+         "index": 14,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["+36 70 502 1765",{"tag":"br"},"szolnok@petrik.hu"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r5",
+     "index": 5,
+     "columns": [
+      {
+       "id": "c12",
+       "span": "4_4",
+       "index": 12,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m23","index":15,"align":"left","content":["Tanügyigazgatási ügyintézők"]},
+        {
+         "kind": "text",
+         "id": "m24",
+         "index": 16,
+         "align": "left",
+         "content": [{"tag":"p","children":["Tanulói ügyintézés céljából a Diákcentrum hétköznap 9:00-14:00 között érhető el."]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r6",
+     "index": 6,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c13",
+       "span": "1_5",
+       "index": 13,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m25",
+         "index": 5,
+         "className": "et_pb_with_border",
+         "name": "Lévai Viktória",
+         "position": "Igazgatói titkárság",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2021/03/levia_viktoria.png",
+          "alt": "Lévai Viktória",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2021/03/levia_viktoria.png 600w, /media/wp-content/uploads/2021/03/levia_viktoria-480x720.png 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m26",
+         "index": 17,
+         "align": "left",
+         "content": [
+          {"tag":"p","style":{"textAlign":"center"},"children":["+36 70 502 1708",{"tag":"br"}," titkarsag@petrik.hu"]}
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c14",
+       "span": "1_5",
+       "index": 14,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m27",
+         "index": 6,
+         "className": "et_pb_with_border",
+         "name": "Jókuthy Claudia",
+         "position": "Gazdasági ügyintéző",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Jókuthy Claudia",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m28",
+         "index": 18,
+         "align": "left",
+         "content": [
+          {"tag":"p","style":{"textAlign":"center"},"children":["+36 70 502 1717",{"tag":"br"}," gazdasagi@petrik.hu"]}
+         ]
+        }
+       ]
+      },
+      {"id":"c15","span":"1_5","index":15,"modules":[]},
+      {
+       "id": "c16",
+       "span": "1_5",
+       "index": 16,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m29",
+         "index": 7,
+         "className": "et_pb_with_border",
+         "name": "Aranyos Emese",
+         "position": "Diákcentrum ügyintéző",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Aranyos Emese",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "," ",{"tag":"p","children":["Felvételivel/beiratkozással kapcsolatos ügyintézés."]}]
+        },
+        {
+         "kind": "text",
+         "id": "m30",
+         "index": 19,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": ["+36 70 502 1736",{"tag":"br"},"aranyos.emese@petrik.hu"]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c17",
+       "span": "1_5",
+       "index": 17,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m31",
+         "index": 8,
+         "className": "et_pb_with_border",
+         "name": "Horváthné Szirai Szilvia",
+         "position": "Diákcentrum ügyintéző",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Horváthné Szirai Szilvia",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "," ",{"tag":"p","children":["Érettségivel/beiratkozással kapcsolatos ügyintézés."]}]
+        },
+        {
+         "kind": "text",
+         "id": "m32",
+         "index": 20,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": ["+36 70 502 1716",{"tag":"br"},"horvathne.szirai.szilvia@petrik.hu"]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r7",
+     "index": 7,
+     "columns": [
+      {
+       "id": "c18",
+       "span": "4_4",
+       "index": 18,
+       "last": true,
+       "modules": [{"kind":"text","id":"m33","index":21,"align":"left","content":["Egészségügyi munkatársak"]}]
+      }
+     ]
+    },
+    {
+     "id": "r8",
+     "index": 8,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c19",
+       "span": "1_5",
+       "index": 19,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m34",
+         "index": 9,
+         "className": "et_pb_with_border",
+         "name": "Dr Tóth-Vajna Zsombor",
+         "position": "Iskolaorvos",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Dr Tóth-Vajna Zsombor",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m35",
+         "index": 22,
+         "align": "left",
+         "content": [
+          {"tag":"p","style":{"textAlign":"center"},"children":["+36 70 502 1728",{"tag":"br"},"orvosi@petrik.hu"]},
+          " ",
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": [{"tag":"em","children":["rendelési idő: Hétfő és Szerda 9:30-14:00"]}]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c20",
+       "span": "1_5",
+       "index": 20,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m36",
+         "index": 10,
+         "className": "et_pb_with_border",
+         "name": "Pezenhoffer Tímea",
+         "position": "Védőnő",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Pezenhoffer Tímea",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m37",
+         "index": 23,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": [
+            "+36 70 502 1728",
+            {"tag":"br"},
+            {"tag":"a","href":"mailto:orvosi@petrik.hu","children":["orvosi@petrik.hu"]},
+            {"tag":"br"},
+            {"tag":"a","href":"mailto:petrikorvosi@gmail.com","children":["petrikorvosi@gmail.com"]}
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": [{"tag":"em","children":["Rendelési idő: Hétfőtől Csütörtökig 9:30-14:00"]}]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c21",
+       "span": "1_5",
+       "index": 21,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m38",
+         "index": 11,
+         "className": "et_pb_with_border",
+         "name": "Petrács Zsuzsanna",
+         "position": "Fejlesztő pedagógus",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarno.png",
+          "alt": "Petrács Zsuzsanna",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarno.png 600w, /media/wp-content/uploads/2020/09/tanarno-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m39",
+         "index": 24,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": ["+36 70 502 1724",{"tag":"br"},"petracs.zsuzsanna@petrik.hu"]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c22",
+       "span": "1_5",
+       "index": 22,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m40",
+         "index": 12,
+         "className": "et_pb_with_border",
+         "name": "Pál Bottyán László",
+         "position": "Iskolapszichológus",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/pal_bottyan_pszichologus.jpg",
+          "alt": "Pál Bottyán László",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/pal_bottyan_pszichologus.jpg 600w, /media/wp-content/uploads/2020/09/pal_bottyan_pszichologus-480x720.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m41",
+         "index": 25,
+         "align": "left",
+         "content": [
+          {"tag":"p","style":{"textAlign":"center"},"children":["+36 70 502 1813",{"tag":"br"},"lelkiero@yahoo.com"]},
+          " ",
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": [{"tag":"em","children":["Fogadó nap diákoknak: Tanítási időben egyeztetés alapján. (B044)"]}]
+          },
+          " ",
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": [{"tag":"em","children":["Fogadó nap szülőknek: előzetes telefonos egyeztetés alapján"]}]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c23",
+       "span": "1_5",
+       "index": 23,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m42",
+         "index": 13,
+         "className": "et_pb_with_border",
+         "name": "Ujházy Veronika",
+         "position": "Szociális segitő",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2026/02/Veronika-uj-kep_-uj-nev.png",
+          "alt": "Ujházy Veronika",
+          "width": 823,
+          "height": 700,
+          "srcSet": "/media/wp-content/uploads/2026/02/Veronika-uj-kep_-uj-nev.png 823w, /media/wp-content/uploads/2026/02/Veronika-uj-kep_-uj-nev-480x408.png 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 823px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m43",
+         "index": 26,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": ["Telefon: +36 70 502 2719",{"tag":"br"},"borbely.veronika@petrik.hu"]
+          },
+          " ",
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": [{"tag":"em","children":["Fogadó óra"]},{"tag":"br"},{"tag":"em","children":["H: 9:00-12:00"]}]
+          },
+          " ",
+          {"tag":"p","style":{"textAlign":"center"},"children":[{"tag":"em"}]},
+          " ",
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": [{"tag":"em","children":["Telefonon munkanapokon",{"tag":"br"},"10:00-18:00"]}]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r9",
+     "index": 9,
+     "columns": [
+      {
+       "id": "c24",
+       "span": "4_4",
+       "index": 24,
+       "last": true,
+       "modules": [{"kind":"text","id":"m44","index":27,"align":"left","content":["Tanári és tanulói segítők"]}]
+      }
+     ]
+    },
+    {
+     "id": "r10",
+     "index": 10,
+     "className": "et_pb_with_border",
+     "columns": [
+      {
+       "id": "c25",
+       "span": "1_5",
+       "index": 25,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m45",
+         "index": 14,
+         "className": "et_pb_with_border",
+         "name": "Kulcsár Anikó",
+         "position": "Szabadidő-szervező",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/11/kulcsar_aniko.jpg",
+          "alt": "Kulcsár Anikó",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/11/kulcsar_aniko.jpg 600w, /media/wp-content/uploads/2020/11/kulcsar_aniko-480x720.jpg 480w",
+          "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 600px, 100vw"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m46",
+         "index": 28,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["+36 70 502 1739",{"tag":"br"},"kulcsara@petrik.hu"]}]
+        }
+       ]
+      },
+      {
+       "id": "c26",
+       "span": "1_5",
+       "index": 26,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m47",
+         "index": 15,
+         "className": "et_pb_with_border",
+         "name": "Sütő Éva",
+         "position": "Könyvtáros",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/suto_eva.jpg",
+          "alt": "Sütő Éva",
+          "width": 652,
+          "height": 979,
+          "srcSet": "/media/wp-content/uploads/2020/09/suto_eva.jpg 652w, /media/wp-content/uploads/2020/09/suto_eva-200x300.jpg 200w",
+          "sizes": "(max-width: 652px) 100vw, 652px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m48",
+         "index": 29,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["+36 70 502 1726",{"tag":"br"},"esuto@petrik.hu"]}]
+        }
+       ]
+      },
+      {
+       "id": "c27",
+       "span": "1_5",
+       "index": 27,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m49",
+         "index": 30,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "style": {"textAlign":"center"},
+           "children": [{"tag":"em","children":[{"tag":"strong","children":["Könytári nyitva tartás:"]}]}]
+          },
+          {
+           "tag": "em",
+           "children": [
+            {"tag":"p","children":["hétfő",{"tag":"br"},"9:00 – 16:00  "]},
+            {"tag":"p","children":["kedd",{"tag":"br"},"9:00 – 14:00"]},
+            {"tag":"p","children":["szerda",{"tag":"br"},"8:30 – 14:30"]},
+            {"tag":"p","children":["csütörtök",{"tag":"br"},"9:00 – 14:00"]}
+           ]
+          },
+          {"tag":"p","children":[{"tag":"em","children":["péntek: ",{"tag":"br"},"9:00 – 12:00 "]}]}
+         ]
+        }
+       ]
+      },
+      {"id":"c28","span":"1_5","index":28,"modules":[]},
+      {
+       "id": "c29",
+       "span": "1_5",
+       "index": 29,
+       "last": true,
+       "modules": [
+        {
+         "kind": "team-member",
+         "id": "m50",
+         "index": 16,
+         "className": "et_pb_with_border",
+         "name": "Komlós Zoltán",
+         "position": "Gondnok",
+         "headingLevel": 4,
+         "align": "center",
+         "image": {
+          "src": "/media/wp-content/uploads/2020/09/tanarur.png",
+          "alt": "Komlós Zoltán",
+          "width": 600,
+          "height": 900,
+          "srcSet": "/media/wp-content/uploads/2020/09/tanarur.png 600w, /media/wp-content/uploads/2020/09/tanarur-200x300.png 200w",
+          "sizes": "(max-width: 600px) 100vw, 600px"
+         },
+         "content": [" "]
+        },
+        {
+         "kind": "text",
+         "id": "m51",
+         "index": 31,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"center"},"children":["+36 70 502 1808.",{"tag":"br"},"gondnok@petrik.hu"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "index": 3,
+   "className": "et_pb_with_border",
+   "rows": [
+    {
+     "id": "r11",
+     "index": 11,
+     "columns": [
+      {
+       "id": "c30",
+       "span": "1_3",
+       "index": 30,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m52",
+         "index": 32,
+         "align": "center",
+         "bgLayout": "dark",
+         "content": [
+          {"tag":"h2","children":[{"tag":"span","style":{"color":"#808080"},"children":["Levelezési címünk"]}]},
+          " ",
+          {"tag":"p","children":["1146 Budapest, Thököly út 48-54."]}
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c31",
+       "span": "1_3",
+       "index": 31,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m53",
+         "index": 33,
+         "align": "center",
+         "bgLayout": "dark",
+         "content": [
+          {"tag":"h2","children":[{"tag":"span","style":{"color":"#808080"},"children":["Telefon"]}]},
+          " ",
+          {"tag":"p","children":[{"tag":"a","href":"/phone:+36705021724","children":["+36 70 502 1724"]}]}
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c32",
+       "span": "1_3",
+       "index": 32,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m54",
+         "index": 34,
+         "align": "center",
+         "bgLayout": "dark",
+         "content": [
+          {"tag":"h2","children":[{"tag":"span","style":{"color":"#808080"},"children":["E-mail"]}]},
+          " ",
+          {"tag":"p","children":[{"tag":"a","href":"mailto:info@petrik.hu","children":["info@petrik.hu"]}]}
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r12",
+     "index": 12,
+     "columns": [
+      {
+       "id": "c33",
+       "span": "4_4",
+       "index": 33,
+       "last": true,
+       "modules": [
+        {
+         "kind": "social-follow",
+         "id": "m55",
+         "index": 0,
+         "networks": [
+          {
+           "network": "facebook",
+           "href": "https://www.facebook.com/BMSZCPetrik/",
+           "title": "Kövesse a (z) Facebook elemet",
+           "label": "Követés"
+          },
+          {
+           "network": "instagram",
+           "href": "https://www.instagram.com/petrikinsta/",
+           "title": "Kövesse a (z) Instagram elemet",
+           "label": "Követés"
+          },
+          {"network":"youtube","href":"#","title":"Kövesse a (z) Youtube elemet","label":"Követés"},
+          {"network":"rss","href":"#","title":"Kövesse a (z) RSS elemet","label":"Követés"}
+         ],
+         "align": "center"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

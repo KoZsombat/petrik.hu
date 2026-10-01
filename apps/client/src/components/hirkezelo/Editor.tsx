@@ -4,7 +4,7 @@ import * as api from '../../lib/hirkezelo/api.ts'
 import { ApiError } from '../../lib/hirkezelo/api.ts'
 import type { ApiUser } from '../../lib/hirkezelo/api.ts'
 import { STATUS } from '../../../../../shared/pnw/types.ts'
-import type { Post, RichTextDocument } from '../../../../../shared/pnw/types.ts'
+import type { ImagePosition, Post, RichTextDocument } from '../../../../../shared/pnw/types.ts'
 import { emptyDocument } from '../../../../../shared/pnw/richtext.ts'
 import { canManageTerms } from '../../../../../shared/pnw/permissions.ts'
 import PostFields from './PostFields.tsx'
@@ -23,6 +23,7 @@ export default function Editor({ user, postId, published }: Props) {
   const [categoryIds, setCategoryIds] = useState<string[]>([])
   const [tagIds, setTagIds] = useState<string[]>([])
   const [image, setImage] = useState<File | null>(null)
+  const [imagePosition, setImagePosition] = useState<ImagePosition>('top')
   const [modalImageUrl, setModalImageUrl] = useState<string | undefined>(undefined)
   const [busy, setBusy] = useState(false)
   const [previewOpen, setPreviewOpen] = useState(false)
@@ -40,6 +41,7 @@ export default function Editor({ user, postId, published }: Props) {
         setExcerpt(post.excerpt)
         setCategoryIds(post.categoryIds)
         setTagIds(post.tagIds)
+        setImagePosition(post.imagePosition ?? 'top')
       })
       .finally(() => {
         if (!cancelled) setLoading(false)
@@ -91,6 +93,7 @@ export default function Editor({ user, postId, published }: Props) {
       form.set('categoryIds', JSON.stringify(categoryIds))
       form.set('tagIds', JSON.stringify(tagIds))
       form.set('command', command)
+      form.set('imagePosition', imagePosition)
       if (image) form.set('featuredImage', image)
 
       const result = postId ? await api.updatePost(postId, form) : await api.createPost(form)
@@ -115,6 +118,7 @@ export default function Editor({ user, postId, published }: Props) {
       form.set('excerpt', excerpt)
       form.set('categoryIds', JSON.stringify(categoryIds))
       form.set('tagIds', JSON.stringify(tagIds))
+      form.set('imagePosition', imagePosition)
       if (image) form.set('featuredImage', image)
 
       const result = await api.updatePublished(postId, form)
@@ -191,6 +195,9 @@ export default function Editor({ user, postId, published }: Props) {
           canCreateTerms={canManageTerms(user)}
           currentImage={post?.featuredImage}
           onImageChange={setImage}
+          imagePosition={imagePosition}
+          onImagePositionChange={setImagePosition}
+          templates={!published}
         />
 
         <div className="pnw-form-actions pnw-form-actions-spread">
@@ -229,6 +236,7 @@ export default function Editor({ user, postId, published }: Props) {
         categoryIds={categoryIds}
         tagIds={tagIds}
         image={modalImageUrl ?? post?.featuredImage}
+        imagePosition={imagePosition}
       />
 
       {published ? (

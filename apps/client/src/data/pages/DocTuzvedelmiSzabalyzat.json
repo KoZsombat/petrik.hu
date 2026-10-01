@@ -1,0 +1,64 @@
+{
+ "template": "docs",
+ "scope": "page-docs-tuzvedelmi-szabalyzat",
+ "docsSlug": "tuzvedelmi-szabalyzat",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2023/11/TVSZ_Petrik_2023.pdf",
+             "children": ["Tűzvédelmi szabályzat"]
+            },
+            {"tag":"br"},
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2023/11/TVSZ-elolap.pdf",
+             "children": ["Tűzvédelmi szabályzat előlap"]
+            }
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2023/11/MVSZ_BMSZC Petrik_2023.pdf",
+             "children": ["Munkavédelmi szabályzat"]
+            }
+           ]
+          },
+          " "
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

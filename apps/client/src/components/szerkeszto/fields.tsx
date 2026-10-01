@@ -122,3 +122,127 @@ export function Select<T extends string>({
     </select>
   )
 }
+
+export function NumberInput({
+  id,
+  value,
+  onChange,
+  min,
+  max,
+  step,
+}: {
+  id: string
+  value: number | undefined
+  onChange: (value: number | undefined) => void
+  min?: number
+  max?: number
+  step?: number
+}) {
+  return (
+    <input
+      id={id}
+      type="number"
+      value={value ?? ''}
+      min={min}
+      max={max}
+      step={step}
+      onChange={(event) => onChange(event.target.value === '' ? undefined : Number(event.target.value))}
+    />
+  )
+}
+
+export function Checkbox({
+  checked,
+  onChange,
+  children,
+}: {
+  checked: boolean
+  onChange: (checked: boolean) => void
+  children: ReactNode
+}) {
+  return (
+    <label className="szk-check">
+      <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} />
+      {children}
+    </label>
+  )
+}
+
+export function Textarea({
+  id,
+  value,
+  onChange,
+  rows = 3,
+}: {
+  id: string
+  value: string
+  onChange: (value: string) => void
+  rows?: number
+}) {
+  return <textarea id={id} className="szk-textarea" rows={rows} value={value} onChange={(event) => onChange(event.target.value)} />
+}
+
+/**
+ * A list of records the user adds to, removes from and reorders - the slides
+ * of a slider, the networks of a social row, the tables of a price list. The
+ * records have no ids of their own, so rows are keyed by position, which is
+ * safe here: every field is controlled, nothing inside holds state.
+ */
+export function Repeater<T>({
+  items,
+  onChange,
+  render,
+  create,
+  addLabel,
+  itemLabel,
+}: {
+  items: T[]
+  onChange: (next: T[]) => void
+  render: (item: T, update: (next: T) => void, index: number) => ReactNode
+  create: () => T
+  addLabel: string
+  itemLabel: string
+}) {
+  const swap = (index: number, step: -1 | 1) => {
+    const target = index + step
+    if (target < 0 || target >= items.length) return
+    const next = [...items]
+    ;[next[index], next[target]] = [next[target], next[index]]
+    onChange(next)
+  }
+
+  return (
+    <div className="szk-repeater">
+      {items.map((item, index) => (
+        <div className="szk-repeater-item" key={index}>
+          <div className="szk-repeater-head">
+            <strong>
+              {index + 1}. {itemLabel}
+            </strong>
+            <span className="szk-tools">
+              <button type="button" aria-label={`${itemLabel} feljebb`} title="Feljebb" onClick={() => swap(index, -1)}>
+                ↑
+              </button>
+              <button type="button" aria-label={`${itemLabel} lejjebb`} title="Lejjebb" onClick={() => swap(index, 1)}>
+                ↓
+              </button>
+              <button
+                type="button"
+                className="szk-danger"
+                aria-label={`${itemLabel} törlése`}
+                title="Törlés"
+                onClick={() => onChange(items.filter((_, at) => at !== index))}
+              >
+                ✕
+              </button>
+            </span>
+          </div>
+          {render(item, (next) => onChange(items.map((entry, at) => (at === index ? next : entry))), index)}
+        </div>
+      ))}
+      <button type="button" className="szk-add" onClick={() => onChange([...items, create()])}>
+        {addLabel}
+      </button>
+    </div>
+  )
+}

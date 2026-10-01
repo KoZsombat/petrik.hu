@@ -1,0 +1,46 @@
+{
+ "template": "docs",
+ "scope": "page-docs-nemzetkoziesitesi-strategia",
+ "docsSlug": "nemzetkoziesitesi-strategia",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2023/09/nemzetkoziesitesi_strategia_-_2023-09-06.pdf",
+             "children": ["Nemzetköziesítési stratégia"]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

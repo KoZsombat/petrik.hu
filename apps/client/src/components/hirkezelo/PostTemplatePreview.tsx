@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import type { RichTextDocument } from '../../../../../shared/pnw/types.ts'
+import type { ImagePosition, RichTextDocument } from '../../../../../shared/pnw/types.ts'
 import { isBlank } from '../../../../../shared/pnw/richtext.ts'
 import { termMap, useTerms } from '../../lib/terms.ts'
 import { formatPostDate } from '../../lib/postDate.ts'
@@ -22,6 +22,8 @@ type Props = {
   content: RichTextDocument
   categoryIds: string[]
   image?: string
+  /** Above the text (default) or below it - the author's choice. */
+  imagePosition?: ImagePosition
   date?: string
 }
 
@@ -33,7 +35,7 @@ type Props = {
  * frame), rather than an invented preview card. Requested explicitly: the
  * bound sample post is "the template" for how a news post should preview.
  */
-export default function PostTemplatePreview({ title, content, categoryIds, image, date }: Props) {
+export default function PostTemplatePreview({ title, content, categoryIds, image, imagePosition = 'top', date }: Props) {
   useBodyClass(PREVIEW_BODY_CLASSES)
 
   // Only a category seeded from the mirror has an archive page to link to
@@ -71,10 +73,11 @@ export default function PostTemplatePreview({ title, content, categoryIds, image
                 </p>
               </div>
               <div className="entry-content">
-                {image && <img src={image} alt="" />}
+                {image && imagePosition === 'top' && <img src={image} alt="" />}
                 <div className="et_pb_text">
                   {isBlank(content) ? <p>Még nincs tartalom.</p> : <RichText document={content} />}
                 </div>
+                {image && imagePosition === 'bottom' && <img src={image} alt="" />}
               </div>
             </article>
           </div>

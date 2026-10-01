@@ -1,0 +1,1266 @@
+{
+ "template": "builder",
+ "scope": "page-kozossegi-szolgalat",
+ "articleClass": "post-944 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Közösségi szolgálat"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [
+          {"tag":"p","children":["Szociális, környezetvédelmi, a tanuló helyi közösségének javát szolgáló tevékenység"]}
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "4_4",
+       "index": 1,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m2","index":2,"align":"left","content":[{"tag":"p","children":["Kedves Diákok!"]}]},
+        {
+         "kind": "text",
+         "id": "m3",
+         "index": 3,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Szívesen alkotnál valami újat közösen az osztálytársaiddal? Te is szeretnél tenni másokért? Szeretnél részt venni egy olyan közösségi projektben, amiben gyerekeknek, rászorulóknak, állatoknak segíthetsz a barátaiddal, miközben teljesíted a kötelező közösségi szolgálatodat is?"
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A közösségi szolgálat során nem csak megoldhatsz egy problémát, hanem észrevétlenül tanulhatsz az együttműködésről, a konfliktuskezelésről, az empátiáról, a kreatív gondolkodásról, a projekttervezésről, a döntéshozásról és a felelősségvállalásról is. Ezeket az újonnan megszerzett kompetenciákat a későbbi munkakeresés során is hasznosíthatod."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "A jelenleg fennálló különleges helyzetben az iskolák a tanulókat a tantermen kívüli, digitális oktatás iskolai folyamatába is bevonhatják, így online módon, segítheted, mentorálhatod diáktársaidat."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "2016. január elseje után az érettségi vizsga bizonyítvány kiadásának feltétele 50 óra „közösségi szolgálat” elvégzésének igazolása."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "strong",
+             "children": [
+              " „Közösségi szolgálat: szociális, környezetvédelmi, a tanuló helyi közösségének javát szolgáló, szervezett keretek között folytatott, anyagi érdektől független, egyéni vagy csoportos tevékenység és annak pedagógiai feldolgozása.”"
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "index": 2,
+     "columns": [
+      {
+       "id": "c2",
+       "span": "4_4",
+       "index": 2,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m4",
+         "index": 4,
+         "align": "left",
+         "content": [{"tag":"p","children":["Jogszabályi háttér az Iskolai Közösségi Szolgálathoz"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m5",
+         "index": 5,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "2011. évi CXC. törvény a nemzeti köznevelésről, ",
+            {
+             "tag": "a",
+             "href": "http://jogszabalykereso.mhk.hu/MK11162.pdf",
+             "children": ["Magyar Közlöny 162. szám, 2011. december 29."]
+            }
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Az ehhez kapcsolódó végrehajtási rendeletben a közösségi szolgálatra vonatkozó rendelkezések a következően:"
+           ]
+          },
+          " ",
+          {
+           "tag": "ul",
+           "children": [
+            {
+             "tag": "li",
+             "children": [
+              "A közösségi szolgálat helyszínén a szolgálattal érintett személy segítése tanítási napokon alkalmanként legkevesebb egy, legfeljebb háromórás, tanítási napokon kívül alkalmanként legkevesebb egy, legfeljebb ötórás időkeretben végezhető."
+             ]
+            },
+            {
+             "tag": "li",
+             "children": [
+              "A közösségi szolgálat teljesítése körében egy órán hatvan perc közösségi szolgálati idő értendő azzal, hogy a helyszínre utazás és a helyszínről hazautazás ideje nem számítható be a teljesítésbe."
+             ]
+            },
+            {
+             "tag": "li",
+             "children": [
+              "A közösségi szolgálatot az adott tanuló esetében koordináló pedagógus az ötven órán belül – szükség szerint a mentorral közösen – legfeljebb öt órás felkészítő, majd legfeljebb öt órás záró foglalkozást tart. (20/2012. (VIII. 31.) EMMI rendelet)"
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "index": 3,
+     "columns": [
+      {
+       "id": "c3",
+       "span": "1_2",
+       "index": 3,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m6",
+         "index": 6,
+         "align": "left",
+         "content": [{"tag":"p","children":["Vonatkozó törvények és rendeletek"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m7",
+         "index": 7,
+         "align": "left",
+         "content": [
+          {
+           "tag": "ul",
+           "children": [
+            {
+             "tag": "li",
+             "children": [
+              " ",
+              "A szakképzésről szóló ",
+              {
+               "tag": "a",
+               "href": "/media/wp-content/uploads/2023/04/szakkepzes20220412-2019-LXXX-torveny.pdf",
+               "children": ["2019. év LXXX. törvény"]
+              },
+              ",",
+              " ",
+              "A szakképzésről szóló törvény végrehajtásáról szóló 12/2020. (II. 7.) Korm. rendelet",
+              " "
+             ]
+            },
+            {
+             "tag": "li",
+             "children": [
+              "A ",
+              {
+               "tag": "a",
+               "href": "http://njt.hu/cgi_bin/njt_doc.cgi?docid=30517.376994",
+               "children": ["100/1997. (VI. 13.) Kormányrendelet"]
+              },
+              " az érettségi vizsga vizsgaszabályzatának kiadásáról"
+             ]
+            },
+            {
+             "tag": "li",
+             "children": [
+              "A ",
+              {
+               "tag": "a",
+               "href": "https://net.jogtar.hu/jogszabaly?docid=a2000012.kor",
+               "children": ["12/2020. (II. 7.) Korm. rendelet a szakképzésről szóló törvény végrehajtásáról"]
+              },
+              ", 107§, 258§."
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c4",
+       "span": "1_2",
+       "index": 4,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m8",
+         "index": 8,
+         "align": "left",
+         "content": [{"tag":"p","children":["További szakmai ajánlások"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m9",
+         "index": 9,
+         "align": "left",
+         "content": [
+          {
+           "tag": "ul",
+           "children": [
+            {
+             "tag": "li",
+             "children": [
+              {
+               "tag": "a",
+               "href": "http://njt.hu/cgi_bin/njt_doc.cgi?docid=94916.376416",
+               "children": ["2005. évi LXXXVIII. törvény"]
+              },
+              " a közérdekű önkéntes tevékenységről"
+             ]
+            },
+            {
+             "tag": "li",
+             "children": [
+              {
+               "tag": "a",
+               "href": "http://njt.hu/cgi_bin/njt_doc.cgi?docid=149257.350246",
+               "children": ["110/2012. (VI. 4.) Korm. rendelet"]
+              },
+              " a Nemzeti alaptanterv kiadásáról, bevezetéséről és alkalmazásáról"
+             ]
+            },
+            {
+             "tag": "li",
+             "children": [
+              {
+               "tag": "a",
+               "href": "http://njt.hu/cgi_bin/njt_doc.cgi?docid=146815.214446",
+               "children": ["Nemzeti Önkéntes Stratégia 2011-2020"]
+              }
+             ]
+            },
+            {
+             "tag": "li",
+             "children": [
+              "Civil törvény a ",
+              {
+               "tag": "a",
+               "href": "http://njt.hu/cgi_bin/njt_doc.cgi?docid=139791.376428",
+               "children": ["2011. évi CLXXV. törvény"]
+              },
+              " az egyesülési jogról, a közhasznú jogállásról, valamint a civil szervezetek működéséről és támogatásáról"
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "index": 4,
+     "columns": [
+      {
+       "id": "c5",
+       "span": "4_4",
+       "index": 5,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m10",
+         "index": 10,
+         "align": "left",
+         "content": [{"tag":"p","children":["Az Iskolai Közösségi Szolgálatról bővebben itt olvashatsz"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m11",
+         "index": 11,
+         "align": "left",
+         "content": [
+          {
+           "tag": "ul",
+           "children": [
+            {
+             "tag": "li",
+             "children": [{"tag":"a","href":"http://kozossegi.ofi.hu/","children":["http://kozossegi.ofi.hu/"]}]
+            },
+            {
+             "tag": "li",
+             "children": [
+              {
+               "tag": "a",
+               "href": "https://i-dia.org/korabbi-projektek/iskolai-kozossegi-szolgalat-x/",
+               "children": ["https://i-dia.org/korabbi-projektek/iskolai-kozossegi-szolgalat-x/"]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "index": 2,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r5",
+     "index": 5,
+     "columns": [
+      {
+       "id": "c6",
+       "span": "4_4",
+       "index": 6,
+       "last": true,
+       "modules": [{"kind":"text","id":"m12","index":12,"align":"left","content":[{"tag":"p","children":["IKSZ – Alapelvek"]}]}]
+      }
+     ]
+    },
+    {
+     "id": "r6",
+     "index": 6,
+     "columns": [
+      {
+       "id": "c7",
+       "span": "4_4",
+       "index": 7,
+       "last": true,
+       "modules": [
+        {
+         "kind": "toggle",
+         "id": "m13",
+         "index": 0,
+         "title": "A helyi közösség erősítése:",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "közösségi szolgálat során végzett feladat olyan tevékenységet/tevékenységeket) jelent, amely(ek) a helyi közösség javát szolgálják, és amelyek az iskolában vagy az iskola közvetlen környezetében esetleg néhány kilométeres körzetében , vagy a tanuló lakóhelyén, vagy annak közvetlen környezetében valósulnak meg."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m14",
+         "index": 1,
+         "title": "Szabad választás elve:",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "A diákok a szülőkkel, tanárokkal való egyeztetés alapján maguk választhatják ki az általuk végzendő tevékenységeket az iskola által megszervezett vagy a maguk által javasolt, az iskola által pedig elfogadott tevékenységek közül."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m15",
+         "index": 2,
+         "title": "Anyagi érdektől függetlenség elve:",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Az iskolai közösségi szolgálat kapcsán a felek (pedagógus, intézmény, fogadó szervezet, magánszemély, diák, szülő) anyagi érdeke a programban nem merülhet fel, a tanulók tevékenysége nem jutathat senkit ilyen jellegű előnyhöz, haszonhoz."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m16",
+         "index": 3,
+         "title": "Szervezett keretek közöttiség elve:",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "középiskola feladata és felelőssége az iskolai közösségi szolgálat szervezése és koordinálása, ezért előírás, hogy csak az iskola szervezésében lehet az elszámolható tevékenységet végezni. A diáknak a tevékenység megkezdése előtt rendelkeznie kell az erre jogosult iskolai személy, a feladat felelősének és szüleinek jóváhagyásával."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m17",
+         "index": 4,
+         "title": "Kettős cél elve:",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "A tevékenységek során egyszerre kell a szolgálatjellegnek és az élménypedagógia-alapú tanulásnak megvalósulnia. A közösségi szolgálat megvalósulásához szükséges egyfajta tanulási folyamat jelenléte is."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m18",
+         "index": 5,
+         "title": "Kölcsönösség elve:",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "A segítő és a segítségre szoruló személy lehetőségeihez mérten aktívan bevonódik a programba. A kölcsönösség megélésére a felkészítés során kell érzékennyé tenni a diákokat, így elősegítve, hogy a diák nyitott és elfogadó legyen azzal a személlyel, akivel kapcsolatba lép."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m19",
+         "index": 6,
+         "title": "Közvetlenség elve:",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "A közösségi szolgálat során nem a szervezetet, hanem közvetlenül a szervezet célcsoportját szolgáló tevékenységet kell végezni. A segítő (diák) és a segítségre szoruló között személyközi együttműködés, partnerség jön létre, ami a személyek közötti valódi kapcsolatra helyezi a hangsúlyt, amely alkalmas a személyiségformálásra, az önismeret fejlesztésére."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m20",
+         "index": 7,
+         "title": "Együttműködés elve:",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Az iskolában vagy a fogadó szervezetnél a közösségi szolgálat kapcsán partneri viszony alakul ki az összes érintett között, nem jelenhet meg alá-fölérendeltség sem a pedagógus-diák, sem a fogadó szervezet-diák, sem az ellátott, segített személy-diák viszonyában."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m21",
+         "index": 8,
+         "title": "Arányosság elve:",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "A diák iskolai (pl.: DÖK) vagy olyan külső szervezetnél, amelynek tagja, csak részben végezheti az IKSZ-et. Az ilyen jellegű, egyébként is végzett feladat (pl. diákönkormányzati, sportegyesületi, énekkari vagy bármely más szervezetet érintő) önmagában még nem minősül közösségi szolgálatnak. Ha a tevékenység kiegészül aktív, egyéni, az iskolai közösségi szolgálat jogszabályban említett területein ellátandó többletfeladattal, az iskola által elfogadott arányban számolható el az előírt 50 óra részeként."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m22",
+         "index": 9,
+         "title": "Változatosság elve:",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Az alapvető pedagógia cél szempontjából fontos, hogy több területen (pl. három) és rendszeresen ismétlődő tevékenységekre épülve végezze a diák ún. kontaktóra (min. 40 óra) feladatait."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m23",
+         "index": 10,
+         "title": "Fenntarthatóság elve:",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Lehetőleg olyan tevékenységekben vegyenek részt a diákok, amelyek hosszútávon fenntarthatók, valamint a további évfolyamok és az ellátottak számára is előnyösek."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m24",
+         "index": 11,
+         "title": "Részrehajlás-ellenesség:",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "A tanuló a közvetlen hozzátartozójánál, annak közvetlen munkahelyén nem végezhet közösségi szolgálatot. A nagyszülők, segítségre szoruló rokonok, közeli hozzátartozók látogatása önmagában érték, de nem számolható el az IKSZ részeként."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m25",
+         "index": 13,
+         "align": "left",
+         "content": [{"tag":"p","style":{"textAlign":"right"},"children":["Forrás: www.kozossegi.ofi.hu"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "index": 3,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r7",
+     "index": 7,
+     "columns": [
+      {
+       "id": "c8",
+       "span": "4_4",
+       "index": 8,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m26",
+         "index": 14,
+         "align": "left",
+         "content": [{"tag":"p","children":["Teendőd az iskolai közösségi szolgálattal kapcsolatban – IKSZ menetrend"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r8",
+     "index": 8,
+     "columns": [
+      {
+       "id": "c9",
+       "span": "4_4",
+       "index": 9,
+       "last": true,
+       "modules": [
+        {
+         "kind": "toggle",
+         "id": "m27",
+         "index": 12,
+         "title": "I. Jelentkezés",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": ["Év elején az iskola honlapján található jelentkezési lapot töltsd ki és add le az osztályfőnöködnél."]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m28",
+         "index": 13,
+         "title": "II. Fogadó szervezetek felkutatása",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Gondold végig, milyen területeken próbálnád ki magad a legszívesebben és hogy hol szeretnél leginkább segíteni! Te is kereshetsz fogadó szervezetet ahol szívesen fogadnak, ami közel van a lakhelyedhez vagy az iskolához. Ha nem tudod merre indulj el, gyere, segítünk."
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Az iskolának a következő ",
+            {
+             "tag": "a",
+             "href": "https://docs.google.com/spreadsheets/d/1XwvsCnTAJvdz9ZCyaSC33cypZNAnVeFZfYO8VtwvP7k/edit?usp=sharing",
+             "children": ["folyamatosan bővülő intézményekkel"]
+            },
+            " van együttműködési megállapodása"
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m29",
+         "index": 14,
+         "title": "III. Együttműködés",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Ha a neked való helyet, ahol szívesen önkénteskednél, keress egy mentort, aki segít a szervezeten belül a feladatellátásban. Egészségügyi vagy szociális és jótékonysági szervezet esetén a honlapon megtalálod az együttműködési megállapodás mintát és kitöltve, aláíratva 2 példányban add le az IKSz koordinátornak."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m30",
+         "index": 15,
+         "title": "IV. IKSZ napló",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Tanítási időben, a tanórák utáni időpontban max. 3 órát; hétvégén és tanítási szünetekben a nap bármely szakában max 5. órát lehet beírni egy napra a naplóban. Időrendben vezesd az óráidat, élményeidet tapasztalataidat és félévente mutasd be az ofődnek, hogy rögzíthesse az e-naplóban a meglévő órákat."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m31",
+         "index": 16,
+         "title": "V. Beszámoló",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Dokumentáld a tevékenységed, készíts fotókat, beszámolókat. Élményeidet, tapasztalataidat oszd meg az osztályfőnököddel, osztályoddal akár személyes beszélgetésben, akár írásban."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m32",
+         "index": 17,
+         "title": "VI. Zárás",
+         "defaultOpen": true,
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Hurrá, megvan az 50 óra! A naplódat az osztályfőnöknek add le, hogy le tudja zárni és bevezetni a megfelelő dokumentumokban. Ezután ő eljuttatja az IKSZ koordinátornak, aki kiállítja az érettségi megkezdéséhez szükséges igazolást."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "index": 4,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r9",
+     "index": 9,
+     "columns": [
+      {
+       "id": "c10",
+       "span": "4_4",
+       "index": 10,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m33",
+         "index": 15,
+         "align": "left",
+         "content": [{"tag":"p","children":["Kérdések és tévhitek "]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r10",
+     "index": 10,
+     "columns": [
+      {
+       "id": "c11",
+       "span": "1_3",
+       "index": 11,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m34",
+         "index": 16,
+         "align": "left",
+         "content": [{"tag":"p","children":["Tevékenység dokumentáció kapcsán"]}]
+        },
+        {
+         "kind": "toggle",
+         "id": "m35",
+         "index": 18,
+         "title": "Végezhetnek-e munkát a diákok a közösségi szolgálat keretében?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["NEM"]},
+            " – A közösségi szolgálat az intézményben meghatározott munkaköri feladatok ellátására nem irányulhat, teljesítése során egyik félnek (diák, fogadó intézmény, kliens, iskola, stb.) sem származhat anyagi haszna a tanuló tevékenységéből."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m36",
+         "index": 19,
+         "title": "A középiskola előtt végzett önkéntes tevékenységek elszámolhatók-e a közösségi szolgálatban?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["NEM"]},
+            " – Az iskolai közösségi szolgálat csak a középiskola 9—12. évfolyamai alatt teljesíthető."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m37",
+         "index": 20,
+         "title": "A diákok és szülők feladata, hogy fogadó helyeket keressenek, tevékenységeket szervezzenek?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["NEM"]},
+            " – A középiskola feladata és felelőssége az iskolai közösségi szolgálat szervezése és koordinálása; csak az iskola szervezésében lehet elszámolható tevékenységet végezni. A diáknak a tevékenység megkezdése előtt rendelkeznie kell az erre jogosult iskolai személy, a feladat felelősének és (a jelentkezési lapon) szüleinek jóváhagyásával. Ugyanakkor természetesen a diák és a szülő is javasolhat fogadó intézményt az iskolának, segíthet a partneri kapcsolatok kiépítésében."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m38",
+         "index": 21,
+         "title": "Kötelező minden fogadó intézménnyel együttműködési megállapodást kötni?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["NEM"]},
+            " – Bár a jogszabály nem minden esetben teszi kötelezővé az együttműködési megállapodás megkötését, érdemes írásban rögzíteni a tevékenység kereteit; ez minden érintett érdekét szolgálja."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m39",
+         "index": 22,
+         "title": "A fogadó intézménynek minden alkalommal külön igazolást kell kiállítania a diákok tevékenységéről?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["NEM KÖTELEZŐ"]},
+            " – A programban a fogadó intézmények az iskolák partnerei, a rájuk szabott, tőlük elvárt feladatok a két fél (iskola és fogadó intézmény) megegyezésén alapulnak. A diákokkal kapcsolatos adminisztrációnak nincs kötelező",
+            {"tag":"br"},
+            " eleme a fogadó intézményeket illetően, de mindenképpen javasolt mindezt az érintettek védelme érdekében – és a mindennapi gyakorlat racionalitása szerint – végiggondolni. Egy jelenléti ív viszonylag egyszerű dokumentum, s megelőzheti a",
+            {"tag":"br"},
+            " későbbi félreértéseket."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m40",
+         "index": 23,
+         "title": "A diákok közösségi szolgálati naplóját az iskola őrzi?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["NEM"]},
+            " – A diáknapló a tevékenységek nyomon követésének segítését, a pedagógiai kísérést, feldolgozást segítő eszköz. Ebből a funkciójából következik, hogy valódi célját csak akkor érheti el, ha a diákoknál van."
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c12",
+       "span": "1_3",
+       "index": 12,
+       "modules": [
+        {"kind":"text","id":"m41","index":17,"align":"left","content":[{"tag":"p","children":["Fogadó szervezetek"]}]},
+        {
+         "kind": "toggle",
+         "id": "m42",
+         "index": 24,
+         "title": "Csak a Közösségi Szolgálat Portál adatbázisában szereplő szervezet lehet fogadó intézmény?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["NEM"]},
+            " – Fogadó intézmény nem csak az lehet, ami a Portál adatbázisában szerepel, az iskola szabadon keresheti meg partnereit. A Portál egy jó lehetőség arra, hogy az érintettek egymásra találjanak."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m43",
+         "index": 25,
+         "title": "Nagyszülőknél, rokonoknál vagy szülők munkahelyén is teljesíthető a közösségi szolgálat?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["EZ ÍGY NEM IGAZ"]},
+            " – A tanuló a közvetlen hozzátartozójánál, annak közvetlen munkahelyén nem végezhet közösségi szolgálatot. A nagyszülők, segítségre szoruló rokonok, közeli hozzátartozók látogatása önmagában érték, de nem számolható el az IKSZ részeként. A diákok szüleik munkahelyén abban az esetben végezhetnek közösségi szolgálatot, ha tevékenységük nem saját szüleik mentorálása, felügyelete alá tartozik."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m44",
+         "index": 26,
+         "title": "Csak az iskola vagy lakóhely 30 km-es körzetében végezhetnek közösségi szolgálatot a diákok?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["NEM"]},
+            " – Nincs az iskola vagy a lakóhely 30 km-es körzetéhez",
+            {"tag":"br"},
+            "kapcsolódó, a teljesítés helyére vonatkozó jogszabály. A program",
+            {"tag":"br"},
+            "fenntarthatósága és a helyszín biztonságos elérése lehet",
+            {"tag":"br"},
+            "szempont a fogadó szervezetek kiválasztásában."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m45",
+         "index": 27,
+         "title": "Vállalatoknál, vállalkozásoknál is teljesíthető a közösségi szolgálat?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["NEM"]},
+            " – Állami, önkormányzati, civil, illetve nonprofit szervezetnél,",
+            {"tag":"br"},
+            " középiskola magánszeméllyel kötött megállapodása",
+            {"tag":"br"},
+            " alapján magánszemélynél, vagy saját intézményben, és akár",
+            {"tag":"br"},
+            " lakóhelyen is végezhető a közösségi szolgálat. Az ez irányú",
+            {"tag":"br"},
+            " törvényi megfeleltetés az iskola feladata."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m46",
+         "index": 28,
+         "title": "Legalább három különböző szervezetnél kell teljesíteni a közösségi szolgálat ötven óráját?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["NEM"]},
+            " – Nem jogszabályban előírt elem, de a programot életre hívó szándék szerint és a pedagógiai célok eredményesebb teljesülése érdekében javasolt több különböző területen végezni tevékenységeket. Az egyes tevékenységekre fordított összesített óraszám meghatározásakor érdemes figyelembe venni az egyes szervezetek, illetve tevékenységi területek sajátosságait."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m47",
+         "index": 29,
+         "title": "Saját iskolában is végezhető a közösségi szolgálat?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["IGEN"]},
+            " – Saját intézményben is végezhető, amennyiben a  tevékenységek megfelelnek a törvényi előírásoknak és az alapelveknek."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m48",
+         "index": 30,
+         "title": "Magánszemélyeknél végezhető  a közösségi szolgálat?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["IGEN"]},
+            " – A középiskola megállapodása alapján magánszemélynél  is végezhető közösségi szolgálat, amennyiben megfelel az előírásoknak és előre feltérképezhetők az így végzett tevékenység, illetve a teljesítés körülményei."
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c13",
+       "span": "1_3",
+       "index": 13,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m49","index":18,"align":"left","content":[{"tag":"p","children":["Időbeosztás"]}]},
+        {
+         "kind": "toggle",
+         "id": "m50",
+         "index": 31,
+         "title": "Kell pihenőnapot tartani a végzett tevékenységek két egymás utáni alkalma között?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["NEM"]},
+            " – A tanulók alkalmanként legalább egy, legfeljebb három óra közösségi szolgálatot végezhetnek, függetlenül attól, hogy tanítási nap van-e vagy sem."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m51",
+         "index": 32,
+         "title": "Hétvégén, tanítási szünetben, nyáron nem végezhető a közösségi szolgálat?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["EZ ÍGY NEM IGAZ"]},
+            " – Az iskola kompetenciájába tartozik, hogy vállalja-e a nem tanítási napokra eső közösségi szolgálatos tevékenységek működtetését, ugyanis ezekre az alkalmakra biztosítania kell a – legalább telefonon – elérhető iskolai koordinátort."
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "toggle",
+         "id": "m52",
+         "index": 33,
+         "title": "Elég az érettségi bizonyítvány kiadásának napjáig  teljesíteni a közösségi szolgálat 50 óráját?",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["NEM"]},
+            " – A középiskola elvégzését közvetlenül követő érettségi  vizsgaidőszakban az érettségi vizsgák megkezdésének feltétele ötven óra közösségi szolgálat elvégzésének igazolása."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "index": 5,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r11",
+     "index": 11,
+     "columns": [
+      {
+       "id": "c14",
+       "span": "4_4",
+       "index": 14,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m53",
+         "index": 19,
+         "align": "left",
+         "content": [{"tag":"p","children":["Szempontok a közösségi szolgálatot záró beszámoló elkészítéséhez"]}]
+        },
+        {
+         "kind": "text",
+         "id": "m54",
+         "index": 20,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Kérjük a diákokat, beszámolójuk során az alábbi kérdésekre is válaszoljanak (a kérdések sorrendjének betartása nem kötelező)"
+           ]
+          },
+          " ",
+          {
+           "tag": "ul",
+           "children": [
+            {
+             "tag": "li",
+             "children": [
+              "Az iskola által felkínált közösségi szolgálati lehetőségek közül miért éppen ezt/ezeket a területeket, ill. szervezeteket választottad?"
+             ]
+            },
+            {
+             "tag": "li",
+             "children": [
+              "A közösségi szolgálat megkezdése előtt részt vettél-e felkészítő/érzékenyítő foglalkozáson, ha igen, milyen jellegű volt az?"
+             ]
+            },
+            {
+             "tag": "li",
+             "children": [
+              "Ismertesd a konkrét tevékenységet, amelyet végeztél! Lehetőleg illusztráld a beszámolódat fotóval, videofilmmel, stb."
+             ]
+            },
+            {"tag":"li","children":["Milyen elképzelésekkel kezdted el a szolgálatot?"]},
+            {
+             "tag": "li",
+             "children": ["Milyen pozitív, esetleg negatív élményben volt részed a szolgálat teljesítése során?"]
+            },
+            {
+             "tag": "li",
+             "children": ["Hogy látod: megváltoztál valamiben a közösségi szolgálat teljesítése során? Ha igen, miben?"]
+            },
+            {
+             "tag": "li",
+             "children": [
+              "Szerinted milyen tudást adott neked a közösségi szolgálat? Fejlődtek bizonyos készségeid, képességeid, pl. felelősségérzet, önállóság, empátia, stb."
+             ]
+            },
+            {"tag":"li","children":["Érzékenyebbé váltál-e a téged körülvevő világ problémái iránt?"]},
+            {"tag":"li","children":["Befolyásolja a közösségi szolgálat a pályaválasztásodat?"]},
+            {"tag":"li","children":["Mit tanácsolnál azoknak a diáktársaidnak, akik még nem kezdték el a szolgálatot?"]}
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "index": 6,
+   "rows": [
+    {
+     "id": "r12",
+     "index": 12,
+     "columns": [
+      {
+       "id": "c15",
+       "span": "1_3",
+       "index": 15,
+       "modules": [
+        {"kind":"text","id":"m55","index":21,"align":"left","content":["IKSZ koordinátor elérhetőség"]},
+        {
+         "kind": "blurb",
+         "id": "m56",
+         "index": 0,
+         "title": "Kulcsár Anikó",
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m57",
+         "index": 1,
+         "title": "B. épület 103",
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m58",
+         "index": 2,
+         "title": "+36 70 502 1739",
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m59",
+         "index": 3,
+         "title": "kulcsara@petrik.hu",
+         "titleHref": "mailto:kulcsara@petrik.hu",
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": []
+        }
+       ]
+      },
+      {
+       "id": "c16",
+       "span": "2_3",
+       "index": 16,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m60","index":22,"align":"left","content":[{"tag":"p","children":["Dokumentumok"]}]},
+        {
+         "kind": "blurb",
+         "id": "m61",
+         "index": 4,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Melléklet 1 –  Együttműködési megállapodás"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m62",
+         "index": 5,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Melléklet 2 – Tanulói Jelentkezési Lap"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m63",
+         "index": 6,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Melléklet 3 – Együttműködési megállapodás minta magánszeméllyel"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m64",
+         "index": 7,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Melléklet 4 – Közösségi Szolgálati Napló Sablon"]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m65",
+         "index": 8,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Melléklet 5 –  IKSZ Igazolásminta Iskolaváltáskor"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,23 +1,29 @@
-import type { Align, BlockType, RichTextBlock, RichTextDocument, TextRun } from '../../../shared/pnw/types.ts'
-import { COLUMN_SPANS, MODULE_KINDS } from '../../../shared/pnw/page-types.ts'
+import type { Align, BlockType, RichStyle, RichTextBlock, RichTextDocument, TextRun } from '../../../shared/pnw/types.ts'
+import { RICH_STYLE_KEYS } from '../../../shared/pnw/types.ts'
+import { COLUMN_SPANS, DESIGN_NUMBER_LIMITS, MODULE_KINDS, PAGE_TEMPLATES } from '../../../shared/pnw/page-types.ts'
 import type {
+  Design,
   MenuNode,
-  ModuleOverride,
-  OverrideKind,
   PageColumn,
   PageDocument,
+  PageImage,
   PageModule,
-  PageOverrides,
   PageRow,
   PageSection,
   SiteMenu,
   TextAlign,
 } from '../../../shared/pnw/page-types.ts'
+import { isLegacyBlocks, isValidStyleValue, blocksToRich, RICH_TAGS } from '../../../shared/pnw/rich-content.ts'
+import type { RichContent, RichElement, RichNode, RichTag } from '../../../shared/pnw/rich-content.ts'
+import { normalizeDocument } from '../../../shared/pnw/page-doc.ts'
 import { isSafeColor, isSafeHref } from '../../../shared/pnw/richtext.ts'
 
 /** Mirrors the save_news/reviewer_save check on wp_strip_all_tags(content). */
 export function hasRealText(content: RichTextDocument): boolean {
-  return content.some((block) => block.runs.some((run) => run.text.trim() !== ''))
+  return content.some(
+    (block) =>
+      block.runs.some((run) => run.text.trim() !== '') || (block.table?.rows ?? []).some((row) => row.some((cell) => cell.trim() !== '')),
+  )
 }
 
 /**
@@ -52,19 +58,30 @@ export function parseRichText(raw: unknown): RichTextDocument | null {
   try {
     const parsed = JSON.parse(raw)
     if (!Array.isArray(parsed)) return null
+    // A table's cells are rendered as text, but their shape must be what the renderer indexes into.
+    for (const block of parsed) {
+      if (typeof block !== 'object' || block === null) return null
+      if (block.type === 'table') {
+        const rows = block.table?.rows
+        if (!Array.isArray(rows) || rows.length > 100) return null
+        for (const row of rows) {
+          if (!Array.isArray(row) || row.length > 30 || row.some((cell: unknown) => typeof cell !== 'string' || cell.length > 2000)) return null
+        }
+      }
+    }
     return parsed as RichTextDocument
   } catch {
     return null
   }
 }
 
-/* --- the Szerkesztő (AGENT.md 6.19) ---------------------------------------
+/* --- the Szerkesztő (AGENT.md 6.20) ---------------------------------------
  *
  * Everything below rebuilds the value from scratch rather than passing the
  * parsed JSON through: unknown keys are dropped, unknown module kinds and
- * non-string content reject the whole document, and every link/colour/image
- * goes through the same allow-list the renderer uses. The JSON columns must
- * never round-trip an untrusted shape into the public renderer.
+ * non-string content reject the whole document, and every link/colour/image/
+ * style goes through the same allow-list the renderer uses. The JSON columns
+ * must never round-trip an untrusted shape into the public renderer.
  */
 
 type Plain = Record<string, unknown>
@@ -74,12 +91,22 @@ const isObject = (value: unknown): value is Plain =>
 
 const MAX_TEXT = 20_000
 const MAX_LABEL = 300
-const MAX_ITEMS = 400
+const MAX_ITEMS = 1000
+/** A hard ceiling on the nodes of one document, so a hostile body cannot be a memory bomb. */
+const MAX_NODES = 60_000
+const MAX_DEPTH = 24
 
 class Invalid extends Error {}
 
 function fail(what: string): never {
   throw new Invalid(what)
+}
+
+/** Counts every node a document builds; one document may hold at most MAX_NODES. */
+let budget = 0
+function spend(count = 1): void {
+  budget += count
+  if (budget > MAX_NODES) fail('document too large')
 }
 
 function str(value: unknown, max = MAX_LABEL, what = 'string'): string {
@@ -92,8 +119,9 @@ function optStr(value: unknown, max = MAX_LABEL): string | undefined {
   return str(value, max)
 }
 
-function list(value: unknown, what: string): unknown[] {
-  if (!Array.isArray(value) || value.length > MAX_ITEMS) fail(what)
+function list(value: unknown, what: string, max = MAX_ITEMS): unknown[] {
+  if (!Array.isArray(value) || value.length > max) fail(what)
+  spend(value.length)
   return value
 }
 
@@ -135,12 +163,76 @@ function optOneOf<T extends string>(value: unknown, allowed: readonly T[], what:
   return value === undefined || value === null ? undefined : oneOf(value, allowed, what)
 }
 
-const BLOCK_TYPES: readonly BlockType[] = ['paragraph', 'heading', 'bulleted-list', 'numbered-list', 'blockquote']
+function optInt(value: unknown, min: number, max: number, what: string): number | undefined {
+  if (value === undefined || value === null) return undefined
+  if (typeof value !== 'number' || !Number.isInteger(value) || value < min || value > max) fail(what)
+  return value
+}
+
+function optBool(value: unknown): true | undefined {
+  return value === true ? true : undefined
+}
+
+/** Drops keys whose value is undefined, so the stored JSON never carries them. */
+function clean<T extends Plain>(value: T): T {
+  for (const key of Object.keys(value)) if (value[key] === undefined) delete value[key]
+  return value
+}
+
+const BLOCK_TYPES: readonly BlockType[] = [
+  'paragraph',
+  'heading',
+  'bulleted-list',
+  'numbered-list',
+  'blockquote',
+  'div',
+  'plain',
+]
 const BLOCK_ALIGNS = ['left', 'center', 'right', 'justify'] as const
 const ALIGNS: readonly Align[] = ['left', 'center', 'right']
 const TEXT_ALIGNS: readonly TextAlign[] = ['left', 'center', 'right', 'justified']
 
-function richText(value: unknown): RichTextDocument {
+/* -- text -------------------------------------------------------------------- */
+
+function richStyle(value: unknown): RichStyle | undefined {
+  if (value === undefined || value === null) return undefined
+  if (!isObject(value)) fail('style')
+  const style: RichStyle = {}
+  for (const [key, raw] of Object.entries(value)) {
+    if (!(RICH_STYLE_KEYS as readonly string[]).includes(key)) fail('style key')
+    const text = str(raw, 200, 'style value')
+    if (!isValidStyleValue(key as keyof RichStyle, text)) fail('style value')
+    style[key as keyof RichStyle] = text
+  }
+  return Object.keys(style).length ? style : undefined
+}
+
+function richNode(raw: unknown, depth: number): RichNode {
+  if (typeof raw === 'string') {
+    spend()
+    return str(raw, MAX_TEXT, 'text')
+  }
+  if (!isObject(raw) || depth > MAX_DEPTH) fail('node')
+  spend()
+  const tag = oneOf(raw.tag, RICH_TAGS as readonly RichTag[], 'tag')
+  const node: RichElement = { tag }
+  const style = richStyle(raw.style)
+  if (style) node.style = style
+  if (tag === 'a') {
+    const href = optHref(raw.href)
+    if (!href) fail('link without href')
+    node.href = href
+  }
+  if (raw.children !== undefined && raw.children !== null) {
+    if (tag === 'br') fail('br with children')
+    const children = list(raw.children, 'children', 2000).map((child) => richNode(child, depth + 1))
+    if (children.length) node.children = children
+  }
+  return node
+}
+
+/** The v1 builder stored blocks-and-runs; those are still accepted and converted. */
+function legacyRichText(value: unknown): RichTextDocument {
   return list(value, 'content').map((raw) => {
     if (!isObject(raw)) fail('block')
     const block: RichTextBlock = {
@@ -156,23 +248,56 @@ function richText(value: unknown): RichTextDocument {
         if (color) run.color = color
         const href = optHref(rawRun.href)
         if (href) run.href = href
+        const style = richStyle(rawRun.style)
+        if (style) run.style = style
         return run
       }),
     }
     const align = optOneOf(raw.align, BLOCK_ALIGNS, 'align')
     if (align) block.align = align
     if (raw.level !== undefined && raw.level !== null) {
-      if (raw.level !== 1 && raw.level !== 2 && raw.level !== 3 && raw.level !== 4) fail('level')
-      block.level = raw.level
+      block.level = optInt(raw.level, 1, 6, 'level') as RichTextBlock['level']
     }
+    const depth = optInt(raw.depth, 0, 8, 'depth')
+    if (depth) block.depth = depth
+    const style = richStyle(raw.style)
+    if (style) block.style = style
     return block
   })
 }
 
-function optDimension(value: unknown): number | undefined {
+function richContent(value: unknown): RichContent {
+  if (!Array.isArray(value)) fail('content')
+  if (isLegacyBlocks(value)) return blocksToRich(legacyRichText(value))
+  return list(value, 'content', 2000).map((raw) => richNode(raw, 0))
+}
+
+/* -- design ------------------------------------------------------------------ */
+
+function design(value: unknown): Design | undefined {
   if (value === undefined || value === null) return undefined
-  if (typeof value !== 'number' || !Number.isInteger(value) || value <= 0 || value > 10_000) fail('dimension')
-  return value
+  if (!isObject(value)) fail('design')
+  const out: Design = {}
+  const color = optColor(value.color)
+  if (color) out.color = color
+  const background = optColor(value.background)
+  if (background) out.background = background
+  const borderColor = optColor(value.borderColor)
+  if (borderColor) out.borderColor = borderColor
+  for (const key of Object.keys(DESIGN_NUMBER_LIMITS) as (keyof typeof DESIGN_NUMBER_LIMITS)[]) {
+    const [min, max] = DESIGN_NUMBER_LIMITS[key]
+    const number = optInt(value[key], min, max, key)
+    if (number !== undefined) out[key] = number
+  }
+  const textAlign = optOneOf(value.textAlign, BLOCK_ALIGNS, 'textAlign')
+  if (textAlign) out.textAlign = textAlign
+  return Object.keys(out).length ? out : undefined
+}
+
+/* -- modules ----------------------------------------------------------------- */
+
+function optDimension(value: unknown): number | undefined {
+  return optInt(value, 1, 10_000, 'dimension')
 }
 
 /** A button's `to` is an in-app route only; an external target goes in `href`. */
@@ -182,105 +307,268 @@ function optRoute(value: unknown): string | undefined {
   return to
 }
 
+const CLASS_NAME = /^[A-Za-z0-9_ -]{1,200}$/
+
+function optClass(value: unknown): string | undefined {
+  const text = optStr(value, 200)
+  if (text === undefined) return undefined
+  if (!CLASS_NAME.test(text)) fail('className')
+  return text
+}
+
+/** Every node's common fields: id, Divi index, extra classes, design. */
+function base(raw: Plain): { id: string; index?: number; className?: string; design?: Design } {
+  return clean({
+    id: nodeId(raw.id),
+    index: optInt(raw.index, 0, 9999, 'index'),
+    className: optClass(raw.className),
+    design: design(raw.design),
+  })
+}
+
+function pageImage(value: unknown): PageImage {
+  if (!isObject(value)) fail('image')
+  return clean({
+    src: imageSrc(value.src),
+    alt: optStr(value.alt),
+    width: optDimension(value.width),
+    height: optDimension(value.height),
+    srcSet: optStr(value.srcSet, 4000),
+    sizes: optStr(value.sizes, 1000),
+    loading: optOneOf(value.loading, ['lazy', 'eager'] as const, 'loading'),
+  })
+}
+
+function optImage(value: unknown): PageImage | undefined {
+  return value === undefined || value === null ? undefined : pageImage(value)
+}
+
+function objects(value: unknown, what: string): Plain[] {
+  return list(value, what).map((item) => {
+    if (!isObject(item)) fail(what)
+    return item
+  })
+}
+
 function pageModule(raw: unknown): PageModule {
   if (!isObject(raw)) fail('module')
-  const id = nodeId(raw.id)
+  spend()
+  const common = base(raw)
   const kind = oneOf(raw.kind, MODULE_KINDS, 'module kind')
 
   switch (kind) {
     case 'text':
-      return {
+      return clean({
         kind,
-        id,
+        ...common,
         align: optOneOf(raw.align, TEXT_ALIGNS, 'align'),
         bgLayout: optOneOf(raw.bgLayout, ['light', 'dark'] as const, 'bgLayout'),
-        content: richText(raw.content),
-      }
+        content: richContent(raw.content),
+      }) as PageModule
     case 'image':
-      return {
-        kind,
-        id,
-        src: imageSrc(raw.src),
-        alt: optStr(raw.alt),
-        href: optHref(raw.href),
-        width: optDimension(raw.width),
-        height: optDimension(raw.height),
-      }
+      return clean({ kind, ...common, ...pageImage(raw), href: optHref(raw.href) }) as PageModule
     case 'button':
-      return {
+      return clean({
         kind,
-        id,
+        ...common,
         label: str(raw.label, MAX_LABEL, 'label'),
         to: optRoute(raw.to),
         href: optHref(raw.href),
         align: optOneOf(raw.align, ALIGNS, 'align'),
-      }
-    case 'blurb': {
-      let image: { src: string; alt?: string } | undefined
-      if (raw.image !== undefined && raw.image !== null) {
-        if (!isObject(raw.image)) fail('blurb image')
-        image = { src: imageSrc(raw.image.src), alt: optStr(raw.image.alt) }
-      }
-      return {
+        icon: optStr(raw.icon, 8),
+      }) as PageModule
+    case 'blurb':
+      return clean({
         kind,
-        id,
+        ...common,
         title: optStr(raw.title),
         titleHref: optHref(raw.titleHref),
-        image,
-        icon: optStr(raw.icon, 4),
-        content: richText(raw.content),
-      }
-    }
+        image: optImage(raw.image),
+        icon: optStr(raw.icon, 8),
+        position: optOneOf(raw.position, ['top', 'left', 'right'] as const, 'position'),
+        align: optOneOf(raw.align, TEXT_ALIGNS, 'align'),
+        content: richContent(raw.content ?? []),
+      }) as PageModule
     case 'divider':
-      return { kind, id }
+      return { kind, ...common } as PageModule
     case 'video': {
       // Empty while the author has not pasted a link yet - it then renders nothing.
       const url = str(raw.url, 2000, 'url')
       if (url && !/^https?:\/\//i.test(url)) fail('url')
-      return { kind, id, url }
+      return clean({ kind, ...common, url, title: optStr(raw.title) }) as PageModule
     }
     case 'toggle':
-      return { kind, id, title: str(raw.title, MAX_LABEL, 'title'), content: richText(raw.content) }
+      return clean({
+        kind,
+        ...common,
+        title: str(raw.title, MAX_LABEL, 'title'),
+        defaultOpen: optBool(raw.defaultOpen),
+        content: richContent(raw.content),
+      }) as PageModule
+    case 'post-feed':
+      return clean({
+        kind,
+        ...common,
+        items: objects(raw.items, 'feed items').map((item) => {
+          const author = isObject(item.author) ? item.author : undefined
+          if (item.author !== undefined && item.author !== null && !author) fail('author')
+          return clean({
+            slug: str(item.slug, 200, 'slug'),
+            date: optStr(item.date, 60),
+            author: author ? { name: str(author.name), to: str(author.to, 2000, 'to') } : undefined,
+          })
+        }),
+        columns: optInt(raw.columns, 1, 3, 'columns') as 1 | 2 | 3 | undefined,
+        align: optOneOf(raw.align, ALIGNS, 'align'),
+        hasOlder: optBool(raw.hasOlder),
+        includeLive: optBool(raw.includeLive),
+      }) as PageModule
+    case 'team-member':
+      return clean({
+        kind,
+        ...common,
+        name: str(raw.name, MAX_LABEL, 'name'),
+        position: optStr(raw.position),
+        image: optImage(raw.image),
+        headingLevel: optInt(raw.headingLevel, 1, 6, 'headingLevel') as 4 | 6 | undefined,
+        align: optOneOf(raw.align, ALIGNS, 'align'),
+        content: raw.content === undefined || raw.content === null ? undefined : richContent(raw.content),
+      }) as PageModule
+    case 'social-follow':
+      return clean({
+        kind,
+        ...common,
+        networks: objects(raw.networks, 'networks').map((item) => ({
+          network: str(item.network, 60, 'network'),
+          href: str(item.href, 2000, 'href'),
+          title: str(item.title, MAX_LABEL, 'title'),
+          label: str(item.label, MAX_LABEL, 'label'),
+        })),
+        align: optOneOf(raw.align, ALIGNS, 'align'),
+      }) as PageModule
+    case 'number-counter':
+      if (typeof raw.value !== 'number' || !Number.isFinite(raw.value)) fail('value')
+      return clean({
+        kind,
+        ...common,
+        value: raw.value,
+        title: str(raw.title, MAX_LABEL, 'title'),
+        suffix: optStr(raw.suffix, 20),
+      }) as PageModule
+    case 'testimonial':
+      return clean({
+        kind,
+        ...common,
+        author: str(raw.author, MAX_LABEL, 'author'),
+        portrait: raw.portrait === undefined || raw.portrait === null || raw.portrait === '' ? undefined : imageSrc(raw.portrait),
+        align: optOneOf(raw.align, TEXT_ALIGNS, 'align'),
+        content: richContent(raw.content),
+      }) as PageModule
+    case 'pricing-tables':
+      return clean({
+        kind,
+        ...common,
+        tables: objects(raw.tables, 'tables').map((table) =>
+          clean({
+            title: str(table.title, MAX_LABEL, 'title'),
+            sum: optStr(table.sum),
+            items: list(table.items, 'items').map((item) => str(item, MAX_LABEL, 'item')),
+          }),
+        ),
+      }) as PageModule
+    case 'hero-slider':
+      return clean({
+        kind,
+        ...common,
+        slides: objects(raw.slides, 'slides').map((slide) =>
+          clean({ image: imageSrc(slide.image), heading: optStr(slide.heading), text: optStr(slide.text, 2000) }),
+        ),
+        intervalMs: optInt(raw.intervalMs, 0, 120_000, 'intervalMs'),
+        headerOffset: optStr(raw.headerOffset, 20),
+      }) as PageModule
+    case 'gallery':
+      return clean({
+        kind,
+        ...common,
+        items: objects(raw.items, 'gallery items').map((item) =>
+          clean({ ...pageImage(item), full: item.full === undefined || item.full === null ? undefined : imageSrc(item.full) }),
+        ),
+        perPage: optInt(raw.perPage, 1, 100, 'perPage'),
+      }) as PageModule
+    case 'fullwidth-header':
+      return clean({
+        kind,
+        ...common,
+        heading: str(raw.heading, MAX_LABEL, 'heading'),
+        text: optStr(raw.text, 2000),
+        buttons:
+          raw.buttons === undefined || raw.buttons === null
+            ? undefined
+            : objects(raw.buttons, 'buttons').map((button) =>
+                clean({ label: str(button.label), to: optRoute(button.to), href: optHref(button.href) }),
+              ),
+        align: optOneOf(raw.align, ALIGNS, 'align'),
+      }) as PageModule
+    case 'file-block':
+      return clean({
+        kind,
+        ...common,
+        embed: imageSrc(raw.embed),
+        href: imageSrc(raw.href),
+        label: str(raw.label, MAX_LABEL, 'label'),
+        buttonLabel: str(raw.buttonLabel, MAX_LABEL, 'buttonLabel'),
+        embedLabel: str(raw.embedLabel, MAX_LABEL, 'embedLabel'),
+      }) as PageModule
   }
+}
+
+function pageColumn(raw: unknown): PageColumn {
+  if (!isObject(raw)) fail('column')
+  spend()
+  return clean({
+    ...base(raw),
+    span: oneOf(raw.span, COLUMN_SPANS, 'span'),
+    last: typeof raw.last === 'boolean' ? raw.last : undefined,
+    modules: list(raw.modules, 'modules').map(pageModule),
+  }) as PageColumn
+}
+
+function pageRow(raw: unknown): PageRow {
+  if (!isObject(raw)) fail('row')
+  spend()
+  const row = clean({
+    ...base(raw),
+    gutters: raw.gutters === 3 || raw.gutters === 4 ? raw.gutters : undefined,
+    columns: list(raw.columns, 'columns', 12).map(pageColumn),
+  }) as PageRow
+  return row
 }
 
 function pageSection(raw: unknown): PageSection {
   if (!isObject(raw)) fail('section')
-  const section: PageSection = {
-    id: nodeId(raw.id),
-    rows: list(raw.rows, 'rows').map((rawRow) => {
-      if (!isObject(rawRow)) fail('row')
-      const row: PageRow = {
-        id: nodeId(rawRow.id),
-        columns: list(rawRow.columns, 'columns').map((rawColumn) => {
-          if (!isObject(rawColumn)) fail('column')
-          const column: PageColumn = {
-            id: nodeId(rawColumn.id),
-            span: oneOf(rawColumn.span, COLUMN_SPANS, 'span'),
-            modules: list(rawColumn.modules, 'modules').map(pageModule),
-          }
-          if (rawColumn.bordered === true) column.bordered = true
-          return column
-        }),
-      }
-      if (rawRow.gutters === 3 || rawRow.gutters === 4) row.gutters = rawRow.gutters
-      return row
-    }),
-  }
-  if (raw.first === true) section.first = true
-  if (raw.dividerTop === true) section.dividerTop = true
-  if (raw.dividerBottom === true) section.dividerBottom = true
+  spend()
+  const section = clean({
+    ...base(raw),
+    first: optBool(raw.first),
+    dividerTop: optBool(raw.dividerTop),
+    dividerBottom: optBool(raw.dividerBottom),
+    withBackground: optBool(raw.withBackground),
+    fullwidth: optBool(raw.fullwidth),
+    rows: list(raw.rows ?? [], 'rows').map(pageRow),
+    modules: raw.modules === undefined || raw.modules === null ? undefined : list(raw.modules, 'modules').map(pageModule),
+  }) as PageSection
   if (raw.background !== undefined && raw.background !== null) {
     if (!isObject(raw.background)) fail('background')
     const color = optColor(raw.background.color)
     const rawImage = raw.background.image
     const image = rawImage === undefined || rawImage === null || rawImage === '' ? undefined : imageSrc(rawImage)
-    if (color || image) section.background = { color, image }
+    if (color || image) section.background = clean({ color, image })
   }
   return section
 }
 
 function attempt<T>(build: () => T): T | null {
+  budget = 0
   try {
     return build()
   } catch (error) {
@@ -289,68 +577,60 @@ function attempt<T>(build: () => T): T | null {
   }
 }
 
-export function sanitizePageDocument(raw: unknown): PageDocument | null {
+/**
+ * A page document, rebuilt field by field (and brought up to the current model
+ * with `normalizeDocument`: v1 documents come in as they were saved).
+ *
+ * `identity` says what the page is allowed to be. A custom page is a plain
+ * `builder` page; an edit of a mirrored route must keep that route's template
+ * and its docs/post identity (shared/pnw/mirror-routes.ts) - the BetterDocs
+ * frame and the post header look their document up by slug and throw on an
+ * invented one.
+ */
+export function sanitizePageDocument(
+  raw: unknown,
+  identity: { template: PageDocument['template']; docsSlug?: string; postSlug?: string } = { template: 'builder' },
+): PageDocument | null {
   return attempt(() => {
     if (!isObject(raw)) fail('document')
-    return { sections: list(raw.sections, 'sections').map(pageSection) }
-  })
-}
+    const template = optOneOf(raw.template, PAGE_TEMPLATES, 'template') ?? 'builder'
+    if (template !== (identity.template ?? 'builder')) fail('template')
 
-function nonNegativeIntegers(value: unknown, what: string): number[] {
-  return list(value, what).map((entry) => {
-    if (typeof entry !== 'number' || !Number.isInteger(entry) || entry < 0) fail(what)
-    return entry
-  })
-}
+    const document: PageDocument = { template, sections: list(raw.sections, 'sections').map(pageSection) }
+    const scope = optStr(raw.scope, 100)
+    if (scope) {
+      if (!/^[a-z0-9_-]+$/.test(scope)) fail('scope')
+      document.scope = scope
+    }
+    const articleClass = optClass(raw.articleClass)
+    if (articleClass) document.articleClass = articleClass
 
-/**
- * A mirrored page's override layer. The caller has already checked `route`
- * is a mirrored route - this only checks the shape.
- */
-export function sanitizePageOverrides(raw: unknown, route: string): PageOverrides | null {
-  return attempt(() => {
-    if (!isObject(raw) || !isObject(raw.modules)) fail('overrides')
-    const entries = Object.entries(raw.modules)
-    if (entries.length > MAX_ITEMS) fail('modules')
-
-    const modules: Record<string, ModuleOverride> = {}
-    for (const [key, value] of entries) {
-      const match = /^(text|image|button|blurb):(\d{1,4})$/.exec(key)
-      if (!match || !isObject(value)) fail('module override')
-      const kind = match[1] as OverrideKind
-      if (kind === 'text') {
-        modules[key] = { content: richText(value.content) }
-      } else if (kind === 'image') {
-        modules[key] = {
-          src: value.src === undefined ? undefined : imageSrc(value.src),
-          alt: optStr(value.alt),
-          href: optHref(value.href),
-        }
-      } else if (kind === 'button') {
-        modules[key] = { label: optStr(value.label), to: optRoute(value.to), href: optHref(value.href) }
-      } else {
-        modules[key] = {
-          title: optStr(value.title),
-          content: value.content === undefined ? undefined : richText(value.content),
-        }
+    if (template === 'docs') {
+      const slug = str(raw.docsSlug, 200, 'docsSlug')
+      if (slug !== identity.docsSlug) fail('docsSlug')
+      document.docsSlug = slug
+      if (raw.protected === true) document.protected = true
+      if (raw.body !== undefined && raw.body !== null) document.body = list(raw.body, 'body').map(pageModule)
+    } else if (template === 'post') {
+      if (!isObject(raw.post)) fail('post')
+      const slug = str(raw.post.slug, 200, 'post slug')
+      if (slug !== identity.postSlug) fail('post slug')
+      const classes = list(raw.post.bodyClasses ?? [], 'bodyClasses', 100).map((name) => {
+        const text = str(name, 100, 'body class')
+        if (!/^[A-Za-z0-9_-]+$/.test(text)) fail('body class')
+        return text
+      })
+      document.post = {
+        slug,
+        date: str(raw.post.date, 60, 'post date'),
+        articleId: str(raw.post.articleId, 100, 'articleId'),
+        bodyClasses: classes,
       }
+    } else if (template === 'classic') {
+      document.heading = str(raw.heading, MAX_LABEL, 'heading')
+      document.content = richContent(raw.content ?? [])
     }
-
-    const overrides: PageOverrides = {
-      route,
-      modules,
-      hiddenSections: nonNegativeIntegers(raw.hiddenSections ?? [], 'hiddenSections'),
-      extraSections: list(raw.extraSections ?? [], 'extraSections').map(pageSection),
-    }
-    if (raw.sectionOrder !== undefined && raw.sectionOrder !== null) {
-      overrides.sectionOrder = nonNegativeIntegers(raw.sectionOrder, 'sectionOrder')
-    }
-    const title = optStr(raw.title)
-    if (title) overrides.title = title
-    const description = optStr(raw.description, 1000)
-    if (description) overrides.description = description
-    if (raw.hidden === true) overrides.hidden = true
-    return overrides
+    return normalizeDocument(document)
   })
 }
 

@@ -11,8 +11,8 @@ export default defineConfig({
      * keeps the browser on Vite's own origin, so no CORS setup is needed.
      */
     proxy: {
-      '/api': 'http://localhost:4000',
-      '/uploads': 'http://localhost:4000',
+      '/api': process.env.PNW_API ?? 'http://localhost:4000',
+      '/uploads': process.env.PNW_API ?? 'http://localhost:4000',
     },
   },
   build: {
@@ -20,17 +20,16 @@ export default defineConfig({
       output: {
         /**
          * The scraped indexes - 253 post summaries, 64 archives, the document
-         * tree - are most of the bundle, and they change on a different clock
-         * from the code: regenerating them from the mirror should not force a
-         * browser to fetch the components again, and editing a component
-         * should not force it to fetch 400 KB of data it already has.
-         *
-         * The one exception is the Szerkesztő's page inventory (AGENT.md
-         * 6.19): only the editor needs it, and it imports it lazily, so it
-         * gets a chunk of its own instead of riding in with every page.
+         * tree - and the 53 default page documents (AGENT.md 6.20) are most of
+         * the bundle, and they change on a different clock from the code:
+         * regenerating them from the mirror should not force a browser to
+         * fetch the components again, and editing a component should not force
+         * it to fetch 700 KB of data it already has. The documents are kept
+         * eager rather than split per route: a route-level lazy chunk would
+         * flash a Suspense fallback on every navigation, and the Szerkesztő
+         * needs them all anyway to start an edit from a page's default.
          */
-        manualChunks: (id) =>
-          id.includes('/src/data/') && !id.includes('/src/data/page-inventory') ? 'data' : undefined,
+        manualChunks: (id) => (id.includes('/src/data/') ? 'data' : undefined),
       },
     },
   },

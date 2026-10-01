@@ -131,3 +131,136 @@
 .pnw-rte-add:hover {
   background: #eef3f9;
 }
+
+/* Hírsablonok, a kép helye, az előnézeti sáv (AGENT.md 6.21) ------------------ */
+
+.pnw-template-panel {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border: 1px solid #cfe3dd;
+  border-radius: 12px;
+  background: #f1faf7;
+}
+
+.pnw-template-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.pnw-template-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pnw-template-controls select {
+  flex: 1 1 220px;
+}
+
+.pnw-image-position {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 10px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.pnw-image-position legend {
+  margin-bottom: 4px;
+  padding: 0;
+  font-weight: 600;
+}
+
+.pnw-image-position label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pnw-preview-banner {
+  padding: 10px 16px;
+  background: #fff3cd;
+  color: #664d03;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Tables in news (AGENT.md 6.23) - the published look and the editor grid ------ */
+
+.pnw-news-table {
+  width: 100%;
+  margin: 0 0 1.5em;
+  border-collapse: collapse;
+}
+
+.pnw-news-table th,
+.pnw-news-table td {
+  padding: 8px 10px;
+  border: 1px solid #d5dbe5;
+  text-align: left;
+  vertical-align: top;
+}
+
+.pnw-news-table th {
+  background: #f1f4f8;
+  font-weight: 700;
+}
+
+.pnw-table-editor {
+  flex: 1;
+  min-width: 0;
+}
+
+.pnw-table-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.pnw-table-header-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+}
+
+.pnw-table-scroll {
+  overflow-x: auto;
+}
+
+.pnw-table-grid td {
+  padding: 2px;
+  min-width: 110px;
+}
+
+.pnw-table-grid input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+}
+
+.pnw-table-head-row td {
+  background: #f1f4f8;
+  font-weight: 700;
+}
+
+.pnw-rte-btn-wide {
+  padding: 0 4px;
+  white-space: nowrap;
+}
+
+.pnw-clear-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: -6px 0 16px;
+}

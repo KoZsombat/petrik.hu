@@ -1,0 +1,46 @@
+{
+ "template": "docs",
+ "scope": "page-docs-kemiai-es-fizikai-kemiai",
+ "docsSlug": "kemiai-es-fizikai-kemiai",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2020/11/Kemiai-es-Fizikai-Kemiai-Vizsgafeladatok-es-Peldatar.pdf.pdf",
+             "children": ["Kémiai és Fizikai Kémiai – Vizsgafeladatok és Példatár"]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

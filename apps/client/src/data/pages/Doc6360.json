@@ -1,0 +1,190 @@
+{
+ "template": "docs",
+ "scope": "page-docs-6360",
+ "docsSlug": "6360",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [{"tag":"a","href":"/media/wp-content/uploads/2024/10/Tortenelem.pdf","children":["Történelem témakörök"]}]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2025/09/Nemet_nyelv_temakorok_2025_osz.pdf",
+             "children": ["Német nyelv"]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "4_4",
+       "index": 1,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m2",
+         "index": 2,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [{"tag":"a","href":"/media/wp-content/uploads/2024/10/Angol_nyelv.pdf","children":["Angol nyelv témakörök"]}]
+          },
+          " "
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m3",
+         "index": 3,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2025/09/Celnyelvi_civilizacio_temakorok_2025_osz.pdf",
+             "children": ["Angol célnyelvi civilizáció"]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m4",
+         "index": 4,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2024/10/Digitalis_kultura.pdf",
+             "children": ["Digitális kultúra témakörök"]
+            }
+           ]
+          },
+          " "
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m5",
+         "index": 5,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2024/10/Magyar_nyelv_irodalom.pdf",
+             "children": ["Magyar nyelv és irodalom témakörök"]
+            }
+           ]
+          },
+          " "
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m6",
+         "index": 6,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2024/10/Foldrajz-temakorok_2024.pdf",
+             "children": ["Földrajz témakörök"]
+            }
+           ]
+          },
+          " "
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m7",
+         "index": 7,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [{"tag":"a","href":"/media/wp-content/uploads/2025/09/Fizika_temakorok_2025_osz.pdf","children":["Fizika"]}]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m8",
+         "index": 8,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2025/09/Matematika_temakorok_2025_osz.pdf",
+             "children": ["Matematika"]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {"id":"s1","index":1,"rows":[]}
+ ]
+}

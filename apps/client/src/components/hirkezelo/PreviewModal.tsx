@@ -1,4 +1,4 @@
-import type { RichTextDocument } from '../../../../../shared/pnw/types.ts'
+import type { ImagePosition, RichTextDocument } from '../../../../../shared/pnw/types.ts'
 import { termNames, useTerms } from '../../lib/terms.ts'
 import PostTemplatePreview from './PostTemplatePreview.tsx'
 
@@ -10,6 +10,7 @@ type Props = {
   categoryIds: string[]
   tagIds: string[]
   image?: string
+  imagePosition?: ImagePosition
 }
 
 /**
@@ -24,7 +25,7 @@ type Props = {
  * only (no tag markup exists anywhere in the mirror), so the tags are shown
  * as Hírkezelő chrome above the template, not inside it (AGENT.md 6.16).
  */
-export default function PreviewModal({ open, onClose, title, content, categoryIds, tagIds, image }: Props) {
+export default function PreviewModal({ open, onClose, title, content, categoryIds, tagIds, image, imagePosition }: Props) {
   const tags = termNames(useTerms(), tagIds)
 
   return (
@@ -60,7 +61,7 @@ export default function PreviewModal({ open, onClose, title, content, categoryId
               real site-wide body classes (single, et_right_sidebar) via
               useBodyClass for the two-column frame, and those must not leak
               onto the rest of /hirkezelo/ while the modal is closed. */}
-          {open && <PostTemplatePreview title={title} content={content} categoryIds={categoryIds} image={image} />}
+          {open && <PostTemplatePreview title={title} content={content} categoryIds={categoryIds} image={image} imagePosition={imagePosition} />}
         </div>
       </div>
     </div>

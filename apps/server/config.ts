@@ -10,10 +10,11 @@ export const SERVER_ROOT = resolve(fileURLToPath(new URL('.', import.meta.url)))
 /** The repo root - apps/server is two levels below it since the client/server split. */
 export const PROJECT_ROOT = resolve(SERVER_ROOT, '../..')
 
-export const DATA_DIR = resolve(SERVER_ROOT, 'data/db')
+/** `PNW_DATA_DIR` / `PNW_UPLOADS_DIR` point the server at another database or upload folder - a scratch copy for a migration dry run, say. */
+export const DATA_DIR = process.env.PNW_DATA_DIR ? resolve(process.env.PNW_DATA_DIR) : resolve(SERVER_ROOT, 'data/db')
 export const DATABASE_FILE = resolve(DATA_DIR, 'hirkezelo.db')
 
-export const UPLOADS_DIR = resolve(SERVER_ROOT, 'uploads')
+export const UPLOADS_DIR = process.env.PNW_UPLOADS_DIR ? resolve(process.env.PNW_UPLOADS_DIR) : resolve(SERVER_ROOT, 'uploads')
 export const UPLOADS_URL_PREFIX = '/uploads'
 
 /**

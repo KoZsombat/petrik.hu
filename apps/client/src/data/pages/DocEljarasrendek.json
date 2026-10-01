@@ -1,0 +1,68 @@
+{
+ "template": "docs",
+ "scope": "page-docs-eljarasrendek",
+ "docsSlug": "eljarasrendek",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2023/11/Eljarasrend_tantermi-rend_rongalasok-bejelentese.pdf",
+             "children": ["Eljárásrend – Tantermi rend, rongálások bejelentése"]
+            }
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2023/11/Eljarasrend_tanulok-kikerese.pdf",
+             "children": ["Eljárásrend – Tanulók kikérése"]
+            }
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "/media/wp-content/uploads/2024/12/Eljarasrend-a-tanulok-bantalmazasi-eseteinek-kivizsgalasara-es-kezelesere_Petrik.pdf",
+             "children": ["Eljárásrend – A tanulók bántalmazási eseteinek kivizsgálásáról és kezeléséről"]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,676 @@
+{
+ "template": "builder",
+ "scope": "page-projekt",
+ "articleClass": "post-1516 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Erasmus+ projektek"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"p","children":["Nyelvtanulás, Kúltúra, Szakmai fejlődés, Barátok és Életre szóló élmények"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "1_2",
+       "index": 1,
+       "modules": [
+        {"kind":"text","id":"m2","index":2,"align":"left","content":["Az Erasmus+ projektek azért jók, mert"]},
+        {
+         "kind": "blurb",
+         "id": "m3",
+         "index": 0,
+         "title": "külföldi utazáson vehetsz részt bennük,",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m4",
+         "index": 1,
+         "title": "megismerhetsz más kultúrákat, tájakat, embereket,",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m5",
+         "index": 2,
+         "title": "életre szóló barátságokat köthetsz,",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m6",
+         "index": 3,
+         "title": "izgalmas iskolai programokon vehetsz részt,",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m7",
+         "index": 4,
+         "title": "gyakorolhatod az angol nyelvet, így fejlesztve nyelvtudásod,",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m8",
+         "index": 5,
+         "title": "olyan témákkal foglalkozhatsz, amelyek nem kerülnek elő tanórákon,",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m9",
+         "index": 6,
+         "title": "fejlesztheted a kreativitásod,",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m10",
+         "index": 7,
+         "title": "növelheted az önbizalmad, az önállóságodat.",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        }
+       ]
+      },
+      {
+       "id": "c2",
+       "span": "1_2",
+       "index": 2,
+       "last": true,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m11",
+         "index": 0,
+         "src": "/media/wp-content/uploads/2020/10/projekt-miert-scaled.jpg",
+         "width": 2048,
+         "height": 2560,
+         "srcSet": "/media/wp-content/uploads/2020/10/projekt-miert-scaled.jpg 2048w, /media/wp-content/uploads/2020/10/projekt-miert-1280x1600.jpg 1280w, /media/wp-content/uploads/2020/10/projekt-miert-980x1225.jpg 980w, /media/wp-content/uploads/2020/10/projekt-miert-480x600.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 2048px, 100vw"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "index": 2,
+     "columns": [
+      {
+       "id": "c3",
+       "span": "4_4",
+       "index": 3,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m12",
+         "index": 3,
+         "align": "left",
+         "content": [
+          {"tag":"p","children":["Iskolánk Erasmus+ Akkreditációval rendelkezik a szakképzés területén."]},
+          " ",
+          {"tag":"p","children":["Emellett rendszeresen részt veszünk köznevelési projektekben is."]}
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "index": 3,
+     "columns": [
+      {
+       "id": "c4",
+       "span": "4_4",
+       "index": 4,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m13",
+         "index": 4,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Az Erasmus+ projektekkel kapcsolatos bővebb információ: ",
+            {"tag":"a","href":"https://petrik-erasmus.webnode.hu/","children":["https://petrik-erasmus.webnode.hu/"]}
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "index": 2,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r4",
+     "index": 4,
+     "columns": [
+      {
+       "id": "c5",
+       "span": "4_4",
+       "index": 5,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m14",
+         "index": 5,
+         "align": "left",
+         "content": [{"tag":"p","children":["A projektekhez kapcsolódó hírek"]}]
+        },
+        {
+         "kind": "post-feed",
+         "id": "m15",
+         "index": 0,
+         "className": "et_pb_with_border",
+         "items": [
+          {"slug":"kodok-szuperhosok-es-urutazas-jon-az-idei-kodolas-hete-a-petrikben","date":"2026 szept 09"},
+          {
+           "slug": "ujabb-orszagos-elismeres-a-dthpetrik-nek-innovativ-projekt-dijat-nyert-a-petrik-motion-pictures",
+           "date": "2026 jún 16"
+          },
+          {"slug":"europai-elismerest-nyert-a-lunaverzum-projekt","date":"2026 jún 04"},
+          {"slug":"elmenybeszamolo-a-iii-civil-reggelirol-egyutt-ero-studio","date":"2026 ápr 19"},
+          {"slug":"petrik-motion-pictures-a-zaronap-amikor-minden-eletre-kelt","date":"2026 ápr 03"},
+          {"slug":"petrik-motion-pictures-lenduletben-a-digitalis-temahet","date":"2026 márc 27"}
+         ],
+         "columns": 3,
+         "align": "left",
+         "hasOlder": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "index": 3,
+   "dividerTop": true,
+   "dividerBottom": true,
+   "rows": [
+    {
+     "id": "r5",
+     "index": 5,
+     "columns": [
+      {
+       "id": "c6",
+       "span": "4_4",
+       "index": 6,
+       "last": true,
+       "modules": [{"kind":"text","id":"m16","index":6,"align":"left","content":["Szakmai partnerek"]}]
+      }
+     ]
+    },
+    {
+     "id": "r6",
+     "index": 6,
+     "columns": [
+      {
+       "id": "c7",
+       "span": "1_4",
+       "index": 7,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m17",
+         "index": 1,
+         "src": "/media/wp-content/uploads/2020/10/logo-erasmus-plus.png",
+         "href": "https://ec.europa.eu/programmes/erasmus-plus/about_hu",
+         "width": 1758,
+         "height": 358,
+         "srcSet": "/media/wp-content/uploads/2020/10/logo-erasmus-plus.png 1758w, /media/wp-content/uploads/2020/10/logo-erasmus-plus-1280x261.png 1280w, /media/wp-content/uploads/2020/10/logo-erasmus-plus-980x200.png 980w, /media/wp-content/uploads/2020/10/logo-erasmus-plus-480x98.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1758px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c8",
+       "span": "1_4",
+       "index": 8,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m18",
+         "index": 2,
+         "src": "/media/wp-content/uploads/2023/10/shark-6942486_1280.png",
+         "href": "https://forms.gle/SqJxy8gnj7maz4Q27",
+         "width": 1280,
+         "height": 857,
+         "srcSet": "/media/wp-content/uploads/2023/10/shark-6942486_1280.png 1280w, /media/wp-content/uploads/2023/10/shark-6942486_1280-980x656.png 980w, /media/wp-content/uploads/2023/10/shark-6942486_1280-480x321.png 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1280px, 100vw",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {
+       "id": "c9",
+       "span": "1_4",
+       "index": 9,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m19",
+         "index": 3,
+         "src": "/media/wp-content/uploads/2020/10/tempus_kozalapitvany.png",
+         "href": "https://tka.hu/",
+         "width": 123,
+         "height": 73,
+         "srcSet": "/media/wp-content/uploads/2020/10/tempus_kozalapitvany.png 123w, /media/wp-content/uploads/2020/10/tempus_kozalapitvany-20x12.png 20w",
+         "sizes": "(max-width: 123px) 100vw, 123px",
+         "loading": "lazy"
+        }
+       ]
+      },
+      {"id":"c10","span":"1_4","index":10,"last":true,"modules":[]}
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "index": 4,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r7",
+     "index": 7,
+     "columns": [
+      {
+       "id": "c11",
+       "span": "4_4",
+       "index": 11,
+       "last": true,
+       "modules": [
+        {"kind":"text","id":"m20","index":7,"align":"left","content":[{"tag":"p","children":["Korábbi projekteink"]}]}
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r8",
+     "index": 8,
+     "columns": [
+      {
+       "id": "c12",
+       "span": "1_3",
+       "index": 12,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m21",
+         "index": 8,
+         "align": "center",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["2020-2022"]},
+            {
+             "tag": "a",
+             "href": "https://our-common-european-tale.webnode.hu/%20és https://www.facebook.com/OurCommonEuropeanTale"
+            }
+           ]
+          },
+          " ",
+          {"tag":"p","children":["EurDigiCultHer"]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {
+             "tag": "a",
+             "href": "//www.facebook.com/Training-for-Life-Leadership-Initiative-for-Europe-comenius-Project-259066730935222/"
+            },
+            {
+             "tag": "a",
+             "href": "https://www.facebook.com/Training-for-Life-Leadership-Initiative-for-Europe-comenius-Project-259066730935222/"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c13",
+       "span": "1_3",
+       "index": 13,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m22",
+         "index": 9,
+         "align": "center",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["2019-2022"]},
+            {
+             "tag": "a",
+             "href": "https://our-common-european-tale.webnode.hu/%20és https://www.facebook.com/OurCommonEuropeanTale"
+            }
+           ]
+          },
+          " ",
+          {"tag":"p","children":["Off the Beaten Path"]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"em","children":["További információ:",{"tag":"br"}]},
+            {"tag":"a","href":"https://off-the-beaten-path0.webnode.hu/","children":["Honlap"]},
+            ", ",
+            {
+             "tag": "a",
+             "href": "https://www.facebook.com/Erasmus-Off-the-Beaten-Path-102653107887638",
+             "children": ["Facebook"]
+            },
+            ", ",
+            {"tag":"a","href":"https://twinspace.etwinning.net/104637/home","children":["eTwinning"]},
+            ", ",
+            {"tag":"a","href":"https://twinspace.etwinning.net/104637/home"},
+            {"tag":"a","href":"https://www.instagram.com/offthebeatenpatherasmus/","children":["Instagram"]},
+            " "
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c14",
+       "span": "1_3",
+       "index": 14,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m23",
+         "index": 10,
+         "align": "center",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["2019-2021"]}]},
+          " ",
+          {"tag":"p","children":["Trainning for All"]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"em","children":["További információ:",{"tag":"br"}]},
+            {"tag":"a","href":"https://www.facebook.com/Erasmus-Training-for-All-106575467584508","children":["Facebook"]}
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r9",
+     "index": 9,
+     "columns": [
+      {
+       "id": "c15",
+       "span": "1_3",
+       "index": 15,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m24",
+         "index": 11,
+         "align": "center",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["2017-2019"]},
+            {
+             "tag": "a",
+             "href": "https://our-common-european-tale.webnode.hu/%20és https://www.facebook.com/OurCommonEuropeanTale"
+            }
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Our Common European Tale",
+            {"tag":"br"},
+            {
+             "tag": "a",
+             "href": "https://our-common-european-tale.webnode.hu/",
+             "children": ["https://our-common-european-tale.webnode.hu/"]
+            },
+            " és ",
+            {
+             "tag": "a",
+             "href": "https://www.facebook.com/OurCommonEuropeanTale",
+             "children": ["https://www.facebook.com/OurCommonEuropeanTale"]
+            }
+           ]
+          },
+          " ",
+          {"tag":"p","children":[" "]}
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c16",
+       "span": "1_3",
+       "index": 16,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m25",
+         "index": 12,
+         "align": "center",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["2015-2017"]}]},
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Math Around Us",
+            {"tag":"br"},
+            {
+             "tag": "a",
+             "href": "https://twinspace.etwinning.net/9782/home",
+             "children": [" https://twinspace.etwinning.net/9782/home"]
+            },
+            " és ",
+            {
+             "tag": "a",
+             "href": "https://www.facebook.com/MathAroundUs/",
+             "children": [" https://www.facebook.com/MathAroundUs/"]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c17",
+       "span": "1_3",
+       "index": 17,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m26",
+         "index": 13,
+         "align": "center",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            {"tag":"strong","children":["2013-2015"]},
+            {
+             "tag": "a",
+             "href": "https://our-common-european-tale.webnode.hu/%20és https://www.facebook.com/OurCommonEuropeanTale"
+            }
+           ]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": [
+            "Training for LIFE: Leadership Initiative for Europe",
+            {"tag":"br"},
+            {
+             "tag": "a",
+             "href": "//www.facebook.com/Training-for-Life-Leadership-Initiative-for-Europe-comenius-Project-259066730935222/",
+             "children": [
+              "https://www.facebook.com/Training-for-Life-Leadership-Initiative-for-Europe-comenius-Project-259066730935222/"
+             ]
+            },
+            {
+             "tag": "a",
+             "href": "https://www.facebook.com/Training-for-Life-Leadership-Initiative-for-Europe-comenius-Project-259066730935222/"
+            },
+            {
+             "tag": "a",
+             "href": "https://www.facebook.com/Training-for-Life-Leadership-Initiative-for-Europe-comenius-Project-259066730935222/"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "index": 5,
+   "rows": [
+    {
+     "id": "r10",
+     "index": 10,
+     "columns": [
+      {
+       "id": "c18",
+       "span": "4_4",
+       "index": 18,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m27",
+         "index": 14,
+         "align": "left",
+         "content": [{"tag":"h1","children":[{"tag":"strong","children":["A projektek koordinátorának elérhetőség"]}]}]
+        },
+        {
+         "kind": "blurb",
+         "id": "m28",
+         "index": 8,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"p","children":["Szolnok Ádám"]}]
+        },
+        {"kind":"blurb","id":"m29","index":9,"icon":"","position":"left","align":"left","content":["A.113 tanári"]},
+        {
+         "kind": "blurb",
+         "id": "m30",
+         "index": 10,
+         "icon": "",
+         "position": "left",
+         "align": "left",
+         "content": [{"tag":"a","href":"mailto:szolnok@petrik.hu","children":["szolnok@petrik.hu"]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

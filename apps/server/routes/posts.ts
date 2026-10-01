@@ -133,6 +133,7 @@ router.put('/:id/reviewer', requireCapability(CAPABILITY.REVIEW_NEWS), (req, res
   const excerpt = typeof req.body?.excerpt === 'string' ? req.body.excerpt : ''
   const categoryIds = sanitizeTermIds(req.body?.categoryIds, termIdsOfKind('category'))
   const tagIds = sanitizeTermIds(req.body?.tagIds, termIdsOfKind('tag'))
+  const imagePosition = req.body?.imagePosition === 'bottom' ? 'bottom' : 'top'
 
   if (!title || !content || !hasRealText(content) || categoryIds.length === 0) {
     res.status(422).json({ error: 'missing_fields' })
@@ -146,6 +147,7 @@ router.put('/:id/reviewer', requireCapability(CAPABILITY.REVIEW_NEWS), (req, res
     excerpt,
     categoryIds,
     tagIds,
+    imagePosition,
     modifiedAt: now(),
   }))
 
@@ -389,6 +391,7 @@ async function saveAuthoredPost(
   }
 
   const featuredImage = await handleFeaturedImage(req.file)
+  const imagePosition = req.body?.imagePosition === 'bottom' ? 'bottom' : 'top'
   const oldStatus = existing?.status ?? ''
   const newStatus = options.keepStatus ? existing!.status : command === 'submit' ? STATUS.PENDING : STATUS.DRAFT
 
@@ -401,6 +404,7 @@ async function saveAuthoredPost(
       excerpt,
       categoryIds,
       tagIds,
+      imagePosition,
       status: newStatus,
       modifiedAt: now(),
       featuredImage: featuredImage ?? post.featuredImage,
@@ -417,6 +421,7 @@ async function saveAuthoredPost(
       categoryIds,
       tagIds,
       featuredImage,
+      imagePosition,
       authorId: user.id,
       status: newStatus,
       createdAt: now(),

@@ -103,7 +103,7 @@ function copy(rel: string, targetRoot: string): number {
  * the project actually ships catches them regardless of which script wrote it.
  */
 function assetsInStyles(): string[] {
-  const roots = ['src/pages', 'src/components', 'src/styles']
+  const roots = ['src/data/pages', 'src/pages', 'src/components', 'src/styles']
   const found = new Set<string>()
 
   const walk = (dir: string) => {

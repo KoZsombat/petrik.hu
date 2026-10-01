@@ -1,0 +1,451 @@
+{
+ "template": "builder",
+ "scope": "page-kornyezetvedelem-es-vizugy-agazat",
+ "articleClass": "post-1247 page type-page status-publish hentry",
+ "sections": [
+  {
+   "id": "s0",
+   "index": 0,
+   "first": true,
+   "withBackground": true,
+   "rows": [
+    {
+     "id": "r0",
+     "index": 0,
+     "columns": [
+      {
+       "id": "c0",
+       "span": "4_4",
+       "index": 0,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m0",
+         "index": 0,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [
+          {"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Környezetvédelem és Vízügy"]}]}
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m1",
+         "index": 1,
+         "align": "left",
+         "bgLayout": "dark",
+         "content": [{"tag":"p","children":["Növények, állatok, vizsgálatok, számítások és még sok-sok más. "]}]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "index": 1,
+   "rows": [
+    {
+     "id": "r1",
+     "index": 1,
+     "columns": [
+      {
+       "id": "c1",
+       "span": "1_2",
+       "index": 1,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m2",
+         "index": 2,
+         "align": "left",
+         "content": ["A környezetvédelmi technikus képzést neked ajánljuk, ha"]
+        },
+        {
+         "kind": "blurb",
+         "id": "m3",
+         "index": 0,
+         "title": "szeretsz a szabadban lenni, mozogni,",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m4",
+         "index": 1,
+         "title": "érdekelnek a vadon élő növények és állatok, illetve azok védelme,",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m5",
+         "index": 2,
+         "title": "szívesen vizsgálod mikroszkóppal az apró élőlényeket,",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m6",
+         "index": 3,
+         "title": "szeretsz vizsgálatokat, méréseket végezni,",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m7",
+         "index": 4,
+         "title": "érdekel, mi van a vízben, a levegőben, a talajban és szívesen vizsgálnád ezeket,",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m8",
+         "index": 5,
+         "title": "érdekelnek a laboratóriumi műszerek és berendezések,",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m9",
+         "index": 6,
+         "title": "nem ijedsz meg a kémiától és egy kis számolástól sem,",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        },
+        {
+         "kind": "blurb",
+         "id": "m10",
+         "index": 7,
+         "title": "környezetünk megőrzésében aktívan részt szeretnél venni.",
+         "icon": "Z",
+         "position": "left",
+         "align": "left",
+         "content": []
+        }
+       ]
+      },
+      {
+       "id": "c2",
+       "span": "1_2",
+       "index": 2,
+       "last": true,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m11",
+         "index": 0,
+         "src": "/media/wp-content/uploads/2020/09/kornyezetvdelmi-kpezest-neked-ajanljuk-scaled.jpg",
+         "width": 1707,
+         "height": 2560,
+         "srcSet": "/media/wp-content/uploads/2020/09/kornyezetvdelmi-kpezest-neked-ajanljuk-scaled.jpg 1707w, /media/wp-content/uploads/2020/09/kornyezetvdelmi-kpezest-neked-ajanljuk-1280x1920.jpg 1280w, /media/wp-content/uploads/2020/09/kornyezetvdelmi-kpezest-neked-ajanljuk-980x1470.jpg 980w, /media/wp-content/uploads/2020/09/kornyezetvdelmi-kpezest-neked-ajanljuk-480x720.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1707px, 100vw"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "index": 2,
+     "columns": [
+      {
+       "id": "c3",
+       "span": "4_4",
+       "index": 3,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m12",
+         "index": 3,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Környezetvédelmi technikussá öt éves technikumi képzés után válhattok. A technikumban az érettségire felkészítő tárgyak mellett szakmai tárgyakat is tanultok. Ennek keretében a képzés első két évében a környezetvédelem és vízügy ágazati alapoktatásban vesztek részt, aminek a végén ágazati alapvizsgát tesztek. A tizenegyedik évfolyamtól kezdődően a környezetvédelmi technikus szakmai tárgyait tanuljátok. Megismerkedtek a környezetvédelem alapjaival, a környezet védelmét szolgáló berendezésekkel, a környezet állapotát vizsgáló terepi és laboratóriumi vizsgálatokkal."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "index": 2,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r3",
+     "index": 3,
+     "columns": [
+      {
+       "id": "c4",
+       "span": "4_4",
+       "index": 4,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m13",
+         "index": 4,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": ["A környezetvédelmi technikus képzés során az alábbi szakmairányokat tudod választani."]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "index": 4,
+     "columns": [
+      {
+       "id": "c5",
+       "span": "1_4",
+       "index": 5,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m14",
+         "index": 1,
+         "src": "/media/wp-content/uploads/2020/09/kornyezetvedelem.jpg",
+         "width": 1920,
+         "height": 1080,
+         "srcSet": "/media/wp-content/uploads/2020/09/kornyezetvedelem.jpg 1920w, /media/wp-content/uploads/2020/09/kornyezetvedelem-1280x720.jpg 1280w, /media/wp-content/uploads/2020/09/kornyezetvedelem-980x551.jpg 980w, /media/wp-content/uploads/2020/09/kornyezetvedelem-480x270.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1920px, 100vw",
+         "loading": "lazy"
+        },
+        {
+         "kind": "text",
+         "id": "m15",
+         "index": 5,
+         "align": "left",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["Környezetvédelem szakmairány"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m16",
+         "index": 6,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Azok számára ajánljuk, akik szeretnek a laboratóriumban dolgozni, precízek és alaposak. Akik hosszú ideig képesek a figyelmüket összpontosítani egy-egy feladatra. Viszont szívesen kimozdulnak a laboratóriumból környezeti mintavétel érdekében."
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c6",
+       "span": "1_4",
+       "index": 6,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m17",
+         "index": 2,
+         "src": "/media/wp-content/uploads/2020/09/termeszetvedelem.jpg",
+         "width": 1920,
+         "height": 1080,
+         "srcSet": "/media/wp-content/uploads/2020/09/termeszetvedelem.jpg 1920w, /media/wp-content/uploads/2020/09/termeszetvedelem-1280x720.jpg 1280w, /media/wp-content/uploads/2020/09/termeszetvedelem-980x551.jpg 980w, /media/wp-content/uploads/2020/09/termeszetvedelem-480x270.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1920px, 100vw",
+         "loading": "lazy"
+        },
+        {
+         "kind": "text",
+         "id": "m18",
+         "index": 7,
+         "align": "left",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["Természetvédelem szakmairány"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m19",
+         "index": 8,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Azok számára ajánljuk, akik elhívatottak a természet megőrzésben. Akik szívesen töltik az idejük jelentős részét a szabadban a természetes élőhelyek gondozásával, kezelésével, az élőlények vizsgálatával. Nem ijednek meg a természetvédelemhez kapcsolódó fizikai munkától, de a számítógépes nyilvántartások vezetésétől sem."
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c7",
+       "span": "1_4",
+       "index": 7,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m20",
+         "index": 3,
+         "src": "/media/wp-content/uploads/2020/09/igazgatas.jpg",
+         "width": 1920,
+         "height": 1080,
+         "srcSet": "/media/wp-content/uploads/2020/09/igazgatas.jpg 1920w, /media/wp-content/uploads/2020/09/igazgatas-1280x720.jpg 1280w, /media/wp-content/uploads/2020/09/igazgatas-980x551.jpg 980w, /media/wp-content/uploads/2020/09/igazgatas-480x270.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1920px, 100vw",
+         "loading": "lazy"
+        },
+        {
+         "kind": "text",
+         "id": "m21",
+         "index": 9,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [{"tag":"strong","children":["Igazgatás ",{"tag":"br"}]},{"tag":"strong","children":["szakmairány"]}]
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m22",
+         "index": 10,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Azok számára ajánljuk, akik szeretik az adminisztratív feladatokat és a környezetünk védelmét szívügyüknek tekintik. Ajánljuk azoknak, akik szeretnek írni és olvasni, és akik mindehhez szívesen használják a számítógépet. Mindemellett szívesen beszélgetnek, kommunikálnak másokkal. A környezetvédelmi adatok kezelése nagy odafigyelést kíván, így ezt a területet azoknak ajánljuk elsősorban, akik rendszeretők és precízek."
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c8",
+       "span": "1_4",
+       "index": 8,
+       "last": true,
+       "modules": [
+        {
+         "kind": "image",
+         "id": "m23",
+         "index": 4,
+         "src": "/media/wp-content/uploads/2020/09/hulladekhasznosito_es_feldolgozo.jpg",
+         "width": 1920,
+         "height": 1080,
+         "srcSet": "/media/wp-content/uploads/2020/09/hulladekhasznosito_es_feldolgozo.jpg 1920w, /media/wp-content/uploads/2020/09/hulladekhasznosito_es_feldolgozo-1280x720.jpg 1280w, /media/wp-content/uploads/2020/09/hulladekhasznosito_es_feldolgozo-980x551.jpg 980w, /media/wp-content/uploads/2020/09/hulladekhasznosito_es_feldolgozo-480x270.jpg 480w",
+         "sizes": "(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1920px, 100vw",
+         "loading": "lazy"
+        },
+        {
+         "kind": "text",
+         "id": "m24",
+         "index": 11,
+         "align": "left",
+         "content": [{"tag":"p","children":[{"tag":"strong","children":["Hulladékhasznosító és -feldolgozó szakmairány"]}]}]
+        },
+        {
+         "kind": "text",
+         "id": "m25",
+         "index": 12,
+         "align": "left",
+         "content": [
+          {
+           "tag": "p",
+           "children": [
+            "Azok számára ajánljuk",
+            {"tag":"strong","children":[","]},
+            " akik szeretnek méréseket és vizsgálatokat végezni. Ajánljuk azok számára, akiket érdekel egy gép működése, szívesen beállítanak, vagy működtetnek hulladékgazdálkodási gépeket, berendezéseket. Továbbá ajánljuk azoknak is, akik alaposak, minden részletre figyelnek, így jól tudják követni egy összetett rendszer működését."
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "index": 3,
+   "dividerTop": true,
+   "rows": [
+    {
+     "id": "r5",
+     "index": 5,
+     "columns": [
+      {
+       "id": "c9",
+       "span": "4_4",
+       "index": 9,
+       "last": true,
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m26",
+         "index": 13,
+         "align": "left",
+         "content": [{"tag":"p","children":["Nézd meg bemutatkozó kisfilmünket:"]}]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r6",
+     "index": 6,
+     "columns": [
+      {
+       "id": "c10",
+       "span": "4_4",
+       "index": 10,
+       "last": true,
+       "modules": [
+        {
+         "kind": "video",
+         "id": "m27",
+         "index": 0,
+         "url": "https://www.youtube.com/watch?v=pnHsQ2zMRRM",
+         "title": "Környezetvédő technikus promovideó"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
