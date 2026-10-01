@@ -70,7 +70,7 @@ szintig átírható, törölhető (tombstone), visszaállítható. A v1 felülí
 (6.19) ezzel **megszűnt**; a migrációja `migrate-overrides.ts`.
 
 **2026-09-25: oldalszerkesztő — `/bejelentkezes/` + `/szerkeszto/`**
-(részletek: 6.19, terv: `PAGE-EDITOR-PLAN.md`) — közös bejelentkezés a
+(részletek: 6.19; a v2-é: 6.20) — közös bejelentkezés a
 Hírkezelőhöz és a Szerkesztőhöz; a mentett oldalak tartalma egy
 index-kulcsos **felülírási rétegen** át szerkeszthető (a generált TSX
 érintetlen), új oldal hozható létre a webhely saját Divi-komponenseiből és
@@ -1165,7 +1165,7 @@ sorként írja ki, tehát ez **döntés**, nem átcsúszás.
       változatlanul 12 kártya, élő hír nélkül.
 
 19. **`/bejelentkezes/` + `/szerkeszto/`: WordPress-szerű oldalszerkesztő a
-    port fölött.** Felhasználói kérés (a terv: `PAGE-EDITOR-PLAN.md`): egy
+    port fölött.** Felhasználói kérés (a megvalósított v2: 6.20): egy
     közös bejelentkezés, ami után a fiók a **Hírkezelőt** vagy a
     **Szerkesztőt** választhatja; a Szerkesztőben a meglévő aloldalak
     (Nyolcadikosoknak & tsai) tartalma szerkeszthető, új, a webhelyhez

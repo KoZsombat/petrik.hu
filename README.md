@@ -93,4 +93,3 @@ along with every deliberate difference from the original site:
 | [apps/server/README.md](apps/server/README.md) | The API, its configuration and endpoints |
 | [DEPLOY.md](DEPLOY.md) | First-time server setup |
 | [OPERATIONS.md](OPERATIONS.md) | Day-to-day running of the live site |
-| [PAGE-EDITOR-PLAN.md](PAGE-EDITOR-PLAN.md) | The plan for making every page fully editable |

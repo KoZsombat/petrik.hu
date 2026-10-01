@@ -155,4 +155,3 @@ your PC, not git, so git is your only history of what went live.
 
 - [DEPLOY.md](DEPLOY.md) — setting up a server from scratch
 - [AGENT.md](AGENT.md) — how the codebase works (Hungarian)
-- [PAGE-EDITOR-PLAN.md](PAGE-EDITOR-PLAN.md) — the plan for making every page fully editable
