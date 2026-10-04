@@ -235,16 +235,42 @@ the mirror, which exists only on your PC, so it runs **there**:
   (`$env:PETRIK_MIRROR="<mirror folder>"; npm run import-posts -w apps/server`),
   and the posts and pictures travel with your data.
 - **A server that already has live data**: do not use `-WithData`, because it
-  would replace that data. Take a backup (section 10), unpack it on your PC, run
-  the import against the copy, then put the copy back:
+  would replace that data. Instead, deploy the code, then import into a copy of
+  the server's data on your PC and put the copy back. The server stays stopped
+  from step 2 to step 4, so nothing edited on the live site in between is lost.
 
   ```powershell
-  # in the unpacked backup folder: apps\server\data\db and apps\server\uploads
+  # 1. The new code (leaves the data alone)
+  .\deploy.ps1 -Server SERVER -Key $HOME\.ssh\petrik.pem
+
+  # 2. Stop the server and download its data
+  ssh -i $HOME\.ssh\petrik.pem ubuntu@SERVER "cd petrik && docker compose stop server && sudo chown -R ubuntu apps && tar czf ~/backup.tgz apps/server/data/db apps/server/uploads"
+  scp -i $HOME\.ssh\petrik.pem ubuntu@SERVER:backup.tgz .\petrik-backup.tgz
+  mkdir C:\petrik-backup; tar xzf .\petrik-backup.tgz -C C:\petrik-backup
+
+  # 3. Import into the copy
   $env:PETRIK_MIRROR="<mirror folder>"
-  $env:PNW_DATA_DIR="<backup>\apps\server\data\db"; $env:PNW_UPLOADS_DIR="<backup>\apps\server\uploads"
+  $env:PNW_DATA_DIR="C:\petrik-backup\apps\server\data\db"
+  $env:PNW_UPLOADS_DIR="C:\petrik-backup\apps\server\uploads"
   npm run import-posts -w apps/server
-  # then, with the server container stopped, copy both folders back over scp
+
+  # 4. Put the copy back and start the server
+  ssh -i $HOME\.ssh\petrik.pem ubuntu@SERVER "cd petrik && rm -f apps/server/data/db/hirkezelo.db apps/server/data/db/hirkezelo.db-wal apps/server/data/db/hirkezelo.db-shm"
+  scp -i $HOME\.ssh\petrik.pem C:\petrik-backup\apps\server\data\db\hirkezelo.db ubuntu@SERVER:petrik/apps/server/data/db/
+  scp -i $HOME\.ssh\petrik.pem -C -r C:\petrik-backup\apps\server\uploads ubuntu@SERVER:petrik/apps/server/
+  ssh -i $HOME\.ssh\petrik.pem ubuntu@SERVER "cd petrik && docker compose start server && docker compose ps"
   ```
+
+  Close the PowerShell window afterwards: the `PNW_*` variables would otherwise
+  point a later local `npm run server` at the copy.
+
+  > **Delete the `-wal` and `-shm` files on the server before uploading** (the
+  > `rm` in step 4). The database is SQLite in WAL mode: recent changes sit in
+  > `hirkezelo.db-wal` next to the main file, and on the server that is often
+  > where nearly all the data is. The import merges it into `hirkezelo.db` on
+  > your PC, so only that one file goes back. A `-wal` left on the server is
+  > replayed over the new file on start, and the imported posts vanish (their
+  > pages answer 404) without any error.
 
 The import is idempotent: a post already in the database is skipped, so a
 second run changes nothing.
