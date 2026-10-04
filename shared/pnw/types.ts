@@ -65,8 +65,55 @@ export type BlockType =
   | 'plain'
   /** A table (Hírkezelő): the cells are in `table`, `runs` stays a single empty run. */
   | 'table'
+  /**
+   * The media blocks of a news post imported from the mirror (AGENT.md 6.24):
+   * a picture, a gallery and an embedded iframe. Like `table`, their data sits
+   * in its own field and `runs` stays a single empty run. The editor keeps them
+   * but cannot create them.
+   */
+  | 'image'
+  | 'gallery'
+  | 'embed'
 
 export type RichTable = { header: boolean; rows: string[][] }
+
+/** `src` is a root-relative upload (`/uploads/...`) or an http(s) URL; `href` where the picture links to. */
+export type RichImage = { src: string; alt: string; caption?: string; href?: string; width?: number; height?: number }
+
+/** One picture of a gallery; `full` is the full-size file the thumbnail opens. */
+export type RichGalleryItem = { src: string; alt: string; full?: string }
+
+/**
+ * An iframe embed - a YouTube video, a Sway, a ThingLink card. Only https
+ * sources on an allow-listed host (EMBED_HOSTS) are stored or rendered.
+ * `aspect` is height/width for a responsive box; `height` a fixed pixel height.
+ */
+export type RichEmbed = { src: string; title?: string; aspect?: number; height?: number }
+
+export const EMBED_HOSTS = [
+  'www.youtube.com',
+  'www.youtube-nocookie.com',
+  'player.vimeo.com',
+  'sway.office.com',
+  'sway.cloud.microsoft',
+  'www.thinglink.com',
+  'view.genial.ly',
+  'view.genially.com',
+  'online.fliphtml5.com',
+  'www.facebook.com',
+  'docs.google.com',
+  'www.canva.com',
+  'padlet.com',
+] as const
+
+export function isEmbedSrc(src: string): boolean {
+  try {
+    const url = new URL(src)
+    return url.protocol === 'https:' && (EMBED_HOSTS as readonly string[]).includes(url.hostname)
+  } catch {
+    return false
+  }
+}
 
 export type RichTextBlock = {
   id: string
@@ -80,6 +127,12 @@ export type RichTextBlock = {
   style?: RichStyle
   /** Only for `type === 'table'`: plain-text cells, row by row; the first row is a header when `header`. */
   table?: RichTable
+  /** Only for `type === 'image'`. */
+  image?: RichImage
+  /** Only for `type === 'gallery'`. */
+  gallery?: RichGalleryItem[]
+  /** Only for `type === 'embed'`. */
+  embed?: RichEmbed
   runs: TextRun[]
 }
 
@@ -168,6 +221,14 @@ export type Term = {
 
 export type ImagePosition = 'top' | 'bottom'
 
+/**
+ * Where a post came from: written in the Hírkezelő, or imported from the
+ * mirror of the old petrik.hu (AGENT.md 6.24). An imported post lives at its
+ * original URL (`/<slug>/`) and is already listed by the mirror's own
+ * archives, so it is left out of the "latest live news" the site prepends.
+ */
+export type PostOrigin = 'hirkezelo' | 'mirror'
+
 export type Post = {
   id: string
   /** Stable from creation, even if the title is edited later - the public /hirek/:slug/ URL. */
@@ -181,6 +242,8 @@ export type Post = {
   featuredImage?: string
   /** Where the featured image sits in the article: above the text (the default) or below it. */
   imagePosition?: ImagePosition
+  /** Absent: 'hirkezelo'. */
+  origin?: PostOrigin
   authorId: string
   status: PostStatus
   reviewNote?: string
@@ -209,6 +272,7 @@ export type AuditAction =
   | 'published_updated'
   | 'published_archived'
   | 'archived_restored'
+  | 'imported'
 
 export type AuditEntry = {
   id: string

@@ -147,6 +147,10 @@ function migrate(): void {
   if (!posts.has('image_position')) {
     db.exec(`ALTER TABLE posts ADD COLUMN image_position TEXT NOT NULL DEFAULT 'top'`)
   }
+  if (!posts.has('origin')) {
+    // 'mirror' marks a post imported from the old petrik.hu (AGENT.md 6.24).
+    db.exec(`ALTER TABLE posts ADD COLUMN origin TEXT NOT NULL DEFAULT 'hirkezelo'`)
+  }
 
   const users = columnNames('users')
   if (!users.has('permissions')) {

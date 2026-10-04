@@ -3,6 +3,7 @@ import PageRenderer from '../components/pagebuilder/PageRenderer.tsx'
 import { pageDefaults } from '../data/pages/index.ts'
 import { useSiteContent } from '../lib/site/siteContext.ts'
 import NotFound from './NotFound.tsx'
+import PublishedPost from './PublishedPost.tsx'
 
 /**
  * Every page of the site that is a document (AGENT.md 6.20): the 53 mirrored
@@ -25,7 +26,10 @@ export default function DocumentPage({ route: fixedRoute }: { route?: string }) 
 
   if (edited?.deleted) return <NotFound />
   const document = edited?.document ?? fallback?.document
-  if (!document) return loading ? null : <NotFound />
+  // No page by this name: the old site's news posts live here too, imported
+  // into the Hírkezelő (AGENT.md 6.24). PublishedPost asks the server and
+  // shows the 404 itself when there is no such published post either.
+  if (!document) return loading ? null : fixedRoute ? <NotFound /> : <PublishedPost key={slug} slug={slug} />
 
   // Custom pages add their own `page-<slug>` beside the shared builder design.
   // `key`: every document is a different tree, and node ids repeat between

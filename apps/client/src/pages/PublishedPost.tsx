@@ -13,8 +13,10 @@ import NotFound from './NotFound.tsx'
  * is what gives it the same Header/Footer/two-column chrome as every other
  * post - "mint a többi hír".
  */
-export default function PublishedPost() {
-  const { slug } = useParams<{ slug: string }>()
+export default function PublishedPost({ slug: fixedSlug }: { slug?: string }) {
+  // `/hirek/:slug/`, or a post imported from the mirror at its original `/<slug>/` (AGENT.md 6.24) - see DocumentPage.
+  const params = useParams<{ slug: string }>()
+  const slug = fixedSlug ?? params.slug
   const [post, setPost] = useState<Post | null>(null)
   const [notFound, setNotFound] = useState(false)
 
@@ -36,7 +38,10 @@ export default function PublishedPost() {
         document.title = `${data.post.title} | petrik.hu`
       })
       .catch(() => {
-        if (!cancelled) setNotFound(true)
+        if (cancelled) return
+        setNotFound(true)
+        // useDocumentHead leaves the title of a post route to this page (AGENT.md 6.24).
+        document.title = 'Az oldal nem található | petrik.hu'
       })
 
     return () => {

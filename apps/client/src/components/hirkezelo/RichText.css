@@ -1,0 +1,77 @@
+/*
+ * The media blocks of an imported post (RichText.tsx, AGENT.md 6.24). The
+ * image and gallery rules are WordPress's own block-library ones
+ * (wp-includes/css/dist/block-library/style.min.css in the mirror, found with
+ * scripts/css-rules.ts); the gallery's column count is Divi's four-up grid,
+ * two-up on a phone.
+ */
+.pnw-rich-image {
+  margin: 0 0 1.5em;
+}
+
+.pnw-rich-image img {
+  box-sizing: border-box;
+  height: auto;
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+.pnw-rich-image.aligncenter {
+  text-align: center;
+}
+
+.pnw-rich-image.alignright {
+  text-align: right;
+}
+
+.pnw-rich-image figcaption {
+  margin: 0.5em 0 0;
+  font-size: 0.9em;
+}
+
+.pnw-rich-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 0 0 1.5em;
+}
+
+.pnw-rich-gallery figure.wp-block-image {
+  margin: 0;
+  width: calc(25% - 12px);
+}
+
+.pnw-rich-gallery figure.wp-block-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 400 / 284;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .pnw-rich-gallery figure.wp-block-image {
+    width: calc(50% - 8px);
+  }
+}
+
+.pnw-rich-embed {
+  margin: 0 0 1.5em;
+}
+
+.pnw-rich-embed iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+.pnw-rich-embed-ratio {
+  position: relative;
+  height: 0;
+}
+
+.pnw-rich-embed-ratio iframe {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}

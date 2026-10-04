@@ -18,7 +18,8 @@ const RECENT = [
  */
 export default function RecentPosts() {
   const { posts, liveSlugs } = usePosts()
-  const slugs = [...liveSlugs, ...RECENT].slice(0, 5)
+  // A mirrored post archived in the Hírkezelő is gone from `posts` (AGENT.md 6.24); the next one moves up.
+  const slugs = [...liveSlugs, ...RECENT.filter((slug) => posts[slug])].slice(0, 5)
 
   return (
     <div id="recent-posts-2" className="et_pb_widget widget_recent_entries">

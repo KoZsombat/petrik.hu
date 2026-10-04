@@ -1,8 +1,11 @@
 import { useRef, useState } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
-import type { Align, BlockType, RichTable, RichTextBlock, RichTextDocument } from '../../../../../shared/pnw/types.ts'
-import { blockText, emptyBlock, emptyTable } from '../../../../../shared/pnw/richtext.ts'
+import type { Align, BlockType, RichTable, RichTextBlock, RichTextDocument, TextRun } from '../../../../../shared/pnw/types.ts'
+import { blockText, emptyBlock, emptyTable, isMediaBlock } from '../../../../../shared/pnw/richtext.ts'
+import { MediaBlock } from './RichText.tsx'
 import './RichTextEditor.css'
+
+const MEDIA_LABELS: Partial<Record<BlockType, string>> = { image: 'Kép', gallery: 'Galéria', embed: 'Beágyazott tartalom' }
 
 type Props = {
   id: string
@@ -41,9 +44,7 @@ export default function RichTextEditor({ id, value, onChange }: Props) {
   }
 
   function setText(blockId: string, text: string): void {
-    onChange(
-      value.map((block) => (block.id === blockId ? { ...block, runs: [{ ...block.runs[0], text }] } : block)),
-    )
+    onChange(value.map((block) => (block.id === blockId ? { ...block, runs: editRuns(block.runs, text) } : block)))
   }
 
   function addBlock(): void {
@@ -97,7 +98,7 @@ export default function RichTextEditor({ id, value, onChange }: Props) {
           className="pnw-rte-format"
           aria-label="Bekezdés stílusa"
           value={active?.type === 'heading' ? 'heading' : 'paragraph'}
-          disabled={active?.type === 'table'}
+          disabled={active?.type === 'table' || (!!active && isMediaBlock(active))}
           onChange={(event) => updateActive((block) => ({ ...block, type: event.target.value as BlockType }))}
         >
           <option value="paragraph">Bekezdés</option>
@@ -188,10 +189,11 @@ export default function RichTextEditor({ id, value, onChange }: Props) {
   )
 
   function toggleRun(key: 'bold' | 'italic'): void {
-    updateActive((block) => ({
-      ...block,
-      runs: [{ ...block.runs[0], [key]: !block.runs[0]?.[key] }],
-    }))
+    // Every run of the block, so an imported paragraph keeps its links (editRuns).
+    updateActive((block) => {
+      const on = !block.runs[0]?.[key]
+      return { ...block, runs: block.runs.map((run) => ({ ...run, [key]: on })) }
+    })
   }
 
   function setAlign(align: Align): void {
@@ -205,6 +207,46 @@ export default function RichTextEditor({ id, value, onChange }: Props) {
   function clearFormatting(): void {
     updateActive((block) => ({ ...block, align: undefined, runs: [{ text: blockText(block) }] }))
   }
+}
+
+/**
+ * Applies a textarea edit to a block's runs. A post written here has one run
+ * per block, but an imported one (AGENT.md 6.24) has several - a link, a bold
+ * word - and rewriting them as one run would lose those on the first
+ * keystroke. The edit is the stretch between the unchanged start and end of
+ * the text; only the runs it touches change, and new text joins the run it
+ * was typed into.
+ */
+function editRuns(runs: TextRun[], text: string): TextRun[] {
+  if (runs.length <= 1) return [{ ...runs[0], text }]
+  const old = runs.map((run) => run.text).join('')
+  let start = 0
+  while (start < old.length && start < text.length && old[start] === text[start]) start += 1
+  let end = 0
+  while (end < old.length - start && end < text.length - start && old[old.length - 1 - end] === text[text.length - 1 - end]) end += 1
+  const removeTo = old.length - end
+  const inserted = text.slice(start, text.length - end)
+
+  const out: TextRun[] = []
+  let offset = 0
+  let placed = false
+  for (const run of runs) {
+    const from = offset
+    const to = offset + run.text.length
+    offset = to
+    let next = run.text
+    // Typing at a boundary continues the run before it.
+    const hosts = !placed && start >= from && (start < to || (start === to && start > 0))
+    if (to > start && from < removeTo) {
+      next = run.text.slice(0, Math.max(0, start - from)) + (hosts ? inserted : '') + run.text.slice(Math.max(0, removeTo - from))
+    } else if (hosts) {
+      next = run.text.slice(0, start - from) + inserted + run.text.slice(start - from)
+    }
+    if (hosts) placed = true
+    if (next) out.push({ ...run, text: next })
+  }
+  if (!placed && inserted) out.unshift({ ...runs[0], text: inserted })
+  return out.length ? out : [{ text: '' }]
 }
 
 function ToolbarButton({
@@ -254,6 +296,27 @@ function BlockRow({
   onChangeTable: (table: RichTable, record: boolean) => void
   onRemove: () => void
 }) {
+  if (isMediaBlock(block)) {
+    // A picture, gallery or embed of an imported post (AGENT.md 6.24): kept
+    // as it is and shown as it will look, but not editable here.
+    return (
+      <div
+        className={`pnw-rte-block pnw-rte-block-media${active ? ' pnw-rte-block-active' : ''}`}
+        tabIndex={0}
+        onFocus={onFocus}
+        onBlur={onBlur}
+      >
+        <span className="pnw-rte-media-label">{MEDIA_LABELS[block.type]} – a régi oldalról, itt nem szerkeszthető</span>
+        <MediaBlock block={block} />
+        {removable && (
+          <button type="button" className="pnw-rte-remove" aria-label={`${MEDIA_LABELS[block.type]} törlése`} onClick={onRemove}>
+            ×
+          </button>
+        )}
+      </div>
+    )
+  }
+
   if (block.type === 'table' && block.table) {
     return (
       <div className={`pnw-rte-block pnw-rte-block-table${active ? ' pnw-rte-block-active' : ''}`} onFocus={onFocus}>

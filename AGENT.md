@@ -31,15 +31,23 @@ mellé egy másodikat (lásd 4.23, ahol ez korábban megtörtént).
 
 ## Aktuális állapot
 
-A port **működik és kész**: mind a 129 mentett route renderelődik, saját
+A port **működik és kész**: mind a 129 mentett route renderelődik (2026-10-04
+óta 128 oldalként + a mintaposzt Hírkezelő-hírként, 6.24), saját
 címmel, metaadattal és favicon-nal, a szövegük **karakterre azonos** a
 mentéssel (`check-text.ts`, utoljára ellenőrizve 2026-09-19), és a kezdőlap
 minden szekciója **0,0px**-re egyezik. `npm run build`, `npm run lint`,
 `check-routes.ts` és `check-titles.ts` ugyanekkor zöld volt.
 
+**2026-10-04: a régi hírek a Hírkezelőben** (részletek: 6.24) — a mentés mind
+a 216 hírje (a korábban statikus mintaposzt is) importálva a Hírkezelő
+adatbázisába (`npm run import-posts -w apps/server`), az eredeti `/<slug>/`
+URL-en elérhetők, a listák kártyái linkelnek rájuk, archiválva eltűnnek. A
+generált oldalak száma ezzel 52 (a `KutatokEjszakaja` dokumentum törölve). A 253
+összefoglalóból 44 marad placeholder: ezeket a mentés nem tartalmazza.
+
 **Hátralévő 3 tétel** (részletek: 8. szakasz):
-1. A 252 (nem mintaként bekötött) blogposzt nincs portolva — placeholder
-   kártyák, felhasználói döntés.
+1. 44 hír, amelyet a listák említenek, de a mentés nem tartalmaz —
+   placeholder kártyák, portból nem javítható.
 2. A 128 nem-kezdőlap oldal pixelellenőrzése nincs végigmérve szekciónként
    (a kezdőlap, a klasszikus oldal, a docs és az archívumok igen).
 3. `public/media` 271 MB — nincs eldöntve, bemegy-e a gitbe.
@@ -138,13 +146,15 @@ A mentés WordPress + **Divi 4.27** téma + **BetterDocs** plugin.
 | `dokumentumtar` | 1 | **kész** |
 | Doc-kategória (`dokumentum-kategoria/*`) | 10 | **kész** |
 | Doc-címke (`dokumentum-cimke/tananyag`) | 1 | **kész** |
-| Blogposzt (`body.single-post`) | 253 | ebből **1** kap route-ot — **kész** |
+| Blogposzt (`body.single-post`) | 216 | mind importálva a Hírkezelőbe, eredeti URL-en (6.24) — **kész** |
 | Archívum (kategória + dátum + szerző) | **64** | **kész** |
 
 ### Jóváhagyott scope-döntések (a felhasználótól)
 
-- **Csak 1 blogposzt** kap saját route-ot: `kutatok-ejszakaja-a-petrikben`.
-  A többi 252 a listákban placeholder kártyaként jelenik meg, link nélkül.
+- **A blogposztok a Hírkezelőben élnek** (2026-10-04, felhasználói döntés: ott
+  legyenek kezelhetők, ne statikus oldalak) — mind a 216, az eredeti URL-en,
+  lásd 6.24. Korábban csak a `kutatok-ejszakaja-a-petrikben` volt (statikus)
+  oldal; ma egyik sem az. Placeholder kártya csak a mentésből hiányzó 44 hírnek jár.
 - **Az archívumok benne vannak** a scope-ban, **valódi lapozó route-okkal**
   (`/kategoria/hirek/page/2/`), a mentés oldalméretével.
 - **A Hírkezelő jogosultság-alapú, nem szerepkör-alapú**, és minden fiók
@@ -1532,6 +1542,65 @@ felülírásoknál).
   csak-táblázatos hírrel sikerült; a modul-dialógus megnyílik (RichText + design), Esc zárja,
   a szakasz beállításai is dialógusban.
 
+### 6.24 A régi hírek importja a Hírkezelőbe
+
+(Felhasználói kérés és döntés, 2026-10-04: „a még át nem alakított híreket rakd
+be az oldalra, linkelve, mint az eredetin” — a Hírkezelő adatbázisába, nem
+statikus oldalként.)
+- **Import:** `apps/server/scripts/import-mirror-posts.ts`
+  (`PETRIK_MIRROR=… npm run import-posts -w apps/server`; `PNW_DATA_DIR` /
+  `PNW_UPLOADS_DIR` scratch-futtatáshoz). A mentés minden `body.single-post`
+  oldala — a korábban statikus mintaposzt is (a `SAMPLE_POST_SLUG` konstans és
+  a `KutatokEjszakaja` registry-oldal megszűnt; a `render-baseline.json` 52
+  oldalas, a kártyák linkjei miatt újra lett véve, a különbség `compare`-rel
+  ellenőrizve csak a linkek). **Idempotens** (meglévő slug kimarad).
+  A Divi-hírek moduljai olvasási sorrendben lapítódnak (Text, Image, Gallery,
+  Button → link-bekezdés, Blurb/Toggle → címsor + szöveg, TeamMember,
+  Testimonial, Video/Code-iframe → embed, Countdown → bekezdés a dátummal),
+  a Gutenberg-hírek blokkjai közvetlenül. Amit nem tud egy az egyben
+  leképezni, a végén hírenként kiírja; jelenleg: 2 Venngage-script (jegyzet
+  marad), 3 ThingLink-script (a kép megmarad), 1 helyi mp4 (link), 1 üres
+  videómodul (a mentésben is üres), 5 db 40 MB-os galéria-original (a
+  nagyítás linkje elmarad).
+- **Mező-források:** cím a `.entry-title`, dátum a téma `.published` szövegéből
+  (budapesti dél + a WP post-id másodpercben, hogy az egy napon belüli sorrend
+  megmaradjon), kategória a `.post-meta` linkjeiből a `terms.route` alapján,
+  kivonat a `src/data/posts.ts`-ből (ahol nincs: az első 55 szó). **Nincs
+  `featuredImage`** — az eredeti egyposzt-oldal sem mutatott kiemelt képet, a
+  kép a tartalomban van. A szerző az 5 eredeti név, mindegyik egy
+  **jogosultság nélküli** fiók (`regi.*`, véletlen jelszó).
+- **Képek:** `uploads/mirror/<wp-útvonal>` alá másolódnak (~300 MB). A tartalomkép
+  a srcset legkisebb ≥1024px-es változata, a nagyítás-link is ilyen változatra
+  mutat (a `-scaled` originalok miatt 950 MB lett volna); 10 MB fölötti
+  nagyítás-cél nem másolódik. A crawler néhány nevet Windows-1252 mojibake-kel
+  mentett (`â€“`) — a szkript ezt az alakot is keresi.
+- **Modell:** új `BlockType`-ok: `image`, `gallery`, `embed` (a `table` mintájára,
+  saját mezővel). Az embed csak https és `EMBED_HOSTS`-listás host
+  (`shared/pnw/types.ts`); a szerver `parseRichText` újraépíti a mezőket. A
+  `RichText` WordPress-markupot rajzol (`figure.wp-block-image`, galéria), a
+  CSS a mentés block-library szabályaiból (`RichText.css`). A szerkesztő ezeket
+  **megtartja, de nem szerkeszti** (előnézet + törlés), és a többrunos
+  (linkes, félkövér részes) bekezdésnél a gépelést a meglévő runok közé
+  illeszti (`editRuns`), nem lapítja egy runná.
+- **`posts.origin`** (`'hirkezelo' | 'mirror'`, db-migráció): a `GET
+  /api/public/posts` csak a Hírkezelőben írt híreket adja (különben a 20
+  „legfrissebb élő hír” a mentés listáit duplikálná); az új `GET
+  /api/public/posts/hidden-mirror` a nem publikus importált slugokat, ezeket a
+  `PostsProvider` kiveszi a `posts` mapből → archiválva eltűnnek a listákból.
+- **URL:** a `/:slug/` ág (`DocumentPage`) ismeretlen slugnál `PublishedPost`-ot
+  renderel (ez kér a szervertől, és maga mutatja a 404-et); a `useDocumentHead`
+  ilyenkor a címet a `PublishedPost`-ra hagyja. A `/hirek/<slug>/` is működik.
+  A `scripts/posts.ts` `available: true`-t ad minden olyan összefoglalónak,
+  amelyhez van oldal a mentésben (209; 7 importált hír egyik listában sem
+  szerepel, ezek csak URL-ről érhetők el).
+- **Szándékos eltérés:** ezek a hírek a Hírkezelő sablonjával renderelődnek
+  (`PostTemplatePreview`), nem a Divi-fa pixelpontos portjaként — a
+  többhasábos Divi-sorok egy hasábba lapulnak.
+- Ellenőrizve: scratch adatbázison import (215/0 hiba), második futás 0;
+  fejetlen Chrome: Divi-hír, Gutenberg galériás + YouTube-os hír, kategória-
+  archívum linkelő kártyái; API-n archiválás → `hidden-mirror` + 404,
+  visszaállítás; publikált hír mentése megtartja a galériát.
+
 ---
 
 ## 7. Csapdák, amikbe már belefutottunk
@@ -1594,7 +1663,7 @@ A mentésben 345 oldal van, ebből **129 portolva**:
 
 | Nincs portolva | Db | Miért |
 |---|---|---|
-| Blogposzt | 215 | Felhasználói döntés: csak 1 kap route-ot |
+| Blogposzt | 216 | Nem generált oldal, hanem Hírkezelő-import (6.24) — elérhető, de nem pixelpontos port |
 
 `/hirkezelo/` **nincs ebben a táblázatban**: az korábban ide tartozott (a
 mentés bejelentkező űrlapja, backend nélkül), de felhasználói kérésre

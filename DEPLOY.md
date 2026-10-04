@@ -224,6 +224,31 @@ docker compose start server
 (Needs Node 24 on the machine that runs it; with no `page_overrides` rows it
 reports "nothing to migrate".)
 
+## Importing the old site's news (AGENT.md 6.24)
+
+All 216 news posts of the old petrik.hu (`kutatok-ejszakaja-a-petrikben`
+included, which used to be a static page) live in the Hírkezelő's database, with
+their pictures in `apps/server/uploads/mirror/` (about 300 MB). The import reads
+the mirror, which exists only on your PC, so it runs **there**:
+
+- **Option B on the first deploy (`-WithData`)**: run the import locally first
+  (`$env:PETRIK_MIRROR="<mirror folder>"; npm run import-posts -w apps/server`),
+  and the posts and pictures travel with your data.
+- **A server that already has live data**: do not use `-WithData`, because it
+  would replace that data. Take a backup (section 10), unpack it on your PC, run
+  the import against the copy, then put the copy back:
+
+  ```powershell
+  # in the unpacked backup folder: apps\server\data\db and apps\server\uploads
+  $env:PETRIK_MIRROR="<mirror folder>"
+  $env:PNW_DATA_DIR="<backup>\apps\server\data\db"; $env:PNW_UPLOADS_DIR="<backup>\apps\server\uploads"
+  npm run import-posts -w apps/server
+  # then, with the server container stopped, copy both folders back over scp
+  ```
+
+The import is idempotent: a post already in the database is skipped, so a
+second run changes nothing.
+
 ## Troubleshooting
 
 | Symptom | Fix |

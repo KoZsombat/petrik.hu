@@ -39,6 +39,10 @@ export default function Published() {
       return
     }
     const result = await api.archivePost(id)
+    // Same view, same component instance - reload the list ourselves, or the
+    // archived row would linger until a full page refresh.
+    if (posts.length === 1 && page > 1) setPage(page - 1)
+    else await load(query, page)
     navigate(`/hirkezelo/?pnw_notice=${result.notice}&pnw_view=published`)
   }
 
@@ -49,8 +53,8 @@ export default function Published() {
           <div className="pnw-kicker">Publikált tartalom</div>
           <h3>Kint lévő hírek</h3>
           <p>
-            A lista a Hírkezelőből (teszt módban) jóváhagyott híreket tartalmazza. Az Archiválás leveszi a hírt a
-            listáról, de nem törli.
+            A lista a Hírkezelőből jóváhagyott és a régi oldalról átvett híreket tartalmazza. Az Archiválás
+            leveszi a hírt a weboldalról, de nem törli.
           </p>
         </div>
         <Link className="pnw-button pnw-button-secondary" to="/hirkezelo/?pnw_view=archive">
@@ -168,7 +172,7 @@ function PublishedRows({
           <time dateTime={post.date}>{new Date(post.date).toLocaleString('hu-HU')}</time>
         </td>
         <td data-label="Forrás">
-          <span className="pnw-published-source">Hírkezelő</span>
+          <span className="pnw-published-source">{post.origin === 'mirror' ? 'Régi oldal' : 'Hírkezelő'}</span>
         </td>
       </tr>
       <tr className="pnw-published-action-row">

@@ -2,7 +2,9 @@ import { Fragment } from 'react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import type { RichTextBlock, RichTextDocument, TextRun } from '../../../../../shared/pnw/types.ts'
+import { isEmbedSrc } from '../../../../../shared/pnw/types.ts'
 import { isSafeHref } from '../../../../../shared/pnw/richtext.ts'
+import './RichText.css'
 
 /**
  * Read-only rendering of a RichTextDocument. Always real JSX (<p>, <h1>-<h4>,
@@ -74,6 +76,83 @@ function renderRuns(runs: TextRun[]) {
   })
 }
 
+/** A picture's own address: an upload or an http(s) URL - the server stores nothing else, this only re-checks. */
+const isImageSrc = (src: string) => (src.startsWith('/') && !src.startsWith('//')) || /^https?:\/\//i.test(src)
+
+function linkTo(href: string | undefined, children: ReactNode): ReactNode {
+  if (!href || !isSafeHref(href)) return children
+  if (isFileLink(href)) return <a href={href}>{children}</a>
+  if (href.startsWith('/')) return <Link to={href}>{children}</Link>
+  return (
+    <a href={href} target="_blank" rel="noreferrer">
+      {children}
+    </a>
+  )
+}
+
+/**
+ * The media blocks of a post imported from the mirror (AGENT.md 6.24), in
+ * the markup Gutenberg gave them on the old site: `figure.wp-block-image`,
+ * a `wp-block-gallery` of such figures, and an iframe in a ratio box.
+ */
+export function MediaBlock({ block }: { block: RichTextBlock }) {
+  if (block.type === 'image' && block.image && isImageSrc(block.image.src)) {
+    const { src, alt, caption, href, width, height } = block.image
+    const align = block.align === 'center' || block.align === 'right' ? ` align${block.align}` : ''
+    return (
+      <figure className={`wp-block-image pnw-rich-image${align}`}>
+        {linkTo(href, <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" />)}
+        {caption && <figcaption>{caption}</figcaption>}
+      </figure>
+    )
+  }
+  if (block.type === 'gallery' && block.gallery?.length) {
+    return (
+      <figure className="wp-block-gallery has-nested-images pnw-rich-gallery">
+        {block.gallery
+          .filter((item) => isImageSrc(item.src))
+          .map((item, at) => (
+            <figure key={at} className="wp-block-image">
+              {item.full && isImageSrc(item.full) ? (
+                <a href={item.full} target="_blank" rel="noreferrer">
+                  <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
+                </a>
+              ) : (
+                <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
+              )}
+            </figure>
+          ))}
+      </figure>
+    )
+  }
+  if (block.type === 'embed' && block.embed && isEmbedSrc(block.embed.src)) {
+    const { src, title, aspect, height } = block.embed
+    const frame = (
+      <iframe
+        src={src}
+        title={title ?? 'Beágyazott tartalom'}
+        loading="lazy"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen
+        style={aspect ? undefined : { height: height ?? 500 }}
+      />
+    )
+    return (
+      <figure className="wp-block-embed pnw-rich-embed">
+        {aspect ? (
+          <div className="pnw-rich-embed-ratio" style={{ paddingBottom: `${aspect * 100}%` }}>
+            {frame}
+          </div>
+        ) : (
+          frame
+        )}
+      </figure>
+    )
+  }
+  return null
+}
+
 function renderGroup(group: Group) {
   if (group.list) {
     const Tag = group.list === 'bulleted-list' ? 'ul' : 'ol'
@@ -87,6 +166,7 @@ function renderGroup(group: Group) {
   }
 
   const { block } = group
+  if (block.type === 'image' || block.type === 'gallery' || block.type === 'embed') return <MediaBlock key={block.id} block={block} />
   if (block.type === 'table' && block.table) {
     const [first, ...rest] = block.table.rows
     const head = block.table.header && first ? first : null
