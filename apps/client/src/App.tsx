@@ -7,6 +7,7 @@ import DocTaxonomy from './pages/DocTaxonomy.tsx'
 import Dokumentumtar from './pages/Dokumentumtar.tsx'
 import DocumentPage from './pages/DocumentPage.tsx'
 import NotFound from './pages/NotFound.tsx'
+import DocumentRedirect from './pages/DocumentRedirect.tsx'
 import Search from './pages/Search.tsx'
 import Hirkezelo from './pages/Hirkezelo.tsx'
 import Bejelentkezes from './pages/Bejelentkezes.tsx'
@@ -53,6 +54,8 @@ export default function App() {
         {/* The document library's listings. The 27 documents themselves are in
             the registry above. */}
         <Route path="/dokumentumtar/" element={<Dokumentumtar />} />
+        {/* The original redirected /dokumentumtar/<doc>/ to /docs/<doc>/ (old posts still link there). */}
+        <Route path="/dokumentumtar/:slug/" element={<DocumentRedirect />} />
         <Route path="/dokumentum-kategoria/:slug/" element={<DocTaxonomy kind="category" />} />
         <Route path="/dokumentum-cimke/:slug/" element={<DocTaxonomy kind="tag" />} />
 

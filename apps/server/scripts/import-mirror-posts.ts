@@ -135,6 +135,9 @@ function mapUrl(raw: string | undefined, maxBytes = Infinity): string | undefine
     } catch {
       return url
     }
+  } else if (/^(www\.)?[a-z0-9-]+(\.[a-z0-9-]+)*\.(hu|com|org|net|eu)$/i.test(url.trim())) {
+    // A bare domain (`bisel.hu`) the author meant as a web address; the original resolved it as a path and 404'd.
+    return `https://${url.trim()}`
   } else {
     url = url.replace(/#.*$/, '')
     // The post's own page (`index.html#`, the crawler's rewrite of `#`).
