@@ -225,6 +225,11 @@ export type PageDocument = {
   /** The `<article>`'s classes (builder, post, classic). */
   articleClass?: string
   sections: PageSection[]
+  /**
+   * Divi's "link options": a whole module, row or column that opens a URL when
+   * clicked. `class` is the node's Divi class (`et_pb_blurb_3`, `et_pb_column_4`).
+   */
+  linkOptions?: { class: string; url: string; target?: '_blank' | '_self' }[]
   /** docs: the document in src/data/docs.ts this page is, which the BetterDocs frame is built from. */
   docsSlug?: string
   /** docs: the body is WordPress's password form, replaced by a note. */

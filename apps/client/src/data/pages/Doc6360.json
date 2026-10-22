@@ -1,4 +1,14 @@
 {
+  "linkOptions": [
+   {"class":"et_pb_text_0","url":"/media/wp-content/uploads/2025/09/Tortenelem_temakorok_2025_osz.pdf","target":"_self"},
+   {"class":"et_pb_text_1","url":"/media/wp-content/uploads/2025/09/Nemet_nyelv_temakorok_2025_osz.pdf","target":"_self"},
+   {"class":"et_pb_text_2","url":"/media/wp-content/uploads/2025/09/Angol_nyelv_2025_osz.pdf","target":"_self"},
+   {"class":"et_pb_text_3","url":"/media/wp-content/uploads/2025/09/Digitalis-kultura-kozepszintu-erettsegi_2025_osz.pdf","target":"_self"},
+   {"class":"et_pb_text_4","url":"/media/wp-content/uploads/2025/09/2025-oszi-erettsegi-Magyar-nyelv-es-irodalom-erettsegi-temakorok.pdf","target":"_self"},
+   {"class":"et_pb_text_5","url":"/media/wp-content/uploads/2025/09/Foldrajz_temakorok_2025_osz.pdf","target":"_self"},
+   {"class":"et_pb_text_6","url":"/media/wp-content/uploads/2026/10/Temakorok-fizika-2026-1.pdf","target":"_self"},
+   {"class":"et_pb_text_7","url":"/media/wp-content/uploads/2025/09/Matematika_temakorok_2025_osz.pdf","target":"_self"}
+  ],
  "template": "docs",
  "scope": "page-docs-6360",
  "docsSlug": "6360",

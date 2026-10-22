@@ -1,4 +1,13 @@
 {
+  "linkOptions": [
+   {"class":"et_pb_column_5","url":"https://petrik.hu/6-sz-melleklet/","target":"_blank"},
+   {"class":"et_pb_blurb_0","url":"/media/wp-content/uploads/2025/04/Modositott-Szuloi-tajekoztato-level_2025_2026.pdf","target":"_blank"},
+   {"class":"et_pb_blurb_1","url":"/media/wp-content/uploads/2025/03/Kedvezmenyes-etkezessel-kapcsolatos-tajekoztato__2025_2026.pdf","target":"_blank"},
+   {"class":"et_pb_blurb_2","url":"/media/wp-content/uploads/2025/03/DIETAS-etkezes_igenylolap_2025_2026.pdf","target":"_blank"},
+   {"class":"et_pb_blurb_3","url":"/media/wp-content/uploads/2025/03/ESZGSZ-IGENYLOLAP-2025_2026.pdf","target":"_blank"},
+   {"class":"et_pb_blurb_4","url":"/media/wp-content/uploads/2025/03/8.sz_.melleklet.pdf","target":"_blank"},
+   {"class":"et_pb_blurb_5","url":"/media/wp-content/uploads/2025/03/9.-sz.-melleklet.pdf","target":"_blank"}
+  ],
  "template": "builder",
  "scope": "page-ebed",
  "articleClass": "post-790 page type-page status-publish hentry",

@@ -685,6 +685,18 @@ export function sanitizePageDocument(
     }
     const articleClass = optClass(raw.articleClass)
     if (articleClass) document.articleClass = articleClass
+    if (raw.linkOptions !== undefined && raw.linkOptions !== null) {
+      document.linkOptions = objects(raw.linkOptions, 'linkOptions').map((option) => {
+        const name = str(option.class, 100, 'link class')
+        if (!/^et_pb_[a-z_]+_\d+$/.test(name)) fail('link class')
+        return clean({
+          class: name,
+          url: str(option.url, 2000, 'link url'),
+          target: optOneOf(option.target, ['_blank', '_self'] as const, 'link target'),
+        })
+      })
+      for (const option of document.linkOptions) if (!isSafeHref(option.url)) fail('link url')
+    }
 
     if (template === 'docs') {
       const slug = str(raw.docsSlug, 200, 'docsSlug')

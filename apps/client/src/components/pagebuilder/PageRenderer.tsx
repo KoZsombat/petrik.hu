@@ -34,6 +34,8 @@ import { youtubeId } from './video.ts'
 import './builder-page.css'
 import './animations.css'
 import { runModuleAnimations } from './animations.ts'
+import { applyLinkOptions } from './linkOptions.ts'
+import { useNavigate } from 'react-router-dom'
 
 /**
  * The hero's background is the rule the mirror's hero sections share
@@ -271,7 +273,9 @@ export default function PageRenderer({ document: raw, className }: { document: P
   const scope = document.scope ?? 'page-builder'
   const rootClass = [scope, className].filter(Boolean).join(' ')
 
+  const navigate = useNavigate()
   useEffect(() => runModuleAnimations(), [document])
+  useEffect(() => applyLinkOptions(document.linkOptions, navigate), [document, navigate])
 
   if (template === 'docs') {
     return (

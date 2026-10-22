@@ -1,4 +1,11 @@
 {
+  "linkOptions": [
+   {"class":"et_pb_blurb_4","url":"/media/wp-content/uploads/2024/08/1.-Melleklet-IKSZ-Egyuttmukodesi-megallapodas-minta-Petrik-2024_2025.docx","target":"_blank"},
+   {"class":"et_pb_blurb_5","url":"/media/wp-content/uploads/2023/09/2.-Melleklet-IKSZ-Tanuloi-jelentkezesi-lap.pdf","target":"_blank"},
+   {"class":"et_pb_blurb_6","url":"/media/wp-content/uploads/2023/09/3.-Melleklet-Egyuttmukodesi-megallapodas-minta-maganszemellyel-2023_2024.docx","target":"_blank"},
+   {"class":"et_pb_blurb_7","url":"/media/wp-content/uploads/2023/09/4.-Melleklet-Kozossegi-Szolgalati-Naplo-Sablon.pdf","target":"_blank"},
+   {"class":"et_pb_blurb_8","url":"/media/wp-content/uploads/2023/09/5.-Melleklet-IKSZ_Igazolas-minta-iskolavaltaskor.docx","target":"_blank"}
+  ],
  "template": "builder",
  "scope": "page-kozossegi-szolgalat",
  "articleClass": "post-944 page type-page status-publish hentry",

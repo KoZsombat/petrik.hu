@@ -1,4 +1,17 @@
 {
+  "linkOptions": [
+   {"class":"et_pb_column_4","url":"https://petrik.hu/6-sz-melleklet/","target":"_blank"},
+   {"class":"et_pb_blurb_0","url":"/media/wp-content/uploads/2023/05/adatkezelesi_tevekenysegek_nyilvantartas_NSZFH_bmszc_petrik_001121_2_2023.pdf","target":"_blank"},
+   {"class":"et_pb_blurb_1","url":"/media/wp-content/uploads/2023/05/adatkezelesi_tajekoztato_NSZFH_bmszc_petrik_001121_3_2023.pdf","target":"_blank"},
+   {"class":"et_pb_blurb_2","url":"/media/wp-content/uploads/2023/05/adatkezlesei_szabalyzat_NSZFH_bmszc_petrik_001121_4_2023.pdf","target":"_blank"},
+   {"class":"et_pb_blurb_3","url":"/media/wp-content/uploads/2023/05/Iratkezelesi-szabalyzat_2022-23.pdf","target":"_blank"},
+   {"class":"et_pb_blurb_4","url":"/media/wp-content/uploads/2023/05/kamera_szabalyzat_NSZFH_bmszc_petrik_001121_5_2023.pdf","target":"_blank"},
+   {"class":"et_pb_blurb_5","url":"/media/wp-content/uploads/2023/05/ADATKEZELESI-HOZZAJARULAS-hozzajarulas-alapjan-kezelt-adatokhoz-torvenyes-kepviselo.docx","target":"_blank"},
+   {"class":"et_pb_blurb_6","url":"/media/wp-content/uploads/2023/05/ADATKEZELESI-HOZZAJARULAS-hozzajarulas-alapjan-kezelt-adatokhoz-torvenyes-kepviselo.docx","target":"_blank"},
+   {"class":"et_pb_blurb_7","url":"/media/wp-content/uploads/2023/05/ADATKEZELESI-HOZZAJARULAS-hozzajarulas-alapjan-kezelt-adatokhoz.docx","target":"_blank"},
+   {"class":"et_pb_blurb_8","url":"/media/wp-content/uploads/2023/05/Tajekoztatas-nem-hozzajarulas-alapjan-kezelt-adatok-eseteben-torvenyes-kepviselo-reszere.docx","target":"_blank"},
+   {"class":"et_pb_blurb_9","url":"/media/wp-content/uploads/2023/05/Tajekoztatas-nem-hozzajarulas-alapjan-kezelt-adatok-eseteben.docx","target":"_blank"}
+  ],
  "template": "builder",
  "scope": "page-adatvedelem",
  "articleClass": "post-5103 page type-page status-publish hentry",

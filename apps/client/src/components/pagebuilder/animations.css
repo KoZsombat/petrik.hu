@@ -98,3 +98,8 @@
     animation: none;
   }
 }
+
+/* A module that opens a link when clicked (Divi's link options). */
+.et_clickable {
+  cursor: pointer;
+}
