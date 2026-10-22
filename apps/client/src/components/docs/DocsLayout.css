@@ -148,3 +148,60 @@
     margin: 0;
   }
 }
+
+/*
+ * The category drawer. betterdocs.css hides the sidebar below 768px and only
+ * the plugin's script could bring it back; the "Kategóriák" button now toggles
+ * this class instead.
+ */
+.betterdocs-mobile-nav button.betterdocs-sidebar-icon {
+  appearance: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+@media only screen and (max-width: 768px) {
+  .betterdocs-sidebar.docs-sidebar-open,
+  #betterdocs-sidebar.docs-sidebar-open {
+    display: block;
+    flex-basis: auto;
+    max-width: none;
+    margin-bottom: 20px;
+  }
+}
+
+/*
+ * betterdocs.css hides every sidebar category body and relied on the plugin's
+ * script to re-show the open one. The `collapsed` class now carries that
+ * state: the body is a one-row grid whose row animates between 1fr and 0fr.
+ */
+.betterdocs-sidebar-content .betterdocs-category-grid-wrapper .betterdocs-single-category-wrapper .betterdocs-body {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.3s ease, padding 0.3s ease;
+}
+
+.betterdocs-sidebar-content .betterdocs-category-grid-wrapper .betterdocs-single-category-wrapper.collapsed .betterdocs-body {
+  grid-template-rows: 0fr;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.betterdocs-sidebar-content .betterdocs-body > .betterdocs-articles-list {
+  overflow: hidden;
+  min-height: 0;
+  display: block;
+}
+
+.betterdocs-sidebar-content .betterdocs-single-category-wrapper .betterdocs-category-collapse-button svg {
+  transition: transform 0.3s ease;
+}
+
+/* The grid on /dokumentumtar/ is always open; its bodies show as before. */
+.betterdocs-category-grid-inner-wrapper.masonry .betterdocs-body {
+  display: block;
+}

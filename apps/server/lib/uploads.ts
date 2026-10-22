@@ -1,20 +1,24 @@
 /**
- * Image uploads - one multer config shared by the Hírkezelő's featured image
- * (routes/posts.ts) and the Szerkesztő's media picker (routes/pages.ts,
- * AGENT.md 6.19). Both land in UPLOADS_DIR and are served at /uploads.
+ * Uploads - one multer config shared by the Hírkezelő's featured image
+ * (routes/posts.ts), the Szerkesztő's media picker (routes/pages.ts,
+ * AGENT.md 6.19) and the Dokumentumtár (routes/library.ts). The bytes are kept
+ * in memory just long enough to be written to the database (data/media-repo.ts)
+ * and are served from there at /uploads - nothing touches the disk.
  */
 import { randomUUID } from 'node:crypto'
-import { readdir, rename, stat, unlink } from 'node:fs/promises'
-import { extname, join } from 'node:path'
+import { extname } from 'node:path'
 import multer from 'multer'
-import { UPLOADS_DIR, UPLOADS_URL_PREFIX } from '../config.ts'
+import { slugify } from '../../../shared/pnw/slug.ts'
+import { UPLOADS_URL_PREFIX } from '../config.ts'
+import { listImageMedia, putMedia } from '../data/media-repo.ts'
+import { mimeFor } from './media.ts'
 
 export const upload = multer({
-  dest: UPLOADS_DIR,
+  storage: multer.memoryStorage(),
   limits: { fileSize: 8 * 1024 * 1024 },
 })
 
-/** What an uploaded image may be called on disk - the extension decides the MIME /uploads serves it with. */
+/** What an uploaded image may be called - the extension decides the MIME /uploads serves it with. */
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.avif'])
 
 /**
@@ -24,26 +28,50 @@ const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.gif', '.webp', '.sv
  */
 export async function storeImage(file: Express.Multer.File | undefined): Promise<string | undefined> {
   if (!file) return undefined
-  if (!file.mimetype.startsWith('image/')) {
-    await unlink(file.path).catch(() => {})
-    return undefined
-  }
+  const extension = extname(file.originalname).toLowerCase()
+  if (!file.mimetype.startsWith('image/') || !IMAGE_EXTENSIONS.has(extension)) return undefined
 
-  const filename = `${randomUUID()}${extname(file.originalname).toLowerCase() || ''}`
-  await rename(file.path, join(UPLOADS_DIR, filename))
+  const filename = `${randomUUID()}${extension}`
+  putMedia(`${UPLOADS_URL_PREFIX}/${filename}`, mimeFor(filename), file.buffer)
   return `${UPLOADS_URL_PREFIX}/${filename}`
 }
 
 export type MediaItem = { url: string; name: string; size: number; modifiedAt: string }
 
-/** Every stored image, newest first - multer's own extension-less temp files are not images and are skipped. */
+/** Every stored image, newest first. */
 export async function listImages(): Promise<MediaItem[]> {
-  const names = await readdir(UPLOADS_DIR).catch(() => [] as string[])
-  const items: MediaItem[] = []
-  for (const name of names) {
-    if (!IMAGE_EXTENSIONS.has(extname(name).toLowerCase())) continue
-    const info = await stat(join(UPLOADS_DIR, name))
-    items.push({ url: `${UPLOADS_URL_PREFIX}/${name}`, name, size: info.size, modifiedAt: info.mtime.toISOString() })
-  }
-  return items.sort((a, b) => b.modifiedAt.localeCompare(a.modifiedAt))
+  return listImageMedia(`${UPLOADS_URL_PREFIX}/`).map((item) => ({
+    url: item.path,
+    name: item.path.slice(UPLOADS_URL_PREFIX.length + 1),
+    size: item.size,
+    modifiedAt: item.modifiedAt,
+  }))
+}
+
+/** nginx allows 10 MB per request (apps/client/nginx.conf), so a document stays just under that. */
+export const uploadDocument = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 9 * 1024 * 1024 },
+})
+
+/** What the Dokumentumtár accepts - the extension is also what /uploads serves the MIME by. */
+const DOCUMENT_EXTENSIONS = new Set([
+  '.pdf', '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx', '.odt', '.ods', '.odp', '.rtf', '.txt', '.csv', '.zip',
+])
+
+/**
+ * Stores an uploaded document under a readable name (`alapito-okirat-3f9a1c.pdf`)
+ * and returns its public URL, or undefined when there was no file or its type is
+ * not allowed. The original name is only a hint - what lands on disk is
+ * slugified, so it cannot traverse or shadow anything.
+ */
+export async function storeDocument(file: Express.Multer.File | undefined): Promise<string | undefined> {
+  if (!file) return undefined
+  const extension = extname(file.originalname).toLowerCase()
+  if (!DOCUMENT_EXTENSIONS.has(extension)) return undefined
+
+  const base = slugify(file.originalname.slice(0, file.originalname.length - extension.length)).slice(0, 60)
+  const filename = `${base}-${randomUUID().slice(0, 6)}${extension}`
+  putMedia(`${UPLOADS_URL_PREFIX}/${filename}`, mimeFor(filename), file.buffer)
+  return `${UPLOADS_URL_PREFIX}/${filename}`
 }

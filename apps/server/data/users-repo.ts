@@ -127,6 +127,7 @@ export function seedInitialUsers(): void {
     CAPABILITY.MANAGE_USERS,
     // The Szerkesztő (AGENT.md 6.19); mk.vezeto deliberately has no such right.
     CAPABILITY.MANAGE_PAGES,
+    CAPABILITY.MANAGE_LIBRARY,
   ]
 
   const seed: { username: string; displayName: string; password: string; permissions: Capability[] }[] = [

@@ -62,6 +62,7 @@ on the Hírkezelő's *Fiókok* screen (`shared/pnw/permissions.ts`):
 | `pnw_manage_terms` | Create categories and tags |
 | `pnw_manage_users` | Create, edit and delete accounts |
 | `pnw_manage_pages` | The Szerkesztő: edit pages, create/delete pages, edit the menu |
+| `pnw_manage_library` | The Szerkesztő's Dokumentumtár: add, replace, remove and organise documents |
 
 ## Endpoints
 
@@ -77,6 +78,7 @@ most need a specific capability.
 | `/terms` | `GET /` (*public*), `POST /` |
 | `/audit`, `/statistics` | `GET /` |
 | `/pages` | Szerkesztő (`pnw_manage_pages`): `GET/POST /`, `GET/PUT/DELETE /:id`, `GET/PUT/DELETE /overrides?route=`, `GET/PUT/DELETE /menu`, `GET/POST /media` |
+| `/pages/library` | Dokumentumtár (`pnw_manage_library`, not `pnw_manage_pages`): `GET/PUT/DELETE /`, `POST /file` |
 
 Everything saved through `/pages` is validated by rebuilding it field by field
 (`lib/validation.ts`). Unknown module types, unsafe links (`javascript:`) and

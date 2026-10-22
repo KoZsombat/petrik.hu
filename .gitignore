@@ -29,3 +29,8 @@ apps/server/uploads
 *.njsproj
 *.sln
 *.sw?
+
+*.pem
+
+# Mirrored images/PDFs: seeded into the database, not kept in git (AGENT.md 6.25)
+apps/client/public/media

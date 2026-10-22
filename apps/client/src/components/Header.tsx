@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import type { MenuItem } from '../data/site.ts'
 import { useSiteMenu } from '../lib/site/siteContext.ts'
@@ -58,8 +58,30 @@ export default function Header() {
   const fixed = useFixedHeader()
   const { pathname } = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuRef = useRef<HTMLUListElement>(null)
+  // Lock the page behind the open menu so scrolling moves the menu, not the page.
+  useEffect(() => {
+    if (!menuOpen) return
+    // overflow:hidden alone is ignored by iOS Safari, so pin the body in place.
+    const { style } = document.body
+    const scrollY = window.scrollY
+    const saved = { position: style.position, top: style.top, width: style.width }
+    style.position = 'fixed'
+    style.top = `-${scrollY}px`
+    style.width = '100%'
+    // Fit the menu to what is left of the screen below it, so its last entry
+    // is not cut off (the bar above shifts the menu's top by a varying amount).
+    const menu = menuRef.current
+    if (menu) menu.style.maxHeight = `${window.innerHeight - menu.getBoundingClientRect().top - 8}px`
+    return () => {
+      style.position = saved.position
+      style.top = saved.top
+      style.width = saved.width
+      window.scrollTo(0, scrollY)
+    }
+  }, [menuOpen])
   // The Szerkesztő's edited menu when there is one, else src/data/site.ts (AGENT.md 6.19).
-  const { primary: primaryMenu } = useSiteMenu()
+  const { primary: primaryMenu, secondary: secondaryMenu } = useSiteMenu()
 
   return (
     <header id="main-header" className={fixed ? 'et-fixed-header' : undefined}>
@@ -107,12 +129,17 @@ export default function Header() {
                   handler does the same for every link inside. */}
               <ul
                 id="mobile_menu"
+                ref={menuRef}
                 className="et_mobile_menu"
                 hidden={!menuOpen}
                 onClick={() => setMenuOpen(false)}
               >
                 {primaryMenu.map((item, index) => (
                   <MenuEntry key={`${item.label}-${index}`} item={item} current={pathname} />
+                ))}
+                {/* The green top bar is hidden on phones, so its links live here. */}
+                {secondaryMenu.map((item, index) => (
+                  <MenuEntry key={`secondary-${item.label}-${index}`} item={item} current={pathname} />
                 ))}
               </ul>
             </div>

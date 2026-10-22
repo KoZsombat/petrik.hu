@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { categoryOf, docs } from '../../data/docs.ts'
+import { useDocCategories } from '../../lib/site/docLibrary.ts'
+import DocLink from './DocLink.tsx'
 import { fold } from '../../lib/text.ts'
 import { CloseIcon, SearchIcon } from './DocsIcons.tsx'
 
@@ -16,9 +16,14 @@ export default function DocsSearch() {
   const [term, setTerm] = useState('')
   const wrapper = useRef<HTMLDivElement>(null)
 
+  const categories = useDocCategories()
   const needle = fold(term.trim())
   const hits = needle
-    ? Object.values(docs).filter((doc) => fold(doc.title).includes(needle))
+    ? categories.flatMap((category) =>
+        category.docs
+          .filter((doc) => fold(doc.title).includes(needle))
+          .map((doc) => ({ ...doc, category: category.title })),
+      )
     : []
 
   useEffect(() => {
@@ -77,10 +82,10 @@ export default function DocsSearch() {
               <li key={doc.slug}>
                 {/* Following a result closes the list; clicking anywhere else,
                     or pressing Escape, is handled by the effect above. */}
-                <Link to={`/docs/${doc.slug}/`} onClick={() => setTerm('')}>
+                <DocLink doc={doc} onClick={() => setTerm('')}>
                   <span className="betterdocs-search-title">{doc.title}</span>
-                  <span className="betterdocs-search-category">{categoryOf(doc)?.title}</span>
-                </Link>
+                  <span className="betterdocs-search-category">{doc.category}</span>
+                </DocLink>
               </li>
             ))}
           </ul>

@@ -3,6 +3,7 @@ import { RICH_STYLE_KEYS } from '../../../shared/pnw/types.ts'
 import { COLUMN_SPANS, DESIGN_NUMBER_LIMITS, MODULE_KINDS, PAGE_TEMPLATES } from '../../../shared/pnw/page-types.ts'
 import type {
   Design,
+  DocLibrary,
   MenuNode,
   PageColumn,
   PageDocument,
@@ -657,5 +658,45 @@ export function sanitizeSiteMenu(raw: unknown): SiteMenu | null {
   return attempt(() => {
     if (!isObject(raw)) fail('menu')
     return { primary: menuNodes(raw.primary, 0), secondary: menuNodes(raw.secondary, 1) }
+  })
+}
+
+const SLUG = /^[a-z0-9][a-z0-9-]{0,119}$/
+
+/** A library file: something this server stored (`/uploads/...`), a mirrored one (`/media/...`) or an http(s) URL. */
+function libraryFile(value: unknown): string | undefined {
+  const text = optStr(value, 2000)
+  if (text === undefined) return undefined
+  const rootRelative = text.startsWith('/') && !text.startsWith('//')
+  if (!rootRelative && !/^https?:\/\//i.test(text)) fail('file')
+  return text
+}
+
+/** The Dokumentumtár: unique slugs across the whole library, every title non-empty. */
+export function sanitizeLibrary(raw: unknown): DocLibrary | null {
+  return attempt(() => {
+    if (!isObject(raw)) fail('library')
+    const categorySlugs = new Set<string>()
+    const docSlugs = new Set<string>()
+    const categories = list(raw.categories, 'categories', 200).map((entry) => {
+      if (!isObject(entry)) fail('category')
+      const slug = str(entry.slug, 120, 'slug')
+      if (!SLUG.test(slug) || categorySlugs.has(slug)) fail('slug')
+      categorySlugs.add(slug)
+      const title = str(entry.title, 200, 'title').trim()
+      if (!title) fail('title')
+      const docs = list(entry.docs, 'docs', 500).map((item) => {
+        if (!isObject(item)) fail('doc')
+        const docSlug = str(item.slug, 120, 'slug')
+        if (!SLUG.test(docSlug) || docSlugs.has(docSlug)) fail('slug')
+        docSlugs.add(docSlug)
+        const docTitle = str(item.title, 300, 'title').trim()
+        if (!docTitle) fail('title')
+        const file = libraryFile(item.file)
+        return file ? { slug: docSlug, title: docTitle, file } : { slug: docSlug, title: docTitle }
+      })
+      return { slug, title, docs }
+    })
+    return { categories }
   })
 }

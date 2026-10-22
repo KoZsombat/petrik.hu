@@ -42,7 +42,7 @@ minden szekciója **0,0px**-re egyezik. `npm run build`, `npm run lint`,
    kártyák, felhasználói döntés.
 2. A 128 nem-kezdőlap oldal pixelellenőrzése nincs végigmérve szekciónként
    (a kezdőlap, a klasszikus oldal, a docs és az archívumok igen).
-3. `public/media` 271 MB — nincs eldöntve, bemegy-e a gitbe.
+3. ~~`public/media` 271 MB — bemegy-e a gitbe~~ — eldőlt: adatbázisban van, nincs a gitben (6.25).
 
 **2026-09-25: AWS-telepítés** (lépésről lépésre: `DEPLOY.md`) — EC2 +
 Cloudflare-tunnel a felhasználó saját domainjén. Az image a **helyi gépen**
@@ -1533,6 +1533,59 @@ felülírásoknál).
   a szakasz beállításai is dialógusban.
 
 ---
+
+### 6.24 Szerkesztő: Dokumentumtár (`?view=library`)
+
+A `/dokumentumtar/`, a docs-oldalsáv, a kategória-oldalak és a docs-keresés
+listái a **`useDocCategories()`** (`lib/site/docLibrary.ts`) kategóriáiból
+épülnek: a mentett könyvtár, ha van, különben a `src/data/docs.ts`. Tárolás: a
+`site_library` tábla egyetlen sora (mint a menünél), `GET/PUT/DELETE
+/api/pages/library`, a publikus `/api/public/site`
+`library` mezője. Dokumentum-feltöltés: `POST /api/pages/library/file`
+(pdf/Office/OpenDocument/txt/csv/zip, 9 MB — az nginx 10 MB-ja alatt), a fájl
+olvasható névvel az `UPLOADS_DIR`-be kerül.
+Egy bejegyzés `{slug, title, file?}`: **fájllal** a lista közvetlenül a fájlra
+linkel (új lapon), **fájl nélkül** a mirror `/docs/<slug>/` oldalára. „Csere” =
+új fájl a bejegyzésre (a régi oldal helyett). **Nem változik**: a mirror
+`/docs/<slug>/` oldalai, azok breadcrumbja/előző-következő linkje és a címkék
+(`docTags`) — ezek továbbra is a statikus `docs.ts`-ből jönnek; egy törölt
+dokumentum oldala tehát elérhető marad a címén, csak a listákból kerül ki.
+**Jog: `pnw_manage_library`** („Dokumentumtár kezelése”), külön a
+`pnw_manage_pages`-től: a `routes/library.ts` az `/api/pages` *elé* van
+felcsatolva (különben annak router-szintű `MANAGE_PAGES`-ellenőrzése
+kizárná), a Szerkesztő bármelyik jogosultsággal megnyílik (`canUseEditor`), de
+csak a megfelelő menüpontok látszanak. A `hasNewsPermission` mindkettőt
+figyelmen kívül hagyja. Az első indításkor (`site_library` tábla még nincs)
+mindenki megkapja, akinek már van `MANAGE_PAGES`; a seedelt fiókok közül az
+igazgató/helyettes is. Feltöltött, de nem mentett fájl árván marad az `uploads/`-ban.
+
+### 6.25 A média az adatbázisban van (nem a gitben, nem az image-ben)
+
+Döntés (felhasználó, 2026-10-22): a `apps/client/public/media` (271 MB) és
+minden feltöltés a SQLite `media_files` táblában él (`server/data/media-repo.ts`,
+BLOB, kulcs: az NFC-normalizált URL-út). A repó (`git rm --cached` + `.gitignore`)
+és mindkét Docker image média nélküli; a `.git` mérete a régi történet miatt
+nem csökkent (a history átírása szándékosan elmaradt).
+- **Kiszolgálás:** `lib/media.ts` `mediaRouter` — `/media/*` és `/uploads/*` a
+  szerverből (ETag/304, `Cache-Control`, nem-képeknél `sandbox` CSP), az nginx
+  mindkettőt a szerverre proxyzza, a vite dev-szerver is (`/media` a
+  `vite.config.ts`-ben → a szervernek futnia kell).
+- **Feltöltés:** multer `memoryStorage`, a bájtok közvetlenül az adatbázisba
+  kerülnek (`storeImage`/`storeDocument`), lemezre semmi.
+- **Betöltés (seed):** induláskor `importDirectory` bemásolja az `UPLOADS_DIR`
+  (régi telepítések feltöltései, `/uploads/…`) és a `MEDIA_SEED_DIR`
+  (`PNW_MEDIA_SEED_DIR`, alapból `apps/client/public/media`, `/media/…`) fájljait,
+  amik még nincsenek benne (INSERT OR IGNORE; újraindításkor csak stat + index).
+  Dockerben a compose `./apps/client/public/media`-t `/seed-media`-ként
+  csatolja; a szerverre `deploy.ps1 -WithMedia` viszi fel (egyszer).
+- **Csapdák:** (1) macOS NFD-ben adja a fájlnevet, a böngésző NFC-t kér — a
+  kulcs ezért NFC. (2) Friss klónban nincs média (nincs a gitben): a
+  `public/media`-t egy mentésből kell visszatenni, különben a szerver üres
+  táblával indul és a képek 404-ek. (3) A `public/media` hiányzó 4 hivatkozása
+  (pl. `2020/08/ebook-13.png`) már a mirrorban sem volt meg.
+- **Hírkártyák képe:** a Hírkezelőbe importált (mirror) hírekhez nincs
+  `featuredImage`; `postsContext.ts` `thumbnailFor`: featured → a statikus
+  poszt azonos slugú miniatűrje → a cikk első képe.
 
 ## 7. Csapdák, amikbe már belefutottunk
 

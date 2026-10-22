@@ -15,6 +15,8 @@ import {
   PORT,
   SCHEDULE_CHECK_INTERVAL_MS,
   SESSION_SECRET,
+  MEDIA_SEED_DIR,
+  MEDIA_URL_PREFIX,
   UPLOADS_DIR,
   UPLOADS_URL_PREFIX,
   USING_DEFAULT_SECRET,
@@ -23,6 +25,7 @@ import { attachUser } from './middleware/auth.ts'
 import { allPosts, updatePost } from './data/posts-repo.ts'
 import { seedInitialUsers } from './data/users-repo.ts'
 import { seedInitialTerms } from './data/terms-repo.ts'
+import { importDirectory, mediaRouter } from './lib/media.ts'
 import { logAudit } from './lib/audit.ts'
 import { notifyScheduledPublished } from './lib/notifications.ts'
 import authRoutes from './routes/auth.ts'
@@ -33,9 +36,16 @@ import statisticsRoutes from './routes/statistics.ts'
 import usersRoutes from './routes/users.ts'
 import termsRoutes from './routes/terms.ts'
 import pageRoutes from './routes/pages.ts'
+import libraryRoutes from './routes/library.ts'
 
 seedInitialUsers()
 seedInitialTerms()
+
+// Media lives in the database; copy in whatever the folders still hold (once - see lib/media.ts).
+for (const [dir, prefix] of [[UPLOADS_DIR, UPLOADS_URL_PREFIX], [MEDIA_SEED_DIR, MEDIA_URL_PREFIX]] as const) {
+  const added = importDirectory(dir, prefix)
+  if (added > 0) console.log(`[pnw] imported ${added} files from ${dir} into the database`)
+}
 
 const app = express()
 
@@ -58,7 +68,9 @@ app.use(
 )
 app.use(attachUser)
 
-app.use(UPLOADS_URL_PREFIX, express.static(UPLOADS_DIR))
+// Uploads get a fresh uuid name each, the mirrored files never change: both cache hard.
+app.use(UPLOADS_URL_PREFIX, mediaRouter(UPLOADS_URL_PREFIX, 31536000))
+app.use(MEDIA_URL_PREFIX, mediaRouter(MEDIA_URL_PREFIX, 86400))
 
 app.use('/api/auth', authRoutes)
 app.use('/api/posts', postRoutes)
@@ -67,6 +79,8 @@ app.use('/api/audit', auditRoutes)
 app.use('/api/statistics', statisticsRoutes)
 app.use('/api/users', usersRoutes)
 app.use('/api/terms', termsRoutes)
+// Before /api/pages, whose router would refuse everyone without MANAGE_PAGES.
+app.use('/api/pages/library', libraryRoutes)
 app.use('/api/pages', pageRoutes)
 
 // The rest of the site is a static pixel-port that needs no server at all;
@@ -76,7 +90,7 @@ app.use('/api/pages', pageRoutes)
 if (existsSync(DIST_DIR)) {
   app.use(express.static(DIST_DIR))
   app.get(/.*/, (req, res, next) => {
-    if (req.path.startsWith('/api/') || req.path.startsWith(UPLOADS_URL_PREFIX)) {
+    if (req.path.startsWith('/api/') || req.path.startsWith(UPLOADS_URL_PREFIX) || req.path.startsWith(MEDIA_URL_PREFIX + '/')) {
       next()
       return
     }

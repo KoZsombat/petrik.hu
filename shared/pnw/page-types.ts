@@ -284,10 +284,35 @@ export type SiteMenu = {
   secondary: MenuNode[]
 }
 
+/* --- the document library (Dokumentumtár) ------------------------------------- */
+
+/**
+ * One entry of the library. With a `file` the listings link straight to the
+ * uploaded (or external) file; without one they link to the mirrored page at
+ * /docs/<slug>/, as the original did.
+ */
+export type LibraryDoc = {
+  slug: string
+  title: string
+  file?: string
+}
+
+export type LibraryCategory = {
+  slug: string
+  title: string
+  docs: LibraryDoc[]
+}
+
+/** The whole edited library - categories in order, each with its documents in order. */
+export type DocLibrary = {
+  categories: LibraryCategory[]
+}
+
 /** Everything the public site reads from the Szerkesztő, in one fetch (SiteContentProvider.tsx). */
 export type PublicSiteContent = {
   pages: PublicPage[]
   menu: SiteMenu | null
+  library: DocLibrary | null
 }
 
 /* --- ids ------------------------------------------------------------------ */

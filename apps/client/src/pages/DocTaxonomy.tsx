@@ -1,10 +1,14 @@
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import DocsBreadcrumb from '../components/docs/DocsBreadcrumb.tsx'
 import DocsCategoryList from '../components/docs/DocsCategoryList.tsx'
 import DocsSearch from '../components/docs/DocsSearch.tsx'
 import { ArticleIcon, CategoriesIcon } from '../components/docs/DocsIcons.tsx'
 import NotFound from './NotFound.tsx'
-import { docCategories, docTags, docs } from '../data/docs.ts'
+import DocLink from '../components/docs/DocLink.tsx'
+import { useDocCategories } from '../lib/site/docLibrary.ts'
+import { docTags, docs } from '../data/docs.ts'
+import type { DocTag } from '../data/docs.ts'
+import type { LibraryCategory, LibraryDoc } from '../../../../shared/pnw/page-types.ts'
 import '../components/docs/betterdocs.css'
 import '../components/docs/DocsLayout.css'
 
@@ -29,11 +33,17 @@ type Props = {
  */
 export default function DocTaxonomy({ kind }: Props) {
   const { slug } = useParams()
+  const categories = useDocCategories()
   const term =
     kind === 'category'
-      ? docCategories.find((item) => item.slug === slug)
+      ? categories.find((item) => item.slug === slug)
       : docTags.find((item) => item.slug === slug)
   if (!term) return <NotFound />
+  // A category lists the library's entries; a tag only ever existed on the mirrored pages.
+  const items: LibraryDoc[] =
+    kind === 'category'
+      ? (term as LibraryCategory).docs
+      : (term as DocTag).docs.map((doc) => ({ slug: doc, title: docs[doc]?.title ?? doc }))
 
   return (
     <div className="betterdocs-wrapper betterdocs-taxonomy-wrapper betterdocs-category-archive-wrapper betterdocs-wraper">
@@ -61,9 +71,9 @@ export default function DocTaxonomy({ kind }: Props) {
             </div>
 
             {kind === 'category' ? (
-              <DocsBreadcrumb category={term} />
+              <DocsBreadcrumb category={term as LibraryCategory} />
             ) : (
-              <DocsBreadcrumb tag={term} />
+              <DocsBreadcrumb tag={term as DocTag} />
             )}
 
             <div className="betterdocs-entry-title">
@@ -79,10 +89,10 @@ export default function DocTaxonomy({ kind }: Props) {
 
             <div className="betterdocs-entry-body betterdocs-taxonomy-doc-category">
               <ul>
-                {term.docs.map((doc) => (
-                  <li key={doc}>
+                {items.map((doc) => (
+                  <li key={doc.slug}>
                     <ArticleIcon />
-                    <Link to={`/docs/${doc}/`}>{docs[doc]?.title ?? doc}</Link>
+                    <DocLink doc={doc}>{doc.title}</DocLink>
                   </li>
                 ))}
               </ul>

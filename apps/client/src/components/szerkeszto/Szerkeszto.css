@@ -901,3 +901,40 @@ body:has(dialog.szk-modal[open]) {
   border-top: 1px solid #e3e8ef;
   background: #f6f8fb;
 }
+
+/* Dokumentumtár editor ------------------------------------------------------ */
+
+.szk-library-category {
+  margin-bottom: 16px;
+}
+
+.szk-library-docs {
+  margin: 10px 0 0 16px;
+  display: grid;
+  gap: 8px;
+}
+
+.szk-library-doc .szk-menu-label {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.szk-library-doc select {
+  flex: 0 1 170px;
+  min-width: 0;
+}
+
+.szk-library-file {
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.szk-library-replace {
+  font: inherit;
+  font-size: 13px;
+  padding: 4px 10px;
+  border: 1px solid var(--hairline, #d0d5dd);
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}

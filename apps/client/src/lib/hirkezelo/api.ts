@@ -5,7 +5,7 @@
  * relative /api/... path is always correct.
  */
 import type { AuditEntry, Capability, Post, Term, TermKind } from '../../../../../shared/pnw/types.ts'
-import type { PageDocument, PageStatus, SiteMenu, StoredPage } from '../../../../../shared/pnw/page-types.ts'
+import type { DocLibrary, PageDocument, PageStatus, SiteMenu, StoredPage } from '../../../../../shared/pnw/page-types.ts'
 import { rememberTerm } from '../terms.ts'
 
 export type ApiUser = {
@@ -274,6 +274,24 @@ export function saveMenu(menu: SiteMenu): Promise<{ menu: SiteMenu }> {
 
 export function resetMenu(): Promise<{ ok: true }> {
   return request('/pages/menu', { method: 'DELETE' })
+}
+
+export function getLibrary(): Promise<{ library: DocLibrary | null; modifiedAt: string | null }> {
+  return request('/pages/library')
+}
+
+export function saveLibrary(library: DocLibrary): Promise<{ library: DocLibrary }> {
+  return request('/pages/library', { method: 'PUT', body: JSON.stringify({ library }) })
+}
+
+export function resetLibrary(): Promise<{ ok: true }> {
+  return request('/pages/library', { method: 'DELETE' })
+}
+
+export function uploadLibraryFile(file: File): Promise<{ url: string }> {
+  const form = new FormData()
+  form.append('file', file)
+  return request('/pages/library/file', { method: 'POST', body: form })
 }
 
 export type MediaItem = { url: string; name: string; size: number; modifiedAt: string }

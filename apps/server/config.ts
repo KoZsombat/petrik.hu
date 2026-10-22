@@ -18,6 +18,18 @@ export const UPLOADS_DIR = process.env.PNW_UPLOADS_DIR ? resolve(process.env.PNW
 export const UPLOADS_URL_PREFIX = '/uploads'
 
 /**
+ * Media lives in the database (data/media-repo.ts). Files found in these
+ * folders at startup are copied in once: UPLOADS_DIR is what an install from
+ * before that kept its uploads in, and `PNW_MEDIA_SEED_DIR` (default: the
+ * client's public/media, where a checkout has the mirrored files) is the
+ * mirrored images and PDFs, served as `/media/...`.
+ */
+export const MEDIA_URL_PREFIX = '/media'
+export const MEDIA_SEED_DIR = process.env.PNW_MEDIA_SEED_DIR
+  ? resolve(process.env.PNW_MEDIA_SEED_DIR)
+  : resolve(PROJECT_ROOT, 'apps/client/public/media')
+
+/**
  * The client's build output. Only used when present - i.e. a local
  * `npm run build` + `npm run server` in one process. In Docker the client is
  * its own nginx container and this folder does not exist in the server image.

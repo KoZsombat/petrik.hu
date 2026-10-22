@@ -7,3 +7,5 @@ apps/server
 .git
 .env
 *.log
+# The mirrored media lives in the server's database (AGENT.md 6.25), not in the image.
+apps/client/public/media

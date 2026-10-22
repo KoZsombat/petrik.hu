@@ -19,6 +19,7 @@ RUN npm run build -w apps/client
 
 FROM nginx:1.27-alpine
 COPY apps/client/nginx.conf /etc/nginx/conf.d/default.conf
-# public/media (271 MB, not in git) is copied into dist by vite build.
+# No media in here: the mirrored images and PDFs live in the server's database
+# (apps/client/Dockerfile.dockerignore keeps public/media out of the build).
 COPY --from=build /app/apps/client/dist /usr/share/nginx/html
 EXPOSE 80

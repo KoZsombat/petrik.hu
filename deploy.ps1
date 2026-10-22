@@ -5,14 +5,16 @@
 .DESCRIPTION
   See DEPLOY.md. Both images (petrikhu-server, petrikhu-client) are built here
   rather than on the server because a 1 GB EC2 instance runs out of memory
-  building them, and because apps/client/public/media (271 MB, not in git)
-  only exists here - it goes up inside the client image.
+  building them. The mirrored media (apps/client/public/media, 271 MB, not in
+  git) is not in either image: it lives in the server's database, and
+  -WithMedia uploads the folder it is imported from.
 
   The server keeps its own .env, database and uploads; a normal deploy never
   touches them. -WithData is for the first deploy only: it REPLACES the
   server's database and uploads with this machine's.
 
 .EXAMPLE
+  .\deploy.ps1 -Server SERVER -Key C:\Users\me\.ssh\petrik.pem -WithMedia   # once, after media moved into the database
   .\deploy.ps1 -Server SERVER -Key C:\Users\me\.ssh\petrik.pem -Init
   .\deploy.ps1 -Server SERVER -Key C:\Users\me\.ssh\petrik.pem
   ./deploy.ps1 -Server SERVER -Key ~/.ssh/petrik.pem -Platform linux/arm64   # macOS (pwsh), arm64 server
@@ -24,6 +26,10 @@ param(
   [string] $RemoteDir = 'petrik',
   # First deploy: also uploads .env.example, to be copied to .env on the server.
   [switch] $Init,
+  # Upload apps/client/public/media (the mirrored images and PDFs, ~270 MB) so the
+  # server can import them into its database. Needed once - and again only if
+  # that folder gains files. Safe to repeat: files already in the database are skipped.
+  [switch] $WithMedia,
   # Replace the server's database and uploads with this machine's copy.
   [switch] $WithData,
   # The server's CPU architecture, whatever machine you deploy from. Without this
@@ -64,6 +70,11 @@ $files = @($image, 'docker-compose.yml')
 if ($Init) { $files += '.env.example' }
 Invoke-Native 'Uploading (this takes a while the first time)' { scp @sshArgs -C $files "${target}:$RemoteDir/" }
 Remove-Item $image
+
+if ($WithMedia) {
+  Invoke-Remote 'Preparing the media folder' "mkdir -p ~/$RemoteDir/apps/client/public"
+  Invoke-Native 'Uploading the mirrored media (this takes a while)' { scp @sshArgs -C -r 'apps/client/public/media' "${target}:$RemoteDir/apps/client/public/" }
+}
 
 if ($WithData) {
   # A consistent SQLite copy needs both sides stopped.

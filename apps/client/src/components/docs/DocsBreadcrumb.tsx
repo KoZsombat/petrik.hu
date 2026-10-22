@@ -7,7 +7,7 @@ type Crumb = { label: string; to?: string; className?: string }
 
 type Props = {
   doc?: DocEntry
-  category?: DocCategory
+  category?: Pick<DocCategory, 'slug' | 'title'>
   /** A tag archive ends the trail here, marked as the current item. */
   tag?: DocTag
 }

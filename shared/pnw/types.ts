@@ -128,6 +128,13 @@ export const CAPABILITY = {
    * equivalent in the real plugin.
    */
   MANAGE_PAGES: 'pnw_manage_pages',
+  /**
+   * The Dokumentumtár section of the Szerkesztő: add, remove, replace and
+   * organise the documents of the library (AGENT.md 6.24). Separate from
+   * MANAGE_PAGES so someone can look after the documents without being able
+   * to rewrite the site's pages.
+   */
+  MANAGE_LIBRARY: 'pnw_manage_library',
 } as const
 
 export type Capability = (typeof CAPABILITY)[keyof typeof CAPABILITY]

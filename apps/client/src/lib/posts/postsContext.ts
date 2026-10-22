@@ -32,6 +32,27 @@ export type PostsContextValue = {
 }
 
 /**
+ * The thumbnail of a live post's card. Posts imported into the Hírkezelő carry
+ * no featured image, so rather than printing a card with a hole in it this
+ * falls back to the mirrored post of the same slug (its blog-module or archive
+ * thumbnail), and failing that to the first picture in the article itself.
+ */
+function thumbnailFor(post: Post): PostSummary['image'] {
+  if (post.featuredImage) return { src: post.featuredImage, alt: post.title }
+
+  const mirrored = staticPosts[post.slug]
+  const known = mirrored?.image ?? mirrored?.archiveImage
+  if (known) return known
+
+  // Imported posts hold their pictures as `{ type: 'image', image: { src, alt } }` blocks,
+  // which the editor's RichTextBlock type does not describe - read them defensively.
+  for (const block of post.content as unknown as { type?: string; image?: { src?: string; alt?: string } }[]) {
+    if (block.type === 'image' && block.image?.src) return { src: block.image.src, alt: block.image.alt || post.title }
+  }
+  return undefined
+}
+
+/**
  * `terms` is the live category/tag list (src/lib/terms.ts) - categories are
  * editable rows now (AGENT.md 6.16), so a live post's category names are
  * resolved from it rather than from a build-time list. A category created
@@ -46,7 +67,7 @@ export function toSummary(post: Post, terms: Term[]): MergedPostSummary {
     title: post.title,
     excerpt: post.excerpt,
     categories: post.categoryIds.map((id) => ({ label: byId.get(id)?.name ?? id, to: byId.get(id)?.route ?? '' })),
-    image: post.featuredImage ? { src: post.featuredImage, alt: post.title } : undefined,
+    image: thumbnailFor(post),
     // The same format the mirrored cards next to it print (src/lib/postDate.ts).
     date: formatPostDate(post.date),
     available: true,

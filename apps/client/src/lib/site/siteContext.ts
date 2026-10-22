@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react'
 import { primaryMenu, secondaryMenu } from '../../data/site.ts'
 import type { MenuItem } from '../../data/site.ts'
-import type { PublicPage, SiteMenu } from '../../../../../shared/pnw/page-types.ts'
+import type { DocLibrary, PublicPage, SiteMenu } from '../../../../../shared/pnw/page-types.ts'
 
 /**
  * What the Szerkesztő changed (AGENT.md 6.20), fetched once per page load by
@@ -20,6 +20,8 @@ export type SiteContentValue = {
    */
   pages: Record<string, PublicPage>
   menu: SiteMenu | null
+  /** The edited Dokumentumtár; null until someone saves one (useDocLibrary falls back to src/data/docs.ts). */
+  library: DocLibrary | null
   /** True until the fetch settles - DocumentPage waits for it before deciding a custom route is a 404. */
   loading: boolean
 }
@@ -27,6 +29,7 @@ export type SiteContentValue = {
 export const SiteContentContext = createContext<SiteContentValue>({
   pages: {},
   menu: null,
+  library: null,
   loading: false,
 })
 

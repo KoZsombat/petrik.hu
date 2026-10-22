@@ -4,7 +4,7 @@ import { useSession } from '../lib/hirkezelo/useSession.ts'
 import * as api from '../lib/hirkezelo/api.ts'
 import type { PageSummary } from '../lib/hirkezelo/api.ts'
 import { heads } from '../data/head.ts'
-import { canManagePages, canManageUsers } from '../../../../shared/pnw/permissions.ts'
+import { canManageLibrary, canManagePages, canManageUsers } from '../../../../shared/pnw/permissions.ts'
 import type { SiteMenu } from '../../../../shared/pnw/page-types.ts'
 import LoginCard from '../components/hirkezelo/LoginCard.tsx'
 import Unauthorized from '../components/hirkezelo/Unauthorized.tsx'
@@ -13,6 +13,7 @@ import PageList from '../components/szerkeszto/PageList.tsx'
 import NewPage from '../components/szerkeszto/NewPage.tsx'
 import PageEditor from '../components/szerkeszto/PageEditor.tsx'
 import Users from '../components/hirkezelo/Users.tsx'
+import LibraryEditor from '../components/szerkeszto/LibraryEditor.tsx'
 import MenuEditor from '../components/szerkeszto/MenuEditor.tsx'
 import { MediaLibrary } from '../components/szerkeszto/MediaPicker.tsx'
 import { ROUTES_LIST_ID } from '../components/szerkeszto/fields.tsx'
@@ -26,16 +27,19 @@ type Overview = { pages: PageSummary[]; menu: SiteMenu | null }
  * /szerkeszto/ - the page editor (AGENT.md 6.20). Same dispatch shape as
  * Hirkezelo.tsx: one route, the screen picked by `?view=` (`list`, `page`,
  * `new`, `menu`, `media`), with `?route=` for a mirrored page or `?id=` for a
- * page created here - both open in the same document editor. Needs `pnw_manage_pages`; the root is a `.pnw-app`, so it
+ * page created here - both open in the same document editor. Needs `pnw_manage_pages` (or, for the Dokumentumtár alone, `pnw_manage_library`); the root is a `.pnw-app`, so it
  * is 75% wide and centred like the Hírkezelő (6.17).
  */
 export default function Szerkeszto() {
   const { user, loading, login, logout } = useSession()
   const [params] = useSearchParams()
-  const view = params.get('view') ?? 'list'
   const route = params.get('route')
   const id = params.get('id')
-  const allowed = !!user && canManagePages(user)
+  const pagesAllowed = !!user && canManagePages(user)
+  const libraryAllowed = !!user && canManageLibrary(user)
+  const allowed = pagesAllowed || libraryAllowed
+  // An account that may only look after the documents lands on the Dokumentumtár.
+  const view = params.get('view') ?? (pagesAllowed ? 'list' : 'library')
 
   const [overview, setOverview] = useState<Overview | null>(null)
   const [slot, setSlot] = useState<HTMLElement | null>(null)
@@ -46,7 +50,7 @@ export default function Szerkeszto() {
   useEffect(() => {
     // Refetched on every screen change too, so the list shows what another
     // screen just saved, and every link field can offer the pages built here.
-    if (!allowed) return
+    if (!pagesAllowed) return
     let cancelled = false
     Promise.all([api.listPages(), api.getMenu()])
       .then(([{ pages }, { menu }]) => {
@@ -58,7 +62,7 @@ export default function Szerkeszto() {
     return () => {
       cancelled = true
     }
-  }, [allowed, view, version])
+  }, [pagesAllowed, view, version])
 
   if (loading) {
     return (
@@ -93,7 +97,15 @@ export default function Szerkeszto() {
   }
 
   let content
-  if (view === 'page' && route) content = <PageEditor key={route} route={route} />
+  if (view === 'library') {
+    content = libraryAllowed ? (
+      <LibraryEditor />
+    ) : (
+      <div className="pnw-notice pnw-notice-error">A Dokumentumtárhoz „Dokumentumtár kezelése” jogosultság kell.</div>
+    )
+  } else if (!pagesAllowed) {
+    content = <div className="pnw-notice pnw-notice-error">Az oldalak szerkesztéséhez „Oldalak szerkesztése” jogosultság kell.</div>
+  } else if (view === 'page' && route) content = <PageEditor key={route} route={route} />
   else if (view === 'page' && id) content = <PageEditor key={id} id={id} />
   else if (view === 'new') content = <NewPage />
   else if (view === 'menu') content = <MenuEditor />

@@ -329,6 +329,16 @@ nav#top-menu-nav,
     display: none;
   }
 
+  /* The header is sticky, so a menu taller than the screen could not be
+   * scrolled to its end; cap it at the viewport and scroll inside it. */
+  .et_mobile_menu {
+    max-height: calc(100vh - 80px);
+    max-height: calc(100dvh - 80px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
   #et_mobile_nav_menu {
     display: block;
   }

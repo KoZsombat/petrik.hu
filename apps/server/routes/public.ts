@@ -10,6 +10,7 @@ import type { PublicPage, PublicSiteContent } from '../../../shared/pnw/page-typ
 import { allPosts, findPostBySlug } from '../data/posts-repo.ts'
 import { getPageByRoute, listPages } from '../data/pages-repo.ts'
 import { getMenu } from '../data/menu-repo.ts'
+import { getLibrary } from '../data/library-repo.ts'
 
 const router = Router()
 
@@ -43,7 +44,7 @@ router.get('/site', (_req, res) => {
   const pages: PublicPage[] = listPages()
     .filter((page) => page.deleted || page.status === 'publish')
     .map(({ route, title, description, deleted, document }) => ({ route, title, description, deleted, document: deleted ? null : document }))
-  const body: PublicSiteContent = { pages, menu: getMenu()?.menu ?? null }
+  const body: PublicSiteContent = { pages, menu: getMenu()?.menu ?? null, library: getLibrary()?.library ?? null }
   res.json(body)
 })
 

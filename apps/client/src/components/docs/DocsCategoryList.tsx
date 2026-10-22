@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { docCategories, docs } from '../../data/docs.ts'
+import { useDocCategories } from '../../lib/site/docLibrary.ts'
+import DocLink from './DocLink.tsx'
 import { ArticleIcon, ChevronDown } from './DocsIcons.tsx'
 
 type Props = {
@@ -25,16 +25,17 @@ type Props = {
  * is reproduced here as state rather than restored by loading the plugin.
  */
 export default function DocsCategoryList({ layout, activeDoc, onlyCategory }: Props) {
-  const owning = activeDoc ? docs[activeDoc]?.category : undefined
-  // The grid was never collapsible, so only the sidebar tracks open state.
-  const [opened, setOpened] = useState<Record<string, boolean>>({})
+  const docCategories = useDocCategories()
+  const owning = activeDoc ? docCategories.find((category) => category.docs.some((doc) => doc.slug === activeDoc))?.slug : undefined
+  // An accordion: opening one category closes the one before it.
+  const [current, setCurrent] = useState<string | null | undefined>(undefined)
 
   const shown = onlyCategory
     ? docCategories.filter((category) => category.slug === onlyCategory)
     : docCategories
 
   const isOpen = (slug: string) =>
-    layout === 'grid' ? true : (opened[slug] ?? slug === owning)
+    layout === 'grid' ? true : (current === undefined ? slug === owning : slug === current)
 
   return (
     <div className="betterdocs-category-grid-wrapper betterdocs-shortcode">
@@ -52,8 +53,7 @@ export default function DocsCategoryList({ layout, activeDoc, onlyCategory }: Pr
           return (
             <article
               key={category.slug}
-              data-id={category.id}
-              className={
+                            className={
                 'betterdocs-single-category-wrapper category-grid' +
                 (category.slug === owning ? ' active' : '') +
                 ' default' +
@@ -61,7 +61,15 @@ export default function DocsCategoryList({ layout, activeDoc, onlyCategory }: Pr
               }
             >
               <div className="betterdocs-single-category-inner">
-                <div className="betterdocs-category-header">
+                <div
+                  className="betterdocs-category-header"
+                  style={layout === 'sidebar' ? { cursor: 'pointer' } : undefined}
+                  onClick={
+                    layout === 'sidebar'
+                      ? () => setCurrent(open ? null : category.slug)
+                      : undefined
+                  }
+                >
                   <div className="betterdocs-category-header-inner">
                     <div className="betterdocs-category-icon">
                       <img
@@ -83,26 +91,25 @@ export default function DocsCategoryList({ layout, activeDoc, onlyCategory }: Pr
                         aria-expanded={open}
                         aria-controls={`betterdocs-body-${category.slug}`}
                         aria-label={`${category.title} kategória ki- és becsukása`}
-                        onClick={() =>
-                          setOpened((state) => ({ ...state, [category.slug]: !open }))
-                        }
+                        onClick={(event) => {
+                          // The whole header toggles; don't toggle twice.
+                          event.stopPropagation()
+                          setCurrent(open ? null : category.slug)
+                        }}
                       >
                         <ChevronDown />
                       </button>
                     )}
                   </div>
                 </div>
-                <div className="betterdocs-body" id={`betterdocs-body-${category.slug}`} hidden={!open}>
+                <div className="betterdocs-body" id={`betterdocs-body-${category.slug}`}>
                   <ul className="betterdocs-articles-list">
-                    {category.docs.map((slug) => (
-                      <li key={slug}>
+                    {category.docs.map((doc) => (
+                      <li key={doc.slug}>
                         <ArticleIcon />
-                        <Link
-                          to={`/docs/${slug}/`}
-                          className={slug === activeDoc ? 'active' : undefined}
-                        >
-                          <span>{docs[slug]?.title ?? slug}</span>{' '}
-                        </Link>
+                        <DocLink doc={doc} className={doc.slug === activeDoc ? 'active' : undefined}>
+                          <span>{doc.title}</span>{' '}
+                        </DocLink>
                       </li>
                     ))}
                   </ul>

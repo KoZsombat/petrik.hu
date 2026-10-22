@@ -27,12 +27,18 @@ services:
       PNW_SHOW_DEMO_LOGINS: ${PNW_SHOW_DEMO_LOGINS:-false}
       # Only read when the database is empty (first boot) - see apps/server/config.ts.
       PNW_SEED_PASSWORD: ${PNW_SEED_PASSWORD:-}
+      PNW_MEDIA_SEED_DIR: /seed-media
     volumes:
       # The SQLite database and uploaded images, kept on the host so
       # `docker compose down` / a rebuild never loses them - the same two
       # paths a local `npm run server` uses (and .gitignore excludes).
       - ./apps/server/data/db:/app/apps/server/data/db
+      # Only read once, on a boot that finds files here the database does not
+      # yet hold: uploads from before media moved into the database, and the
+      # mirrored /media files (the same folder a checkout has them in; on the
+      # server `deploy.ps1 -WithMedia` puts them there).
       - ./apps/server/uploads:/app/apps/server/uploads
+      - ./apps/client/public/media:/seed-media:ro
     restart: unless-stopped
 
   client:

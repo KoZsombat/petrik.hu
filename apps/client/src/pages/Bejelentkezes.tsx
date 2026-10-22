@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useSession } from '../lib/hirkezelo/useSession.ts'
-import { canManagePages, hasNewsPermission, permissionSummary } from '../../../../shared/pnw/permissions.ts'
+import { canUseEditor, hasNewsPermission, permissionSummary } from '../../../../shared/pnw/permissions.ts'
 import LoginCard from '../components/hirkezelo/LoginCard.tsx'
 import './Hirkezelo.css'
 
@@ -37,7 +37,7 @@ export default function Bejelentkezes() {
   }
 
   const news = hasNewsPermission(user)
-  const pages = canManagePages(user)
+  const pages = canUseEditor(user)
 
   return (
     <div className="pnw-app">

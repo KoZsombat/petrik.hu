@@ -193,7 +193,9 @@ log in again (sessions live in memory).
 
 ## 10. Backups
 
-The whole state is two folders on the server: `~/petrik/apps/server/data/db` and
+Since AGENT.md 6.25 the mirrored media and every upload live inside the database
+(`hirkezelo.db`), so the `db` folder alone is the whole site; `uploads` only
+holds what an older install left there. The whole state is two folders on the server: `~/petrik/apps/server/data/db` and
 `~/petrik/apps/server/uploads`.
 
 - **Automatic**: EC2 → **Elastic Block Store → Lifecycle Manager** → *Create

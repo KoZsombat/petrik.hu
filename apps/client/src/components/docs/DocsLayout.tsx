@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { categoryOf, docs } from '../../data/docs.ts'
 import DocsBreadcrumb from './DocsBreadcrumb.tsx'
 import DocsCategoryList from './DocsCategoryList.tsx'
@@ -33,6 +33,7 @@ export default function DocsLayout({ slug, className, children }: Props) {
   const doc = docs[slug]
   if (!doc) throw new Error(`no such document: ${slug}`)
   const category = categoryOf(doc)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <div
@@ -46,7 +47,10 @@ export default function DocsLayout({ slug, className, children }: Props) {
 
       <div className="betterdocs-content-wrapper betterdocs-display-flex">
         <aside
-          className="betterdocs-shortcode betterdocs-sidebar betterdocs-sidebar-layout-1"
+          className={
+            'betterdocs-shortcode betterdocs-sidebar betterdocs-sidebar-layout-1' +
+            (sidebarOpen ? ' docs-sidebar-open' : '')
+          }
           id="betterdocs-sidebar"
         >
           <div className="betterdocs-sidebar-content betterdocs-category-sidebar">
@@ -56,12 +60,18 @@ export default function DocsLayout({ slug, className, children }: Props) {
 
         <div id="betterdocs-single-main" className="betterdocs-content-area">
           <div className="betterdocs-mobile-nav">
-            <div className="betterdocs-sidebar-icon">
+            <button
+              type="button"
+              className="betterdocs-sidebar-icon"
+              aria-expanded={sidebarOpen}
+              aria-controls="betterdocs-sidebar"
+              onClick={() => setSidebarOpen((open) => !open)}
+            >
               <div className="betterdocs-mobile-nav-icon-svg">
                 <CategoriesIcon />
               </div>
-              <span>View Categories</span>
-            </div>
+              <span>Kategóriák</span>
+            </button>
           </div>
           {/* The mirror's markup has a line break here, which is a real space
               between this label and whatever the document starts with. */}{' '}

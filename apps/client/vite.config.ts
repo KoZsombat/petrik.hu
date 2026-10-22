@@ -13,6 +13,8 @@ export default defineConfig({
     proxy: {
       '/api': process.env.PNW_API ?? 'http://localhost:4000',
       '/uploads': process.env.PNW_API ?? 'http://localhost:4000',
+      // Media comes out of the server's database; public/media is only the seed it imports from.
+      '/media': process.env.PNW_API ?? 'http://localhost:4000',
     },
   },
   build: {

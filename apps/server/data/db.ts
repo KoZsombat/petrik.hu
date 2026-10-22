@@ -17,6 +17,10 @@ db.pragma('journal_mode = WAL')
 const hadPagesTable =
   db.prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'pages'").get() !== undefined
 
+/** Likewise for the Dokumentumtár's permission: the first boot that has the library table grants it (see migrate()). */
+const hadLibraryTable =
+  db.prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'site_library'").get() !== undefined
+
 /**
  * `route` is the key: `/nyilt-nap/` for a page created in the Szerkesztő (its
  * `slug` is `nyilt-nap`), `/nyolcadikos/` for an edit of a mirrored page. A
@@ -126,6 +130,24 @@ db.exec(`
     data TEXT NOT NULL,
     modified_at TEXT NOT NULL
   );
+
+  -- The edited Dokumentumtár: one row, the whole library as JSON.
+  CREATE TABLE IF NOT EXISTS site_library (
+    id INTEGER PRIMARY KEY CHECK (id = 1),
+    data TEXT NOT NULL,
+    modified_at TEXT NOT NULL
+  );
+`)
+
+db.exec(`
+  -- Every media file (mirrored /media/... and uploaded /uploads/...) - see data/media-repo.ts.
+  CREATE TABLE IF NOT EXISTS media_files (
+    path TEXT PRIMARY KEY,
+    mime TEXT NOT NULL,
+    size INTEGER NOT NULL,
+    modified_at TEXT NOT NULL,
+    data BLOB NOT NULL
+  );
 `)
 
 function columnNames(table: string): Set<string> {
@@ -195,6 +217,20 @@ function migrate(): void {
       const permissions = JSON.parse(user.permissions) as string[]
       if (permissions.includes(CAPABILITY.MANAGE_USERS) && !permissions.includes(CAPABILITY.MANAGE_PAGES)) {
         update.run(JSON.stringify([...permissions, CAPABILITY.MANAGE_PAGES]), user.id)
+      }
+    }
+  }
+
+  if (!hadLibraryTable) {
+    // The first boot with the Dokumentumtár: whoever could edit pages keeps
+    // being able to touch the documents, so nobody loses access they had.
+    // Only this once - revoking it later on the Fiókok screen sticks.
+    const editors = db.prepare('SELECT id, permissions FROM users').all() as { id: string; permissions: string }[]
+    const update = db.prepare('UPDATE users SET permissions = ? WHERE id = ?')
+    for (const user of editors) {
+      const permissions = JSON.parse(user.permissions) as string[]
+      if (permissions.includes(CAPABILITY.MANAGE_PAGES) && !permissions.includes(CAPABILITY.MANAGE_LIBRARY)) {
+        update.run(JSON.stringify([...permissions, CAPABILITY.MANAGE_LIBRARY]), user.id)
       }
     }
   }

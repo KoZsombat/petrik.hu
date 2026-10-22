@@ -23,6 +23,7 @@ export const ALL_CAPABILITIES: Capability[] = [
   CAPABILITY.MANAGE_TERMS,
   CAPABILITY.MANAGE_USERS,
   CAPABILITY.MANAGE_PAGES,
+  CAPABILITY.MANAGE_LIBRARY,
 ]
 
 export const CAPABILITY_LABEL: Record<Capability, string> = {
@@ -33,6 +34,7 @@ export const CAPABILITY_LABEL: Record<Capability, string> = {
   [CAPABILITY.MANAGE_TERMS]: 'Kategóriák és címkék létrehozása',
   [CAPABILITY.MANAGE_USERS]: 'Fiókok kezelése',
   [CAPABILITY.MANAGE_PAGES]: 'Oldalak szerkesztése',
+  [CAPABILITY.MANAGE_LIBRARY]: 'Dokumentumtár kezelése',
 }
 
 export const CAPABILITY_DESCRIPTION: Record<Capability, string> = {
@@ -44,6 +46,8 @@ export const CAPABILITY_DESCRIPTION: Record<Capability, string> = {
   [CAPABILITY.MANAGE_USERS]: 'Hírkezelő-fiókokat hozhat létre, módosíthat és törölhet.',
   [CAPABILITY.MANAGE_PAGES]:
     'A Szerkesztőben módosíthatja az oldalak tartalmát, új oldalt hozhat létre vagy törölhet, és szerkesztheti a menüt.',
+  [CAPABILITY.MANAGE_LIBRARY]:
+    'A Szerkesztő Dokumentumtár részében dokumentumokat tölthet fel, cserélhet és törölhet, és rendezheti a kategóriákat. Az oldalakhoz ettől még nem fér hozzá.',
 }
 
 export function isCapability(value: unknown): value is Capability {
@@ -79,13 +83,25 @@ export function canManagePages(user: HasPermissions): boolean {
   return hasCapability(user, CAPABILITY.MANAGE_PAGES)
 }
 
+/** The Dokumentumtár section of the Szerkesztő - see AGENT.md 6.24. */
+export function canManageLibrary(user: HasPermissions): boolean {
+  return hasCapability(user, CAPABILITY.MANAGE_LIBRARY)
+}
+
+/** Whether /szerkeszto/ has anything for the account: pages, the library, or both. */
+export function canUseEditor(user: HasPermissions): boolean {
+  return canManagePages(user) || canManageLibrary(user)
+}
+
 /**
  * Whether the account has anything to do in the Hírkezelő - any permission
- * but the Szerkesztő's. An account holding only `pnw_manage_pages` is let
+ * but the Szerkesztő's two. An account holding only `pnw_manage_pages` is let
  * into /szerkeszto/, not into the news workflow (AGENT.md 6.19).
  */
 export function hasNewsPermission(user: HasPermissions): boolean {
-  return user.permissions.some((capability) => capability !== CAPABILITY.MANAGE_PAGES)
+  return user.permissions.some(
+    (capability) => capability !== CAPABILITY.MANAGE_PAGES && capability !== CAPABILITY.MANAGE_LIBRARY,
+  )
 }
 
 export function canManageTerms(user: HasPermissions): boolean {
