@@ -18,7 +18,7 @@ type Props = {
  * live - and, on request, showing the real single-post template
  * (PostTemplatePreview) rather than an invented preview card. The real
  * template has no excerpt display at all (that's an archive/listing-card
- * thing, not a single-post thing - see src/pages/KutatokEjszakaja.tsx), so
+ * thing, not a single-post thing - see the mirror's kutatok-ejszakaja-a-petrikben), so
  * unlike the plugin's own quick-preview, this one doesn't show it either.
  *
  * The same goes for tags: the mirror's single-post template prints categories

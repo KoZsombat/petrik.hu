@@ -112,12 +112,8 @@ export const PAGES: PageEntry[] = [
     component: 'AdatkezelesiTajekoztato',
     kind: 'classic',
   },
-  {
-    dir: 'kutatok-ejszakaja-a-petrikben',
-    route: '/kutatok-ejszakaja-a-petrikben/',
-    component: 'KutatokEjszakaja',
-    kind: 'post',
-  },
+  // No 'post' page any more: the one sample post that used to be one is a
+  // Hírkezelő post now, like every other news post of the mirror (AGENT.md 6.24).
   ...DOC_PAGES,
 ]
 

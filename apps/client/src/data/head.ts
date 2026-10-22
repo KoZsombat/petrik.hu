@@ -46,7 +46,6 @@ export const heads: Record<string, PageHead> = {
   "/technikusi-kepzesek/": { title: "Technikusi képzések | petrik.hu", robots: "max-image-preview:large", canonical: true },
   "/vegyipar_agazat/": { title: "Vegyipar ágazat | petrik.hu", robots: "max-image-preview:large", canonical: true },
   "/adatkezelesi-tajekoztato/": { title: "Adatvédelmi irányelvek | petrik.hu", robots: "max-image-preview:large", canonical: true },
-  "/kutatok-ejszakaja-a-petrikben/": { title: "Kutatók éjszakája a Petrikben! | petrik.hu", robots: "max-image-preview:large", canonical: true },
   "/docs/6360/": { title: "Középszintű szóbeli témakörök 2025. ősz | petrik.hu", robots: "max-image-preview:large", canonical: true },
   "/docs/akadalymentesitesi-nyilatkozat/": { title: "Akadálymentesítési nyilatkozat | petrik.hu", robots: "max-image-preview:large", canonical: true },
   "/docs/alapito-okirat/": { title: "Alapító okirat | petrik.hu", robots: "max-image-preview:large", canonical: true },

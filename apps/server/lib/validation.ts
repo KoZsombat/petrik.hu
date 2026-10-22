@@ -1,5 +1,6 @@
 import type { Align, BlockType, RichStyle, RichTextBlock, RichTextDocument, TextRun } from '../../../shared/pnw/types.ts'
-import { RICH_STYLE_KEYS } from '../../../shared/pnw/types.ts'
+import { RICH_STYLE_KEYS, isEmbedSrc } from '../../../shared/pnw/types.ts'
+import { isMediaBlock } from '../../../shared/pnw/richtext.ts'
 import { COLUMN_SPANS, DESIGN_NUMBER_LIMITS, MODULE_KINDS, PAGE_TEMPLATES } from '../../../shared/pnw/page-types.ts'
 import type {
   Design,
@@ -23,8 +24,69 @@ import { isSafeColor, isSafeHref } from '../../../shared/pnw/richtext.ts'
 export function hasRealText(content: RichTextDocument): boolean {
   return content.some(
     (block) =>
-      block.runs.some((run) => run.text.trim() !== '') || (block.table?.rows ?? []).some((row) => row.some((cell) => cell.trim() !== '')),
+      isMediaBlock(block) ||
+      block.runs.some((run) => run.text.trim() !== '') ||
+      (block.table?.rows ?? []).some((row) => row.some((cell) => cell.trim() !== '')),
   )
+}
+
+/** A picture in a post: an upload/in-app path or an http(s) URL - never `javascript:` or `data:`. */
+function isPostImageSrc(value: unknown): value is string {
+  if (typeof value !== 'string' || value.length > 2000) return false
+  return (value.startsWith('/') && !value.startsWith('//')) || /^https?:\/\//i.test(value)
+}
+
+const optText = (value: unknown, max = 2000): string | undefined =>
+  typeof value === 'string' && value !== '' ? value.slice(0, max) : undefined
+
+const optMediaSize = (value: unknown): number | undefined =>
+  typeof value === 'number' && Number.isFinite(value) && value > 0 && value <= 10_000 ? value : undefined
+
+/**
+ * Rebuilds a media block's own field from scratch (AGENT.md 6.24) - unknown
+ * keys dropped, every URL checked - or returns null to reject the document.
+ */
+function sanitizeMedia(block: Record<string, unknown>): Partial<RichTextBlock> | null {
+  if (block.type === 'image') {
+    const image = block.image as Record<string, unknown> | undefined
+    if (!image || !isPostImageSrc(image.src)) return null
+    const href = optText(image.href)
+    if (href !== undefined && !isSafeHref(href)) return null
+    return {
+      image: {
+        src: image.src,
+        alt: optText(image.alt, MAX_LABEL) ?? '',
+        caption: optText(image.caption),
+        href,
+        width: optMediaSize(image.width),
+        height: optMediaSize(image.height),
+      },
+    }
+  }
+  if (block.type === 'gallery') {
+    const items = block.gallery
+    if (!Array.isArray(items) || items.length === 0 || items.length > 300) return null
+    const gallery = []
+    for (const item of items as Record<string, unknown>[]) {
+      if (typeof item !== 'object' || item === null || !isPostImageSrc(item.src)) return null
+      if (item.full !== undefined && !isPostImageSrc(item.full)) return null
+      gallery.push({ src: item.src, alt: optText(item.alt, MAX_LABEL) ?? '', full: item.full as string | undefined })
+    }
+    return { gallery }
+  }
+  if (block.type === 'embed') {
+    const embed = block.embed as Record<string, unknown> | undefined
+    if (!embed || typeof embed.src !== 'string' || !isEmbedSrc(embed.src)) return null
+    return {
+      embed: {
+        src: embed.src,
+        title: optText(embed.title, MAX_LABEL),
+        aspect: typeof embed.aspect === 'number' && embed.aspect > 0 && embed.aspect < 10 ? embed.aspect : undefined,
+        height: optMediaSize(embed.height),
+      },
+    }
+  }
+  return {}
 }
 
 /**
@@ -69,6 +131,14 @@ export function parseRichText(raw: unknown): RichTextDocument | null {
           if (!Array.isArray(row) || row.length > 30 || row.some((cell: unknown) => typeof cell !== 'string' || cell.length > 2000)) return null
         }
       }
+      // Media blocks (AGENT.md 6.24) carry URLs the renderer puts into src/href attributes.
+      const media = sanitizeMedia(block)
+      if (!media) return null
+      delete block.image
+      delete block.gallery
+      delete block.embed
+      Object.assign(block, clean(media as Plain))
+      for (const field of ['image', 'embed'] as const) if (block[field]) clean(block[field])
     }
     return parsed as RichTextDocument
   } catch {

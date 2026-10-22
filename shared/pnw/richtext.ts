@@ -36,8 +36,13 @@ export function documentText(doc: RichTextDocument): string {
   return doc.map(blockText).join('\n')
 }
 
+/** A picture, a gallery or an embed is content even without a word of text. */
+export function isMediaBlock(block: RichTextBlock): boolean {
+  return block.type === 'image' || block.type === 'gallery' || block.type === 'embed'
+}
+
 export function isBlank(doc: RichTextDocument): boolean {
-  return doc.every((block) => blockText(block).trim() === '')
+  return doc.every((block) => !isMediaBlock(block) && blockText(block).trim() === '')
 }
 
 /**

@@ -134,7 +134,16 @@ export function useDocumentHead(): void {
     // src/pages/PublishedPost.tsx sets document.title itself once it loads;
     // this only has to not fight that by falling through to NOT_FOUND_TITLE
     // below on every render before the fetch resolves.
-    if (pathname.startsWith('/hirek/') || pathname.startsWith('/hirkezelo/elonezet/')) return
+    // The same for a news post of the old site at its original `/<slug>/`
+    // (AGENT.md 6.24): DocumentPage hands any unknown slug to PublishedPost,
+    // which sets the post's title - or the 404's, when there is none.
+    const postSlug = slug && route !== '/kereses/'
+    if (pathname.startsWith('/hirek/') || pathname.startsWith('/hirkezelo/elonezet/') || postSlug) {
+      setMeta('description', undefined)
+      setMeta('robots', undefined)
+      setCanonical(postSlug ? window.location.origin + route : undefined)
+      return
+    }
 
     document.title = pathname === '/kereses/' ? SEARCH_TITLE : NOT_FOUND_TITLE
     setMeta('description', undefined)

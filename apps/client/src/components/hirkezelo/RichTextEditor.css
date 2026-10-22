@@ -264,3 +264,28 @@
   gap: 10px;
   margin: -6px 0 16px;
 }
+
+/* A picture, gallery or embed of an imported post (AGENT.md 6.24): a preview, not an input. */
+.pnw-rte-block-media {
+  position: relative;
+  flex-direction: column;
+  padding: 8px 32px 8px 8px;
+  border: 1px dashed var(--pnw-border, #d0d5dd);
+  border-radius: 6px;
+}
+
+.pnw-rte-block-media .pnw-rte-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+
+.pnw-rte-media-label {
+  color: var(--pnw-muted, #667085);
+  font-size: 12px;
+}
+
+.pnw-rte-block-media figure {
+  margin: 0;
+  width: 100%;
+}

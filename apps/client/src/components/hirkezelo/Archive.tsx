@@ -37,6 +37,10 @@ export default function Archive() {
       return
     }
     const result = await api.restorePost(id)
+    // Same view, same component instance - reload the list ourselves, or the
+    // restored row would linger until a full page refresh.
+    if (posts.length === 1 && page > 1) setPage(page - 1)
+    else await load(query, page)
     navigate(`/hirkezelo/?pnw_notice=${result.notice}&pnw_view=archive`)
   }
 

@@ -14,13 +14,30 @@ import { getLibrary } from '../data/library-repo.ts'
 
 const router = Router()
 
+/**
+ * The latest news written in the Hírkezelő - what the site prepends to its
+ * feeds. A post imported from the mirror (AGENT.md 6.24) is left out: the
+ * mirror's own archives and feeds already list it in its place.
+ */
 router.get('/posts', (req, res) => {
   const limit = Math.min(50, Number(req.query.limit) || 20)
   const posts = allPosts()
-    .filter((post) => post.status === STATUS.PUBLISH)
+    .filter((post) => post.status === STATUS.PUBLISH && post.origin !== 'mirror')
     .sort((a, b) => b.date.localeCompare(a.date))
     .slice(0, limit)
   res.json({ posts })
+})
+
+/**
+ * Slugs of imported posts that are not on the site right now - archived or
+ * trashed in the Hírkezelő. The client drops these from the mirror's lists,
+ * which would otherwise keep showing a card for them.
+ */
+router.get('/posts/hidden-mirror', (_req, res) => {
+  const slugs = allPosts()
+    .filter((post) => post.origin === 'mirror' && post.status !== STATUS.PUBLISH)
+    .map((post) => post.slug)
+  res.json({ slugs })
 })
 
 router.get('/posts/:slug', (req, res) => {

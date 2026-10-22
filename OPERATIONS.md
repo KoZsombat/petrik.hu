@@ -96,6 +96,15 @@ Everything worth keeping is the database and uploads folders above.
   ssh -i $HOME\.ssh\petrik.pem ubuntu@SERVER "cd petrik && docker compose stop server && sudo rm -rf apps/server/data/db apps/server/uploads && tar xzf ~/backup.tgz && docker compose start server"
   ```
 
+> **Never copy `hirkezelo.db` over on its own.** The database folder holds
+> three files: `hirkezelo.db`, `hirkezelo.db-wal` and `hirkezelo.db-shm`.
+> Recent changes, often most of the data, live in the `-wal` file. Always
+> move the whole `db` folder, as above. To upload a single `hirkezelo.db`
+> (e.g. after editing a copy on your PC, see DEPLOY.md "Importing the old
+> site's news"), stop the server and delete all three files on the server
+> first. A leftover `-wal` is replayed over the new file, and the site
+> silently shows the old data.
+
 ## When something is wrong
 
 All from PowerShell on your PC:

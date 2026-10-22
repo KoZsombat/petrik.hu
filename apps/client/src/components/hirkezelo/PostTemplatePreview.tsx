@@ -31,9 +31,10 @@ type Props = {
  * Renders a draft exactly the way the real site's single-post template would
  * - the same #left-area/#sidebar frame (sidebar-layout.css) and the same
  * .et_post_meta_wrapper/.entry-content/.et_pb_text markup a real post uses
- * (see src/pages/KutatokEjszakaja.tsx, the one sample post bound to this
- * frame), rather than an invented preview card. Requested explicitly: the
- * bound sample post is "the template" for how a news post should preview.
+ * (it was modelled on the mirror's sample post, kutatok-ejszakaja-a-petrikben -
+ * since AGENT.md 6.24 a Hírkezelő post rendered through this very template),
+ * rather than an invented preview card. Requested explicitly: the sample post
+ * is "the template" for how a news post should preview.
  */
 export default function PostTemplatePreview({ title, content, categoryIds, image, imagePosition = 'top', date }: Props) {
   useBodyClass(PREVIEW_BODY_CLASSES)

@@ -57,61 +57,59 @@ import './TechnikusiKepzesek.css'
 import d23 from './VegyiparAgazat.json'
 import './VegyiparAgazat.css'
 import d24 from './AdatkezelesiTajekoztato.json'
-import d25 from './KutatokEjszakaja.json'
-import './KutatokEjszakaja.css'
-import d26 from './Doc6360.json'
+import d25 from './Doc6360.json'
 import './Doc6360.css'
-import d27 from './DocAkadalymentesitesiNyilatkozat.json'
+import d26 from './DocAkadalymentesitesiNyilatkozat.json'
 import './DocAkadalymentesitesiNyilatkozat.css'
-import d28 from './DocAlapitoOkirat.json'
+import d27 from './DocAlapitoOkirat.json'
 import './DocAlapitoOkirat.css'
-import d29 from './DocAnalitikaGyakorlat.json'
+import d28 from './DocAnalitikaGyakorlat.json'
 import './DocAnalitikaGyakorlat.css'
-import d30 from './DocDualisKepzesTajekoztato.json'
+import d29 from './DocDualisKepzesTajekoztato.json'
 import './DocDualisKepzesTajekoztato.css'
-import d31 from './DocEljarasrendAzEgeszsegugyiValsaghelyzetKezelesere.json'
+import d30 from './DocEljarasrendAzEgeszsegugyiValsaghelyzetKezelesere.json'
 import './DocEljarasrendAzEgeszsegugyiValsaghelyzetKezelesere.css'
-import d32 from './DocEljarasrendek.json'
+import d31 from './DocEljarasrendek.json'
 import './DocEljarasrendek.css'
-import d33 from './DocGepeszetiEsAutomatizalasiMeresek.json'
+import d32 from './DocGepeszetiEsAutomatizalasiMeresek.json'
 import './DocGepeszetiEsAutomatizalasiMeresek.css'
-import d34 from './DocGeptermiHazirend.json'
+import d33 from './DocGeptermiHazirend.json'
 import './DocGeptermiHazirend.css'
-import d35 from './DocHazirend.json'
+import d34 from './DocHazirend.json'
 import './DocHazirend.css'
-import d36 from './DocJavitovizsga3.json'
+import d35 from './DocJavitovizsga3.json'
 import './DocJavitovizsga3.css'
-import d37 from './DocKemiaiEsFizikaiKemiai.json'
+import d36 from './DocKemiaiEsFizikaiKemiai.json'
 import './DocKemiaiEsFizikaiKemiai.css'
-import d38 from './DocLaboratoriumiMuveletek.json'
+import d37 from './DocLaboratoriumiMuveletek.json'
 import './DocLaboratoriumiMuveletek.css'
-import d39 from './DocMunkaterv.json'
+import d38 from './DocMunkaterv.json'
 import './DocMunkaterv.css'
-import d40 from './DocMuszakiIsmeretek.json'
+import d39 from './DocMuszakiIsmeretek.json'
 import './DocMuszakiIsmeretek.css'
-import d41 from './DocNemzetkoziesitesiStrategia.json'
+import d40 from './DocNemzetkoziesitesiStrategia.json'
 import './DocNemzetkoziesitesiStrategia.css'
-import d42 from './DocPetrikAlapitvany.json'
+import d41 from './DocPetrikAlapitvany.json'
 import './DocPetrikAlapitvany.css'
-import d43 from './DocShimadzuLcsolution125.json'
+import d42 from './DocShimadzuLcsolution125.json'
 import './DocShimadzuLcsolution125.css'
-import d44 from './DocStatisztika.json'
+import d43 from './DocStatisztika.json'
 import './DocStatisztika.css'
-import d45 from './DocSzakmaiProgram.json'
+import d44 from './DocSzakmaiProgram.json'
 import './DocSzakmaiProgram.css'
-import d46 from './DocSzervezetiEsMukodesiSzabalyzat.json'
+import d45 from './DocSzervezetiEsMukodesiSzabalyzat.json'
 import './DocSzervezetiEsMukodesiSzabalyzat.css'
-import d47 from './DocTagintezmenyVezetoiPalyazatok.json'
+import d46 from './DocTagintezmenyVezetoiPalyazatok.json'
 import './DocTagintezmenyVezetoiPalyazatok.css'
-import d48 from './DocTelepulesiIsmeretek.json'
+import d47 from './DocTelepulesiIsmeretek.json'
 import './DocTelepulesiIsmeretek.css'
-import d49 from './DocTesztoldal.json'
+import d48 from './DocTesztoldal.json'
 import './DocTesztoldal.css'
-import d50 from './DocTuzvedelmiSzabalyzat.json'
+import d49 from './DocTuzvedelmiSzabalyzat.json'
 import './DocTuzvedelmiSzabalyzat.css'
-import d51 from './DocUvMini12402.json'
+import d50 from './DocUvMini12402.json'
 import './DocUvMini12402.css'
-import d52 from './DocVegyipariMuveletek.json'
+import d51 from './DocVegyipariMuveletek.json'
 import './DocVegyipariMuveletek.css'
 
 export type PageDefault = { route: string; component: string; document: PageDocument }
@@ -142,32 +140,31 @@ export const pageDefaults: Record<string, PageDefault> = {
   "/technikusi-kepzesek/": { route: "/technikusi-kepzesek/", component: "TechnikusiKepzesek", document: d22 as unknown as PageDocument },
   "/vegyipar_agazat/": { route: "/vegyipar_agazat/", component: "VegyiparAgazat", document: d23 as unknown as PageDocument },
   "/adatkezelesi-tajekoztato/": { route: "/adatkezelesi-tajekoztato/", component: "AdatkezelesiTajekoztato", document: d24 as unknown as PageDocument },
-  "/kutatok-ejszakaja-a-petrikben/": { route: "/kutatok-ejszakaja-a-petrikben/", component: "KutatokEjszakaja", document: d25 as unknown as PageDocument },
-  "/docs/6360/": { route: "/docs/6360/", component: "Doc6360", document: d26 as unknown as PageDocument },
-  "/docs/akadalymentesitesi-nyilatkozat/": { route: "/docs/akadalymentesitesi-nyilatkozat/", component: "DocAkadalymentesitesiNyilatkozat", document: d27 as unknown as PageDocument },
-  "/docs/alapito-okirat/": { route: "/docs/alapito-okirat/", component: "DocAlapitoOkirat", document: d28 as unknown as PageDocument },
-  "/docs/analitika-gyakorlat/": { route: "/docs/analitika-gyakorlat/", component: "DocAnalitikaGyakorlat", document: d29 as unknown as PageDocument },
-  "/docs/dualis-kepzes-tajekoztato/": { route: "/docs/dualis-kepzes-tajekoztato/", component: "DocDualisKepzesTajekoztato", document: d30 as unknown as PageDocument },
-  "/docs/eljarasrend-az-egeszsegugyi-valsaghelyzet-kezelesere/": { route: "/docs/eljarasrend-az-egeszsegugyi-valsaghelyzet-kezelesere/", component: "DocEljarasrendAzEgeszsegugyiValsaghelyzetKezelesere", document: d31 as unknown as PageDocument },
-  "/docs/eljarasrendek/": { route: "/docs/eljarasrendek/", component: "DocEljarasrendek", document: d32 as unknown as PageDocument },
-  "/docs/gepeszeti-es-automatizalasi-meresek/": { route: "/docs/gepeszeti-es-automatizalasi-meresek/", component: "DocGepeszetiEsAutomatizalasiMeresek", document: d33 as unknown as PageDocument },
-  "/docs/geptermi-hazirend/": { route: "/docs/geptermi-hazirend/", component: "DocGeptermiHazirend", document: d34 as unknown as PageDocument },
-  "/docs/hazirend/": { route: "/docs/hazirend/", component: "DocHazirend", document: d35 as unknown as PageDocument },
-  "/docs/javitovizsga-3/": { route: "/docs/javitovizsga-3/", component: "DocJavitovizsga3", document: d36 as unknown as PageDocument },
-  "/docs/kemiai-es-fizikai-kemiai/": { route: "/docs/kemiai-es-fizikai-kemiai/", component: "DocKemiaiEsFizikaiKemiai", document: d37 as unknown as PageDocument },
-  "/docs/laboratoriumi-muveletek/": { route: "/docs/laboratoriumi-muveletek/", component: "DocLaboratoriumiMuveletek", document: d38 as unknown as PageDocument },
-  "/docs/munkaterv/": { route: "/docs/munkaterv/", component: "DocMunkaterv", document: d39 as unknown as PageDocument },
-  "/docs/muszaki-ismeretek/": { route: "/docs/muszaki-ismeretek/", component: "DocMuszakiIsmeretek", document: d40 as unknown as PageDocument },
-  "/docs/nemzetkoziesitesi-strategia/": { route: "/docs/nemzetkoziesitesi-strategia/", component: "DocNemzetkoziesitesiStrategia", document: d41 as unknown as PageDocument },
-  "/docs/petrik-alapitvany/": { route: "/docs/petrik-alapitvany/", component: "DocPetrikAlapitvany", document: d42 as unknown as PageDocument },
-  "/docs/shimadzu-lcsolution-125/": { route: "/docs/shimadzu-lcsolution-125/", component: "DocShimadzuLcsolution125", document: d43 as unknown as PageDocument },
-  "/docs/statisztika/": { route: "/docs/statisztika/", component: "DocStatisztika", document: d44 as unknown as PageDocument },
-  "/docs/szakmai-program/": { route: "/docs/szakmai-program/", component: "DocSzakmaiProgram", document: d45 as unknown as PageDocument },
-  "/docs/szervezeti-es-mukodesi-szabalyzat/": { route: "/docs/szervezeti-es-mukodesi-szabalyzat/", component: "DocSzervezetiEsMukodesiSzabalyzat", document: d46 as unknown as PageDocument },
-  "/docs/tagintezmeny-vezetoi-palyazatok/": { route: "/docs/tagintezmeny-vezetoi-palyazatok/", component: "DocTagintezmenyVezetoiPalyazatok", document: d47 as unknown as PageDocument },
-  "/docs/telepulesi-ismeretek/": { route: "/docs/telepulesi-ismeretek/", component: "DocTelepulesiIsmeretek", document: d48 as unknown as PageDocument },
-  "/docs/tesztoldal/": { route: "/docs/tesztoldal/", component: "DocTesztoldal", document: d49 as unknown as PageDocument },
-  "/docs/tuzvedelmi-szabalyzat/": { route: "/docs/tuzvedelmi-szabalyzat/", component: "DocTuzvedelmiSzabalyzat", document: d50 as unknown as PageDocument },
-  "/docs/uv-mini-1240-2/": { route: "/docs/uv-mini-1240-2/", component: "DocUvMini12402", document: d51 as unknown as PageDocument },
-  "/docs/vegyipari-muveletek/": { route: "/docs/vegyipari-muveletek/", component: "DocVegyipariMuveletek", document: d52 as unknown as PageDocument },
+  "/docs/6360/": { route: "/docs/6360/", component: "Doc6360", document: d25 as unknown as PageDocument },
+  "/docs/akadalymentesitesi-nyilatkozat/": { route: "/docs/akadalymentesitesi-nyilatkozat/", component: "DocAkadalymentesitesiNyilatkozat", document: d26 as unknown as PageDocument },
+  "/docs/alapito-okirat/": { route: "/docs/alapito-okirat/", component: "DocAlapitoOkirat", document: d27 as unknown as PageDocument },
+  "/docs/analitika-gyakorlat/": { route: "/docs/analitika-gyakorlat/", component: "DocAnalitikaGyakorlat", document: d28 as unknown as PageDocument },
+  "/docs/dualis-kepzes-tajekoztato/": { route: "/docs/dualis-kepzes-tajekoztato/", component: "DocDualisKepzesTajekoztato", document: d29 as unknown as PageDocument },
+  "/docs/eljarasrend-az-egeszsegugyi-valsaghelyzet-kezelesere/": { route: "/docs/eljarasrend-az-egeszsegugyi-valsaghelyzet-kezelesere/", component: "DocEljarasrendAzEgeszsegugyiValsaghelyzetKezelesere", document: d30 as unknown as PageDocument },
+  "/docs/eljarasrendek/": { route: "/docs/eljarasrendek/", component: "DocEljarasrendek", document: d31 as unknown as PageDocument },
+  "/docs/gepeszeti-es-automatizalasi-meresek/": { route: "/docs/gepeszeti-es-automatizalasi-meresek/", component: "DocGepeszetiEsAutomatizalasiMeresek", document: d32 as unknown as PageDocument },
+  "/docs/geptermi-hazirend/": { route: "/docs/geptermi-hazirend/", component: "DocGeptermiHazirend", document: d33 as unknown as PageDocument },
+  "/docs/hazirend/": { route: "/docs/hazirend/", component: "DocHazirend", document: d34 as unknown as PageDocument },
+  "/docs/javitovizsga-3/": { route: "/docs/javitovizsga-3/", component: "DocJavitovizsga3", document: d35 as unknown as PageDocument },
+  "/docs/kemiai-es-fizikai-kemiai/": { route: "/docs/kemiai-es-fizikai-kemiai/", component: "DocKemiaiEsFizikaiKemiai", document: d36 as unknown as PageDocument },
+  "/docs/laboratoriumi-muveletek/": { route: "/docs/laboratoriumi-muveletek/", component: "DocLaboratoriumiMuveletek", document: d37 as unknown as PageDocument },
+  "/docs/munkaterv/": { route: "/docs/munkaterv/", component: "DocMunkaterv", document: d38 as unknown as PageDocument },
+  "/docs/muszaki-ismeretek/": { route: "/docs/muszaki-ismeretek/", component: "DocMuszakiIsmeretek", document: d39 as unknown as PageDocument },
+  "/docs/nemzetkoziesitesi-strategia/": { route: "/docs/nemzetkoziesitesi-strategia/", component: "DocNemzetkoziesitesiStrategia", document: d40 as unknown as PageDocument },
+  "/docs/petrik-alapitvany/": { route: "/docs/petrik-alapitvany/", component: "DocPetrikAlapitvany", document: d41 as unknown as PageDocument },
+  "/docs/shimadzu-lcsolution-125/": { route: "/docs/shimadzu-lcsolution-125/", component: "DocShimadzuLcsolution125", document: d42 as unknown as PageDocument },
+  "/docs/statisztika/": { route: "/docs/statisztika/", component: "DocStatisztika", document: d43 as unknown as PageDocument },
+  "/docs/szakmai-program/": { route: "/docs/szakmai-program/", component: "DocSzakmaiProgram", document: d44 as unknown as PageDocument },
+  "/docs/szervezeti-es-mukodesi-szabalyzat/": { route: "/docs/szervezeti-es-mukodesi-szabalyzat/", component: "DocSzervezetiEsMukodesiSzabalyzat", document: d45 as unknown as PageDocument },
+  "/docs/tagintezmeny-vezetoi-palyazatok/": { route: "/docs/tagintezmeny-vezetoi-palyazatok/", component: "DocTagintezmenyVezetoiPalyazatok", document: d46 as unknown as PageDocument },
+  "/docs/telepulesi-ismeretek/": { route: "/docs/telepulesi-ismeretek/", component: "DocTelepulesiIsmeretek", document: d47 as unknown as PageDocument },
+  "/docs/tesztoldal/": { route: "/docs/tesztoldal/", component: "DocTesztoldal", document: d48 as unknown as PageDocument },
+  "/docs/tuzvedelmi-szabalyzat/": { route: "/docs/tuzvedelmi-szabalyzat/", component: "DocTuzvedelmiSzabalyzat", document: d49 as unknown as PageDocument },
+  "/docs/uv-mini-1240-2/": { route: "/docs/uv-mini-1240-2/", component: "DocUvMini12402", document: d50 as unknown as PageDocument },
+  "/docs/vegyipari-muveletek/": { route: "/docs/vegyipari-muveletek/", component: "DocVegyipariMuveletek", document: d51 as unknown as PageDocument },
 }

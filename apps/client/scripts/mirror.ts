@@ -25,6 +25,3 @@ export const MEDIA_DIR = resolve(PROJECT_ROOT, 'public/media')
 
 /** Where webfonts land. */
 export const FONT_DIR = resolve(PROJECT_ROOT, 'public/fonts')
-
-/** The one blog post that gets a real route; every other post is a placeholder. */
-export const SAMPLE_POST_SLUG = 'kutatok-ejszakaja-a-petrikben'

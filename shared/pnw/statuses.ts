@@ -39,6 +39,7 @@ const AUDIT_LABELS: Record<string, string> = {
   published_updated: 'Publikált hír módosítva',
   published_archived: 'Archiválva',
   archived_restored: 'Visszaállítva és újrapublikálva',
+  imported: 'Importálva a régi petrik.hu-ról',
 }
 
 export function auditActionLabel(action: string): string {

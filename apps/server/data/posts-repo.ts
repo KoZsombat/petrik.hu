@@ -12,6 +12,7 @@ type Row = {
   tag_ids: string
   featured_image: string | null
   image_position: string
+  origin: string
   author_id: string
   status: string
   review_note: string | null
@@ -37,6 +38,7 @@ function fromRow(row: Row): Post {
     tagIds: JSON.parse(row.tag_ids),
     featuredImage: row.featured_image ?? undefined,
     imagePosition: row.image_position === 'bottom' ? 'bottom' : 'top',
+    origin: row.origin === 'mirror' ? 'mirror' : 'hirkezelo',
     authorId: row.author_id,
     status: row.status as Post['status'],
     reviewNote: row.review_note ?? undefined,
@@ -63,6 +65,7 @@ function toRow(post: Post): Row {
     tag_ids: JSON.stringify(post.tagIds),
     featured_image: post.featuredImage ?? null,
     image_position: post.imagePosition === 'bottom' ? 'bottom' : 'top',
+    origin: post.origin ?? 'hirkezelo',
     author_id: post.authorId,
     status: post.status,
     review_note: post.reviewNote ?? null,
@@ -79,7 +82,7 @@ function toRow(post: Post): Row {
 }
 
 const COLUMNS =
-  'id, slug, title, content, excerpt, category_ids, tag_ids, featured_image, image_position, author_id, status, review_note, last_reviewer_id, last_reviewed_at, scheduled_for, scheduled_by_id, archived_at, archived_by_id, created_at, modified_at, date'
+  'id, slug, title, content, excerpt, category_ids, tag_ids, featured_image, image_position, origin, author_id, status, review_note, last_reviewer_id, last_reviewed_at, scheduled_for, scheduled_by_id, archived_at, archived_by_id, created_at, modified_at, date'
 
 const selectAll = db.prepare(`SELECT ${COLUMNS} FROM posts`)
 const selectById = db.prepare(`SELECT ${COLUMNS} FROM posts WHERE id = ?`)
@@ -90,7 +93,7 @@ const deleteById = db.prepare('DELETE FROM posts WHERE id = ?')
 
 const insertStatement = db.prepare(`
   INSERT INTO posts (${COLUMNS})
-  VALUES (@id, @slug, @title, @content, @excerpt, @category_ids, @tag_ids, @featured_image, @image_position, @author_id, @status,
+  VALUES (@id, @slug, @title, @content, @excerpt, @category_ids, @tag_ids, @featured_image, @image_position, @origin, @author_id, @status,
     @review_note, @last_reviewer_id, @last_reviewed_at, @scheduled_for, @scheduled_by_id,
     @archived_at, @archived_by_id, @created_at, @modified_at, @date)
 `)

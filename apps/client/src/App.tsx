@@ -54,9 +54,9 @@ export default function App() {
         <Route path="/dokumentum-kategoria/:slug/" element={<DocTaxonomy kind="category" />} />
         <Route path="/dokumentum-cimke/:slug/" element={<DocTaxonomy kind="tag" />} />
 
-        {/* The one blog post that is part of this port is in the registry too
-            (/kutatok-ejszakaja-a-petrikben/). Every other post shows as a card
-            that says it is not in the snapshot. */}
+        {/* The mirror's news posts are Hírkezelő posts (AGENT.md 6.24), served at
+            their original /<slug>/ by the `/:slug/` route below. A post the
+            snapshot never saved shows as a card that says so. */}
 
         {/* The 64 category, date and author archives. These are mapped from the
             data rather than listed: one component renders all of them, so the

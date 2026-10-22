@@ -35,7 +35,6 @@ export const MIRROR_ROUTES: Record<string, MirrorRoute> = {
   "/technikusi-kepzesek/": { template: "builder" },
   "/vegyipar_agazat/": { template: "builder" },
   "/adatkezelesi-tajekoztato/": { template: "classic" },
-  "/kutatok-ejszakaja-a-petrikben/": { template: "post", postSlug: "kutatok-ejszakaja-a-petrikben" },
   "/docs/6360/": { template: "docs", docsSlug: "6360" },
   "/docs/akadalymentesitesi-nyilatkozat/": { template: "docs", docsSlug: "akadalymentesitesi-nyilatkozat" },
   "/docs/alapito-okirat/": { template: "docs", docsSlug: "alapito-okirat" },
