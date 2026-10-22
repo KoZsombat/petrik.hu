@@ -637,6 +637,37 @@ találva a mentés `#main-header`/`#et_search_icon` elemén 375px-en (a
 `position: absolute` mobil felülírását, amit ugyanez a vizsgálat talált,
 egy későbbi felhasználói kérés **lecserélte** sticky fejlécre — lásd 6.14.
 
+**4.25** — „Halott linkek" (2026-10-22): a hírkártyák hrefjei rendben voltak, a
+**céloldalak** hiányoztak — a Hírkezelő adatbázisában (`hirkezelo.db`, nincs a
+gitben) csak 2 saját hír volt, a 253 importált nem (a mentés ezen a gépen már
+nincs meg, 1.). Minden `/<slug>/` link a 404-oldalra vitt. **Tanulság:** ha
+„minden link halott", először a céloldalt kérd le (`/api/public/posts/<slug>`),
+ne a markupot nézd. A pótlás: az élő petrik.hu-ról lementett `<slug>/index.html`
++ a bennük hivatkozott `wp-content/uploads` fájlok egy ideiglenes
+`PETRIK_MIRROR`-ba, majd `npm run import-posts -w apps/server` (mind a 253 hír,
+a korábban hiányzó 44 is). A letöltéshez a böngészős User-Agent 466-ot kap, a
+curl/Python alapértelmezett UA nem. A `posts.ts` 44 `available: false`
+bejegyzése `true` lett (kézzel; a `scripts/posts.ts` a mentésből generálna).
+A `Toggle`-ben a „+/–" jel a cím jobb oldali paddingjében van, amit a gomb nem
+fedett: a gomb mostantól átnyúlik alá, a pszeudo-elem `pointer-events: none`.
+Az oldalak `animation` mezője (text/blurb) az élő Divi-konfigból jön
+(`et_animated`, 1s, ease-in-out; `components/pagebuilder/animations.ts`);
+a késleltetés (`delay`) nincs átvéve.
+
+**4.26** — 2. kör (2026-10-22): a mentés csak 253 hírt hordozott, az élő oldalon
+584 van, a kategória-/szerzői archívumok 3+. oldalai pedig sosem lettek lementve
+(`olderMissing`). Pótlás: az élő archívumok végigjárása → 331 új hír (`posts.ts`
+összefoglaló, `import-posts`, kártyaképek a `public/media`-ba), a 11 érintett
+archívum minden oldala az `archives.ts`-ben, és `olderPages` az Állás/Projekt
+feedekhez. A `Row` kapott `gutters: 2` + `equalColumns` mezőt (a kapcsolati
+dobozok egyforma magasak), az üres `social-follow` modul újra kirajzolódik
+(ő az oszlop utolsó modulja, ettől marad meg az előtte lévő margin).
+Az `ArchiveCard`: üres `category.to`/`src` nem generál linket (ez volt a
+„kattintás a /hirek-re visz" tünet). Az archív kártyakép nincs levágva
+(`max-height` + `contain`; korábban fix 280px `cover`). Keresés: a
+összefésült `usePosts()` indexből dolgozik. Az eredeti hírek (és az új
+oldalak) tartalma az élő oldal 2026-10-22-i állapota.
+
 ---
 
 ## 5. Hogyan épül fel a bejáró (`walk.ts`)

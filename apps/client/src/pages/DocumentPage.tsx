@@ -17,7 +17,7 @@ import PublishedPost from './PublishedPost.tsx'
  * the 404. Its <title> and description are set by useDocumentHead, which
  * reads the same fetch.
  */
-export default function DocumentPage({ route: fixedRoute }: { route?: string }) {
+export default function DocumentPage({ route: fixedRoute, paged = false }: { route?: string; paged?: boolean }) {
   const { slug = '' } = useParams<{ slug: string }>()
   const route = fixedRoute ?? `/${slug}/`
   const { pages, loading } = useSiteContent()
@@ -29,7 +29,8 @@ export default function DocumentPage({ route: fixedRoute }: { route?: string }) 
   // No page by this name: the old site's news posts live here too, imported
   // into the Hírkezelő (AGENT.md 6.24). PublishedPost asks the server and
   // shows the 404 itself when there is no such published post either.
-  if (!document) return loading ? null : fixedRoute ? <NotFound /> : <PublishedPost key={slug} slug={slug} />
+  // `/<page>/page/N/` is only ever a page of that page's feed, never a post.
+  if (!document) return loading ? null : fixedRoute || paged ? <NotFound /> : <PublishedPost key={slug} slug={slug} />
 
   // Custom pages add their own `page-<slug>` beside the shared builder design.
   // `key`: every document is a different tree, and node ids repeat between

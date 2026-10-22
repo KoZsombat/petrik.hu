@@ -1,3 +1,4 @@
+import { Link, useLocation } from 'react-router-dom'
 import { usePosts } from '../../lib/posts/postsContext.ts'
 import { useColumnCount } from '../../lib/useColumnCount.ts'
 import PostCard, { type FeedItem } from './PostCard.tsx'
@@ -16,11 +17,13 @@ type Props = {
   /** Columns at desktop width; narrower viewports use fewer. */
   columns?: 1 | 2 | 3
   align?: 'left' | 'center' | 'right'
-  /**
-   * The original offered an "older posts" link here. Those pages are not part
-   * of the snapshot, so the control is shown but not linked.
-   */
+  /** The original offered an "older posts" link under the feed. */
   hasOlder?: boolean
+  /**
+   * What the feed listed on its further pages, newest first: page 2 is
+   * `olderPages[0]`. They live at `<page route>page/N/`, as on the original.
+   */
+  olderPages?: FeedItem[][]
   className?: string
   /**
    * Prepends whatever is currently published through /hirkezelo/ (see
@@ -46,17 +49,28 @@ export default function PostFeed({
   columns = 3,
   align = 'left',
   hasOlder = false,
+  olderPages,
   className,
   includeLive = false,
 }: Props) {
   const { posts, liveSlugs } = usePosts()
   const active = useColumnCount(columns)
+  const { pathname } = useLocation()
+  const paged = /^(.*\/)page\/(\d+)\/?$/.exec(pathname)
+  const base = paged ? paged[1] : pathname.endsWith('/') ? pathname : `${pathname}/`
+  const pageNumber = paged ? Number(paged[2]) : 1
+  const pageItems = pageNumber > 1 ? (olderPages?.[pageNumber - 2] ?? []) : items
+  const hasNewer = pageNumber > 1
+  const hasMore = !!olderPages && pageNumber - 1 < olderPages.length
+  const pageUrl = (n: number) => (n > 1 ? `${base}page/${n}/` : base)
   // Prepended ahead of the mirrored items, newest first, then capped back to
   // the feed's own size - same convention as the sidebar's "Legutóbbi
   // bejegyzések" widget (RecentPosts.tsx). The date comes from the live post
   // itself (already formatted the way every mirrored card's date is, see
   // postsContext.ts/toSummary), since a live item has no hand-written date.
-  const effectiveItems = includeLive
+  const effectiveItems = pageNumber > 1
+    ? pageItems
+    : includeLive
     ? [...liveSlugs.map((slug): FeedItem => ({ slug, date: posts[slug]?.date })), ...items].slice(0, items.length)
     : items
   const known = effectiveItems.filter((item) => posts[item.slug])
@@ -88,14 +102,14 @@ export default function PostFeed({
             ))}
           </div>
         </div>
-        {hasOlder && (
+        {(hasOlder || hasNewer) && (
           <div className="pagination clearfix">
             <div className="alignleft">
-              <span className="pagination-unavailable">
-                « Régebbi bejegyzések – nem érhetők el a mentésben
-              </span>
+              {hasMore && <Link to={pageUrl(pageNumber + 1)}>« Régebbi bejegyzések</Link>}
             </div>
-            <div className="alignright" />
+            <div className="alignright">
+              {hasNewer && <Link to={pageUrl(pageNumber - 1)}>Újabb bejegyzések »</Link>}
+            </div>
           </div>
         )}
       </div>

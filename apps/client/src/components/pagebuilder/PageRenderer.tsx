@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import type { CSSProperties } from 'react'
 import Blurb from '../divi/Blurb.tsx'
 import Button from '../divi/Button.tsx'
@@ -32,6 +32,8 @@ import type { PageDocument, PageModule, PageSection } from '../../../../../share
 import RichContent from './RichContent.tsx'
 import { youtubeId } from './video.ts'
 import './builder-page.css'
+import './animations.css'
+import { runModuleAnimations } from './animations.ts'
 
 /**
  * The hero's background is the rule the mirror's hero sections share
@@ -53,13 +55,19 @@ function sectionStyle(section: PageSection): CSSProperties | undefined {
   return style
 }
 
+/** The module's own classes plus the ones its entrance animation needs (animations.css). */
+function moduleClass(module: PageModule): string | undefined {
+  const animation = module.animation ? `et_animated et_anim_${module.animation}` : ''
+  return [module.className, animation].filter(Boolean).join(' ') || undefined
+}
+
 function renderModule(module: PageModule) {
   const index = module.index ?? 0
 
   switch (module.kind) {
     case 'text':
       return (
-        <Text key={module.id} index={index} align={module.align} bgLayout={module.bgLayout} className={module.className}>
+        <Text key={module.id} index={index} align={module.align} bgLayout={module.bgLayout} className={moduleClass(module)}>
           <RichContent nodes={module.content} />
         </Text>
       )
@@ -92,11 +100,12 @@ function renderModule(module: PageModule) {
           index={index}
           title={module.title}
           titleHref={module.titleHref}
+          iconHref={module.iconHref}
           image={module.image}
           icon={module.icon}
           position={module.position}
           align={module.align}
-          className={module.className}
+          className={moduleClass(module)}
         >
           {module.content.length > 0 ? <RichContent nodes={module.content} /> : undefined}
         </Blurb>
@@ -122,6 +131,7 @@ function renderModule(module: PageModule) {
           columns={module.columns}
           align={module.align}
           hasOlder={module.hasOlder}
+          olderPages={module.olderPages}
           includeLive={module.includeLive}
           className={module.className}
         />
@@ -216,7 +226,7 @@ function PageSections({ document, scope }: { document: PageDocument; scope: stri
           {section.fullwidth
             ? section.modules?.map(renderModule)
             : section.rows.map((row) => (
-                <Row key={row.id} index={row.index ?? 0} gutters={row.gutters} className={row.className}>
+                <Row key={row.id} index={row.index ?? 0} gutters={row.gutters} equalColumns={row.equalColumns} className={row.className}>
                   {row.columns.map((column, position) => (
                     <Column
                       key={column.id}
@@ -260,6 +270,8 @@ export default function PageRenderer({ document: raw, className }: { document: P
   const template = document.template ?? 'builder'
   const scope = document.scope ?? 'page-builder'
   const rootClass = [scope, className].filter(Boolean).join(' ')
+
+  useEffect(() => runModuleAnimations(), [document])
 
   if (template === 'docs') {
     return (

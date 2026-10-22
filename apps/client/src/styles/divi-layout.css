@@ -296,3 +296,56 @@
 .et_pb_bg_layout_dark {
   color: #fff !important;
 }
+
+/* Gutter width 2: the narrow gap the contact rows use. */
+@media (min-width: 981px) {
+  .et_pb_gutters2.et_pb_row .et_pb_column {
+    margin-right: 3%;
+  }
+  .et_pb_gutters2.et_pb_row .et_pb_column_4_4 {
+    width: 100%;
+  }
+  .et_pb_gutters2.et_pb_row .et_pb_column_3_4 {
+    width: 74.25%;
+  }
+  .et_pb_gutters2.et_pb_row .et_pb_column_2_3 {
+    width: 65.667%;
+  }
+  .et_pb_gutters2.et_pb_row .et_pb_column_1_2 {
+    width: 48.5%;
+  }
+  .et_pb_gutters2.et_pb_row .et_pb_column_1_3 {
+    width: 31.3333%;
+  }
+  .et_pb_gutters2.et_pb_row .et_pb_column_1_4 {
+    width: 22.75%;
+  }
+  .et_pb_gutters2.et_pb_row .et_pb_column_4_4 .et_pb_module {
+    margin-bottom: 1.5%;
+  }
+  .et_pb_gutters2.et_pb_row .et_pb_column_3_4 .et_pb_module {
+    margin-bottom: 2.02%;
+  }
+  .et_pb_gutters2.et_pb_row .et_pb_column_2_3 .et_pb_module {
+    margin-bottom: 2.284%;
+  }
+  .et_pb_gutters2.et_pb_row .et_pb_column_1_2 .et_pb_module {
+    margin-bottom: 3.093%;
+  }
+  .et_pb_gutters2.et_pb_row .et_pb_column_1_3 .et_pb_module {
+    margin-bottom: 4.787%;
+  }
+  .et_pb_gutters2.et_pb_row .et_pb_column_1_4 .et_pb_module {
+    margin-bottom: 6.593%;
+  }
+
+  .et_pb_gutters2.et_pb_row .et_pb_column .et_pb_module:last-child,
+  .et_pb_gutters2.et_pb_row .et_pb_column .et_pb_module.et-last-child {
+    margin-bottom: 0;
+  }
+
+  /* Equal-height columns: the row is a flex container and its columns stretch. */
+  .et_pb_row.et_pb_equal_columns {
+    display: flex;
+  }
+}

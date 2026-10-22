@@ -1,10 +1,12 @@
 import type { Align, BlockType, RichStyle, RichTextBlock, RichTextDocument, TextRun } from '../../../shared/pnw/types.ts'
 import { RICH_STYLE_KEYS, isEmbedSrc } from '../../../shared/pnw/types.ts'
 import { isMediaBlock } from '../../../shared/pnw/richtext.ts'
-import { COLUMN_SPANS, DESIGN_NUMBER_LIMITS, MODULE_KINDS, PAGE_TEMPLATES } from '../../../shared/pnw/page-types.ts'
+import { COLUMN_SPANS, DESIGN_NUMBER_LIMITS, MODULE_ANIMATIONS, MODULE_KINDS, PAGE_TEMPLATES } from '../../../shared/pnw/page-types.ts'
 import type {
   Design,
   DocLibrary,
+  FeedItem,
+  ModuleAnimation,
   MenuNode,
   PageColumn,
   PageDocument,
@@ -388,12 +390,13 @@ function optClass(value: unknown): string | undefined {
 }
 
 /** Every node's common fields: id, Divi index, extra classes, design. */
-function base(raw: Plain): { id: string; index?: number; className?: string; design?: Design } {
+function base(raw: Plain): { id: string; index?: number; className?: string; design?: Design; animation?: ModuleAnimation } {
   return clean({
     id: nodeId(raw.id),
     index: optInt(raw.index, 0, 9999, 'index'),
     className: optClass(raw.className),
     design: design(raw.design),
+    animation: optOneOf(raw.animation, MODULE_ANIMATIONS, 'animation'),
   })
 }
 
@@ -418,6 +421,18 @@ function objects(value: unknown, what: string): Plain[] {
   return list(value, what).map((item) => {
     if (!isObject(item)) fail(what)
     return item
+  })
+}
+
+function feedItems(value: unknown): FeedItem[] {
+  return objects(value, 'feed items').map((item) => {
+    const author = isObject(item.author) ? item.author : undefined
+    if (item.author !== undefined && item.author !== null && !author) fail('author')
+    return clean({
+      slug: str(item.slug, 200, 'slug'),
+      date: optStr(item.date, 60),
+      author: author ? { name: str(author.name), to: str(author.to, 2000, 'to') } : undefined,
+    })
   })
 }
 
@@ -454,6 +469,7 @@ function pageModule(raw: unknown): PageModule {
         ...common,
         title: optStr(raw.title),
         titleHref: optHref(raw.titleHref),
+        iconHref: optHref(raw.iconHref),
         image: optImage(raw.image),
         icon: optStr(raw.icon, 8),
         position: optOneOf(raw.position, ['top', 'left', 'right'] as const, 'position'),
@@ -480,15 +496,8 @@ function pageModule(raw: unknown): PageModule {
       return clean({
         kind,
         ...common,
-        items: objects(raw.items, 'feed items').map((item) => {
-          const author = isObject(item.author) ? item.author : undefined
-          if (item.author !== undefined && item.author !== null && !author) fail('author')
-          return clean({
-            slug: str(item.slug, 200, 'slug'),
-            date: optStr(item.date, 60),
-            author: author ? { name: str(author.name), to: str(author.to, 2000, 'to') } : undefined,
-          })
-        }),
+        items: feedItems(raw.items),
+        olderPages: raw.olderPages === undefined ? undefined : list(raw.olderPages, 'feed pages').map(feedItems),
         columns: optInt(raw.columns, 1, 3, 'columns') as 1 | 2 | 3 | undefined,
         align: optOneOf(raw.align, ALIGNS, 'align'),
         hasOlder: optBool(raw.hasOlder),
@@ -609,7 +618,8 @@ function pageRow(raw: unknown): PageRow {
   spend()
   const row = clean({
     ...base(raw),
-    gutters: raw.gutters === 3 || raw.gutters === 4 ? raw.gutters : undefined,
+    gutters: raw.gutters === 2 || raw.gutters === 3 || raw.gutters === 4 ? raw.gutters : undefined,
+    equalColumns: optBool(raw.equalColumns),
     columns: list(raw.columns, 'columns', 12).map(pageColumn),
   }) as PageRow
   return row

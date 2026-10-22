@@ -31,6 +31,8 @@ export default function App() {
         {Object.values(pageDefaults).map((page) => (
           <Route key={page.route} path={page.route} element={<DocumentPage route={page.route} />} />
         ))}
+        {/* Further pages of a page's blog feed (PostFeed), e.g. /nyolcadikos/page/2/. */}
+        <Route path="/:slug/page/:page/" element={<DocumentPage paged />} />
         <Route path="/kereses/" element={<Search />} />
 
         {/* Not a mirror page - a real, working re-implementation of the

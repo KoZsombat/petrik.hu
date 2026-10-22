@@ -22,6 +22,7 @@
          "kind": "text",
          "id": "m0",
          "index": 0,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Tanári kar"]}]}]
@@ -30,6 +31,7 @@
          "kind": "text",
          "id": "m1",
          "index": 1,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [
@@ -3712,6 +3714,7 @@
          "kind": "text",
          "id": "m274",
          "index": 181,
+         "animation": "fade",
          "align": "center",
          "bgLayout": "dark",
          "content": [
@@ -3731,6 +3734,7 @@
          "kind": "text",
          "id": "m275",
          "index": 182,
+         "animation": "fade",
          "align": "center",
          "bgLayout": "dark",
          "content": [
@@ -3751,6 +3755,7 @@
          "kind": "text",
          "id": "m276",
          "index": 183,
+         "animation": "fade",
          "align": "center",
          "bgLayout": "dark",
          "content": [

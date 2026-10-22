@@ -23,6 +23,7 @@
          "kind": "text",
          "id": "m0",
          "index": 0,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Nyári gyakorlat"]}]}]
@@ -31,6 +32,7 @@
          "kind": "text",
          "id": "m1",
          "index": 1,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"p","children":["Vállalati környezetben, életszerű munkakörülmények között"]}]
@@ -83,6 +85,8 @@
     {
      "id": "r2",
      "index": 2,
+     "gutters": 2,
+     "equalColumns": true,
      "columns": [
       {
        "id": "c2",
@@ -93,6 +97,7 @@
          "kind": "text",
          "id": "m4",
          "index": 3,
+         "animation": "foldBottom",
          "align": "left",
          "content": [{"tag":"h1","children":[{"tag":"strong","children":["A nyári gyakorlatok koordinátorának elérhetőség"]}]}]
         },
@@ -100,6 +105,7 @@
          "kind": "blurb",
          "id": "m5",
          "index": 0,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -109,6 +115,7 @@
          "kind": "blurb",
          "id": "m6",
          "index": 1,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -118,6 +125,7 @@
          "kind": "blurb",
          "id": "m7",
          "index": 2,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",

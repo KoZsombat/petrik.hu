@@ -23,6 +23,7 @@
          "kind": "text",
          "id": "m0",
          "index": 0,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Szakképzés"]}]}]
@@ -31,6 +32,7 @@
          "kind": "text",
          "id": "m1",
          "index": 1,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"p","children":["Érettségi utáni technikusi képzéseink"]}]
@@ -61,6 +63,7 @@
          "kind": "text",
          "id": "m2",
          "index": 2,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":["Az érettségi utáni technikusi képzéseinket olyan diákok számára ajánljuk, akik:"]}]
         }
@@ -82,6 +85,7 @@
          "kind": "text",
          "id": "m3",
          "index": 3,
+         "animation": "bounce",
          "align": "left",
          "content": [
           {
@@ -125,6 +129,7 @@
          "kind": "text",
          "id": "m4",
          "index": 4,
+         "animation": "fade",
          "align": "left",
          "content": [
           {
@@ -147,6 +152,7 @@
          "kind": "text",
          "id": "m5",
          "index": 5,
+         "animation": "fade",
          "align": "left",
          "content": [
           {
@@ -370,6 +376,7 @@
          "kind": "text",
          "id": "m16",
          "index": 10,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":["Szakképzéshez kapcsolódó hírek"]}]
         },
@@ -388,7 +395,12 @@
          ],
          "columns": 3,
          "align": "left",
-         "hasOlder": true
+         "hasOlder": true,
+         "olderPages": [
+          [{"slug":"szakmai-vizsga-idopontok-2023-tavasz","date":"2023 márc 01"}, {"slug":"javito-potlo-szakmai-vizsga-2022-osz","date":"2022 szept 20"}, {"slug":"erettsegi-utani-technikusi-kepzeseink","date":"2022 júl 25"}, {"slug":"technikusi-beiratkozas-2002","date":"2022 jún 28"}, {"slug":"erettsegi-utani-technikusi-kepzesi-kinalatunk-a-2022-2023-es-tanevre-vegyipari-agazat","date":"2022 máj 10"}, {"slug":"erettsegi-utani-technikusi-kepzesi-kinalatunk-a-2022-2023-es-tanevre-kornyezetvedelem-agazat","date":"2022 máj 10"}],
+          [{"slug":"erettsegi-utani-technikusi-kepzesi-kinalatunk-a-2022-2023-es-tanevre-informatika-agazat","date":"2022 máj 10"}, {"slug":"technikusi-e-jelentkezes-2022-23-tanevre","date":"2022 máj 10"}, {"slug":"szakmai-vizsga-idopontok-2022-tavasz","date":"2022 ápr 01"}, {"slug":"oszi-szakmai-vizsga-idopontok-2021","date":"2021 szept 18"}, {"slug":"tanevnyito","date":"2021 aug 26"}, {"slug":"erettsegi-utani-technikusi-kepzesi-kinalatunk-a-2021-2022-es-tanevre-informatika-agazat","date":"2021 júl 10"}],
+          [{"slug":"erettsegi-utani-technikusi-kepzesi-kinalatunk-a-2021-2022-es-tanevre-kornyezetvedelem-agazat","date":"2021 júl 10"}, {"slug":"erettsegi-utani-technikusi-kepzesi-kinalatunk-a-2021-2022-es-tanevre-vegyipari-agazat","date":"2021 júl 10"}, {"slug":"technikusi-e-jelentkezes","date":"2021 máj 05"}, {"slug":"szakmai-vizsga-idopontok-2021-tavasz","date":"2021 márc 23"}, {"slug":"oszi-potlo-es-javito-szakmai-vizsgak","date":"2020 szept 19"}]
+         ]
         }
        ]
       }

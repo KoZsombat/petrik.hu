@@ -22,7 +22,9 @@ export default function ArchiveCard({ post }: Props) {
   // lives at `/hirek/<slug>/` and carries that in `href` - the same rule
   // PostCard and RecentPosts already follow (AGENT.md 6.15).
   const href = post.href ?? `/${post.slug}/`
-  const image = post.archiveImage ?? post.image
+  // An empty `src` would resolve to the page itself: a broken picture, and a link back to the list.
+  const picture = post.archiveImage ?? post.image
+  const image = picture?.src ? picture : undefined
   const excerpt = post.archiveExcerpt ?? post.excerpt
 
   return (
@@ -97,11 +99,16 @@ export default function ArchiveCard({ post }: Props) {
           </>
         )}
         {post.categories.map((category, at) => (
-          <Fragment key={category.to}>
+          <Fragment key={category.label}>
             {at > 0 && ', '}
-            <Link to={category.to} rel="category tag">
-              {category.label}
-            </Link>
+            {/* A category made inside the Hírkezelő has no archive page to link to. */}
+            {category.to ? (
+              <Link to={category.to} rel="category tag">
+                {category.label}
+              </Link>
+            ) : (
+              category.label
+            )}
           </Fragment>
         ))}
       </p>

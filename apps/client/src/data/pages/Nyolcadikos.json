@@ -23,6 +23,7 @@
          "kind": "text",
          "id": "m0",
          "index": 0,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Nyolcadikosoknak"]}]}]
@@ -31,6 +32,7 @@
          "kind": "text",
          "id": "m1",
          "index": 1,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"p","children":["A továbbtanulás kapujában"]}]
@@ -59,6 +61,7 @@
          "kind": "text",
          "id": "m2",
          "index": 2,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":[{"tag":"strong","children":["Piacképes, 21. századi képzés a Petrikben"]}]}]
         },
@@ -94,6 +97,7 @@
          "kind": "text",
          "id": "m4",
          "index": 4,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":[{"tag":"strong","children":["Mi a Petrik?"]}]}]
         },
@@ -123,6 +127,7 @@
          "kind": "text",
          "id": "m6",
          "index": 6,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":[{"tag":"strong","children":["Mit kínál a Petrik?"]}]}]
         },
@@ -153,6 +158,7 @@
          "kind": "text",
          "id": "m8",
          "index": 8,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":[{"tag":"strong","children":["Miben nyújt többet a Petrik? "]}]}]
         },
@@ -185,7 +191,7 @@
        "index": 5,
        "last": true,
        "modules": [
-        {"kind":"text","id":"m10","index":10,"align":"left","content":["Felvételire jelentkezés"]},
+        {"kind":"text","id":"m10","index":10,"animation":"fade","align":"left","content":["Felvételire jelentkezés"]},
         {
          "kind": "text",
          "id": "m11",
@@ -225,6 +231,7 @@
          "kind": "text",
          "id": "m12",
          "index": 12,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":["Választható tanulmányi területek, ágazatok (éves szinten 5 induló osztály)"]}]
         }
@@ -238,7 +245,7 @@
      "columns": [
       {
        "id": "c7",
-       "span": "1_4",
+       "span": "1_5",
        "index": 7,
        "className": "et_pb_with_border",
        "modules": [
@@ -247,14 +254,14 @@
          "id": "m13",
          "index": 13,
          "align": "center",
-         "content": [{"tag":"p","children":["0091",{"tag":"br"},"Vegyipari ágazat"]}]
+         "content": [{"tag":"p","children":["0091",{"tag":"br"},"Vegyipari ágazat (26 fő)"]}]
         },
         {
          "kind": "text",
          "id": "m14",
          "index": 14,
          "align": "center",
-         "content": [{"tag":"p","children":["Két tanítási nyelvű vegyész technikus (28 fő)"]}]
+         "content": [{"tag":"p","children":["Két tanítási nyelvű vegyész technikus"]}]
         },
         {
          "kind": "text",
@@ -304,7 +311,7 @@
       },
       {
        "id": "c8",
-       "span": "1_4",
+       "span": "1_5",
        "index": 8,
        "className": "et_pb_with_border",
        "modules": [
@@ -313,7 +320,7 @@
          "id": "m19",
          "index": 19,
          "align": "center",
-         "content": [{"tag":"p","children":["0092",{"tag":"br"},"Vegyipari ágazat"]}]
+         "content": [{"tag":"p","children":["0092",{"tag":"br"},"Vegyipari ágazat (32 fő)"]}]
         },
         {
          "kind": "text",
@@ -364,7 +371,7 @@
       },
       {
        "id": "c9",
-       "span": "1_4",
+       "span": "1_5",
        "index": 9,
        "className": "et_pb_with_border",
        "modules": [
@@ -373,14 +380,14 @@
          "id": "m25",
          "index": 25,
          "align": "center",
-         "content": [{"tag":"p","children":["0093",{"tag":"br"},"Környezetvédelem és vízügyi ágazat"]}]
+         "content": [{"tag":"p","children":["0093",{"tag":"br"},"Környezetvédelem és vízügyi ágazat (32 fő)"]}]
         },
         {
          "kind": "text",
          "id": "m26",
          "index": 26,
          "align": "center",
-         "content": [{"tag":"p","children":["Környezetvédelmi technikus (32 fő)"]}]
+         "content": [{"tag":"p","children":["Környezetvédelmi technikus"]}]
         },
         {
          "kind": "text",
@@ -430,9 +437,8 @@
       },
       {
        "id": "c10",
-       "span": "1_4",
+       "span": "1_5",
        "index": 10,
-       "last": true,
        "className": "et_pb_with_border",
        "modules": [
         {
@@ -440,7 +446,9 @@
          "id": "m31",
          "index": 31,
          "align": "center",
-         "content": [{"tag":"p","children":["0094",{"tag":"br"},"Informatika és távközlés ágazat"]}]
+         "content": [
+          {"tag":"p","children":["0094",{"tag":"br"},"Két tanítási nyelvű informatika (32 fő)"]}
+         ]
         },
         {
          "kind": "text",
@@ -448,48 +456,115 @@
          "index": 32,
          "align": "center",
          "content": [
-          {"tag":"p","children":["Szoftverfejlesztő és -tesztelő (okleveles technikus – ÓE)"]},
+          {"tag":"p","children":["Szoftverfejlesztő és -tesztelő"]},
           " ",
-          {
-           "tag": "p",
-           "children": ["Informatikai rendszer- és alkalmazás-üzemeltető technikus  (okleveles technikus – BME)"]
-          },
-          " ",
-          {"tag":"p","children":["(Összesen 64 fő)"]}
+          {"tag":"p","children":["Informatikai rendszer- és alkalmazás-üzemeltető technikus"]}
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m65",
+         "index": 33,
+         "align": "center",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["Okleveles technikus – Szoftverfejlesztő és -tesztelő (Óbudai Egyetem)"]}]}
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m66",
+         "index": 34,
+         "align": "center",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["5 éves infromatikai képzés"]}]}
          ]
         },
         {
          "kind": "text",
          "id": "m33",
-         "index": 33,
+         "index": 35,
          "align": "left",
          "content": [
           {
            "tag": "ul",
            "children": [
-            {"tag":"li","children":["32 fő okleveles szoftverfejlesztő és -tesztelő"]},
-            {"tag":"li","children":["16 fő okleveles rendszerüzemeltető"]},
-            {"tag":"li","children":["választható mindkét szakma"]},
+            {"tag":"li","children":["16 fő okleveles szoftverfejlesztő és -tesztelő,"]},
             {"tag":"li","children":["emelt szintű angol nyelvoktatás,"]},
+            {"tag":"li","children":["matematika, digitális kultúra, civilizáció angol nyelven,"]},
+            {"tag":"li","children":["választható mindkét szakma,"]},
             {"tag":"li","children":["emelt szintű informatikaoktatás,"]},
-            {
-             "tag": "li",
-             "children": ["fókuszban a webprogramozás, szoftverfejlesztés és rendszergazdai, hálózati ismeretek oktatása,"]
-            },
+            {"tag":"li","children":["fókuszban a webprogramozás, szoftverfejlesztés és rendszergazdai, hálózati ismeretek oktatása,"]},
             {"tag":"li","children":["tehetséggondozás"]}
            ]
           }
          ]
+        }
+       ]
+      },
+      {
+       "id": "c25",
+       "span": "1_5",
+       "index": 25,
+       "last": true,
+       "className": "et_pb_with_border",
+       "modules": [
+        {
+         "kind": "text",
+         "id": "m67",
+         "index": 36,
+         "align": "center",
+         "content": [
+          {"tag":"p","children":["0095",{"tag":"br"},"Informatika és távközlés ágazat (32 fő)"]}
+         ]
         },
         {
          "kind": "text",
-         "id": "m34",
-         "index": 34,
+         "id": "m68",
+         "index": 37,
+         "align": "center",
+         "content": [
+          {"tag":"p","children":["Szoftverfejlesztő és -tesztelő"]},
+          " ",
+          {"tag":"p","children":["Informatikai rendszer- és alkalmazás-üzemeltető technikus"]}
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m69",
+         "index": 38,
+         "align": "center",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["Okleveles technikus – Szoftverfejlesztő és -tesztelő (Óbudai Egyetem)"]}]},
+          " ",
+          {"tag":"p","children":[{"tag":"strong","children":["„Három az egyben” BProf képzés – Informatikai rendszer- és alkalmazás-üzemeltető (BME)"]}]}
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m70",
+         "index": 39,
+         "align": "center",
+         "content": [
+          {"tag":"p","children":[{"tag":"strong","children":["5 éves infromatikai képzés"]}]}
+         ]
+        },
+        {
+         "kind": "text",
+         "id": "m71",
+         "index": 40,
          "align": "left",
          "content": [
-          {"tag":"p","children":["szoftverfejlesztő és -tesztelő"]},
-          " ",
-          {"tag":"p","children":["informatikai rendszer- és alkalmazás-üzemeltető"]}
+          {
+           "tag": "ul",
+           "children": [
+            {"tag":"li","children":["16 fő okleveles szoftverfejlesztő és -tesztelő,"]},
+            {"tag":"li","children":["16 fő okleveles informatika rendszer- és alkalmazás-üzemeltető,"]},
+            {"tag":"li","children":["választható mindkét szakma,"]},
+            {"tag":"li","children":["emelt szintű informatikaoktatás,"]},
+            {"tag":"li","children":["fókuszban a webprogramozás, szoftverfejlesztés és rendszergazdai, hálózati ismeretek oktatása,"]},
+            {"tag":"li","children":["tehetséggondozás"]}
+           ]
+          }
          ]
         }
        ]
@@ -506,11 +581,11 @@
        "index": 11,
        "last": true,
        "modules": [
-        {"kind":"text","id":"m35","index":35,"align":"left","content":[{"tag":"p","children":["Tanulmányi pontok"]}]},
+        {"kind":"text","id":"m35","index":41,"animation":"fade","align":"left","content":[{"tag":"p","children":["Tanulmányi pontok"]}]},
         {
          "kind": "text",
          "id": "m36",
-         "index": 36,
+         "index": 42,
          "align": "left",
          "content": [
           {
@@ -545,27 +620,27 @@
          "tables": [
           {
            "title": "Központi, egységes írásbeli vizsga",
-           "sum": "2026. január 24. 10 óra",
-           "items": ["Pótnap: 2026. február 03. 14 óra"]
+           "sum": "2027. január 23. 10 óra",
+           "items": ["Pótnap: 2027. február 03. 14 óra"]
           },
           {
            "title": "Szóbeli vizsga",
-           "sum": "2026. március 11.",
-           "items": ["2026. március 11. napon a honlapon feltüntetett beosztás alapján."]
+           "sum": "2027. március 16.",
+           "items": ["2027. március 16. napon a honlapon feltüntetett beosztás alapján."]
           }
          ]
         },
         {
          "kind": "text",
          "id": "m38",
-         "index": 37,
+         "index": 43,
          "align": "left",
          "content": [
           {
            "tag": "p",
            "children": [
             "Az egységes, központi írásbeli vizsgára külön jelentkezési lapon kell jelentkezni a felvételizőnek abba az iskolába, amelyikben a felvételit meg kívánja írni. A jelentkezési lapok benyújtási határideje ",
-            {"tag":"strong","children":["2025. december 01"]},
+            {"tag":"strong","children":["2026. december 01"]},
             {"tag":"strong","children":["."]}
            ]
           }
@@ -588,7 +663,8 @@
         {
          "kind": "text",
          "id": "m39",
-         "index": 38,
+         "index": 44,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":["Beiskolázási tájékoztató"]}]
         },
@@ -596,7 +672,7 @@
          "kind": "button",
          "id": "m40",
          "index": 0,
-         "to": "/media/wp-content/uploads/2025/09/petrik-beiskolazasi-ismerteto-2026-27-iskolai-1.pdf",
+         "href": "https://petrik.hu/wp-content/uploads/2026/10/Petrik_-felveteli-tajekoztato_2027_2028-1.pdf",
          "align": "center",
          "label": "Nyolcadikosok beiskolázási ismertetője"
         }
@@ -617,7 +693,8 @@
         {
          "kind": "text",
          "id": "m41",
-         "index": 39,
+         "index": 45,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":["A felvételi vizsga tartalma"]}]
         }
@@ -637,7 +714,7 @@
         {
          "kind": "text",
          "id": "m42",
-         "index": 40,
+         "index": 46,
          "align": "left",
          "content": [
           {
@@ -664,7 +741,7 @@
         {
          "kind": "text",
          "id": "m43",
-         "index": 41,
+         "index": 47,
          "align": "left",
          "content": [
           {
@@ -702,13 +779,13 @@
         {
          "kind": "text",
          "id": "m44",
-         "index": 42,
+         "index": 48,
          "align": "left",
          "content": [
           {
            "tag": "p",
            "children": [
-            "Szóbelire azokat az informatikus felvételizőket hívjuk be, akik a hozott- és az írásbeli felvételin szerzett pontokból összesen legalább 60 pontot értek el!"
+            "Szóbelire azokat az informatikus felvételizőket hívjuk be, akik a hozott- és az írásbeli felvételin szerzett pontokból 0094-es kódszám (két tanítási nyelv) esetén összesen legalább 60 pontot, 0095 kódszám esetén összesen legalább 80 pontot értek el!!"
            ]
           }
          ]
@@ -730,14 +807,15 @@
         {
          "kind": "text",
          "id": "m45",
-         "index": 43,
+         "index": 49,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":["A vizsgázó teljesítményének értékelése"]}]
         },
         {
          "kind": "text",
          "id": "m46",
-         "index": 44,
+         "index": 50,
          "align": "left",
          "content": [
           {
@@ -755,6 +833,11 @@
           {
            "tag": "p",
            "children": ["Felvételi vizsga pontjai: írásbelin összesen 100 pont, a szóbelin 30 pont szerezhető."]
+          },
+          " ",
+          {
+           "tag": "p",
+           "children": ["Kivétel! Két tanítási nyelvű informatika: írásbelin összesen 150 pont, a szóbelin 30 pont szerezhető"]
           }
          ]
         }
@@ -775,7 +858,8 @@
         {
          "kind": "text",
          "id": "m47",
-         "index": 45,
+         "index": 51,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":["A felvételi döntés alapja"]}]
         }
@@ -795,7 +879,7 @@
         {
          "kind": "text",
          "id": "m48",
-         "index": 46,
+         "index": 52,
          "align": "left",
          "content": [
           {"tag":"p","children":[{"tag":"strong","children":["Hozott pont: (40 pont)",{"tag":"br"}]}]},
@@ -824,15 +908,15 @@
         {
          "kind": "text",
          "id": "m49",
-         "index": 47,
+         "index": 53,
          "align": "left",
          "content": [
-          {"tag":"p","children":[{"tag":"strong","children":["Szerzett pont: (130 pont)",{"tag":"br"}]}]},
+          {"tag":"p","children":[{"tag":"strong","children":["Szerzett pont: (130/180 pont)",{"tag":"br"}]}]},
           " ",
           {
            "tag": "ul",
            "children": [
-            {"tag":"li","children":["központi, egységes írásbeli vizsga eredménye: 50-50 pont"]},
+            {"tag":"li","children":["központi, egységes írásbeli vizsga eredménye: 50-50 pont, két tanítási nyelvű infomratika esetén 50-50×2 pont"]},
             {"tag":"li","children":["szóbeli beszélgetés eredménye: 30 pont"]}
            ]
           }
@@ -855,7 +939,7 @@
         {
          "kind": "text",
          "id": "m50",
-         "index": 48,
+         "index": 54,
          "align": "left",
          "content": [
           {
@@ -864,7 +948,7 @@
             {"tag":"strong","children":["Összesen"]},
             {"tag":"strong","children":[" "]},
             "szerezhető ",
-            {"tag":"strong","children":["170 pont, "]},
+            {"tag":"strong","children":["170 vagy 220 pont, "]},
             "amely a hozott pontokból és a szerzett pontókból adódik össze."
            ]
           }
@@ -895,7 +979,8 @@
         {
          "kind": "text",
          "id": "m51",
-         "index": 49,
+         "index": 55,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":["A nyolcadikos felvételihez kapcsolódó hírek"]}]
         },
@@ -914,7 +999,12 @@
          ],
          "columns": 3,
          "align": "left",
-         "hasOlder": true
+         "hasOlder": true,
+         "olderPages": [
+          [{"slug":"felveteli-informavio-nyolcadikosoknak-szobeli-temakorok","date":"2026 febr 18"}, {"slug":"harom-az-egyben-kepzes-erettsegi-szakma-diploma","date":"2026 febr 12"}, {"slug":"leendo-kilencedikeseknek-alkalmassagi-vizsgalat-2025","date":"2025 ápr 29"}, {"slug":"felveteli-informaciok-nyolcadikosoknak-szobeli-temakorok","date":"2025 febr 14"}, {"slug":"tajekoztato-kozponti-irasbeli-felveteli-vizsgahoz","date":"2025 jan 18"}, {"slug":"nyolcadikos-elokeszito-december-18-an-elmarad","date":"2023 dec 12"}],
+          [{"slug":"nyilt-nap-2023-november-23","date":"2023 nov 14"}, {"slug":"delutani-nyilt-nap-2023-november-7-en","date":"2023 okt 17"}, {"slug":"nyilt-nap-2023-oktober-11","date":"2023 okt 01"}, {"slug":"tovabbi-beiskolazasi-rendezvenyek","date":"2023 szept 13"}, {"slug":"nyilt-napunk-2023-szeptember-19","date":"2023 szept 08"}, {"slug":"nyolcadikos-felveteli-elokeszito","date":"2023 szept 07"}],
+          [{"slug":"beiratkozasi-informaciok-leendo-9-esek-szamara-2023-junius-21-22","date":"2023 máj 25"}]
+         ]
         }
        ]
       }
@@ -935,11 +1025,12 @@
        "span": "1_3",
        "index": 23,
        "modules": [
-        {"kind":"text","id":"m53","index":50,"align":"left","content":[{"tag":"h1","children":["Iskolai adatok"]}]},
+        {"kind":"text","id":"m53","index":56,"animation":"foldBottom","align":"left","content":[{"tag":"h1","children":["Iskolai adatok"]}]},
         {
          "kind": "blurb",
          "id": "m54",
          "index": 0,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -949,6 +1040,7 @@
          "kind": "blurb",
          "id": "m55",
          "index": 1,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -966,6 +1058,7 @@
          "kind": "blurb",
          "id": "m56",
          "index": 2,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -975,6 +1068,7 @@
          "kind": "blurb",
          "id": "m57",
          "index": 3,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -983,7 +1077,7 @@
         {
          "kind": "text",
          "id": "m58",
-         "index": 51,
+         "index": 57,
          "align": "left",
          "content": [{"tag":"p","children":[{"tag":"strong","children":["Technikai kód"]},": 520 413"]}]
         }
@@ -998,7 +1092,8 @@
         {
          "kind": "text",
          "id": "m59",
-         "index": 52,
+         "index": 58,
+         "animation": "foldBottom",
          "align": "left",
          "content": [{"tag":"h1","children":[{"tag":"strong","children":["Jelentkezési laphoz szükséges adatok"]}]}]
         },
@@ -1006,6 +1101,7 @@
          "kind": "blurb",
          "id": "m60",
          "index": 4,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -1015,6 +1111,7 @@
          "kind": "blurb",
          "id": "m61",
          "index": 5,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -1029,6 +1126,7 @@
          "kind": "blurb",
          "id": "m62",
          "index": 6,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -1038,6 +1136,7 @@
          "kind": "blurb",
          "id": "m63",
          "index": 7,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -1052,6 +1151,7 @@
          "kind": "blurb",
          "id": "m64",
          "index": 8,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -1061,7 +1161,8 @@
            "children": [{"tag":"strong","children":["0094 informatika és távközlés "]},"(5 éves informatikaképzés)"]
           }
          ]
-        }
+        },
+        {"kind":"social-follow","id":"m900","index":0,"networks":[]}
        ]
       }
      ]

@@ -1,0 +1,100 @@
+/*
+ * Divi's module entrance animations, as the original ran them: a module marked
+ * `et_animated` starts invisible and, once it scrolls into view, plays its
+ * style over one second (ease-in-out). animations.ts adds `et_is_animating`.
+ * Reduced motion skips all of it.
+ */
+.et_animated {
+  opacity: 0;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+}
+
+.et_animated.et_anim_fold {
+  transform: perspective(2000px) rotateY(45deg);
+  transform-origin: center center;
+}
+
+.et_animated.et_anim_foldBottom {
+  transform: perspective(2000px) rotateX(18deg);
+  transform-origin: center bottom;
+}
+
+.et_animated.et_anim_bounce {
+  transform: scale3d(0.3, 0.3, 0.3);
+}
+
+.et_animated.et_is_animating.et_anim_fade {
+  animation-name: et_pb_fade;
+}
+
+.et_animated.et_is_animating.et_anim_fold {
+  animation-name: et_pb_fold;
+}
+
+.et_animated.et_is_animating.et_anim_foldBottom {
+  animation-name: et_pb_foldBottom;
+}
+
+.et_animated.et_is_animating.et_anim_bounce {
+  animation-name: et_pb_bounce;
+}
+
+@keyframes et_pb_fade {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes et_pb_fold {
+  100% {
+    opacity: 1;
+    transform: perspective(2000px) rotateY(0deg);
+  }
+}
+
+@keyframes et_pb_foldBottom {
+  100% {
+    opacity: 1;
+    transform: perspective(2000px) rotateX(0deg);
+  }
+}
+
+@keyframes et_pb_bounce {
+  0%,
+  20%,
+  40%,
+  60%,
+  80%,
+  100% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+  60% {
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .et_animated {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

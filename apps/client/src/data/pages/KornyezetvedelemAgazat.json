@@ -23,6 +23,7 @@
          "kind": "text",
          "id": "m0",
          "index": 0,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [
@@ -33,6 +34,7 @@
          "kind": "text",
          "id": "m1",
          "index": 1,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"p","children":["Növények, állatok, vizsgálatok, számítások és még sok-sok más. "]}]
@@ -60,6 +62,7 @@
          "kind": "text",
          "id": "m2",
          "index": 2,
+         "animation": "fade",
          "align": "left",
          "content": ["A környezetvédelmi technikus képzést neked ajánljuk, ha"]
         },

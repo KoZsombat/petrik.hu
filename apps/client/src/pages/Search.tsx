@@ -1,6 +1,6 @@
 import { Link, useSearchParams } from 'react-router-dom'
 import Sidebar from '../components/Sidebar.tsx'
-import { posts } from '../data/posts.ts'
+import { usePosts } from '../lib/posts/postsContext.ts'
 import { fold } from '../lib/text.ts'
 import { useBodyClass } from '../lib/useBodyClass.ts'
 import './Search.css'
@@ -13,6 +13,8 @@ import './Search.css'
  */
 export default function Search() {
   const [params] = useSearchParams()
+  // The merged index: archived posts drop out, posts published in the Hírkezelő come in.
+  const { posts } = usePosts()
   // Divi's search template has a sidebar, and lays it out off this class.
   useBodyClass(['search', 'et_right_sidebar'])
   const term = (params.get('q') ?? '').trim()
@@ -50,7 +52,7 @@ export default function Search() {
                     <li key={post.slug}>
                       <h2 className="entry-title">
                         {post.available ? (
-                          <Link to={`/${post.slug}/`}>{post.title}</Link>
+                          <Link to={post.href ?? `/${post.slug}/`}>{post.title}</Link>
                         ) : (
                           post.title
                         )}

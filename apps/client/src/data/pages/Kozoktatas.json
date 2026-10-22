@@ -23,6 +23,7 @@
          "kind": "text",
          "id": "m0",
          "index": 0,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Közoktatás"]}]}]
@@ -31,6 +32,7 @@
          "kind": "text",
          "id": "m1",
          "index": 1,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"p","children":["Általános műveltség és az erős szakmai alapok építése"]}]
@@ -61,6 +63,7 @@
          "kind": "text",
          "id": "m2",
          "index": 2,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":["Közoktatáshoz kapcsolódó hírek"]}]
         },
@@ -83,7 +86,10 @@
          ],
          "columns": 3,
          "align": "left",
-         "hasOlder": true
+         "hasOlder": true,
+         "olderPages": [
+          [{"slug":"emelt-erettsegi-szobeli-biztonsagi-intezkedesek","date":"2020 nov 12"}, {"slug":"emelt-es-kozepszintu-erettsegi-dolgozatok-vizsgazoi-eszrevetelek","date":"2020 nov 09"}, {"slug":"oszi-emelt-szintu-erettsegi-vizsgakozpont-tajekoztato","date":"2020 okt 16"}, {"slug":"oszi-erettsegi-vizsgaidoszak","date":"2020 szept 17"}]
+         ]
         }
        ]
       }

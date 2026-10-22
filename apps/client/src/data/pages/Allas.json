@@ -22,6 +22,7 @@
          "kind": "text",
          "id": "m0",
          "index": 0,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Állásajánlatok"]}]}]
@@ -30,6 +31,7 @@
          "kind": "text",
          "id": "m1",
          "index": 1,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"p","children":["Találd meg a jövőt a frissen szerzett szakértelmeddel."]}]
@@ -63,10 +65,12 @@
          "index": 0,
          "className": "et_pb_with_border",
          "items": [
+          {"slug":"karbantarto-allaslehetoseg","date":"2026 okt 10"},
+          {"slug":"portas-allaslehetoseg","date":"2026 okt 08"},
+          {"slug":"takarioi-allaslehetoseg","date":"2026 okt 08"},
           {"slug":"allsalehetoseg-kornyezetvedelmi-technikusoknak","date":"2025 aug 12"},
           {"slug":"allaslehetoseg-kornyezetvedelmi-technikusoknak","date":"2025 aug 12"},
           {"slug":"allaslehetoseg-technikus-jellegu-feladatok-ellatasara","date":"2025 máj 18"},
-          {"slug":"takarioi-allaslehetoseg","date":"2025 febr 02"},
           {"slug":"nyari-munkalehetoseg-12-evfolyamos-diakoknak","date":"2024 jún 04"},
           {"slug":"nemzeti-szakertoi-es-kutato-kozpont-vegyesz-technikus","date":"2023 aug 10"},
           {"slug":"nemzeti-nepegeszsegugyi-kozpont-laboratoriumi-technikust","date":"2023 júl 11"},
@@ -75,13 +79,19 @@
           {"slug":"ge-aviation-hungary-kft-vegyipari-operator","date":"2023 máj 05"},
           {"slug":"microsoft-net-frameworkon-alapulu-fejlesztok-magicsoftware","date":"2023 máj 03"},
           {"slug":"brilliance-tisztitoszer-gyarto-kft-vegyesz-technikus","date":"2023 ápr 26"},
-          {"slug":"richter-gedeon-nyrt-vegyesz-technikus","date":"2023 ápr 26"},
-          {"slug":"kti-kozlekedestudomanyi-intezet-nonprofit-kft-laborans","date":"2023 ápr 26"},
-          {"slug":"cf-pharma-kft-gyogyszerhatoanyag-gyarto-2023-aprilis","date":"2023 ápr 13"}
+          {"slug":"richter-gedeon-nyrt-vegyesz-technikus","date":"2023 ápr 26"}
          ],
          "columns": 3,
          "align": "left",
-         "hasOlder": true
+         "hasOlder": true,
+         "olderPages": [
+          [{"slug":"kti-kozlekedestudomanyi-intezet-nonprofit-kft-laborans","date":"2023 ápr 26"}, {"slug":"cf-pharma-kft-gyogyszerhatoanyag-gyarto-2023-aprilis","date":"2023 ápr 13"}, {"slug":"elso-vegyi-industria-zrt-vegyianyag-gyarto","date":"2023 márc 29"}, {"slug":"magyar-lakk-festekgyarto-es-kereskedelmi-kft-festekgyarto","date":"2023 márc 29"}, {"slug":"nemzeti-szakertoi-es-kutato-kozpont-kabitoszervizsgalo-szakertoi-intezete-technikus","date":"2023 márc 27"}, {"slug":"optima-solutions-labor-specialista","date":"2023 márc 14"}, {"slug":"nemzetbiztonsagi-szakszolgalat-it-szakember","date":"2023 febr 25"}, {"slug":"mezofoldi-regionalis-vizikozmu-kft-vegyesz","date":"2023 febr 20"}, {"slug":"takarito-a-petrikben","date":"2022 dec 11"}, {"slug":"kti-magyar-kozlekedestudomanyi-es-logisztikai-intezet-kutato","date":"2022 nov 28"}, {"slug":"wagner-solar-hungaria-kft-webshop-munkatars","date":"2022 okt 03"}, {"slug":"lighttech-kft-vegyesztechnikus","date":"2022 szept 28"}, {"slug":"muki-labor-vizsgalotechnikusi","date":"2022 szept 26"}, {"slug":"penzjegynyomda-minosegellenor","date":"2022 szept 16"}, {"slug":"budapest-fovaros-kormanyhivatala-vegyesztechnikus","date":"2022 júl 27"}],
+          [{"slug":"nemzetbiztonsagi-szakszolgalat-informatikai-technikus","date":"2022 jún 16"}, {"slug":"nemzetbiztonsagi-szakszolgalat-helpdesk-munkatars","date":"2022 jún 16"}, {"slug":"nemzetbiztonsagi-szakszolgalat-helpdesk-koordinator","date":"2022 jún 16"}, {"slug":"egis-analitikai-laborans","date":"2022 jún 16"}, {"slug":"wessling-laboratoriumi-munkatars","date":"2022 jún 07"}, {"slug":"fovarosi-vizmuvek-szennyviztisztito-munkatars","date":"2022 jún 07"}, {"slug":"izotop-intezet-kft-vegyesztechnikus","date":"2022 jún 07"}, {"slug":"tesztelo","date":"2022 máj 25"}, {"slug":"it-support-specialist","date":"2022 máj 25"}, {"slug":"powerplatform-developer","date":"2022 máj 25"}, {"slug":"vinyl-vegyipari-kft-vegyianyag-gyarto","date":"2022 máj 19"}, {"slug":"agro-chemie-kft-vegyianyag-gyarto","date":"2022 máj 12"}, {"slug":"nemzetbiztonsagi-szakszolgalat-tobb-pozicio","date":"2022 márc 21"}, {"slug":"delelottos-takarito-a-petrikben","date":"2022 márc 09"}, {"slug":"budapesti-muszaki-es-gazdasagtudomanyi-egyetem-szervetlen-es-analitikai-kemia-tanszeke-technikus","date":"2022 márc 08"}],
+          [{"slug":"nemzeti-nepegeszsegugyi-kozpont-laboratoriumi-technikus","date":"2022 febr 20"}, {"slug":"wessling-hungary-kornyezetanalitikai-labor-technikus","date":"2022 febr 18"}, {"slug":"wessling-hungary-gyogyszervizsgalo-laboratorium-technikus","date":"2022 febr 18"}, {"slug":"cf-pharma-kft-gyogyszerhatoanyag-gyarto","date":"2022 jan 24"}, {"slug":"ceva-phylaxia-zrt-allategeszsegugyi-uzemi-laborans","date":"2021 nov 12"}, {"slug":"luminochem-kft-vegyesztechnikus","date":"2021 nov 05"}, {"slug":"mora-ferenc-altalanos-iskola-rendszergazda","date":"2021 okt 22"}, {"slug":"agrartudomanyi-kutatokozpont-vegyesztechnikus","date":"2021 okt 22"}, {"slug":"bn-nemzetkozi-support-technikus","date":"2021 okt 22"}, {"slug":"bn-robot-tesztelo-technikus","date":"2021 okt 22"}, {"slug":"bn-robot-uzemeltetesi-technikus","date":"2021 okt 22"}, {"slug":"renew-technologies-hungary-kft-labor-technikus","date":"2021 okt 13"}, {"slug":"grundfos-elemzo-hibakereso","date":"2021 okt 05"}, {"slug":"coopervision-vegyesztechnikus","date":"2021 okt 05"}, {"slug":"coopervision-mikrobiologus","date":"2021 okt 05"}],
+          [{"slug":"elso-vegyi-industria-zrt-hatoanyaggyarto-vegyesztechnikus","date":"2021 szept 29"}, {"slug":"elso-vegyi-industria-zrt-analitikus-vegyesztechnikus","date":"2021 szept 29"}, {"slug":"nagy-laszlo-altalanos-iskola-es-gimnazium-laborans","date":"2021 szept 22"}, {"slug":"geohidro-kft-talajmechanikai-laborans","date":"2021 szept 21"}, {"slug":"uditogyar-laborans","date":"2021 szept 16"}, {"slug":"vizmuvek-laboratoriumi-technikus","date":"2021 szept 13"}, {"slug":"vizmuvek-vegyesz-technikus","date":"2021 szept 13"}, {"slug":"balint-analitika-kft-vegyesztechnikus","date":"2021 szept 01"}, {"slug":"balint-analitika-kft-vegyesztechnikus-mintaerkezteto-adminisztrator","date":"2021 szept 01"}, {"slug":"metalloglobus-vegyesztechnikus","date":"2021 aug 27"}, {"slug":"balasys-kft-junior-integracios-mernok","date":"2021 aug 27"}, {"slug":"portas-munkakori-palyazat-a-petrikben","date":"2021 jún 25"}, {"slug":"testnevelo-munkakori-palyazat-a-petrikben","date":"2021 jún 25"}, {"slug":"soliteint-kozmetika-kft-kozmetikum-gyartoi-munkakor","date":"2021 jún 16"}, {"slug":"budapesti-piarista-gimnazium-laborans-allas","date":"2021 jún 09"}],
+          [{"slug":"knorr-bremse-vasuti-jarmu-rendszerek-hungaria-kft-vegyesztechnikus","date":"2021 jún 04"}, {"slug":"m0-centrum-rendszeruzemelteto","date":"2021 máj 27"}, {"slug":"diatron-zrt-vegyesztechnikus","date":"2021 máj 25"}, {"slug":"luminochem-kft-uzemvezeto-mikronizalo-uzembe","date":"2021 máj 25"}, {"slug":"elso-vegyi-industria-zrt-vegyesztechnikus","date":"2021 máj 20"}, {"slug":"semmelweis-egyetem-gyogyszereszeti-intezet-vegyesztechnikus","date":"2021 máj 06"}, {"slug":"luminochem-kft-orlouzemi-gepkezelo","date":"2021 ápr 30"}, {"slug":"bosch-muszaki-tisztasagvizsgalo-technikus","date":"2021 ápr 09"}, {"slug":"zwack-unicum-nyrt-minosegellenor","date":"2021 márc 31"}, {"slug":"stu-kft-vegyeszmernok","date":"2021 márc 02"}, {"slug":"stu-kft-vegyesztechnikus","date":"2021 márc 02"}, {"slug":"ceva-phylaxia-zrt-technikus-labor","date":"2021 febr 12"}, {"slug":"ceva-phylaxia-zrt-technikus","date":"2021 febr 12"}, {"slug":"elte-laborasszisztens","date":"2021 febr 10"}, {"slug":"semmelweis-egyetem-gyogyszereszi-kemiai-intezet-laboratoriumi-asszisztens","date":"2021 jan 26"}],
+          [{"slug":"ppg-trilak-kft-meo-laborans","date":"2021 jan 26"}, {"slug":"kromat-muszerforgalmazo-kft-analitikus-vegyesz-technikus","date":"2020 dec 01"}, {"slug":"equip-test-kft-vegyesz-technikus","date":"2020 nov 25"}, {"slug":"polinvent-kft-vegyipari-szakmunkas","date":"2020 okt 26"}, {"slug":"alsoerdosori-bardos-lajos-altalanos-iskola-laborans","date":"2020 okt 26"}, {"slug":"szerb-antal-gimnazium-laborans","date":"2020 szept 15"}, {"slug":"szent-laszlo-gimnazium-laborans","date":"2020 szept 14"}]
+         ]
         }
        ]
       }

@@ -23,24 +23,25 @@
   padding-bottom:0px
 }
 .page-nyolcadikos .et_pb_text_19.et_pb_text,
+.page-nyolcadikos .et_pb_text_36.et_pb_text,
 .page-nyolcadikos .et_pb_text_25.et_pb_text,
 .page-nyolcadikos .et_pb_text_13.et_pb_text,
 .page-nyolcadikos .et_pb_blog_0 .et_pb_post .entry-title a,
 .page-nyolcadikos .et_pb_blog_0 .not-found-title,
-.page-nyolcadikos .et_pb_text_49.et_pb_text,
+.page-nyolcadikos .et_pb_text_55.et_pb_text,
 .page-nyolcadikos .et_pb_text_31.et_pb_text,
 .page-nyolcadikos .et_pb_text_12.et_pb_text,
-.page-nyolcadikos .et_pb_text_35.et_pb_text,
+.page-nyolcadikos .et_pb_text_41.et_pb_text,
 .page-nyolcadikos .et_pb_text_10.et_pb_text,
 .page-nyolcadikos .et_pb_text_8.et_pb_text,
-.page-nyolcadikos .et_pb_text_45.et_pb_text,
+.page-nyolcadikos .et_pb_text_51.et_pb_text,
 .page-nyolcadikos .et_pb_text_6.et_pb_text,
-.page-nyolcadikos .et_pb_text_43.et_pb_text,
+.page-nyolcadikos .et_pb_text_49.et_pb_text,
 .page-nyolcadikos .et_pb_text_4.et_pb_text,
-.page-nyolcadikos .et_pb_text_38.et_pb_text,
+.page-nyolcadikos .et_pb_text_44.et_pb_text,
 .page-nyolcadikos .et_pb_text_2.et_pb_text,
 .page-nyolcadikos .et_pb_text_0.et_pb_text,
-.page-nyolcadikos .et_pb_text_39.et_pb_text {
+.page-nyolcadikos .et_pb_text_45.et_pb_text {
   color:#0c71c3!important
 }
 .page-nyolcadikos .et_pb_text_0 h1 {
@@ -56,12 +57,12 @@
   font-family:'Poppins',Helvetica,Arial,Lucida,sans-serif;
   line-height:1.8em
 }
-.page-nyolcadikos .et_pb_text_43,
-.page-nyolcadikos .et_pb_text_45,
-.page-nyolcadikos .et_pb_text_35,
-.page-nyolcadikos .et_pb_text_38,
 .page-nyolcadikos .et_pb_text_49,
-.page-nyolcadikos .et_pb_text_39,
+.page-nyolcadikos .et_pb_text_51,
+.page-nyolcadikos .et_pb_text_41,
+.page-nyolcadikos .et_pb_text_44,
+.page-nyolcadikos .et_pb_text_55,
+.page-nyolcadikos .et_pb_text_45,
 .page-nyolcadikos .et_pb_text_6,
 .page-nyolcadikos .et_pb_text_8,
 .page-nyolcadikos .et_pb_text_10,
@@ -74,29 +75,31 @@
   line-height:1.5em
 }
 .page-nyolcadikos .et_pb_text_10 h2,
-.page-nyolcadikos .et_pb_text_35 h2,
+.page-nyolcadikos .et_pb_text_41 h2,
 .page-nyolcadikos .et_pb_text_8 h2,
-.page-nyolcadikos .et_pb_text_45 h2,
+.page-nyolcadikos .et_pb_text_51 h2,
 .page-nyolcadikos .et_pb_text_12 h2,
 .page-nyolcadikos .et_pb_text_6 h2,
-.page-nyolcadikos .et_pb_text_43 h2,
+.page-nyolcadikos .et_pb_text_49 h2,
 .page-nyolcadikos .et_pb_text_4 h2,
 .page-nyolcadikos .et_pb_text_2 h2,
-.page-nyolcadikos .et_pb_text_38 h2,
-.page-nyolcadikos .et_pb_text_39 h2,
-.page-nyolcadikos .et_pb_text_49 h2 {
+.page-nyolcadikos .et_pb_text_44 h2,
+.page-nyolcadikos .et_pb_text_45 h2,
+.page-nyolcadikos .et_pb_text_55 h2 {
   font-family:'EB Garamond',Georgia,"Times New Roman",serif;
   font-size:50px;
   line-height:1.3em
 }
 .page-nyolcadikos .et_pb_text_19,
 .page-nyolcadikos .et_pb_text_31,
+.page-nyolcadikos .et_pb_text_36,
 .page-nyolcadikos .et_pb_text_13,
 .page-nyolcadikos .et_pb_text_25 {
   font-weight:800;
   padding-top:20px!important
 }
 .page-nyolcadikos .et_pb_text_20.et_pb_text,
+.page-nyolcadikos .et_pb_text_37.et_pb_text,
 .page-nyolcadikos .et_pb_text_26.et_pb_text,
 .page-nyolcadikos .et_pb_text_32.et_pb_text,
 .page-nyolcadikos .et_pb_text_14.et_pb_text {
@@ -109,19 +112,27 @@
   font-weight:700;
   font-size:18px
 }
+.page-nyolcadikos .et_pb_text_37 {
+  font-weight:700;
+  font-size:18px;
+  padding-top:20px!important
+}
 .page-nyolcadikos .et_pb_text_21.et_pb_text,
 .page-nyolcadikos .et_pb_text_15.et_pb_text,
+.page-nyolcadikos .et_pb_text_33.et_pb_text,
+.page-nyolcadikos .et_pb_text_38.et_pb_text,
 .page-nyolcadikos .et_pb_text_27.et_pb_text {
   color:#000000!important
 }
 .page-nyolcadikos .et_pb_text_15,
 .page-nyolcadikos .et_pb_text_21,
+.page-nyolcadikos .et_pb_text_33,
+.page-nyolcadikos .et_pb_text_38,
 .page-nyolcadikos .et_pb_text_27 {
   font-style:italic
 }
 .page-nyolcadikos .et_pb_text_24,
 .page-nyolcadikos .et_pb_text_30,
-.page-nyolcadikos .et_pb_text_34,
 .page-nyolcadikos .et_pb_text_18 {
   font-weight:700
 }
@@ -137,10 +148,10 @@ body #page-container .page-nyolcadikos .et_pb_section .et_pb_button_0 {
 .page-nyolcadikos .et_pb_button_0:after {
   transition:all 300ms ease 0ms
 }
-.page-nyolcadikos .et_pb_text_42.et_pb_text {
+.page-nyolcadikos .et_pb_text_48.et_pb_text {
   color:#c94300!important
 }
-.page-nyolcadikos .et_pb_text_42 {
+.page-nyolcadikos .et_pb_text_48 {
   font-weight:800
 }
 .page-nyolcadikos .et_pb_row_13.et_pb_row {
@@ -148,8 +159,8 @@ body #page-container .page-nyolcadikos .et_pb_section .et_pb_button_0 {
   margin-bottom:0px!important;
   padding-bottom:0px
 }
-.page-nyolcadikos .et_pb_text_46,
-.page-nyolcadikos .et_pb_text_47 {
+.page-nyolcadikos .et_pb_text_52,
+.page-nyolcadikos .et_pb_text_53 {
   padding-bottom:0px!important;
   margin-bottom:0px!important
 }
@@ -230,16 +241,16 @@ body #page-container .page-nyolcadikos .et_pb_section .et_pb_button_0 {
   padding-top:90px;
   padding-bottom:90px
 }
-.page-nyolcadikos .et_pb_text_52,
-.page-nyolcadikos .et_pb_text_50 {
+.page-nyolcadikos .et_pb_text_58,
+.page-nyolcadikos .et_pb_text_56 {
   font-size:16px;
   padding-top:0px!important;
   padding-right:0px!important;
   padding-bottom:0px!important;
   padding-left:0px!important
 }
-.page-nyolcadikos .et_pb_text_50 h1,
-.page-nyolcadikos .et_pb_text_52 h1 {
+.page-nyolcadikos .et_pb_text_56 h1,
+.page-nyolcadikos .et_pb_text_58 h1 {
   font-family:'Montserrat',Helvetica,Arial,Lucida,sans-serif;
   font-size:22px;
   color:#1f1f1f!important
@@ -315,10 +326,10 @@ body #page-container .page-nyolcadikos .et_pb_section .et_pb_button_0 {
   box-shadow:0px 2px 18px 0px rgba(0,0,0,0.3)
 }
 @media only screen and (max-width:980px) {
-  .page-nyolcadikos .et_pb_text_2,.page-nyolcadikos .et_pb_text_12,.page-nyolcadikos .et_pb_text_49,.page-nyolcadikos .et_pb_text_45,.page-nyolcadikos .et_pb_text_43,.page-nyolcadikos .et_pb_text_39,.page-nyolcadikos .et_pb_text_38,.page-nyolcadikos .et_pb_text_35,.page-nyolcadikos .et_pb_text_10,.page-nyolcadikos .et_pb_text_6,.page-nyolcadikos .et_pb_text_4,.page-nyolcadikos .et_pb_text_8 {
+  .page-nyolcadikos .et_pb_text_2,.page-nyolcadikos .et_pb_text_12,.page-nyolcadikos .et_pb_text_55,.page-nyolcadikos .et_pb_text_51,.page-nyolcadikos .et_pb_text_49,.page-nyolcadikos .et_pb_text_45,.page-nyolcadikos .et_pb_text_44,.page-nyolcadikos .et_pb_text_41,.page-nyolcadikos .et_pb_text_10,.page-nyolcadikos .et_pb_text_6,.page-nyolcadikos .et_pb_text_4,.page-nyolcadikos .et_pb_text_8 {
     font-size:50px
   }
-  .page-nyolcadikos .et_pb_text_8 h2,.page-nyolcadikos .et_pb_text_12 h2,.page-nyolcadikos .et_pb_text_49 h2,.page-nyolcadikos .et_pb_text_45 h2,.page-nyolcadikos .et_pb_text_4 h2,.page-nyolcadikos .et_pb_text_2 h2,.page-nyolcadikos .et_pb_text_35 h2,.page-nyolcadikos .et_pb_text_38 h2,.page-nyolcadikos .et_pb_text_10 h2,.page-nyolcadikos .et_pb_text_43 h2,.page-nyolcadikos .et_pb_text_6 h2,.page-nyolcadikos .et_pb_text_39 h2 {
+  .page-nyolcadikos .et_pb_text_8 h2,.page-nyolcadikos .et_pb_text_12 h2,.page-nyolcadikos .et_pb_text_55 h2,.page-nyolcadikos .et_pb_text_51 h2,.page-nyolcadikos .et_pb_text_4 h2,.page-nyolcadikos .et_pb_text_2 h2,.page-nyolcadikos .et_pb_text_41 h2,.page-nyolcadikos .et_pb_text_44 h2,.page-nyolcadikos .et_pb_text_10 h2,.page-nyolcadikos .et_pb_text_49 h2,.page-nyolcadikos .et_pb_text_6 h2,.page-nyolcadikos .et_pb_text_45 h2 {
     font-size:40px
   }
   body #page-container .page-nyolcadikos .et_pb_section .et_pb_button_0:after {
@@ -355,7 +366,7 @@ body #page-container .page-nyolcadikos .et_pb_section .et_pb_button_0 {
   .page-nyolcadikos .et_pb_text_0 h1 {
     font-size:40px
   }
-  .page-nyolcadikos .et_pb_text_2,.page-nyolcadikos .et_pb_text_49 h2,.page-nyolcadikos .et_pb_text_49,.page-nyolcadikos .et_pb_text_45 h2,.page-nyolcadikos .et_pb_text_45,.page-nyolcadikos .et_pb_text_43 h2,.page-nyolcadikos .et_pb_text_43,.page-nyolcadikos .et_pb_text_39 h2,.page-nyolcadikos .et_pb_text_39,.page-nyolcadikos .et_pb_text_38 h2,.page-nyolcadikos .et_pb_text_38,.page-nyolcadikos .et_pb_text_35 h2,.page-nyolcadikos .et_pb_text_35,.page-nyolcadikos .et_pb_text_8 h2,.page-nyolcadikos .et_pb_text_2 h2,.page-nyolcadikos .et_pb_text_12 h2,.page-nyolcadikos .et_pb_text_12,.page-nyolcadikos .et_pb_text_10 h2,.page-nyolcadikos .et_pb_text_10,.page-nyolcadikos .et_pb_text_4,.page-nyolcadikos .et_pb_text_8,.page-nyolcadikos .et_pb_text_6 h2,.page-nyolcadikos .et_pb_text_6,.page-nyolcadikos .et_pb_text_4 h2 {
+  .page-nyolcadikos .et_pb_text_2,.page-nyolcadikos .et_pb_text_55 h2,.page-nyolcadikos .et_pb_text_55,.page-nyolcadikos .et_pb_text_51 h2,.page-nyolcadikos .et_pb_text_51,.page-nyolcadikos .et_pb_text_49 h2,.page-nyolcadikos .et_pb_text_49,.page-nyolcadikos .et_pb_text_45 h2,.page-nyolcadikos .et_pb_text_45,.page-nyolcadikos .et_pb_text_44 h2,.page-nyolcadikos .et_pb_text_44,.page-nyolcadikos .et_pb_text_41 h2,.page-nyolcadikos .et_pb_text_41,.page-nyolcadikos .et_pb_text_8 h2,.page-nyolcadikos .et_pb_text_2 h2,.page-nyolcadikos .et_pb_text_12 h2,.page-nyolcadikos .et_pb_text_12,.page-nyolcadikos .et_pb_text_10 h2,.page-nyolcadikos .et_pb_text_10,.page-nyolcadikos .et_pb_text_4,.page-nyolcadikos .et_pb_text_8,.page-nyolcadikos .et_pb_text_6 h2,.page-nyolcadikos .et_pb_text_6,.page-nyolcadikos .et_pb_text_4 h2 {
     font-size:30px
   }
   body #page-container .page-nyolcadikos .et_pb_section .et_pb_button_0:after {

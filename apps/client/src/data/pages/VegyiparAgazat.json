@@ -23,6 +23,7 @@
          "kind": "text",
          "id": "m0",
          "index": 0,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Vegyipar"]}]}]
@@ -31,6 +32,7 @@
          "kind": "text",
          "id": "m1",
          "index": 1,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"p","children":["Kisérlet, mintavétel, mérés, számítások és még sok-sok más."]}]
@@ -58,6 +60,7 @@
          "kind": "text",
          "id": "m2",
          "index": 2,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":["A vegyésztechnikus képzést neked ajánjluk, ha"]}]
         },

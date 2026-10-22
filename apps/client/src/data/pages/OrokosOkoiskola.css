@@ -123,3 +123,10 @@
   }
 }
 
+
+/* The e-mail address in the contact box must wrap inside the frame rather than run past it. */
+.page-orokos-okoiskola .et_pb_column_4 .et_pb_module_header,
+.page-orokos-okoiskola .et_pb_column_4 .et_pb_module_header a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}

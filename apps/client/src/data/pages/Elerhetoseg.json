@@ -22,6 +22,7 @@
          "kind": "text",
          "id": "m0",
          "index": 0,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Elérhetőség"]}]}]
@@ -30,6 +31,7 @@
          "kind": "text",
          "id": "m1",
          "index": 1,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [
@@ -87,6 +89,7 @@
          "kind": "text",
          "id": "m4",
          "index": 3,
+         "animation": "fold",
          "align": "left",
          "content": [
           {
@@ -100,6 +103,7 @@
          "kind": "text",
          "id": "m5",
          "index": 4,
+         "animation": "fold",
          "align": "center",
          "content": [
           {
@@ -158,6 +162,7 @@
          "kind": "text",
          "id": "m7",
          "index": 5,
+         "animation": "fold",
          "align": "left",
          "content": [
           {
@@ -175,6 +180,7 @@
          "kind": "text",
          "id": "m8",
          "index": 6,
+         "animation": "fold",
          "align": "center",
          "content": [
           {
@@ -239,6 +245,7 @@
          "kind": "text",
          "id": "m10",
          "index": 7,
+         "animation": "fold",
          "align": "left",
          "content": [
           {
@@ -252,6 +259,7 @@
          "kind": "text",
          "id": "m11",
          "index": 8,
+         "animation": "fold",
          "align": "center",
          "content": [
           {
@@ -1083,6 +1091,7 @@
          "kind": "text",
          "id": "m52",
          "index": 32,
+         "animation": "fade",
          "align": "center",
          "bgLayout": "dark",
          "content": [
@@ -1102,12 +1111,13 @@
          "kind": "text",
          "id": "m53",
          "index": 33,
+         "animation": "fade",
          "align": "center",
          "bgLayout": "dark",
          "content": [
           {"tag":"h2","children":[{"tag":"span","style":{"color":"#808080"},"children":["Telefon"]}]},
           " ",
-          {"tag":"p","children":[{"tag":"a","href":"/phone:+36705021724","children":["+36 70 502 1724"]}]}
+          {"tag":"p","children":[{"tag":"a","href":"tel:+36705021724","children":["+36 70 502 1724"]}]}
          ]
         }
        ]
@@ -1122,6 +1132,7 @@
          "kind": "text",
          "id": "m54",
          "index": 34,
+         "animation": "fade",
          "align": "center",
          "bgLayout": "dark",
          "content": [

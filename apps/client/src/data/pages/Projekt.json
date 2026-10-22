@@ -23,6 +23,7 @@
          "kind": "text",
          "id": "m0",
          "index": 0,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Erasmus+ projektek"]}]}]
@@ -31,6 +32,7 @@
          "kind": "text",
          "id": "m1",
          "index": 1,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"p","children":["Nyelvtanulás, Kúltúra, Szakmai fejlődés, Barátok és Életre szóló élmények"]}]
@@ -233,6 +235,7 @@
          "kind": "text",
          "id": "m14",
          "index": 5,
+         "animation": "fade",
          "align": "left",
          "content": [{"tag":"p","children":["A projektekhez kapcsolódó hírek"]}]
         },
@@ -242,19 +245,39 @@
          "index": 0,
          "className": "et_pb_with_border",
          "items": [
-          {"slug":"kodok-szuperhosok-es-urutazas-jon-az-idei-kodolas-hete-a-petrikben","date":"2026 szept 09"},
-          {
-           "slug": "ujabb-orszagos-elismeres-a-dthpetrik-nek-innovativ-projekt-dijat-nyert-a-petrik-motion-pictures",
-           "date": "2026 jún 16"
-          },
-          {"slug":"europai-elismerest-nyert-a-lunaverzum-projekt","date":"2026 jún 04"},
-          {"slug":"elmenybeszamolo-a-iii-civil-reggelirol-egyutt-ero-studio","date":"2026 ápr 19"},
-          {"slug":"petrik-motion-pictures-a-zaronap-amikor-minden-eletre-kelt","date":"2026 ápr 03"},
-          {"slug":"petrik-motion-pictures-lenduletben-a-digitalis-temahet","date":"2026 márc 27"}
+          {"slug":"infinity-code-kozos-kuldetes-kozos-fejlodes","date":"2026 okt 14"},
+          {"slug":"urbe-lepni-szulokkel-tilos","date":"2026 okt 12"},
+          {"slug":"infinity-code-az-utolso-energiakristalytol-az-univerzum-megmenteseig","date":"2026 okt 09"},
+          {"slug":"szuperhoskuldetesek-es-kozos-sikerelmenyek-az-infinity-code-elso-harom-napja-a-petrikben","date":"2026 okt 08"},
+          {"slug":"szulo-diak-kodolos-workshop-jelentkezes-megnyitva","date":"2026 szept 25"},
+          {"slug":"infinity-code-megnyilt-a-jelentkezes","date":"2026 szept 24"}
          ],
          "columns": 3,
          "align": "left",
-         "hasOlder": true
+         "hasOlder": true,
+         "olderPages": [
+          [{"slug":"kodok-szuperhosok-es-urutazas-jon-az-idei-kodolas-hete-a-petrikben","date":"2026 szept 09"}, {"slug":"ujabb-orszagos-elismeres-a-dthpetrik-nek-innovativ-projekt-dijat-nyert-a-petrik-motion-pictures","date":"2026 jún 16"}, {"slug":"europai-elismerest-nyert-a-lunaverzum-projekt","date":"2026 jún 04"}, {"slug":"elmenybeszamolo-a-iii-civil-reggelirol-egyutt-ero-studio","date":"2026 ápr 19"}, {"slug":"petrik-motion-pictures-a-zaronap-amikor-minden-eletre-kelt","date":"2026 ápr 03"}, {"slug":"petrik-motion-pictures-lenduletben-a-digitalis-temahet","date":"2026 márc 27"}],
+          [{"slug":"petrik-motion-pictures-elindult-a-9-dthpetrik","date":"2026 márc 24"}, {"slug":"megnyilt-a-jelentkezes-a-2026-os-digitalis-temahetre-🎬","date":"2026 febr 02"}, {"slug":"petrik-motion-pictures-itt-a-dthpetrik2026","date":"2026 jan 26"}, {"slug":"veget-ert-a-lunaverzum-projekt-urkoloniak-digitalis-kreativitas-es-csapatmunka-a-12d-vel","date":"2026 jan 05"}, {"slug":"petrikcodeweek2025-kulondij","date":"2025 dec 12"}, {"slug":"ujabb-rangos-elismeres-a-petrikcodeweeknek","date":"2025 dec 04"}],
+          [{"slug":"petrikcodeweek2025-eredmenyhirdetes","date":"2025 okt 21"}, {"slug":"orszagos-etwinning-verseny-a-dobogo-legtetejen-ismet-a-petrik-🏆","date":"2025 okt 17"}, {"slug":"ctrlrex-digitalis-dinokaland-a-kodolas-heten","date":"2025 okt 13"}, {"slug":"rejtely-a-pixel-expresszen-szulo-diak-programozo-workshop-a-kodolas-heten","date":"2025 okt 10"}, {"slug":"petrikcodeweek-3-nap-a-dinok-elszabadultak","date":"2025 okt 09"}, {"slug":"kodolas-hete-a-petrikben-jurassic-park-modra-🦖","date":"2025 okt 07"}],
+          [{"slug":"formaljuk-egyutt-a-jovot-3d-tervezes-a-tanoran-es-azon-tul","date":"2025 szept 30"}, {"slug":"robotolympics-a-magyar-diaksport-napja-a-12-d-osztaly-ikt-projektorajan","date":"2025 szept 28"}, {"slug":"rejtely-a-pixel-expresszen-jelentkezes-nyitva","date":"2025 szept 24"}, {"slug":"elindult-a-jelentkezes-a-petrikcodeweek2025-re","date":"2025 szept 23"}, {"slug":"jon-a-petrikcodeweek2025","date":"2025 szept 03"}, {"slug":"mekkora-a-te-iskolad-karbonlabnyoma","date":"2025 jún 21"}],
+          [{"slug":"a-dthpetrik-iden-is-a-dijazottak-kozott","date":"2025 jún 17"}, {"slug":"veget-ert-az-erasmus-being-human-in-the-eu-projektunk","date":"2025 máj 11"}, {"slug":"zero-waste-fashion-digitalis-temahet-a-nagy-finale-🌍👗","date":"2025 ápr 07"}, {"slug":"🌿-zero-waste-fashion-a-3-4-nap-🌿","date":"2025 márc 27"}, {"slug":"ismet-etwinning-iskola-lettunk","date":"2025 márc 26"}, {"slug":"elindult-a-digitalis-temahet-iskolankban-ez-a-zero-waste-fashion-elso-2-napja✨🌿","date":"2025 márc 26"}],
+          [{"slug":"dthpetrik-osszeallt-a-csapat","date":"2025 febr 19"}, {"slug":"20-eves-az-etwinning-utravalo-a-jovobe","date":"2025 jan 31"}, {"slug":"🚀-hamarosan-erkezik-a-8-dthpetrik-🚀","date":"2025 jan 28"}, {"slug":"befejezodott-az-erasmus-training-for-all-2-0-projektunk","date":"2025 jan 12"}, {"slug":"allj-vagy-kodol-a-mamam-elmenybeszamolo","date":"2024 nov 02"}, {"slug":"petrikcodeweek2024-celba-ertek-a-hajok","date":"2024 okt 31"}],
+          [{"slug":"ujabb-gyozelem-az-orszagos-etwinning-versenyen","date":"2024 okt 17"}, {"slug":"codeweek-of-discoveries-a-hajok-celba-ertek","date":"2024 okt 14"}, {"slug":"codeweek-of-discoveries-elindultak-a-hajoink","date":"2024 okt 09"}, {"slug":"ujra-itt-a-petrikcodeweek-2","date":"2024 szept 17"}, {"slug":"a-nyertes-iden-is-a-dthpetrik","date":"2024 jún 17"}, {"slug":"dthpetrik2024-mert-kell-egy-jo-csapat","date":"2024 ápr 15"}],
+          [{"slug":"petrikaid-zaronap-es-jotekonysagi-vasar","date":"2024 márc 24"}, {"slug":"a-petrikaid-folytatodik-dthpetrik2024","date":"2024 márc 22"}, {"slug":"petrikaid-elindult-a-7-digitalis-temahet","date":"2024 márc 20"}, {"slug":"indul-a-penz7-a-petrikben-is","date":"2024 márc 01"}, {"slug":"hamarosan-itt-a-2024-es-dthpetrik","date":"2024 márc 01"}, {"slug":"folytatodott-a-kodoljunk-projekteket-szakmai-tovabbkepzes","date":"2024 febr 01"}],
+          [{"slug":"folytatodott-a-kodoljunk-projekteket-tovabbkepzes","date":"2024 jan 24"}, {"slug":"temahetek-a-petrikben-a-tanev-soran","date":"2024 jan 18"}, {"slug":"erasmus-training-for-all-2-0","date":"2024 jan 13"}, {"slug":"kodoljunk-projekteket-szakmai-tovabbkepzes","date":"2024 jan 12"}, {"slug":"a-petrikcodeweek-iden-is-a-nyertesek-kozott","date":"2023 dec 05"}, {"slug":"borondmuzeum-utazas-a-penz-korul-edukacios-foglalkozas","date":"2023 nov 20"}],
+          [{"slug":"petrikcodeweek2023-the-lost-city-of-code-az-eredmenyek","date":"2023 okt 30"}, {"slug":"petrikcodeweek2023-a-csapatok-elertek-atlantist","date":"2023 okt 23"}, {"slug":"petrikcodeweek-the-lost-city-of-code-az-elso-napok","date":"2023 okt 18"}, {"slug":"orszagos-etwinning-verseny-a-nyertes-iden-is-a-petrik","date":"2023 okt 15"}, {"slug":"megnyilt-a-jelentkezes-az-idei-petrikcodeweek-re","date":"2023 szept 25"}, {"slug":"ujra-itt-a-petrikcodeweek","date":"2023 szept 14"}],
+          [{"slug":"a-nyertes-ujra-a-dthpetrik","date":"2023 jún 12"}, {"slug":"race-to-space-urutazas-ikt-projektmunka-oran","date":"2023 máj 18"}, {"slug":"refake-it","date":"2023 máj 18"}, {"slug":"ujra-etwinning-iskola-a-petrik","date":"2023 máj 04"}, {"slug":"la-petrique-a-6-dthpetrik-zaronapja","date":"2023 ápr 08"}, {"slug":"la-petrique-5-nap-minden-osszeall","date":"2023 márc 25"}],
+          [{"slug":"duborog-a-la-petrique","date":"2023 márc 23"}, {"slug":"elindult-a-6-dthpetrik-la-petrique","date":"2023 márc 22"}, {"slug":"jovo-heten-jon-a-6-dthpetrik","date":"2023 márc 14"}, {"slug":"penz7-temahet-oktato-videok","date":"2023 febr 26"}, {"slug":"jon-a-6-digitalis-temahet-a-petrikben-la-petrique","date":"2023 febr 09"}, {"slug":"etwinning-hirek-a-petrikben","date":"2023 jan 10"}],
+          [{"slug":"kodolas-oraja-a-petrikben","date":"2022 dec 21"}, {"slug":"kulondijas-a-petrikcodeweek","date":"2022 nov 16"}, {"slug":"petrikcodeweek2022-its-time-to-time-travel-eredmenyek","date":"2022 okt 29"}, {"slug":"petrikcodeweek-its-time-to-time-travel-a-reneszansztol-a-jovoig","date":"2022 okt 20"}, {"slug":"its-time-to-time-travel-elrajtoltak-az-idogepek","date":"2022 okt 18"}, {"slug":"1-het-es-indul-a-petrikcodeweek2022-kanadabol-is","date":"2022 okt 10"}],
+          [{"slug":"ujra-itt-a-petrikcodeweek-its-time-to-time-travel","date":"2022 szept 26"}, {"slug":"az-elso-iden-is-a-dthpetrik","date":"2022 jún 20"}, {"slug":"best-of-dthpetrik2022-5-nap-es-vegszo","date":"2022 ápr 12"}, {"slug":"ilyen-volt-az-5-dthpetrik-szervezoi-ertekeles","date":"2022 ápr 03"}, {"slug":"petrik-media-works-4-nap","date":"2022 márc 31"}, {"slug":"petrik-media-works-3-nap","date":"2022 márc 30"}],
+          [{"slug":"petrik-media-works-2-nap","date":"2022 márc 29"}, {"slug":"elsopro-siker-az-elso-nap-dth","date":"2022 márc 28"}, {"slug":"penz7-a-petrikben-2022","date":"2022 márc 10"}, {"slug":"biztonsagos-internet-nap-a-petrikben","date":"2022 febr 06"}, {"slug":"dthpetrik2022-petrik-media-works","date":"2022 febr 04"}, {"slug":"kezdodik-a-digitalis-temahet-lets-master-data-miniprojekt-technikusi-evfolyamon","date":"2022 febr 03"}],
+          [{"slug":"erasmus-off-the-beaten-path","date":"2022 jan 09"}, {"slug":"jelentkezes-az-erasmus-2022-es-ciprusi-szakmai-gyakorlatara","date":"2021 dec 15"}, {"slug":"petrikcodeweek-race-to-space-elmenybeszamolo","date":"2021 okt 22"}, {"slug":"race-to-space-a-vegtelenbe-es-tovabb","date":"2021 okt 15"}, {"slug":"race-to-space-irany-a-mars-masodik-nap","date":"2021 okt 13"}, {"slug":"elso-nap-a-kikepzes-napja-petrikcodeweek","date":"2021 okt 12"}],
+          [{"slug":"petrikcodeweek-a-race-to-space-hetfon-startol","date":"2021 okt 10"}, {"slug":"digitalis-temahettel-gyorbe","date":"2021 szept 30"}, {"slug":"erasmus-eurodigiculther-porjektunk-eddigi-eredmenyei","date":"2021 szept 11"}, {"slug":"dth-2021-eredmenyhirdetes-nyertes-a-petrik","date":"2021 jún 10"}, {"slug":"petrikcodeweek2021-race-to-space-to-petrik-and-beyond","date":"2021 jún 01"}, {"slug":"dthpetrik-futuropia-zaro-nap","date":"2021 ápr 02"}],
+          [{"slug":"dthpetrik2021-futuropia-4-nap","date":"2021 márc 26"}, {"slug":"dthpetrik2021-futuropia-2-es-3-nap","date":"2021 márc 25"}, {"slug":"dthpetrik2021-futuropia-1-nap","date":"2021 márc 23"}, {"slug":"a-petrik-ujra-etwinning-iskola-lett","date":"2021 márc 22"}, {"slug":"dthpetrik2021-futuropia","date":"2021 márc 19"}, {"slug":"dthpetrik-miniprojekt-zarasa-technikusi-evfolyamon","date":"2021 márc 18"}],
+          [{"slug":"lets-master-data-mini-dth-projekt-4-het","date":"2021 márc 15"}, {"slug":"lets-master-data-mini-dth-projekt-3-het","date":"2021 márc 09"}, {"slug":"mini-dth-projekt-a-technikusi-evfolyamokon-lets-master-data","date":"2021 márc 05"}, {"slug":"penz7-a-petrikben","date":"2021 márc 04"}, {"slug":"hamarosan-itt-a-4-dthpetrik-futuropia-boss-for-a-day-or-5","date":"2021 febr 06"}, {"slug":"reszt-veszunk-az-europai-unio-selfie-programjaban","date":"2021 jan 16"}],
+          [{"slug":"erasmus-off-the-beaten-path-hivatalos-honlap","date":"2020 dec 09"}, {"slug":"etwinning-es-europeana-projektek-a-petrikben","date":"2020 dec 04"}, {"slug":"dthpetrik-az-elkeszult-weboldalak","date":"2020 okt 30"}, {"slug":"dthpetrik-zaronap-beszamolo","date":"2020 okt 30"}, {"slug":"dthpetrik-rovid-beszamolo-a-3-4-nap-esemenyeirol","date":"2020 okt 22"}, {"slug":"dthpetrik2020-az-elso-napok-elmenyei","date":"2020 okt 22"}],
+          [{"slug":"dthpetrik2020-elokeszuletek-es-valtozasok","date":"2020 okt 22"}, {"slug":"ilyen-volt-a-petrikcodeweek-2020-egy-ujabb-het-kodolas-nem-csak-informatikusoknak","date":"2020 okt 21"}, {"slug":"ujra-petrikcodeweek","date":"2020 szept 20"}]
+         ]
         }
        ]
       }
@@ -400,7 +423,7 @@
            "children": [
             {
              "tag": "a",
-             "href": "//www.facebook.com/Training-for-Life-Leadership-Initiative-for-Europe-comenius-Project-259066730935222/"
+             "href": "https://www.facebook.com/Training-for-Life-Leadership-Initiative-for-Europe-comenius-Project-259066730935222/"
             },
             {
              "tag": "a",
@@ -603,7 +626,7 @@
             {"tag":"br"},
             {
              "tag": "a",
-             "href": "//www.facebook.com/Training-for-Life-Leadership-Initiative-for-Europe-comenius-Project-259066730935222/",
+             "href": "https://www.facebook.com/Training-for-Life-Leadership-Initiative-for-Europe-comenius-Project-259066730935222/",
              "children": [
               "https://www.facebook.com/Training-for-Life-Leadership-Initiative-for-Europe-comenius-Project-259066730935222/"
              ]
@@ -633,6 +656,8 @@
     {
      "id": "r10",
      "index": 10,
+     "gutters": 2,
+     "equalColumns": true,
      "columns": [
       {
        "id": "c18",
@@ -644,6 +669,7 @@
          "kind": "text",
          "id": "m27",
          "index": 14,
+         "animation": "foldBottom",
          "align": "left",
          "content": [{"tag":"h1","children":[{"tag":"strong","children":["A projektek koordinátorának elérhetőség"]}]}]
         },
@@ -651,6 +677,7 @@
          "kind": "blurb",
          "id": "m28",
          "index": 8,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -661,6 +688,7 @@
          "kind": "blurb",
          "id": "m30",
          "index": 10,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",

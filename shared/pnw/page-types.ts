@@ -101,7 +101,11 @@ export type HeaderButton = { label: string; to?: string; href?: string }
  *   `normalizeDocument` when missing (documents saved by the v1 builder).
  * - `className` - extra classes the mirror put on it (`et_pb_with_border`).
  */
-type NodeBase = { id: string; index?: number; className?: string; design?: Design }
+/** Divi's entrance animations as the site uses them (text and blurb modules). */
+export const MODULE_ANIMATIONS = ['fade', 'fold', 'foldBottom', 'bounce'] as const
+export type ModuleAnimation = (typeof MODULE_ANIMATIONS)[number]
+
+type NodeBase = { id: string; index?: number; className?: string; design?: Design; animation?: ModuleAnimation }
 
 export type PageModule = NodeBase &
   (
@@ -112,6 +116,8 @@ export type PageModule = NodeBase &
         kind: 'blurb'
         title?: string
         titleHref?: string
+        /** Link around the icon/image (Divi's clickable blurb). */
+        iconHref?: string
         image?: PageImage
         icon?: string
         position?: 'top' | 'left' | 'right'
@@ -127,6 +133,8 @@ export type PageModule = NodeBase &
         columns?: 1 | 2 | 3
         align?: Align
         hasOlder?: boolean
+        /** Further pages of the feed (/<page>/page/2/ ...), each with the items it lists. */
+        olderPages?: FeedItem[][]
         /** Prepends what is published through the Hírkezelő (the home page's two feeds). */
         includeLive?: boolean
       }
@@ -183,7 +191,7 @@ export type PageColumn = NodeBase & {
   modules: PageModule[]
 }
 
-export type PageRow = NodeBase & { gutters?: 3 | 4; columns: PageColumn[] }
+export type PageRow = NodeBase & { gutters?: 2 | 3 | 4; equalColumns?: boolean; columns: PageColumn[] }
 
 export type PageSection = NodeBase & {
   /** The hero band: the first section of a page, Divi's `et_pb_section_first`. */

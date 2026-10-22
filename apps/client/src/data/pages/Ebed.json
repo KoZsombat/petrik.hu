@@ -22,6 +22,7 @@
          "kind": "text",
          "id": "m0",
          "index": 0,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Étkezés"]}]}]
@@ -30,6 +31,7 @@
          "kind": "text",
          "id": "m1",
          "index": 1,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"p","children":["Kedvezményes étkezési lehetőség"]}]
@@ -162,6 +164,7 @@
          "kind": "blurb",
          "id": "m7",
          "index": 0,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -171,6 +174,7 @@
          "kind": "blurb",
          "id": "m8",
          "index": 1,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -180,6 +184,7 @@
          "kind": "blurb",
          "id": "m9",
          "index": 2,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -189,6 +194,7 @@
          "kind": "blurb",
          "id": "m10",
          "index": 3,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -206,6 +212,7 @@
          "kind": "blurb",
          "id": "m11",
          "index": 4,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -215,6 +222,7 @@
          "kind": "blurb",
          "id": "m12",
          "index": 5,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
@@ -233,6 +241,8 @@
     {
      "id": "r5",
      "index": 5,
+     "gutters": 2,
+     "equalColumns": true,
      "columns": [
       {
        "id": "c7",
@@ -245,6 +255,7 @@
          "kind": "blurb",
          "id": "m14",
          "index": 6,
+         "animation": "foldBottom",
          "title": "Tolnai Ferencné",
          "icon": "",
          "position": "left",
@@ -255,6 +266,7 @@
          "kind": "blurb",
          "id": "m15",
          "index": 7,
+         "animation": "foldBottom",
          "title": "1134 Budapest, Róbert Károly krt. 49-51.",
          "icon": "",
          "position": "left",
@@ -265,11 +277,13 @@
          "kind": "blurb",
          "id": "m16",
          "index": 8,
+         "animation": "foldBottom",
          "icon": "",
          "position": "left",
          "align": "left",
          "content": [{"tag":"p","children":["tolnai.ferencne@eszgsz.hu "]}]
-        }
+        },
+        {"kind":"social-follow","id":"m900","index":0,"networks":[]}
        ]
       }
      ]

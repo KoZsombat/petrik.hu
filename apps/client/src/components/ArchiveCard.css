@@ -16,8 +16,12 @@
 .archive-view .et_pb_post .entry-featured-image-url img {
   display: block;
   width: 100%;
-  height: 280px;
-  object-fit: cover;
+  /* The picture keeps its own proportions (the original's size for the usual
+   * 1080x675 landscape ones); only a very tall one is held back, and then it is
+   * scaled to fit, never cropped. */
+  height: auto;
+  max-height: 560px;
+  object-fit: contain;
 }
 
 .archive-view .et_pb_post .entry-title,

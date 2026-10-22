@@ -23,6 +23,7 @@
          "kind": "text",
          "id": "m0",
          "index": 0,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"h1","children":[{"tag":"span","style":{"color":"#72c3b6"},"children":["Iskola-Egészségügy"]}]}]
@@ -31,6 +32,7 @@
          "kind": "text",
          "id": "m1",
          "index": 1,
+         "animation": "fade",
          "align": "left",
          "bgLayout": "dark",
          "content": [{"tag":"p","children":["Épp testben ép lélek"]}]
@@ -469,6 +471,8 @@
     {
      "id": "r8",
      "index": 8,
+     "gutters": 2,
+     "equalColumns": true,
      "columns": [
       {
        "id": "c14",
@@ -480,6 +484,7 @@
          "kind": "blurb",
          "id": "m22",
          "index": 0,
+         "animation": "foldBottom",
          "title": "Orvosi",
          "icon": "",
          "position": "left",
@@ -490,6 +495,7 @@
          "kind": "blurb",
          "id": "m23",
          "index": 1,
+         "animation": "foldBottom",
          "title": "B. épület 020",
          "icon": "",
          "position": "left",
@@ -500,6 +506,7 @@
          "kind": "blurb",
          "id": "m24",
          "index": 2,
+         "animation": "foldBottom",
          "title": "+36 70 502 1728",
          "icon": "",
          "position": "left",
@@ -510,13 +517,15 @@
          "kind": "blurb",
          "id": "m25",
          "index": 3,
+         "animation": "foldBottom",
          "title": "orvosi@petrik.hu",
          "titleHref": "mailto:orvosi@petrik.hu",
          "icon": "",
          "position": "left",
          "align": "left",
          "content": []
-        }
+        },
+        {"kind":"social-follow","id":"m900","index":0,"networks":[]}
        ]
       },
       {"id":"c15","span":"2_3","index":15,"last":true,"modules":[]}

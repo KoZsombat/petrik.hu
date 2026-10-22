@@ -42,7 +42,7 @@ export default function PostCard({ item, feedIndex, position }: Props) {
   ]
   if (!post.available) classes.push('post-unavailable')
 
-  const image = post.image && (
+  const image = post.image?.src && (
     <img
       src={post.image.src}
       alt={post.image.alt}

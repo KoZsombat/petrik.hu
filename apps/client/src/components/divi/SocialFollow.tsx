@@ -20,11 +20,11 @@ type Props = {
  * Divi's "social media follow" module: a row of icon links.
  *
  * Some instances in the mirror have no networks configured at all; those render
- * nothing rather than an empty list.
+ * the empty list, as the original did.
  */
 export default function SocialFollow({ networks, index, align = 'left' }: Props) {
-  if (!networks.length) return null
-
+  // An instance with no networks still left an empty list behind, which is the column's last
+  // module and so decides whether the one before it keeps its bottom margin.
   return (
     <ul
       className={`et_pb_module et_pb_social_media_follow et_pb_social_media_follow_${index} clearfix et_pb_text_align_${align} et_pb_bg_layout_light`}
