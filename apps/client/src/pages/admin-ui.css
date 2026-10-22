@@ -1,0 +1,504 @@
+/*
+ * One pass over the admin screens (/hirkezelo/ and /szerkeszto/) to make them
+ * easier to read: every button sits with the thing it acts on, the levels of
+ * the page tree are told apart, and no action hides until hover. Loaded after
+ * Hirkezelo.css (the plugin's CSS) and Szerkeszto.css and overrides them.
+ */
+
+.pnw-app {
+  --level-section: #173b6c;
+  --level-row: #0f766e;
+  --level-column: #6941c6;
+  --pnw-focus: rgba(46, 107, 214, 0.4);
+}
+
+/* The site theme colours bare labels red; inside the admin they are ordinary text. */
+.pnw-app label,
+.pnw-app legend {
+  color: var(--pnw-text);
+}
+
+.pnw-app :focus-visible {
+  outline: 3px solid var(--pnw-focus);
+  outline-offset: 2px;
+}
+
+.pnw-app fieldset {
+  min-width: 0;
+}
+
+/* Buttons --------------------------------------------------------------------- */
+
+.pnw-app .pnw-button-outline-danger {
+  background: #fff;
+  color: var(--pnw-danger) !important;
+  border: 1px solid #f1b0aa;
+}
+
+.pnw-app .pnw-button-outline-danger:hover:not(:disabled) {
+  background: var(--pnw-danger);
+  border-color: var(--pnw-danger);
+  color: #fff !important;
+}
+
+.pnw-app .pnw-button-small {
+  min-height: 34px;
+}
+
+/* The buttons that belong to one table row stay together, on that row. */
+.pnw-app .pnw-row-actions {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+}
+
+.pnw-app td.pnw-actions,
+.pnw-app .pnw-col-actions {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.pnw-app:not(.szk-app) .pnw-table td:first-child {
+  min-width: 130px;
+}
+
+/* Published / archive tables: the actions are a column of the row itself. */
+.pnw-app .pnw-published-table {
+  min-width: 0;
+  table-layout: auto;
+}
+
+.pnw-app .pnw-published-table th:nth-child(n) {
+  width: auto;
+}
+
+.pnw-app .pnw-published-table th:nth-child(1) {
+  width: 36%;
+}
+
+.pnw-app .pnw-published-table th.pnw-col-actions {
+  width: 1%;
+  text-align: right;
+}
+
+.pnw-app .pnw-published-main-row td {
+  border-bottom: 1px solid #e5eaf0;
+}
+
+.pnw-app .pnw-published-main-row:last-child td {
+  border-bottom: 0;
+}
+
+@media (max-width: 760px) {
+  .pnw-app .pnw-published-search-row input[type='search'] {
+    flex: none;
+    min-height: 48px;
+    width: 100%;
+  }
+  .pnw-app .pnw-published-table {
+    min-width: 0;
+  }
+  .pnw-app .pnw-published-main-row {
+    border-bottom: 1px solid #dde4ed;
+    border-radius: 14px;
+    margin-bottom: 14px;
+  }
+  .pnw-app .pnw-published-main-row td.pnw-col-actions {
+    display: block;
+    width: 100%;
+    background: #f8fafc;
+    text-align: left;
+  }
+  .pnw-app .pnw-published-main-row td.pnw-col-actions::before {
+    display: none;
+  }
+  .pnw-app .pnw-published-main-row .pnw-row-actions {
+    display: flex;
+    width: 100%;
+  }
+  .pnw-app .pnw-published-main-row .pnw-row-actions > * {
+    flex: 1;
+  }
+}
+
+/* The news editor ------------------------------------------------------------- */
+
+.pnw-app .pnw-template-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(23, 59, 108, 0.12);
+}
+
+.pnw-app .pnw-template-foot small {
+  margin: 0;
+}
+
+.pnw-app .pnw-category-grid label:has(input:checked) {
+  background: #eef3f9;
+  border-color: #9db4d4;
+  font-weight: 700;
+}
+
+.pnw-app .pnw-term-add {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--pnw-border);
+}
+
+/* Szerkesztő: the page tree ---------------------------------------------------- */
+
+.szk-app .szk-level {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex: none;
+}
+
+.szk-app .szk-level-section {
+  background: var(--level-section);
+}
+
+.szk-app .szk-level-row {
+  background: var(--level-row);
+}
+
+.szk-app .szk-level-column {
+  background: var(--level-column);
+}
+
+.szk-app .szk-node-title {
+  color: var(--pnw-muted);
+  font-size: 13px;
+  min-width: 0;
+}
+
+.szk-app .szk-node-head {
+  flex-wrap: nowrap;
+}
+
+.szk-app .szk-section > .szk-node-head,
+.szk-app .szk-row > .szk-node-head {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--pnw-border);
+}
+
+.szk-app .szk-section {
+  border-left-width: 5px;
+  padding: 14px;
+}
+
+.szk-app .szk-row {
+  border-left: 4px solid var(--level-row);
+  margin-left: 6px;
+}
+
+.szk-app .szk-column {
+  border-left: 3px solid var(--level-column);
+  background: #fff;
+}
+
+.szk-app .szk-column-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--pnw-border);
+}
+
+.szk-app .szk-column-head .szk-select {
+  width: auto;
+  flex: 0 1 140px;
+}
+
+.szk-app .szk-column-remove {
+  margin-left: auto;
+}
+
+/* "⚙ Beállítások" reads as a button of the node it sits in. */
+.szk-app .szk-settings-btn {
+  appearance: none;
+  border: 1px solid var(--pnw-border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--pnw-primary);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.szk-app .szk-settings-btn:hover {
+  background: #eef3f9;
+}
+
+/* Move / copy / delete: one joined group, delete set apart from the rest. */
+.szk-app .szk-tools {
+  gap: 0;
+  margin-left: auto;
+  flex: none;
+}
+
+.szk-app .szk-tools button {
+  border-radius: 0;
+  margin-left: -1px;
+}
+
+.szk-app .szk-tools button:first-child {
+  border-radius: 8px 0 0 8px;
+  margin-left: 0;
+}
+
+.szk-app .szk-tools button:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.szk-app .szk-tools .szk-danger {
+  margin-left: 10px;
+  border-radius: 8px;
+  border-color: #f1b0aa;
+}
+
+.szk-app .szk-tools .szk-danger:hover {
+  background: #fef3f2;
+}
+
+.szk-app .szk-layout-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px 12px;
+  flex-wrap: wrap;
+  padding: 8px 10px;
+  background: #fff;
+  border: 1px dashed #cdd6e2;
+  border-radius: 10px;
+}
+
+.szk-app .szk-layout-label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--pnw-muted);
+}
+
+.szk-app .szk-add-wide {
+  width: 100%;
+  align-self: stretch;
+  text-align: center;
+  padding: 10px 12px;
+}
+
+.szk-app .szk-add-module {
+  border-style: dashed;
+  border-color: #b9c8dc;
+  background: transparent;
+  cursor: pointer;
+}
+
+.szk-app .szk-module-title {
+  min-width: 0;
+}
+
+/* Szerkesztő: page list --------------------------------------------------------- */
+
+/* The row actions are always there, not only on hover (touch screens have no hover). */
+.szk-app .szk-row-actions-hover {
+  opacity: 1;
+  margin-top: 6px;
+  gap: 6px 14px;
+}
+
+.szk-app .szk-row-actions-hover button,
+.szk-app .szk-row-actions-hover a {
+  font-weight: 600;
+}
+
+.szk-app .szk-row-actions-hover button:hover,
+.szk-app .szk-row-actions-hover a:hover {
+  text-decoration: underline;
+}
+
+/* Szerkesztő: menu --------------------------------------------------------------- */
+
+.szk-app .szk-menu-item {
+  padding: 12px;
+}
+
+.szk-app .szk-menu-fields {
+  grid-template-columns: minmax(140px, 220px) minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.szk-app .szk-menu-depth-1 {
+  margin-left: 20px;
+  padding-left: 16px;
+  border-left: 2px solid #d5deea;
+}
+
+.szk-app .szk-menu-depth-1 .szk-menu-item {
+  background: #f8fafc;
+}
+
+/* Szerkesztő: Dokumentumtár ---------------------------------------------------- */
+
+.szk-app .szk-library-category {
+  margin-bottom: 20px;
+  border-left: 5px solid var(--level-section);
+  padding: 14px;
+}
+
+.szk-app .szk-category-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.szk-app .szk-category-head .szk-menu-label {
+  flex: 1 1 220px;
+  width: auto;
+  font-weight: 700;
+}
+
+.szk-app .szk-count-note {
+  white-space: nowrap;
+}
+
+.szk-app .szk-library-docs {
+  margin: 12px 0 0;
+  gap: 10px;
+}
+
+.szk-app .szk-library-doc {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--pnw-border);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.szk-app .szk-doc-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.szk-app .szk-doc-main .szk-menu-label {
+  flex: 1;
+  min-width: 0;
+  width: auto;
+}
+
+.szk-app .szk-doc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 28px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f2f5;
+}
+
+.szk-app .szk-doc-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+
+.szk-app .szk-doc-label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--pnw-muted);
+}
+
+.szk-app .szk-doc-group select {
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 6px 8px;
+  background: #fff;
+  font: inherit;
+  max-width: 220px;
+}
+
+.szk-app .szk-library-replace {
+  border-radius: 8px;
+  border-color: var(--pnw-border);
+  color: var(--pnw-primary);
+  font-weight: 700;
+  padding: 5px 10px;
+}
+
+.szk-app .szk-library-replace:hover:not(:disabled) {
+  background: #eef3f9;
+}
+
+@media (max-width: 760px) {
+  .szk-app .szk-node-head {
+    flex-wrap: wrap;
+  }
+  /* The module's title takes the whole line, so its buttons wrap below it instead of covering it. */
+  .szk-app .szk-module-title {
+    flex: 1 1 100%;
+  }
+  .szk-app .szk-tools {
+    margin-left: 0;
+  }
+  .szk-app .szk-menu-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The red marker colour is for the "*" of required fields, not for checkbox labels. */
+.pnw-app .pnw-category-grid label > span,
+.pnw-app .pnw-permission-grid label > span,
+.pnw-app .szk-check > span {
+  color: inherit;
+}
+
+/* Szerkesztő: page list table --------------------------------------------------- */
+
+.szk-app .szk-check-col {
+  width: 36px;
+  padding-right: 0;
+}
+
+.szk-app .szk-bulk select,
+.szk-app .szk-tablenav select {
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #fff;
+  font: inherit;
+  color: var(--pnw-text);
+}
+
+.szk-app .szk-library-docs {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.szk-app .szk-library-doc {
+  min-width: 0;
+}

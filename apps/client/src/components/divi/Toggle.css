@@ -72,15 +72,42 @@
   content: '\E04F';
 }
 
+/*
+ * Open and close slide like the original (jQuery slideToggle, about 0.7s):
+ * the panel is a one-row grid whose row animates between 0fr and 1fr, and the
+ * clip inside it hides what does not fit. The 20px above the text is inside
+ * the clip, so it collapses with the rest.
+ */
 .et_pb_toggle_content {
-  padding-top: 20px;
   position: relative;
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.7s ease;
 }
 
-.et_pb_toggle_content[hidden] {
-  display: none;
+.et_pb_toggle_close .et_pb_toggle_content {
+  grid-template-rows: 0fr;
+  /* Hidden from keyboard and screen readers once it has finished closing. */
+  visibility: hidden;
+  transition: grid-template-rows 0.7s ease, visibility 0s linear 0.7s;
 }
 
-.et_pb_toggle_content p:last-of-type {
+.et_pb_toggle_clip {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.et_pb_toggle_pad {
+  padding-top: 20px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .et_pb_toggle_content,
+  .et_pb_toggle_close .et_pb_toggle_content {
+    transition: none;
+  }
+}
+
+.et_pb_toggle_pad p:last-of-type {
   padding-bottom: 0;
 }

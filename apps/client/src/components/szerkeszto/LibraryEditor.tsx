@@ -165,7 +165,8 @@ export default function LibraryEditor() {
         <div className="pnw-form szk-form">
           {library.categories.map((category, categoryIndex) => (
             <div className="szk-node szk-library-category" key={category.slug}>
-              <div className="szk-menu-fields">
+              <div className="szk-category-head">
+                <span className="szk-level szk-level-section">Kategória</span>
                 <input
                   type="text"
                   aria-label="A kategória neve"
@@ -173,17 +174,18 @@ export default function LibraryEditor() {
                   value={category.title}
                   onChange={(event) => updateCategory(categoryIndex, { ...category, title: event.target.value })}
                 />
-                <span className="szk-muted">{category.docs.length} dokumentum</span>
+                <span className="szk-muted szk-count-note">{category.docs.length} dokumentum</span>
                 <span className="szk-tools">
-                  <button type="button" aria-label="Kategória feljebb" onClick={() => update({ categories: move(library.categories, categoryIndex, -1) })}>
+                  <button type="button" title="Kategória feljebb" aria-label="Kategória feljebb" onClick={() => update({ categories: move(library.categories, categoryIndex, -1) })}>
                     ↑
                   </button>
-                  <button type="button" aria-label="Kategória lejjebb" onClick={() => update({ categories: move(library.categories, categoryIndex, 1) })}>
+                  <button type="button" title="Kategória lejjebb" aria-label="Kategória lejjebb" onClick={() => update({ categories: move(library.categories, categoryIndex, 1) })}>
                     ↓
                   </button>
                   <button
                     type="button"
                     className="szk-danger"
+                    title="Kategória törlése"
                     aria-label="Kategória törlése"
                     onClick={() => {
                       if (!category.docs.length || window.confirm(`A(z) „${category.title}” kategória a ${category.docs.length} dokumentumával együtt kikerül a Dokumentumtárból. Folytatod?`)) {
@@ -217,14 +219,14 @@ export default function LibraryEditor() {
                   disabled={busy}
                   onFile={(file) => addDocument(categoryIndex, file)}
                 >
-                  + Dokumentum feltöltése
+                  + Dokumentum feltöltése ebbe a kategóriába
                 </FilePicker>
               </div>
             </div>
           ))}
 
-          <button type="button" className="szk-add" onClick={addCategory}>
-            + Kategória
+          <button type="button" className="szk-add szk-add-wide" onClick={addCategory}>
+            + Új kategória
           </button>
 
           <div className="pnw-form-actions pnw-form-actions-spread szk-sticky-actions">
@@ -274,70 +276,79 @@ function DocRow({
   }
 
   return (
-    <div className="szk-menu-fields szk-library-doc">
-      <input
-        type="text"
-        aria-label="A dokumentum címe"
-        className="szk-menu-label"
-        value={doc.title}
-        onChange={(event) => onChange({ ...doc, title: event.target.value })}
-      />
-      <span className="szk-library-file">
-        {doc.file ? (
-          <a href={doc.file} target="_blank" rel="noreferrer">
-            Feltöltött fájl
-          </a>
-        ) : (
-          <a href={`/docs/${doc.slug}/`} target="_blank" rel="noreferrer">
-            Eredeti oldal
-          </a>
-        )}
-      </span>
-      <FilePicker className="szk-library-replace" disabled={busy} onFile={replaceFile}>
-        Csere
-      </FilePicker>
-      {doc.file && hasOriginalPage && (
-        <button
-          type="button"
-          className="szk-library-replace"
-          onClick={() => {
-            const next = { ...doc }
-            delete next.file
-            onChange(next)
-          }}
-        >
-          Eredeti oldal
-        </button>
-      )}
-      <select
-        aria-label="Áthelyezés másik kategóriába"
-        value={categoryIndex}
-        onChange={(event) => onMoveTo(Number(event.target.value))}
-      >
-        {categories.map((category, index) => (
-          <option key={category.slug} value={index}>
-            {category.title}
-          </option>
-        ))}
-      </select>
-      <span className="szk-tools">
-        <button type="button" aria-label="Feljebb" onClick={() => onMove(-1)}>
-          ↑
-        </button>
-        <button type="button" aria-label="Lejjebb" onClick={() => onMove(1)}>
-          ↓
-        </button>
-        <button
-          type="button"
-          className="szk-danger"
-          aria-label="Törlés"
-          onClick={() => {
-            if (window.confirm(`A(z) „${doc.title}” dokumentum kikerül a Dokumentumtárból. Folytatod?`)) onRemove()
-          }}
-        >
-          ✕
-        </button>
-      </span>
+    <div className="szk-library-doc">
+      <div className="szk-doc-main">
+        <input
+          type="text"
+          aria-label="A dokumentum címe"
+          className="szk-menu-label"
+          value={doc.title}
+          onChange={(event) => onChange({ ...doc, title: event.target.value })}
+        />
+        <span className="szk-tools">
+          <button type="button" title="Dokumentum feljebb" aria-label="Feljebb" onClick={() => onMove(-1)}>
+            ↑
+          </button>
+          <button type="button" title="Dokumentum lejjebb" aria-label="Lejjebb" onClick={() => onMove(1)}>
+            ↓
+          </button>
+          <button
+            type="button"
+            className="szk-danger"
+            title="Dokumentum törlése"
+            aria-label="Törlés"
+            onClick={() => {
+              if (window.confirm(`A(z) „${doc.title}” dokumentum kikerül a Dokumentumtárból. Folytatod?`)) onRemove()
+            }}
+          >
+            ✕
+          </button>
+        </span>
+      </div>
+      <div className="szk-doc-meta">
+        <div className="szk-doc-group">
+          <span className="szk-doc-label">Fájl</span>
+          {doc.file ? (
+            <a href={doc.file} target="_blank" rel="noreferrer">
+              Feltöltött fájl megnyitása ↗
+            </a>
+          ) : (
+            <a href={`/docs/${doc.slug}/`} target="_blank" rel="noreferrer">
+              Eredeti oldal megnyitása ↗
+            </a>
+          )}
+          <FilePicker className="szk-library-replace" disabled={busy} onFile={replaceFile}>
+            Fájl cseréje
+          </FilePicker>
+          {doc.file && hasOriginalPage && (
+            <button
+              type="button"
+              className="szk-library-replace"
+              onClick={() => {
+                const next = { ...doc }
+                delete next.file
+                onChange(next)
+              }}
+            >
+              Vissza az eredeti oldalra
+            </button>
+          )}
+        </div>
+        <label className="szk-doc-group">
+          <span className="szk-doc-label">Kategória</span>
+          <select
+            aria-label="Áthelyezés másik kategóriába"
+            value={categoryIndex}
+            onChange={(event) => onMoveTo(Number(event.target.value))}
+          >
+            {categories.map((category, index) => (
+              <option key={category.slug} value={index}>
+                {category.title}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
     </div>
   )
 }

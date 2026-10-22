@@ -96,6 +96,7 @@ export default function Archive() {
                   <th>Szerző</th>
                   <th>Eredeti publikálás</th>
                   <th>Archiválva</th>
+                  <th className="pnw-col-actions">Művelet</th>
                 </tr>
               </thead>
               <tbody>
@@ -161,12 +162,10 @@ function ArchiveRows({
           {formatDateTime(post.archivedAt)}
           {archiverName && <small className="pnw-published-meta">{archiverName}</small>}
         </td>
-      </tr>
-      <tr className="pnw-published-action-row">
-        <td colSpan={4}>
-          <div className="pnw-published-inline-actions">
-            <button type="button" className="pnw-button" onClick={onRestore}>
-              Visszaállítás és újrapublikálás
+        <td data-label="Művelet" className="pnw-col-actions">
+          <div className="pnw-row-actions">
+            <button type="button" className="pnw-button pnw-button-small" onClick={onRestore}>
+              Visszaállítás
             </button>
           </div>
         </td>

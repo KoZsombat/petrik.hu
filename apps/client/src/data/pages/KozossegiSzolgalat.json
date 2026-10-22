@@ -1163,6 +1163,8 @@
     {
      "id": "r12",
      "index": 12,
+     "gutters": 2,
+     "equalColumns": true,
      "columns": [
       {
        "id": "c15",

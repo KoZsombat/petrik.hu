@@ -1019,6 +1019,8 @@
     {
      "id": "r16",
      "index": 16,
+     "gutters": 2,
+     "equalColumns": true,
      "columns": [
       {
        "id": "c23",
@@ -1080,7 +1082,8 @@
          "index": 57,
          "align": "left",
          "content": [{"tag":"p","children":[{"tag":"strong","children":["Technikai kód"]},": 520 413"]}]
-        }
+        },
+        {"kind":"social-follow","id":"m900","index":0,"networks":[]}
        ]
       },
       {
@@ -1161,8 +1164,7 @@
            "children": [{"tag":"strong","children":["0094 informatika és távközlés "]},"(5 éves informatikaképzés)"]
           }
          ]
-        },
-        {"kind":"social-follow","id":"m900","index":0,"networks":[]}
+        }
        ]
       }
      ]

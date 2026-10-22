@@ -245,17 +245,20 @@ export default function Users({ currentUserId }: { currentUserId: string }) {
                       )}
                     </td>
                     <td className="pnw-actions">
-                      <button type="button" className="pnw-button pnw-button-small" onClick={() => startEdit(user)}>
-                        Szerkesztés
-                      </button>{' '}
-                      <button
-                        type="button"
-                        className="pnw-link-danger"
-                        onClick={() => remove(user)}
-                        disabled={user.id === currentUserId}
-                      >
-                        Törlés
-                      </button>
+                      <div className="pnw-row-actions">
+                        <button type="button" className="pnw-button pnw-button-small" onClick={() => startEdit(user)}>
+                          Szerkesztés
+                        </button>
+                        <button
+                          type="button"
+                          className="pnw-button pnw-button-small pnw-button-outline-danger"
+                          onClick={() => remove(user)}
+                          disabled={user.id === currentUserId}
+                          title={user.id === currentUserId ? 'A saját fiókodat nem törölheted' : undefined}
+                        >
+                          Törlés
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}

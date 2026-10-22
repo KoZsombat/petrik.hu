@@ -137,15 +137,17 @@ export default function PostFields({
               Sablon alkalmazása
             </button>
           </div>
-          <small>{template?.description ?? 'Nem kötelező sablont használni.'}</small>
-        </div>
-      )}
-      {templates && (
-        <div className="pnw-clear-bar">
-          <button type="button" className="pnw-button pnw-button-danger pnw-button-small" onClick={clearForm}>
-            ✕ Űrlap ürítése
-          </button>
-          <small>Mindent töröl, hogy tiszta lappal indulhass.</small>
+          <div className="pnw-template-foot">
+            <small>{template?.description ?? 'Nem kötelező sablont használni.'}</small>
+            <button
+              type="button"
+              className="pnw-button pnw-button-small pnw-button-outline-danger"
+              title="Mindent töröl, hogy tiszta lappal indulhass"
+              onClick={clearForm}
+            >
+              Űrlap ürítése
+            </button>
+          </div>
         </div>
       )}
 

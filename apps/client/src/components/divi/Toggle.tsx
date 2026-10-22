@@ -14,8 +14,9 @@ type Props = {
 /**
  * Divi's toggle module — a disclosure panel.
  *
- * The original opened and closed it with jQuery; here it is a button plus
- * useState, so it works without any script of Divi's.
+ * The original opened and closed it with jQuery's slideToggle; here it is a
+ * button plus useState, and the slide is a CSS transition on the panel's row
+ * height (Toggle.css), so it works without any script of Divi's.
  */
 export default function Toggle({
   title,
@@ -43,8 +44,10 @@ export default function Toggle({
           {title}
         </button>
       </h5>
-      <div id={panelId} className="et_pb_toggle_content clearfix" hidden={!open}>
-        {children}
+      <div id={panelId} className="et_pb_toggle_content clearfix" aria-hidden={!open} inert={!open}>
+        <div className="et_pb_toggle_clip">
+          <div className="et_pb_toggle_pad">{children}</div>
+        </div>
       </div>
     </div>
   )

@@ -20,6 +20,7 @@ import { ROUTES_LIST_ID } from '../components/szerkeszto/fields.tsx'
 import { PreviewSlotContext } from '../components/szerkeszto/previewSlot.ts'
 import './Hirkezelo.css'
 import '../components/szerkeszto/Szerkeszto.css'
+import './admin-ui.css'
 
 type Overview = { pages: PageSummary[]; menu: SiteMenu | null }
 

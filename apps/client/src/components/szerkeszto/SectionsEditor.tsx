@@ -200,13 +200,14 @@ function SectionNode({ section, number, count }: { section: PageSection; number:
     <section className="szk-node szk-section" ref={ref}>
       <header className="szk-node-head">
         <Grip drag={{ kind: 'section', id: section.id }} nodeRef={ref} label="Szakasz" />
-        <strong>
-          {number}. szakasz{section.first ? ' · fejléc' : ''}
-          {section.fullwidth ? ' · teljes szélességű' : ''}
-          {section.dividerTop || section.dividerBottom ? ' · kiemelt sáv' : ''}
-        </strong>
-        <button type="button" className="szk-link" onClick={() => setOpen(settingsOpen ? null : section.id)}>
-          {settingsOpen ? 'Beállítások bezárása' : 'Beállítások'}
+        <span className="szk-level szk-level-section">{number}. szakasz</span>
+        <span className="szk-node-title">
+          {[section.first && 'fejléc', section.fullwidth && 'teljes szélességű', (section.dividerTop || section.dividerBottom) && 'kiemelt sáv']
+            .filter(Boolean)
+            .join(' · ')}
+        </span>
+        <button type="button" className="szk-settings-btn" onClick={() => setOpen(settingsOpen ? null : section.id)}>
+          ⚙ Szakasz beállításai
         </button>
         <NodeTools
           label="Szakasz"
@@ -284,8 +285,8 @@ function SectionNode({ section, number, count }: { section: PageSection; number:
               />
             </div>
           ))}
-          <button type="button" className="szk-add" onClick={() => update(addRow(document, section.id, newRow(allocator(document))))}>
-            + Sor
+          <button type="button" className="szk-add szk-add-wide" onClick={() => update(addRow(document, section.id, newRow(allocator(document))))}>
+            + Sor hozzáadása a(z) {number}. szakaszhoz
           </button>
         </>
       )}
@@ -324,6 +325,24 @@ function RowNode({ row, section, position }: { row: PageRow; section: PageSectio
     <div className="szk-node szk-row" ref={ref}>
       <header className="szk-node-head">
         <Grip drag={{ kind: 'row', id: row.id }} nodeRef={ref} label="Sor" />
+        <span className="szk-level szk-level-row">{position + 1}. sor</span>
+        <span className="szk-node-title">{row.columns.length} hasáb</span>
+        <button type="button" className="szk-settings-btn" onClick={() => setOpen(settingsOpen ? null : row.id)}>
+          ⚙ Sor beállításai
+        </button>
+        <NodeTools
+          label="Sor"
+          onDuplicate={() => update(addRow(document, section.id, cloneRow(row, allocator(document)), position + 1))}
+          onMove={(step) => {
+            const target = position + step
+            if (target >= 0 && target < section.rows.length) update(moveRow(document, row.id, section.id, step === 1 ? target + 1 : target))
+          }}
+          onRemove={() => update(removeRow(document, row.id))}
+        />
+      </header>
+
+      <div className="szk-layout-bar">
+        <span className="szk-layout-label">Elrendezés</span>
         <span className="szk-layouts" role="group" aria-label="Hasábok">
           {ROW_LAYOUTS.map((option) => (
             <button
@@ -345,21 +364,9 @@ function RowNode({ row, section, position }: { row: PageRow; section: PageSectio
             )
           }
         >
-          + hasáb
+          + hasáb hozzáadása
         </button>
-        <button type="button" className="szk-link" onClick={() => setOpen(settingsOpen ? null : row.id)}>
-          {settingsOpen ? 'Bezár' : 'Beállítások'}
-        </button>
-        <NodeTools
-          label="Sor"
-          onDuplicate={() => update(addRow(document, section.id, cloneRow(row, allocator(document)), position + 1))}
-          onMove={(step) => {
-            const target = position + step
-            if (target >= 0 && target < section.rows.length) update(moveRow(document, row.id, section.id, step === 1 ? target + 1 : target))
-          }}
-          onRemove={() => update(removeRow(document, row.id))}
-        />
-      </header>
+      </div>
 
       {settingsOpen && (
         <Modal title="Sor beállításai" kicker="Sor" onClose={() => setOpen(null)}>
@@ -387,8 +394,8 @@ function RowNode({ row, section, position }: { row: PageRow; section: PageSectio
       )}
 
       <div className="szk-columns">
-        {row.columns.map((column) => (
-          <ColumnNode key={column.id} column={column} row={row} />
+        {row.columns.map((column, columnIndex) => (
+          <ColumnNode key={column.id} column={column} row={row} number={columnIndex + 1} />
         ))}
       </div>
     </div>
@@ -403,7 +410,7 @@ function hasClass(className: string | undefined, token: string): boolean {
   return (className ?? '').split(/\s+/).includes(token)
 }
 
-function ColumnNode({ column, row }: { column: PageColumn; row: PageRow }) {
+function ColumnNode({ column, row, number }: { column: PageColumn; row: PageRow; number: number }) {
   const { document, update, open, setOpen } = useTree()
   const settingsOpen = open === column.id
   const patch = (fn: (current: PageColumn) => PageColumn) => update(replaceColumn(document, column.id, fn))
@@ -422,6 +429,7 @@ function ColumnNode({ column, row }: { column: PageColumn; row: PageRow }) {
   return (
     <div className="szk-node szk-column">
       <div className="szk-column-head">
+        <span className="szk-level szk-level-column">{number}. hasáb</span>
         <select
           className="szk-select"
           aria-label="Hasáb szélessége"
@@ -434,8 +442,8 @@ function ColumnNode({ column, row }: { column: PageColumn; row: PageRow }) {
             </option>
           ))}
         </select>
-        <button type="button" className="szk-link" onClick={() => setOpen(settingsOpen ? null : column.id)}>
-          {settingsOpen ? 'Bezár' : 'Beállítások'}
+        <button type="button" className="szk-settings-btn" onClick={() => setOpen(settingsOpen ? null : column.id)}>
+          ⚙ Beállítások
         </button>
         {row.columns.length > 1 && (
           <button
@@ -506,7 +514,7 @@ function ModuleList({ containerId, modules, kinds }: { containerId: string; modu
           setOpen(module.id)
         }}
       >
-        <option value="">+ Modul…</option>
+        <option value="">+ Modul hozzáadása…</option>
         {kinds.map((kind) => (
           <option key={kind} value={kind}>
             {MODULE_LABEL[kind]}

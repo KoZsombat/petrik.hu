@@ -20,6 +20,7 @@ import Statistics from '../components/hirkezelo/Statistics.tsx'
 import Audit from '../components/hirkezelo/Audit.tsx'
 import Users from '../components/hirkezelo/Users.tsx'
 import './Hirkezelo.css'
+import './admin-ui.css'
 
 /**
  * The /hirkezelo/ route - a from-scratch re-implementation of the Petrik News

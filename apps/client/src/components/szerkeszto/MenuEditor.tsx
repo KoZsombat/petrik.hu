@@ -162,7 +162,7 @@ function MenuList({
         className="szk-add"
         onClick={() => onChange([...items, { label: 'Új menüpont', to: '/' }])}
       >
-        + {depth === 0 ? 'Menüpont' : 'Pont'}
+        {depth === 0 ? '+ Új főmenüpont' : '+ Alpont hozzáadása'}
       </button>
     </div>
   )
@@ -209,15 +209,16 @@ function MenuItemRow({
           }}
         />
         <span className="szk-tools">
-          <button type="button" aria-label="Feljebb" onClick={() => onMove(-1)}>
+          <button type="button" title="Feljebb" aria-label="Feljebb" onClick={() => onMove(-1)}>
             ↑
           </button>
-          <button type="button" aria-label="Lejjebb" onClick={() => onMove(1)}>
+          <button type="button" title="Lejjebb" aria-label="Lejjebb" onClick={() => onMove(1)}>
             ↓
           </button>
           <button
             type="button"
             className="szk-danger"
+            title="Menüpont törlése"
             aria-label="Törlés"
             onClick={() => {
               if (!item.children?.length || window.confirm(`A(z) „${item.label}” pont az alpontjaival együtt törlődik. Folytatod?`)) {

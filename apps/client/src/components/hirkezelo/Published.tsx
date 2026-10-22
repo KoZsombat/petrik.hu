@@ -108,6 +108,7 @@ export default function Published() {
                   <th>Szerző</th>
                   <th>Publikálva</th>
                   <th>Forrás</th>
+                  <th className="pnw-col-actions">Műveletek</th>
                 </tr>
               </thead>
               <tbody>
@@ -174,15 +175,13 @@ function PublishedRows({
         <td data-label="Forrás">
           <span className="pnw-published-source">{post.origin === 'mirror' ? 'Régi oldal' : 'Hírkezelő'}</span>
         </td>
-      </tr>
-      <tr className="pnw-published-action-row">
-        <td colSpan={4}>
-          <div className="pnw-published-inline-actions">
-            <Link className="pnw-button" to={`/hirkezelo/?pnw_view=published_edit&post_id=${post.id}`}>
+        <td data-label="Műveletek" className="pnw-col-actions">
+          <div className="pnw-row-actions">
+            <Link className="pnw-button pnw-button-small" to={`/hirkezelo/?pnw_view=published_edit&post_id=${post.id}`}>
               {testMode ? 'Részletek' : 'Szerkesztés'}
             </Link>
             {!testMode && (
-              <button type="button" className="pnw-button pnw-button-danger" onClick={onArchive}>
+              <button type="button" className="pnw-button pnw-button-small pnw-button-outline-danger" onClick={onArchive}>
                 Archiválás
               </button>
             )}
