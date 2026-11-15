@@ -428,10 +428,20 @@ function feedItems(value: unknown): FeedItem[] {
   return objects(value, 'feed items').map((item) => {
     const author = isObject(item.author) ? item.author : undefined
     if (item.author !== undefined && item.author !== null && !author) fail('author')
+
+    let feedAuthor: FeedItem['author']
+    if (author) {
+      // The card renders `to` as a link target (PostCard.tsx), so it needs the
+      // same allow-list as every other href, not just a string check.
+      const to = optHref(author.to)
+      if (!to) fail('to')
+      feedAuthor = { name: str(author.name), to }
+    }
+
     return clean({
       slug: str(item.slug, 200, 'slug'),
       date: optStr(item.date, 60),
-      author: author ? { name: str(author.name), to: str(author.to, 2000, 'to') } : undefined,
+      author: feedAuthor,
     })
   })
 }
@@ -518,12 +528,17 @@ function pageModule(raw: unknown): PageModule {
       return clean({
         kind,
         ...common,
-        networks: objects(raw.networks, 'networks').map((item) => ({
-          network: str(item.network, 60, 'network'),
-          href: str(item.href, 2000, 'href'),
-          title: str(item.title, MAX_LABEL, 'title'),
-          label: str(item.label, MAX_LABEL, 'label'),
-        })),
+        networks: objects(raw.networks, 'networks').map((item) => {
+          // SocialFollow.tsx puts this straight into an <a href>.
+          const href = optHref(item.href)
+          if (!href) fail('href')
+          return {
+            network: str(item.network, 60, 'network'),
+            href,
+            title: str(item.title, MAX_LABEL, 'title'),
+            label: str(item.label, MAX_LABEL, 'label'),
+          }
+        }),
         align: optOneOf(raw.align, ALIGNS, 'align'),
       }) as PageModule
     case 'number-counter':

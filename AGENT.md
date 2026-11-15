@@ -38,6 +38,28 @@ mentéssel (`check-text.ts`, utoljára ellenőrizve 2026-09-19), és a kezdőlap
 minden szekciója **0,0px**-re egyezik. `npm run build`, `npm run lint`,
 `check-routes.ts` és `check-titles.ts` ugyanekkor zöld volt.
 
+**2026-11-15: Launchpad-telepítés + biztonsági zárak** — a `docker-compose.yml`
+most közvetlenül szkennelhető a Launchpaddel (útmutató: `LAUNCHPAD.md`), és
+egyetlen compose-fájl maradt: a Cloudflare-tunnel, a `deploy.ps1` és az AWS-es
+telepítési út kikerült (a Launchpad saját Traefik + cloudflared-je publikál).
+A tunnel azért nem lehet a fájlban, mert a Launchpad figyelmen kívül hagyja a
+`profiles`-t, a fájl minden szolgáltatását elindítja, és csak akkor nyilvánítja
+késznek a telepítést, ha mindegyik fut. Az adatbázis névvel ellátott kötetbe
+(`petrik-db`) került a repóba mutató bind mount helyett, mert a Launchpad a
+repót klónozza.
+Éles indulásnál a szerver leáll, ha a `PNW_SESSION_SECRET` a repóban lévő
+nyilvános alapérték, vagy ha egy üres adatbázisba a nyilvános demó-jelszavak
+kerülnének (`config.ts` `assertProductionConfig()`). Bejelentkezés: 15 percenként
+10 hibás próbálkozás fiókonként (429 `too_many_attempts`), és új session id
+(`req.session.regenerate`). A sessionök SQLite-táblában élnek (`sessions`,
+`lib/session-store.ts`), így a deploy nem jelentkeztet ki senkit; a süti
+`Secure` jelzője a valódi sémát követi (nginx `CF-Visitor` →
+`X-Forwarded-Proto`, `trust proxy`). A `social-follow` és a feed-szerző linkjei
+is átmennek az `isSafeHref`-en, az archivált hír részletei és naplója pedig
+`pnw_manage_published`-hez kötöttek. Kliens: hiba-határ (`ErrorBoundary.tsx`).
+**Élesben nem ellenőrizve** — a compose-config, a lint, a build és egy helyi
+füstteszt igen.
+
 **2026-10-04: a régi hírek a Hírkezelőben** (részletek: 6.24) — a mentés mind
 a 216 hírje (a korábban statikus mintaposzt is) importálva a Hírkezelő
 adatbázisába (`npm run import-posts -w apps/server`), az eredeti `/<slug>/`
@@ -229,8 +251,8 @@ kiterjesztéssel.
 
 ```
 package.json        npm workspace-gyökér: apps/client + apps/server, lint-eszközök
-docker-compose.yml  server + client (+ opcionális tunnel) — lásd DEPLOY.md
-deploy.ps1          AWS-telepítés a helyi gépről (DEPLOY.md)
+docker-compose.yml  server + client, az adatbázis a petrik-db kötetben
+LAUNCHPAD.md        telepítés Launchpaddel (compose-szkennelés, env, adatmentés)
 
 apps/client/        a weboldal (Vite + React); Dockerfile: build → nginx,
                     nginx.conf: SPA + /api és /uploads továbbítása a szervernek

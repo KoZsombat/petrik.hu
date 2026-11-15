@@ -4,12 +4,16 @@
 #           /uploads/ to the server - the only service published on a port.
 #   server  Express + SQLite: the Hírkezelő and Szerkesztő API. Not reachable
 #           from outside the compose network.
-#   tunnel  optional Cloudflare tunnel to the client (DEPLOY.md step 7).
+#
+# This is the file Launchpad scans (LAUNCHPAD.md), so it keeps two properties
+# that matter there: no `profiles` (Launchpad deploys every service in the file
+# and waits for each of them to be running) and no tunnel (Launchpad's own
+# cloudflared + Traefik publish the site). The database is a named volume, not
+# a bind mount, because a Launchpad deployment is a checkout of this
+# repository - a bind mount would keep the live site's data inside a git
+# working tree.
 #
 # Both images build from the repo root, because both apps import shared/.
-# On a server (DEPLOY.md) the images are built on your own machine and copied
-# over, then started with `docker compose up -d --no-build` - hence the fixed
-# project and image names, so the copied images are found by name.
 name: petrikhu
 
 services:
@@ -20,26 +24,24 @@ services:
     image: petrikhu-server
     environment:
       PNW_PORT: 4000
-      # Set a real PNW_SESSION_SECRET in .env before exposing this beyond your
-      # own machine - see .env.example.
-      PNW_SESSION_SECRET: ${PNW_SESSION_SECRET:-petrik-news-workflow-dev-secret-change-me}
+      # Required. The repo's public dev default and an empty value are both
+      # refused at startup (apps/server/config.ts, assertProductionConfig).
+      PNW_SESSION_SECRET: ${PNW_SESSION_SECRET:?set PNW_SESSION_SECRET - openssl rand -hex 32}
       # Off unless .env says true: a public site must not print working logins.
       PNW_SHOW_DEMO_LOGINS: ${PNW_SHOW_DEMO_LOGINS:-false}
-      # Only read when the database is empty (first boot) - see apps/server/config.ts.
-      PNW_SEED_PASSWORD: ${PNW_SEED_PASSWORD:-}
-      PNW_MEDIA_SEED_DIR: /seed-media
+      # Required. Password of the three accounts seeded into an EMPTY database
+      # (data/users-repo.ts). Without it, a fresh deployment would get the demo
+      # passwords that are public in this repository.
+      PNW_SEED_PASSWORD: ${PNW_SEED_PASSWORD:?set PNW_SEED_PASSWORD for the first boot of an empty database}
     volumes:
-      # The SQLite database and uploaded images, kept on the host so
-      # `docker compose down` / a rebuild never loses them - the same two
-      # paths a local `npm run server` uses (and .gitignore excludes).
-      - ./apps/server/data/db:/app/apps/server/data/db
-      # Only read once, on a boot that finds files here the database does not
-      # yet hold: uploads from before media moved into the database, and the
-      # mirrored /media files (the same folder a checkout has them in; on the
-      # server `deploy.ps1 -WithMedia` puts them there).
-      - ./apps/server/uploads:/app/apps/server/uploads
-      - ./apps/client/public/media:/seed-media:ro
+      # The whole site is this one SQLite file: news, pages, accounts, the menu,
+      # every uploaded image and the mirrored media (data/media-repo.ts). A
+      # named volume, so a redeploy - or Launchpad checking the repository out
+      # again - cannot take it along. Back it up; see LAUNCHPAD.md.
+      - petrik-db:/app/apps/server/data/db
     restart: unless-stopped
+    # Deliberately no `ports`: nginx reaches the API at server:4000 on the
+    # compose network, and Launchpad removes published ports anyway.
 
   client:
     build:
@@ -52,16 +54,5 @@ services:
       - server
     restart: unless-stopped
 
-  # Publishes the site on your Cloudflare domain through an outbound tunnel -
-  # no open ports, HTTPS from Cloudflare. Its public hostname points at
-  # http://client:80. Only started when .env contains COMPOSE_PROFILES=tunnel,
-  # so a local `docker compose up` without a token is unaffected.
-  tunnel:
-    image: cloudflare/cloudflared:latest
-    profiles: ['tunnel']
-    command: tunnel --no-autoupdate run
-    environment:
-      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:-}
-    depends_on:
-      - client
-    restart: unless-stopped
+volumes:
+  petrik-db:

@@ -39,12 +39,16 @@ export const DIST_DIR = resolve(PROJECT_ROOT, 'apps/client/dist')
 export const PORT = Number(process.env.PNW_PORT ?? 4000)
 
 /**
- * A real secret in production is an env var, not this fallback - but there is
- * no deployment pipeline for this yet, so a fixed dev default keeps `npm run
- * server` working out of the box for a pilot with a handful of known users.
+ * A real secret in production is an env var, not this fallback - the fallback
+ * only keeps `npm run server` working out of the box locally. A production
+ * start with it is refused (assertProductionConfig), because the value is in
+ * this repository.
  */
 const DEV_SECRET = 'petrik-news-workflow-dev-secret-change-me'
 export const SESSION_SECRET = process.env.PNW_SESSION_SECRET || DEV_SECRET
+
+/** The Docker image sets this; a local `npm run server` does not. */
+export const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
 /**
  * The real plugin's PNW_TEST_MODE, ported as a real toggle rather than
@@ -76,8 +80,43 @@ export const SHOW_DEMO_LOGINS =
  * When set, the three accounts seeded into an **empty** database get this
  * password instead of the demo ones in users-repo.ts (which are in the repo,
  * hence public). Has no effect on a database that already has accounts.
+ * Required in production - see assertProductionConfig().
  */
 export const SEED_PASSWORD = process.env.PNW_SEED_PASSWORD || undefined
 
 /** docker-compose.yml falls back to the same dev string, so this compares the value. */
 export const USING_DEFAULT_SECRET = SESSION_SECRET === DEV_SECRET
+
+/**
+ * Refuses a public start that would be trivially compromised, rather than
+ * logging a warning nobody reads:
+ *
+ * - the session secret would be the public dev constant, so anyone with the
+ *   repo could tamper with login cookies;
+ * - the database is empty and no seed password is set, so the three seeded
+ *   accounts (`mk.vezeto`, `helyettes`, `igazgato` - the last two with
+ *   account/page/library management) would get passwords that are in the
+ *   repository.
+ *
+ * Both are harmless locally, where `NODE_ENV` is not `production` and the
+ * demo passwords are the point.
+ */
+export function assertProductionConfig(): void {
+  if (!IS_PRODUCTION) return
+
+  if (USING_DEFAULT_SECRET) {
+    console.error(
+      '[pnw] PNW_SESSION_SECRET is the public development default. ' +
+        'Set a real one (openssl rand -hex 32) and restart.',
+    )
+    process.exit(1)
+  }
+
+  if (!SEED_PASSWORD) {
+    console.error(
+      '[pnw] PNW_SEED_PASSWORD is empty. On an empty database the seeded accounts would get ' +
+        'the demo passwords that are public in this repository. Set it and restart.',
+    )
+    process.exit(1)
+  }
+}

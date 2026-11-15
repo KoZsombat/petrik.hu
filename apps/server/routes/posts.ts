@@ -1,9 +1,9 @@
 import { randomUUID } from 'node:crypto'
 import { Router } from 'express'
 import { CAPABILITY, STATUS } from '../../../shared/pnw/types.ts'
-import type { Post } from '../../../shared/pnw/types.ts'
+import type { Post, SessionUser } from '../../../shared/pnw/types.ts'
 import { canEditWorkflowPost, canViewWorkflowPost } from '../../../shared/pnw/access.ts'
-import { canReview } from '../../../shared/pnw/permissions.ts'
+import { canManagePublished, canReview } from '../../../shared/pnw/permissions.ts'
 import { allPosts, existingSlugs, findPost, insertPost, removePost, updatePost } from '../data/posts-repo.ts'
 import { termIdsOfKind } from '../data/terms-repo.ts'
 import { uniqueSlug } from '../../../shared/pnw/slug.ts'
@@ -334,8 +334,11 @@ router.get('/:id/audit', (req, res) => {
 
 // --- helpers ---------------------------------------------------------------
 
-function canViewPost(post: Post, user: import('../../../shared/pnw/types.ts').SessionUser): boolean {
-  if (post.status === STATUS.PUBLISH || post.status === STATUS.ARCHIVED) return true
+function canViewPost(post: Post, user: SessionUser): boolean {
+  if (post.status === STATUS.PUBLISH) return true
+  // The archived list itself needs pnw_manage_published, so an archived
+  // post's detail and audit must not be readable by every logged-in account.
+  if (post.status === STATUS.ARCHIVED) return canManagePublished(user)
   return canViewWorkflowPost(post, user)
 }
 

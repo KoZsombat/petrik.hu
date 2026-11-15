@@ -32,21 +32,23 @@ Environment variables (Docker Compose reads them from the root `.env`):
 
 | Variable | Default | Meaning |
 |---|---|---|
-| `PNW_SESSION_SECRET` | a public dev value | Signs login cookies. **Set a real one** in production (`openssl rand -hex 32`); the server warns at start if you don't. |
-| `PNW_SEED_PASSWORD` | — | Password for the three seeded accounts when the database is empty. Without it they get the public demo passwords. |
+| `PNW_SESSION_SECRET` | a public dev value | Signs login cookies. **Required** in production (`openssl rand -hex 32`): a production start with the repository's dev value is refused. |
+| `PNW_SEED_PASSWORD` | — | Password for the three seeded accounts when the database is empty. **Required** in production: without it a production start is refused rather than seeding the demo passwords that are public in this repo. |
 | `PNW_SHOW_DEMO_LOGINS` | `true` locally, `false` when `NODE_ENV=production` | Whether the login card lists the demo accounts. Never `true` on a public site. |
 | `PNW_PORT` | `4000` | Port to listen on. |
+| `NODE_ENV` | — | `production` in the Docker image: enables the checks above and makes the session cookie `Secure` whenever the request arrived over HTTPS (`trust proxy` + nginx's `X-Forwarded-Proto`). |
 
 ## Data
 
 | Path | Contents |
 |---|---|
-| `data/db/hirkezelo.db` | Everything: posts, audit log, accounts, categories/tags, Szerkesztő pages, page overrides, menu |
-| `uploads/` | Uploaded images, served at `/uploads/…` |
+| `data/db/hirkezelo.db` | Everything: posts, audit log, accounts, sessions, categories/tags, Szerkesztő pages, menu, the document library, and every media file (mirrored and uploaded) |
+| `uploads/` | Legacy import folder only: files found here at startup are copied into the database. Nothing new is written to it. |
 
-Both are runtime state: git-ignored, and mounted as volumes in Docker so
-rebuilds don't lose them. Back them up, and stop the server first so the
-SQLite files are consistent.
+The database is runtime state: git-ignored, and a named volume in Docker
+(`petrik-db`, see `docker-compose.yml`) so rebuilds and redeploys don't lose
+it. Back up the whole folder - `hirkezelo.db` plus its `-wal` and `-shm`
+files - and stop the server first so the SQLite files are consistent.
 
 ## Permissions
 

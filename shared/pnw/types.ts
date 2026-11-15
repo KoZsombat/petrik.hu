@@ -292,7 +292,7 @@ export type AuditEntry = {
   createdAt: string
 }
 
-export type LoginErrorCode = 'empty_fields' | 'invalid_credentials' | 'no_access'
+export type LoginErrorCode = 'empty_fields' | 'invalid_credentials' | 'no_access' | 'too_many_attempts'
 
 export type NoticeCode =
   | 'draft_saved'

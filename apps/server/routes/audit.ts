@@ -7,7 +7,8 @@ const router = Router()
 
 /** Mirrors render_audit() - the full 100-event log. */
 router.get('/', requireCapability(CAPABILITY.VIEW_AUDIT_LOG), async (req, res) => {
-  const limit = Math.min(200, Number(req.query.limit) || 100)
+  const requested = Math.trunc(Number(req.query.limit) || 100)
+  const limit = Math.min(200, Math.max(1, requested))
   res.json({ entries: await recentAudit(limit) })
 })
 

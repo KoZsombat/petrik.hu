@@ -21,8 +21,7 @@ Live: **https://petrik.zsombor.dev**
 apps/client/     the website — Vite + React + TypeScript        → apps/client/README.md
 apps/server/     the API — Express + SQLite, run without a build → apps/server/README.md
 shared/pnw/      types and rules both apps import (permissions, rich text, page model)
-docker-compose.yml   client (nginx) + server + optional Cloudflare tunnel
-deploy.ps1       builds the images locally and ships them to the server
+docker-compose.yml   client (nginx) + server, the database in a named volume
 ```
 
 An npm workspace: one `package.json` and one `package-lock.json` at the root.
@@ -58,16 +57,19 @@ committed) — see [apps/server/README.md](apps/server/README.md#configuration).
 
 ## Deploying
 
-- [DEPLOY.md](DEPLOY.md) — setting up a server from scratch (AWS EC2 +
-  Cloudflare tunnel).
-- [OPERATIONS.md](OPERATIONS.md) — running the live site: updating, backups,
-  troubleshooting.
+The site is hosted on [Launchpad](https://github.com/KoZsombat/Launchpad), which
+builds `docker-compose.yml` from this repository and publishes the `client`
+service through its own Traefik + Cloudflare Tunnel.
+[LAUNCHPAD.md](LAUNCHPAD.md) is the setup: the compose scan, the two required
+environment variables, and the one-time database restore.
 
-In short, a code change goes live with:
+After that, a deploy is either **Redeploy** in the app page or a push to
+`main`, depending on the push webhook.
 
-```powershell
-.\deploy.ps1 -Server <server-ip> -Key $HOME\.ssh\petrik.pem
-```
+`docker compose up --build` runs the same stack locally. The site's data -
+news, pages, accounts, uploads and the mirrored images - is one SQLite file in
+the `petrik-db` named volume (`apps/server/data/db` for a local
+`npm run server`).
 
 ## Rules of the codebase
 
@@ -91,5 +93,4 @@ along with every deliberate difference from the original site:
 | [AGENT.md](AGENT.md) | How the port works, every decision and pitfall (Hungarian) — read this before changing anything |
 | [apps/client/README.md](apps/client/README.md) | The website and its generator scripts |
 | [apps/server/README.md](apps/server/README.md) | The API, its configuration and endpoints |
-| [DEPLOY.md](DEPLOY.md) | First-time server setup |
-| [OPERATIONS.md](OPERATIONS.md) | Day-to-day running of the live site |
+| [LAUNCHPAD.md](LAUNCHPAD.md) | Hosting on Launchpad (compose scan, env, data restore) |

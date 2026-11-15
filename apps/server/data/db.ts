@@ -150,6 +150,18 @@ db.exec(`
   );
 `)
 
+db.exec(`
+  -- express-session's store (lib/session-store.ts), so a restart or a redeploy
+  -- does not log everyone out and the process holds no session state.
+  CREATE TABLE IF NOT EXISTS sessions (
+    sid TEXT PRIMARY KEY,
+    sess TEXT NOT NULL,
+    expire INTEGER NOT NULL
+  );
+
+  CREATE INDEX IF NOT EXISTS sessions_expire_idx ON sessions(expire);
+`)
+
 function columnNames(table: string): Set<string> {
   return new Set((db.pragma(`table_info(${table})`) as { name: string }[]).map((column) => column.name))
 }

@@ -7,6 +7,7 @@ const MESSAGES: Record<LoginErrorCode, string> = {
   empty_fields: 'Add meg a felhasználóneved és a jelszavad.',
   invalid_credentials: 'A megadott felhasználónév vagy jelszó nem megfelelő.',
   no_access: 'Ezzel a felhasználóval nincs jogosultság a Petrik Hírkezelő használatához.',
+  too_many_attempts: 'Túl sok sikertelen próbálkozás. Várj 15 percet, és próbáld újra.',
 }
 
 type Props = {

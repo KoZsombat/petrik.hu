@@ -20,7 +20,8 @@ const router = Router()
  * mirror's own archives and feeds already list it in its place.
  */
 router.get('/posts', (req, res) => {
-  const limit = Math.min(50, Number(req.query.limit) || 20)
+  const requested = Math.trunc(Number(req.query.limit) || 20)
+  const limit = Math.min(50, Math.max(1, requested))
   const posts = allPosts()
     .filter((post) => post.status === STATUS.PUBLISH && post.origin !== 'mirror')
     .sort((a, b) => b.date.localeCompare(a.date))

@@ -11,6 +11,7 @@ import express from 'express'
 import session from 'express-session'
 import { STATUS } from '../../shared/pnw/types.ts'
 import {
+  assertProductionConfig,
   DIST_DIR,
   PORT,
   SCHEDULE_CHECK_INTERVAL_MS,
@@ -19,13 +20,13 @@ import {
   MEDIA_URL_PREFIX,
   UPLOADS_DIR,
   UPLOADS_URL_PREFIX,
-  USING_DEFAULT_SECRET,
 } from './config.ts'
 import { attachUser } from './middleware/auth.ts'
 import { allPosts, updatePost } from './data/posts-repo.ts'
 import { seedInitialUsers } from './data/users-repo.ts'
 import { seedInitialTerms } from './data/terms-repo.ts'
 import { importDirectory, mediaRouter } from './lib/media.ts'
+import { SqliteSessionStore } from './lib/session-store.ts'
 import { logAudit } from './lib/audit.ts'
 import { notifyScheduledPublished } from './lib/notifications.ts'
 import authRoutes from './routes/auth.ts'
@@ -38,6 +39,10 @@ import termsRoutes from './routes/terms.ts'
 import pageRoutes from './routes/pages.ts'
 import libraryRoutes from './routes/library.ts'
 
+// Before anything reads or writes data: a public start with the repo's own
+// session secret, or with demo passwords about to be seeded, is refused.
+assertProductionConfig()
+
 seedInitialUsers()
 seedInitialTerms()
 
@@ -49,6 +54,11 @@ for (const [dir, prefix] of [[UPLOADS_DIR, UPLOADS_URL_PREFIX], [MEDIA_SEED_DIR,
 
 const app = express()
 
+// nginx (apps/client/nginx.conf) is the only hop in front of this process and
+// forwards the original scheme in X-Forwarded-Proto, so req.secure and the
+// session cookie's Secure flag follow the public HTTPS origin.
+app.set('trust proxy', 1)
+
 // A Szerkesztő page document (AGENT.md 6.20) easily outgrows express's 100 KB default
 // (the staff page alone is ~120 KB; nginx's client_max_body_size is 10m).
 app.use(express.json({ limit: '8mb' }))
@@ -57,11 +67,17 @@ app.use(
   session({
     name: 'pnw.sid',
     secret: SESSION_SECRET,
+    // Sessions outlive the process (lib/session-store.ts): a restart or a
+    // redeploy no longer logs everyone out.
+    store: new SqliteSessionStore(),
     resave: false,
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
       sameSite: 'lax',
+      // Secure exactly when the request arrived over HTTPS: the public site
+      // always does, a local http://localhost does not, and neither breaks.
+      secure: 'auto',
       maxAge: 30 * 24 * 60 * 60 * 1000,
     },
   }),
@@ -127,7 +143,4 @@ setInterval(() => {
 
 app.listen(PORT, () => {
   console.log(`[pnw] Hírkezelő backend listening on http://localhost:${PORT}`)
-  if (USING_DEFAULT_SECRET && process.env.NODE_ENV === 'production') {
-    console.warn('[pnw] PNW_SESSION_SECRET is the public dev default - set a real one in .env (see DEPLOY.md)')
-  }
 })
