@@ -21,7 +21,7 @@ Live: **https://petrik.zsombor.dev**
 apps/client/     the website — Vite + React + TypeScript        → apps/client/README.md
 apps/server/     the API — Express + SQLite, run without a build → apps/server/README.md
 shared/pnw/      types and rules both apps import (permissions, rich text, page model)
-docker-compose.yml   client (nginx) + server, the database in a named volume
+docker-compose.yml   client (nginx) + server + cloudflared tunnel, the database in a named volume
 ```
 
 An npm workspace: one `package.json` and one `package-lock.json` at the root.
@@ -46,7 +46,7 @@ fails without Visual Studio.
 | `npm run build` | Production build of the website → `apps/client/dist` |
 | `npm run lint` | ESLint over the whole repo |
 | `npx tsc -b` | Type-check the website |
-| `docker compose up --build -d` | Everything as in production — http://localhost:4000 |
+| `docker compose up --build -d` | Everything as in production — http://localhost:4000. Also starts `tunnel`, so `.env` needs `CLOUDFLARE_TUNNEL_TOKEN` |
 
 Run `npm run dev` and `npm run server` together for local work. Locally the
 login card lists the demo accounts; the database is created and seeded on the
@@ -59,9 +59,12 @@ committed) — see [apps/server/README.md](apps/server/README.md#configuration).
 
 The site is hosted on [Launchpad](https://github.com/KoZsombat/Launchpad), which
 builds `docker-compose.yml` from this repository and publishes the `client`
-service through its own Traefik + Cloudflare Tunnel.
-[LAUNCHPAD.md](LAUNCHPAD.md) is the setup: the compose scan, the two required
-environment variables, and the one-time database restore.
+service through its own Traefik + Cloudflare Tunnel. The repository also
+carries its own `tunnel` (cloudflared) for the site's hostname, because
+Launchpad starts every service in the scanned file.
+[LAUNCHPAD.md](LAUNCHPAD.md) is the setup: the compose scan, the three required
+environment variables (one of them the tunnel token), and the one-time
+database restore.
 
 After that, a deploy is either **Redeploy** in the app page or a push to
 `main`, depending on the push webhook.

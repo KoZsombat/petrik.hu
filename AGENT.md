@@ -40,11 +40,16 @@ minden szekciója **0,0px**-re egyezik. `npm run build`, `npm run lint`,
 
 **2026-11-15: Launchpad-telepítés + biztonsági zárak** — a `docker-compose.yml`
 most közvetlenül szkennelhető a Launchpaddel (útmutató: `LAUNCHPAD.md`), és
-egyetlen compose-fájl maradt: a Cloudflare-tunnel, a `deploy.ps1` és az AWS-es
-telepítési út kikerült (a Launchpad saját Traefik + cloudflared-je publikál).
-A tunnel azért nem lehet a fájlban, mert a Launchpad figyelmen kívül hagyja a
-`profiles`-t, a fájl minden szolgáltatását elindítja, és csak akkor nyilvánítja
-késznek a telepítést, ha mindegyik fut. Az adatbázis névvel ellátott kötetbe
+egyetlen compose-fájl maradt: a `deploy.ps1` és az AWS-es telepítési út
+kikerült. A `tunnel` (cloudflared) szolgáltatás **visszakerült** a fájlba,
+távolról kezelt tunnellel: a nyilvános hostnév a Cloudflare felületén a
+`http://client:80`-ra mutat, a fájlban csak a token van, és az **kötelező**
+(`${CLOUDFLARE_TUNNEL_TOKEN:?}`). `profiles` erre nem használható, mert a
+Launchpad figyelmen kívül hagyja és a fájl minden szolgáltatását elindítja; a
+`:?` miatt viszont a hiányzó token már a fájl értelmezésekor megállítja a
+telepítést, nem egy crashelő cloudflared buktatja el az egészet. A Launchpad a
+publikált `client`-et a `web` hálózat mellé a projekt saját hálózatán is
+hagyja, ezért éri el a tunnel `client:80`-on. Az adatbázis névvel ellátott kötetbe
 (`petrik-db`) került a repóba mutató bind mount helyett, mert a Launchpad a
 repót klónozza.
 Éles indulásnál a szerver leáll, ha a `PNW_SESSION_SECRET` a repóban lévő
@@ -251,7 +256,7 @@ kiterjesztéssel.
 
 ```
 package.json        npm workspace-gyökér: apps/client + apps/server, lint-eszközök
-docker-compose.yml  server + client, az adatbázis a petrik-db kötetben
+docker-compose.yml  server + client + tunnel (cloudflared), az adatbázis a petrik-db kötetben
 LAUNCHPAD.md        telepítés Launchpaddel (compose-szkennelés, env, adatmentés)
 
 apps/client/        a weboldal (Vite + React); Dockerfile: build → nginx,

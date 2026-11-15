@@ -11,7 +11,8 @@ Worth knowing, because it explains the shape of `docker-compose.yml`:
 
 - it **removes** `name`, `ports`, `container_name` and `profiles`, adds Traefik
   labels to the service you publish, and attaches that service to the external
-  `web` network;
+  `web` network - the published service keeps the project's own network as
+  well, which is what lets the `tunnel` service reach it as `client:80`;
 - it **deploys every service** in the file and only declares the deployment
   healthy once each of them is `running` (and the published one answers its
   health path) - a service that crash-loops fails the whole deploy;
@@ -23,9 +24,12 @@ Worth knowing, because it explains the shape of `docker-compose.yml`:
   resolve against the panel host, not the checkout, so this project keeps its
   data in the named volume instead.
 
-There is exactly one compose file, with no `profiles` and no tunnel: a
-`cloudflared` without a token would crash-loop and fail the whole deployment,
-and Launchpad already runs its own tunnel for the host.
+There is exactly one compose file, and it carries the site's own `tunnel`
+(cloudflared) next to `client` and `server`. It cannot be opt-in: Launchpad
+ignores `profiles` and starts every service in the file, so the tunnel's token
+is a **required** variable - `${CLOUDFLARE_TUNNEL_TOKEN:?}` - and a deployment
+without it stops while parsing the file, with the variable named, instead of
+starting a cloudflared that crash-loops and fails the whole deployment.
 
 ## 1. Add the app
 
@@ -44,11 +48,13 @@ Click **Scan compose**. Confirm the detected services:
 |---|---|---|---|---|
 | `client` | **yes** | `petrik` (or empty) | **80** | `/` |
 | `server` | no | — | — (no port on purpose) | — |
+| `tunnel` | no | — | — (no port by design) | — |
 
 `server` has no `ports` entry deliberately: nginx reaches the API at
 `server:4000` on the compose network, and the API should never have its own
 public hostname. Launchpad will show "No container port detected" for it -
-that is expected.
+that is expected. `tunnel` is the same: cloudflared opens the connection
+outbound, so it publishes nothing and only needs the token.
 
 Submit. The deployment log should show both images building, then
 `All compose services are running and routed services are healthy.`, then the
@@ -56,7 +62,7 @@ site answering on its hostname.
 
 ## 2. Environment
 
-Launchpad asks for the variables the compose file references. Two are
+Launchpad asks for the variables the compose file references. Three are
 **required** (the deploy fails with "Missing values for compose variables"
 without them):
 
@@ -64,6 +70,7 @@ without them):
 |---|---|
 | `PNW_SESSION_SECRET` | `openssl rand -hex 32` |
 | `PNW_SEED_PASSWORD` | at least 8 characters; only used the first time an **empty** database is seeded |
+| `CLOUDFLARE_TUNNEL_TOKEN` | the token of the site's own tunnel - see [2.1](#21-the-tunnels-hostname) |
 
 Optional:
 
@@ -75,6 +82,34 @@ Optional:
 The server refuses to start (`apps/server/config.ts`) if the session secret is
 the repository's public default or if a production database would be seeded
 with the public demo passwords.
+
+### 2.1 The tunnel's hostname
+
+`tunnel` is a **remotely managed** Cloudflare tunnel: the compose file carries
+only the token, all routing lives in the dashboard.
+
+1. Zero Trust → **Networks → Tunnels → Create a tunnel → Cloudflared**, name it
+   `petrik`, and copy the token into `CLOUDFLARE_TUNNEL_TOKEN`.
+2. On the tunnel's **Public hostname** tab add the site's hostname (e.g.
+   `petrik.hu`) with service `http://client:80` - the compose service name and
+   nginx's port on the project network. Add `www` with the same target if it
+   is served.
+3. Cloudflare creates the proxied `CNAME`; delete any old `A`/`AAAA` record for
+   the same name, or the tunnel is never reached.
+
+Two rules this relies on:
+
+- **One hostname, one tunnel.** If the app's Domain in Launchpad already
+  resolves to the panel's own tunnel (Traefik → `client:80`), do not add that
+  same hostname here - two tunnels behind one name is a coin toss. Use the
+  name this tunnel should serve, or leave Domain empty.
+- **The connector reaches `client` by service name.** Launchpad attaches the
+  published `client` to `web` and keeps it on the project network, so
+  `client:80` resolves from `tunnel`. Nothing has to be published for it.
+
+Check with `docker compose logs -f tunnel`: `Registered tunnel connection`
+means it works, `failed to authenticate` means the token is wrong or was
+rotated (update the app's environment variable and redeploy).
 
 ## 3. One-time data restore
 
@@ -143,10 +178,11 @@ be a few seconds behind. Keep the three files together (`hirkezelo.db`,
 
 ## Notes
 
-- **TLS and cookies.** Launchpad's Traefik and Cloudflare terminate HTTPS; the
-  container hop is plain HTTP. `apps/client/nginx.conf` forwards the original
-  scheme (Cloudflare's `CF-Visitor` survives the tunnel hop), and the API marks
-  the login cookie `Secure` only when the visitor is actually on HTTPS.
+- **TLS and cookies.** Cloudflare terminates HTTPS on both routes (the panel's
+  tunnel → Traefik, or this project's `tunnel` → nginx) and the container hop
+  is plain HTTP. `apps/client/nginx.conf` forwards the original scheme
+  (Cloudflare's `CF-Visitor` survives the tunnel hop), and the API marks the
+  login cookie `Secure` only when the visitor is actually on HTTPS.
 - **Who can reach the admin screens.** The site is public; `/bejelentkezes/`,
   `/hirkezelo/` and `/szerkeszto/` are protected by the app's own login
   (bcrypt, 10 failed attempts per account per 15 minutes). Launchpad's

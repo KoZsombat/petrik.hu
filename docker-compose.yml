@@ -4,14 +4,17 @@
 #           /uploads/ to the server - the only service published on a port.
 #   server  Express + SQLite: the Hírkezelő and Szerkesztő API. Not reachable
 #           from outside the compose network.
+#   tunnel  cloudflared: publishes the site on a Cloudflare hostname that
+#           points at `client:80` (dashboard-side config, see LAUNCHPAD.md).
 #
-# This is the file Launchpad scans (LAUNCHPAD.md), so it keeps two properties
-# that matter there: no `profiles` (Launchpad deploys every service in the file
-# and waits for each of them to be running) and no tunnel (Launchpad's own
-# cloudflared + Traefik publish the site). The database is a named volume, not
-# a bind mount, because a Launchpad deployment is a checkout of this
-# repository - a bind mount would keep the live site's data inside a git
-# working tree.
+# This is the file Launchpad scans (LAUNCHPAD.md), so it keeps one property
+# that matters there: no `profiles`. Launchpad deploys every service in the
+# file and waits for each of them to be running, so the tunnel's token is a
+# required variable (`:?`) - a missing token fails at parse time with a
+# message, instead of a crash-looping cloudflared failing the whole deploy.
+# The database is a named volume, not a bind mount, because a Launchpad
+# deployment is a checkout of this repository - a bind mount would keep the
+# live site's data inside a git working tree.
 #
 # Both images build from the repo root, because both apps import shared/.
 name: petrikhu
@@ -52,6 +55,19 @@ services:
       - '${PNW_PORT:-4000}:80'
     depends_on:
       - server
+    restart: unless-stopped
+
+  # A remotely-managed Cloudflare tunnel: the public hostname is configured in
+  # the Cloudflare dashboard (Zero Trust → Networks → Tunnels → Public
+  # hostnames) and points at http://client:80, so nothing about the hostname
+  # lives in this file. `--no-autoupdate`: the image tag is the version.
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:?set CLOUDFLARE_TUNNEL_TOKEN - the token from the tunnel's install command}
+    depends_on:
+      - client
     restart: unless-stopped
 
 volumes:
